@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/greenfield
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:9.9.0
     steps:
       - checkout
       - run: npm install
