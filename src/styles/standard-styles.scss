@@ -1,0 +1,19 @@
+$buttonColor: #ADFFE2;
+$tileColor: #9EE8B9;
+$backgroundColor: #BBFFC1;
+$widgetColor: #B0E89E;
+$modalColor: #DEFFAD;
+$borderColor:	#808080;
+$font: arial;
+$buttonHeight: 30px;
+$borderThickness: 2px;
+$defaultPadding: 5px;
+$fontColor: black;
+$defaultMargin: 5px;
+
+button {
+  height: $buttonHeight;
+  background-color: $buttonColor;
+  font-family: $font;
+  border-width: $borderThickness;
+}
