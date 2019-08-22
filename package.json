@@ -24,7 +24,10 @@
   },
   "eslintConfig": {
     "extends": "airbnb",
-    "env": {"jest": true}
+    "env": {
+      "jest": true,
+      "browser": true
+    }
   },
   "browserslist": {
     "production": [
