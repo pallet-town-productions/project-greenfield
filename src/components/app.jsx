@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/standard-styles.scss';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>Hello World</div>
+      <div>
+Hello World
+        <button type="button">test</button>
+      </div>
     );
   }
 }
