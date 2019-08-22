@@ -3,9 +3,15 @@ jobs:
   build:
     working_directory: ~/greenfield
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:9.9.0
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run: npm test
       - run: npm run lint

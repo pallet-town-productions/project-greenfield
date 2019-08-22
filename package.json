@@ -23,7 +23,8 @@
     "lint": "eslint --ext .js --ext .jsx ."
   },
   "eslintConfig": {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "env": {"jest": true}
   },
   "browserslist": {
     "production": [
