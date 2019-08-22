@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/hrgbld/fec/project-greenfield/greenfield
+    working_directory: /Users/stephen/hrgbld/fec/project-greenfield/greenfield/
     docker:
       - image: circleci/node:7
     steps:
