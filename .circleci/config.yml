@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/greenfield/
+    working_directory: ~/project-greenfield/greenfield/
     docker:
       - image: circleci/node:7
     steps:
