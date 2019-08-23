@@ -9,7 +9,7 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.state = { productId: props.productId };

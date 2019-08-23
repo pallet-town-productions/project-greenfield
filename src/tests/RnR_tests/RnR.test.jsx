@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import App from '../../components/app';
+import { App } from '../../components/app';
 import RnR from '../../components/RnR/RnR_container';
 
 configure({ adapter: new Adapter() });
