@@ -37,5 +37,6 @@ App.propTypes = {
   productId: PT.number.isRequired,
 };
 
-export default connect(mapStateToProps, null)(App);
+const connectedApp = connect(mapStateToProps, null)(App);
+export default connectedApp;
 // will need to update with map state to props and map dispatch to props
