@@ -18,9 +18,9 @@ class List extends React.Component {
         {QnA.map((question) => (
           <div>
             {' '}
-            <Question data={question} />
+            <Question key={question.question_id} data={question} />
             {' '}
-            <Answer data={question} />
+            <Answer key={question.question_date} data={question} />
             {' '}
           </div>
         ))}
