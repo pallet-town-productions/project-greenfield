@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import { connect } from 'react-redux';
 
 const mapStateToProps = function (state) {
@@ -25,6 +26,11 @@ const ImageMain = function ({ currentBigPicture, currentStyleName }) {
       alt={`DUMMY, put in product name, ${currentStyleName}`}
     />
   );
+};
+
+ImageMain.propTypes = {
+  currentBigPicture: PT.string.isRequired,
+  currentStyleName: PT.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(ImageMain);

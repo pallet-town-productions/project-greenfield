@@ -6,9 +6,7 @@ const StyleThumbnail = function ({ style, styleIndex, handleClick }) {
     <img
       src={style.photos[0].thumbnail_url}
       className="thumbnail"
-      onClick={
-    () => handleClick(styleIndex)
-    }
+      onClick={() => handleClick(styleIndex)}
       alt={`Thumbnail for style ${style.name}`}
     />
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import { connect } from 'react-redux';
 import changePhoto from '../../../actions/overview/imageGallery/changePhoto';
 import ImageThumbnail from './imageThumbnail';
@@ -40,6 +41,15 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
       })}
     </ul>
   );
+};
+
+ImageList.propTypes = {
+  currentStyleIndex: PT.number.isRequired,
+  imageList: PT.arrayOf(PT.shape({
+    thumbnail_url: PT.string.isRequired,
+    url: PT.string.isRequired,
+  })).isRequired,
+  handleSwitchStyle: PT.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
