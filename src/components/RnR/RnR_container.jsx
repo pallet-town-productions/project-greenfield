@@ -1,6 +1,10 @@
 import React from 'react';
+<<<<<<< HEAD
 import List from './RnR_list';
 import RatingBreakdown from './RnR_RatingBreakdown';
+=======
+import Sort from './RnR_sort_list';
+>>>>>>> written a fetch to get reviews
 
 class RnR extends React.Component {
   constructor(props) {
@@ -13,8 +17,12 @@ class RnR extends React.Component {
     return (
       <div>
         <h2>Ratings and Reviews</h2>
+<<<<<<< HEAD
         <RatingBreakdown />
         <List />
+=======
+        <Sort />
+>>>>>>> written a fetch to get reviews
       </div>
     );
   }
