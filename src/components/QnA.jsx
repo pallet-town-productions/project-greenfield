@@ -17,7 +17,7 @@ class QnA extends React.Component {
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
         <List />
-        <button type="submit">More Answered Quesitons</button>
+        <button type="submit">MORE ANSWERED QUESTIONS</button>
         <Ask />
       </div>
     );
