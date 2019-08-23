@@ -1,8 +1,8 @@
-const changeStyle = function(styleNum) {
+const changeStyle = function (styleNum) {
   return {
     type: 'CHANGE_STYLE',
-    currentStyleIndex: styleNum
+    currentStyleIndex: styleNum,
   };
-}
+};
 
 export default changeStyle;

@@ -1,8 +1,8 @@
-const changePhoto = function(photoNum) {
+const changePhoto = function (photoNum) {
   return {
     type: 'CHANGE_PHOTO',
-    currentPhotoIndex: photoNum
+    currentPhotoIndex: photoNum,
   };
-}
+};
 
 export default changePhoto;
