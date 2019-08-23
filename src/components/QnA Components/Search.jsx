@@ -10,8 +10,11 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        <input id="questionSearch" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+      <div id="search-bar-container">
+        <div className="search-input-icons">
+          <i className="material-icons">search</i>
+          <input className="search-input-field" type="text" placeholder="HAVE A QUESTION? FIND AN ANSWER..." />
+        </div>
       </div>
     );
   }

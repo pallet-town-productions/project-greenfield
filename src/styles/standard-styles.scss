@@ -21,3 +21,40 @@ button {
 body {
   background-color: $backgroundColor;
 }
+
+.search-input-icons i { 
+  padding-left: 10px;
+  padding-top: 8px;
+  position: absolute; 
+} 
+
+.search-input-icons { 
+  width: 100%; 
+  margin-bottom: 10px; 
+} 
+
+.icon { 
+  padding: 10px; 
+  min-width: 40px; 
+} 
+
+.search-input-field { 
+  width: 100%; 
+  padding: 10px; 
+  text-align: center; 
+} 
+
+.search-input-field::-webkit-input-placeholder {
+  color: black;
+  font-weight: bold;
+}
+
+.search-input-field:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+#search-bar-container {
+  width: 50%;
+  margin: auto;
+}
+
