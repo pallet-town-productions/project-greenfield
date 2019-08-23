@@ -1,7 +1,7 @@
 import React from 'react';
-import Ask from './QnA Components/Ask';
-import List from './QnA Components/List';
-import Search from './QnA Components/Search';
+import Ask from './Ask';
+import List from './List';
+import Search from './Search';
 
 class QnA extends React.Component {
   constructor(props) {

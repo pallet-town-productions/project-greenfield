@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import QnA from './QnA-components/QnA';
-
 import RnR from './RnR/RnR_container';
 import '../styles/standard-styles.scss';
 
