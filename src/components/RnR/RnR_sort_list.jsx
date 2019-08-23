@@ -13,31 +13,29 @@ class Sort extends Component {
     this.state = this.props;
 
     this.getAllReviews = () => {
-      const reviewPack = [];
       const { productId } = this.state;
-      fetch(`http://18.217.220.129/reviews/${productId}/list`)
+      const listData = fetch(`http://18.217.220.129/reviews/${productId}/list`)
         .then((response) => {
           if (response.status !== 200) { console.log('problem'); }
           return response.json();
-        })
-        .then((data) => { reviewPack.push(data); })
-        .catch((err) => { console.log(`error in the fetch, ${err}`); });
-
-      fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+        });
+      const metaData = fetch(`http://18.217.220.129/reviews/${productId}/meta`)
         .then((response) => {
-          if (response.status !== 200) {  }
+          if (response.status !== 200) { console.log('problem'); }
           return response.json();
-        })
-        .then((data) => { reviewPack.push(data); })
-        .catch((err) => { console.log(`error in the fetch, ${err}`); });
+        });
+      Promise.all([listData, metaData]).then((info) => {});
     };
+  }
+
+  componentDidMount() {
+    this.getAllReviews();
   }
 
   render() {
     return (
       <div>
         <h3 className="sort">Sort for lists</h3>
-        <button type="button" onClick={() => this.getAllReviews()}>Click me for reviews</button>
         <List />
       </div>
     );
