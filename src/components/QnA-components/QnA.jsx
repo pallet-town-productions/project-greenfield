@@ -64,8 +64,13 @@ class QnA extends React.Component {
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
+<<<<<<< HEAD
         <List QnA={results} />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
+=======
+        <List />
+        <button type="submit">More Answered Quesitons</button>
+>>>>>>> setup basic file structure for qna
         <Ask />
       </div>
     );
