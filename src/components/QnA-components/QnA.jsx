@@ -7,7 +7,6 @@ class QnA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '5',
       results: [{
         question_id: 37,
         question_body: 'Why is this product cheaper here than other sites?',
@@ -64,8 +63,8 @@ class QnA extends React.Component {
       <div>
         <h3>QUESTIONS & ANSWERS</h3>
         <Search />
-        <List />
-        <button type="submit">More Answered Quesitons</button>
+        <List QnA={results} />
+        <button type="submit">MORE ANSWERED QUESTIONS</button>
         <Ask />
       </div>
     );
