@@ -3,12 +3,13 @@ import PT from 'prop-types';
 
 const StyleThumbnail = function ({ style, styleIndex, handleClick }) {
   return (
-    <img
-      src={style.photos[0].thumbnail_url}
-      className="thumbnail"
-      onClick={() => handleClick(styleIndex)}
-      alt={`Thumbnail for style ${style.name}`}
-    />
+    <span onClick={() => handleClick(styleIndex)} role="presentation">
+      <img
+        src={style.photos[0].thumbnail_url}
+        className="thumbnail"
+        alt={`Thumbnail for style ${style.name}`}
+      />
+    </span>
   );
 };
 
