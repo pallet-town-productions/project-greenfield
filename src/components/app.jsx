@@ -3,6 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
+import ConnectedRelatedProducts from './related-Products-components/related-Products';
 import '../styles/standard-styles.scss';
 
 const mapStateToProps = (state) => ({
@@ -26,6 +27,7 @@ export class App extends Component {
         <div>
           <QnA />
           <RnR className="RnR-container" />
+          <ConnectedRelatedProducts />
         </div>
       </div>
     );
