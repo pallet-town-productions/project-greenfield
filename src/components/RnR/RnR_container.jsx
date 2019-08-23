@@ -1,8 +1,8 @@
 import React from 'react';
 
 class RnR extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = this.props;
   }
