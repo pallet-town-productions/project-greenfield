@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import '../styles/standard-styles.scss';
+import Header from './header';
+import Overview from './overview';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props;
-  }
+var App = function() {
+  return (
+    <div id="container">
+      <Header />
+      <Overview />
 
-  render() {
-    return (
-      <div>
-Hello World
-        <button type="button">test</button>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
