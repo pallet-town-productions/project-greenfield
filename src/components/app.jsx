@@ -6,7 +6,7 @@ import '../styles/standard-styles.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props;
+    this.state = {};
   }
 
   render() {
