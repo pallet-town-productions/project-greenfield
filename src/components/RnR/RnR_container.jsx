@@ -1,5 +1,6 @@
 import React from 'react';
 import Sort from './RnR_sort_list';
+import RatingBreakdown from './RnR_RatingBreakdown';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class RnR extends React.Component {
       <div>
         <h2>Ratings and Reviews</h2>
         <Sort />
+        <RatingBreakdown />
       </div>
     );
   }
