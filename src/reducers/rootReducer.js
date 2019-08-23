@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
-import simpleReducer from './reducer-test';
+import productId from './reducer-test';
+import relatedReducer from './related-Products-Reducers/related-products-reducer';
 
 export default combineReducers({
-  simpleReducer,
+  productId, relatedReducer,
 });

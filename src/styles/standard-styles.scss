@@ -1,8 +1,8 @@
-$buttonColor: #ADFFE2;
-$tileColor: #9EE8B9;
-$backgroundColor: #BBFFC1;
-$widgetColor: #B0E89E;
-$modalColor: #DEFFAD;
+$buttonColor: #CFFFEA;
+$tileColor: #BCE8C8;
+$backgroundColor: #DBFFDB;
+$widgetColor: #CBE8BC;
+$modalColor: #F0FFCF;
 $borderColor:	#808080;
 $font: arial;
 $buttonHeight: 30px;
@@ -21,3 +21,39 @@ button {
 body {
   background-color: $backgroundColor;
 }
+
+.search-input-icons i { 
+  padding-left: 10px;
+  padding-top: 8px;
+  position: absolute; 
+} 
+
+.search-input-icons { 
+  width: 100%; 
+  margin-bottom: 10px; 
+} 
+
+.icon { 
+  padding: 10px; 
+  min-width: 40px; 
+} 
+
+.search-input-field { 
+  width: 100%; 
+  padding: 10px; 
+  text-align: center; 
+} 
+
+.search-input-field::-webkit-input-placeholder {
+  color: black;
+  font-weight: bold;
+}
+
+.search-input-field:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+#search-bar-container {
+  width: 50%;
+}
+
