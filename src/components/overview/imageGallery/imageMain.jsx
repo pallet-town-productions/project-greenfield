@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-const ImageMain = function() {
+const ImageMain = function () {
   return (
-    <img></img>
+    <img />
   );
 };
 

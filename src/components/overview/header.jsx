@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/header.scss';
 
-const Header = function() {
+const Header = function () {
   return (
     <header>
       <span id="header-logo">LOGO HERE</span>

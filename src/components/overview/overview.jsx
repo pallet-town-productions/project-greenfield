@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageGallery from './imageGallery/imageGallery.jsx';
+import StyleSelector from './styleSelector/styleSelector.jsx';
 //import bunch of other child components
 
 const Overview = function() {
@@ -20,6 +21,7 @@ const Overview = function() {
         <div>
           $369
         </div>
+        <StyleSelector />
       </summary>
     </main>
   );

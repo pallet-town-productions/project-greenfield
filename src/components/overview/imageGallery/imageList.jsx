@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ImageThumbnail from './imageThumbnail.jsx';
-//import bunch of other child components
+// import bunch of other child components
 
-const ImageList = function() {
+const ImageList = function ({ imageList }) {
   return (
     <ul>
-      {/* map up to 7 ImageThumbnail components that are clickable */}
+      {/* {imageList.map((image) => <ImageThumbnail />)} */}
     </ul>
   );
 };

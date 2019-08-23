@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-const ImageThumbnail = function() {
+const ImageThumbnail = function () {
   return (
-    <img></img>
+    <img />
   );
 };
 
