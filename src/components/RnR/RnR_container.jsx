@@ -1,4 +1,5 @@
 import React from 'react';
+import List from './RnR_list';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class RnR extends React.Component {
     return (
       <div>
         <h2>Ratings and Reviews</h2>
+        <List />
       </div>
     );
   }

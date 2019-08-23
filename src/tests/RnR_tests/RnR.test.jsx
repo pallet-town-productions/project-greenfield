@@ -1,17 +1,50 @@
 import React from 'react';
-import { mount, configure } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import App from '../../components/app';
+// import App from '../../components/app';
 import RnR from '../../components/RnR/RnR_container';
+import List from '../../components/RnR/RnR_list';
+// import Tile from '../../components/RnR/RnR_tile';
 
 configure({ adapter: new Adapter() });
 
-test('it can find a RnR container rendered to App', () => {
-  const wrapper = mount(<App />);
-  expect(wrapper.find('RnR')).toBeTruthy();
+// Tests for RnR
+function testRnR() {
+  const props = {
+  };
+  const enzymeWrapper = shallow(<RnR />);
+  return {
+    props,
+    enzymeWrapper,
+  };
+}
+
+describe('List and sub components exist', () => {
+  describe('RnR', () => {
+    it('should have a header', () => {
+      const { enzymeWrapper } = testRnR();
+      expect(enzymeWrapper.find('h2').text()).toBe('Ratings and Reviews');
+    });
+  });
 });
 
-test('it can find a header in RnR component', () => {
-  const wrapper = mount(<RnR />);
-  expect(wrapper.find('H2')).toBeTruthy();
+// Tests for List
+function testList() {
+  const props = {
+  };
+  const enzymeWrapper = shallow(<List />);
+  return {
+    props,
+    enzymeWrapper,
+  };
+}
+
+describe('List and sub components exist', () => {
+  describe('List', () => {
+    it('should have a header', () => {
+      const { enzymeWrapper } = testList();
+      expect(enzymeWrapper.find('h3').text()).toBe('List of Reviews');
+      expect(enzymeWrapper.find('h3').hasClass('reviews-list')).toBe(true);
+    });
+  });
 });
