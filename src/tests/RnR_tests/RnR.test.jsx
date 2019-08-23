@@ -6,12 +6,12 @@ import RnR from '../../components/RnR/RnR_container';
 
 configure({ adapter: new Adapter() });
 
-test('it can find a div', () => {
+test('it can find a RnR container rendered to App', () => {
   const wrapper = mount(<App />);
   expect(wrapper.find('RnR')).toBeTruthy();
 });
 
-test('it can find a header in RnR', () => {
+test('it can find a header in RnR component', () => {
   const wrapper = mount(<RnR />);
   expect(wrapper.find('H2')).toBeTruthy();
 });
