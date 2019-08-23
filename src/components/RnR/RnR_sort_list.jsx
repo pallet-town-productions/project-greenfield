@@ -13,20 +13,23 @@ class Sort extends Component {
     this.state = this.props;
 
     this.getAllReviews = () => {
-      console.log(this.state.productId)
-      fetch(`http://18.217.220.129/reviews/${this.state.productId}/list`)
+      const reviewPack = [];
+      const { productId } = this.state;
+      fetch(`http://18.217.220.129/reviews/${productId}/list`)
         .then((response) => {
-          if (response.status !== 200) {
-            console.log('problem');
-          }
+          if (response.status !== 200) { console.log('problem'); }
           return response.json();
         })
-        .then((data) => {
-          console.log(data.results)
+        .then((data) => { reviewPack.push(data); })
+        .catch((err) => { console.log(`error in the fetch, ${err}`); });
+
+      fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+        .then((response) => {
+          if (response.status !== 200) {  }
+          return response.json();
         })
-        .catch((err) => {
-          console.log(`error in the fetch, ${err}`);
-        })
+        .then((data) => { reviewPack.push(data); })
+        .catch((err) => { console.log(`error in the fetch, ${err}`); });
     };
   }
 
