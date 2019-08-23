@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QnA from './QnA';
+import RnR from './RnR/RnR_container';
 import '../styles/standard-styles.scss';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         </div>
         <div>
           <QnA />
+          <RnR />
         </div>
       </div>
     );
