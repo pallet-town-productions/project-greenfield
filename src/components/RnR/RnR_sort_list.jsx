@@ -24,7 +24,7 @@ class Sort extends Component {
           if (response.status !== 200) { console.log('problem'); }
           return response.json();
         });
-      Promise.all([listData, metaData]).then((info) => {});
+      Promise.all([listData, metaData]).then((info) => { console.log(info); });
     };
   }
 
