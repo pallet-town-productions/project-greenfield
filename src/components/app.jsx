@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QnA from './QnA.jsx';
+import QnA from './QnA';
 import '../styles/standard-styles.scss';
 
 class App extends Component {
