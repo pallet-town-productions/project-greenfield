@@ -1,7 +1,7 @@
 const changeStyle = function(styleNum) {
   return {
     type: 'CHANGE_STYLE',
-    style: styleNum
+    currentStyleIndex: styleNum
   };
 }
 

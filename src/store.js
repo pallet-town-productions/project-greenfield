@@ -6,8 +6,9 @@ import rootReducer from './reducers/rootReducer';
 import exampleStyleData from './exampleStyleData';
 import exampleProductData from './exampleProductData';
 const initialData = {
-  productData: exampleProductData,
-  style: exampleStyleData
+  // productData: exampleProductData,
+  style: exampleStyleData,
+  currentStyleIndex: 0
 };
 
 export default function configureStore(initialState = initialData) {

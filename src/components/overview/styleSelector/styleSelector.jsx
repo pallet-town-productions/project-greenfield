@@ -5,26 +5,28 @@ import StyleThumbnail from './styleThumbnail.jsx';
 
 const mapStateToProps = function(state) {
   return {
-    styleList: state.style.results
+    styleList: state.style.results,
+    currentStyleIndex: state.currentStyleIndex
   }
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    handleSwitchStyle: (style) => {
-      dispatch(changeStyle(style));
+    handleSwitchStyle: (styleIndex) => {
+      dispatch(changeStyle(styleIndex));
     }
   }
 }
 
-const StyleSelector = function({style, styleList, handleSwitchStyle}) {
+const StyleSelector = function({currentStyleIndex, styleList, handleSwitchStyle}) {
   return (
     <div>
       {
-        styleList.map((currStyle, index) => (
-          <StyleThumbnail key={styleList[index].style_id} // dummy
-          style={currStyle}
-          handleSwitchStyle={handleSwitchStyle} //dummy
+        styleList.map((styleObj, index) => (
+          <StyleThumbnail key={styleList[index].style_id}
+          styleIndex={index}
+          style={styleObj}
+          handleClick={handleSwitchStyle}
           />
         ))
       }

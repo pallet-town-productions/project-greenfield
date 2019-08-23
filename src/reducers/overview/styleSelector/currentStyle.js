@@ -1,9 +1,9 @@
-const currentStyleReducer = function(state = null, action) {
+const currentStyleReducer = function(currentStyleIndex = 0, action) {
   switch (action.type) {
     case 'CHANGE_STYLE':
-      return action.style || null;
+      return action.currentStyleIndex;
     default:
-      return state;
+      return currentStyleIndex;
   }
 }
 
