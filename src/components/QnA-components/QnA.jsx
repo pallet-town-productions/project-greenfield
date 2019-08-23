@@ -7,6 +7,7 @@ class QnA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productId: '5',
       results: [{
         question_id: 37,
         question_body: 'Why is this product cheaper here than other sites?',
