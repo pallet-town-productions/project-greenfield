@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/standard-styles.scss';
-import Header from './header';
-import Overview from './overview';
+import Header from './overview/header';
+import Overview from './overview/overview';
 
-var App = function() {
+const App = function () {
   return (
     <div id="container">
       <Header />
@@ -11,6 +11,6 @@ var App = function() {
 
     </div>
   );
-}
+};
 
 export default App;
