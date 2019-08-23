@@ -1,0 +1,15 @@
+@import 'standard-styles';
+
+.card-container {
+  height: 300px;
+  width: 200px;
+  background-color: $tileColor;
+  border-color: $borderColor;
+  border-width: $borderThickness;
+  font-family: $font;
+  border-style: solid;
+}
+
+.related-products-container {
+  font-family: $font;
+}
