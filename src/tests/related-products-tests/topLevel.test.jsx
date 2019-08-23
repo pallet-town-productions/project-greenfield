@@ -10,7 +10,7 @@ function setup() {
     productId: 1,
   };
 
-  const enzymeWrapper = shallow(<RelatedProducts {...props} />);
+  const enzymeWrapper = shallow(<RelatedProducts productId={1} />);
 
   return {
     props,
