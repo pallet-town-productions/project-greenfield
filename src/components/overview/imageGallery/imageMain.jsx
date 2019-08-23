@@ -8,16 +8,22 @@ const mapStateToProps = function (state) {
   const { currentPhotoIndex } = state;
   // url for the BIG FIRST IMAGE for currently selected style
   const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
+  const currentStyleName = state.style.results[currentStyleIndex].name;
   return {
     currentStyleIndex,
     currentPhotoIndex,
     currentBigPicture,
+    currentStyleName,
   };
 };
 
-const ImageMain = function ({ currentStyleIndex, currentBigPicture }) {
+const ImageMain = function ({ currentBigPicture, currentStyleName }) {
   return (
-    <img id="mainphoto" src={currentBigPicture} />
+    <img
+      id="mainphoto"
+      src={currentBigPicture}
+      alt={`DUMMY, put in product name, ${currentStyleName}`}
+    />
   );
 };
 

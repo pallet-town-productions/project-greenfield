@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageGallery from './imageGallery/imageGallery.jsx';
-import StyleSelector from './styleSelector/styleSelector.jsx';
+import ImageGallery from './imageGallery/imageGallery';
+import StyleSelector from './styleSelector/styleSelector';
 // import bunch of other child components
 
 const Overview = function () {

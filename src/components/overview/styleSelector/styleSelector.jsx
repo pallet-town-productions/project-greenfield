@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview/styleSelector/changeStyle';
-import StyleThumbnail from './styleThumbnail.jsx';
+import StyleThumbnail from './styleThumbnail';
 
 const mapStateToProps = function (state) {
   const styleList = state.style.results;
@@ -20,7 +20,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const StyleSelector = function ({ currentStyleIndex, styleList, handleSwitchStyle }) {
+const StyleSelector = function ({ styleList, handleSwitchStyle }) {
   return (
     <div>
       {

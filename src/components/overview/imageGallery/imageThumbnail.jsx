@@ -6,6 +6,7 @@ const ImageThumbnail = function ({ photoIndex, url, handleClick }) {
       className="thumbnail"
       src={url}
       onClick={() => handleClick(photoIndex)}
+      alt={`DUMMY, show stylename, thumbnail #${photoIndex}`}
     />
   );
 };

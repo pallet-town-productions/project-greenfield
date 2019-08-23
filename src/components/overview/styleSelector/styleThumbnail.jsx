@@ -8,7 +8,8 @@ const StyleThumbnail = function ({ style, styleIndex, handleClick }) {
       className="thumbnail"
       onClick={
       () => handleClick(styleIndex)
-    }
+      }
+      alt={`Thumbnail for style ${style.name}`}
     />
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import changePhoto from '../../../actions/overview/imageGallery/changePhoto';
 import ImageThumbnail from './imageThumbnail';
-import util from './../../../util/util';
+import util from '../../../util/util';
 // import bunch of other child components
 
 const mapStateToProps = function (state) {
@@ -28,7 +28,7 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
   return (
     <ul>
       {imageList.map((image, imageIndex) => {
-        let key = util.zeroPad(currentStyleIndex, 4) + util.zeroPad(imageIndex, 4);
+        const key = util.zeroPad(currentStyleIndex, 4) + util.zeroPad(imageIndex, 4);
         return (
           <ImageThumbnail
             key={util.zeroPad(key)}
@@ -36,8 +36,8 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
             url={imageList[imageIndex].thumbnail_url}
             handleClick={handleSwitchStyle}
           />
-        )}
-      )}
+        );
+      })}
     </ul>
   );
 };
