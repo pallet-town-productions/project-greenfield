@@ -1,8 +1,9 @@
 import React from 'react';
 
-const ImageThumbnail = function () {
+const ImageThumbnail = function ({photoIndex, url, handleClick}) {
   return (
-    <img />
+    <img className="thumbnail" src={url}
+    onClick={() => handleClick(photoIndex)}></img>
   );
 };
 

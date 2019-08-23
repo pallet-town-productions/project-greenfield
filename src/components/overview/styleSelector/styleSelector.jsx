@@ -4,9 +4,11 @@ import changeStyle from './../../../actions/overview/styleSelector/changeStyle';
 import StyleThumbnail from './styleThumbnail.jsx';
 
 const mapStateToProps = function(state) {
+  let styleList = state.style.results;
+  let currentStyleIndex = state.currentStyleIndex;
   return {
-    styleList: state.style.results,
-    currentStyleIndex: state.currentStyleIndex
+    styleList,
+    currentStyleIndex
   }
 }
 

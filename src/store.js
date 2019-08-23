@@ -8,7 +8,8 @@ import exampleProductData from './exampleProductData';
 const initialData = {
   // productData: exampleProductData,
   style: exampleStyleData,
-  currentStyleIndex: 0
+  currentStyleIndex: 0,
+  currentPhotoIndex: 0
 };
 
 export default function configureStore(initialState = initialData) {
