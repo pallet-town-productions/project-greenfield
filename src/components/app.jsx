@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import QnA from './QnA';
+import PT from 'prop-types';
+import { connect } from 'react-redux';
+import QnA from './QnA-components/QnA';
 import '../styles/standard-styles.scss';
 
+const mapStateToProps = (state) => ({
+  ...state,
+});
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props;
+    this.state = { productId: props.productId };
   }
 
   render() {
+    const { productId } = this.state;
     return (
       <div>
         <div>
-          Hello World
+          Hello World, Product:
+          { productId }
           <button type="button">test</button>
         </div>
         <div>
@@ -23,4 +30,9 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  productId: PT.number.isRequired,
+};
+
+export default connect(mapStateToProps, null)(App);
+// will need to update with map state to props and map dispatch to props
