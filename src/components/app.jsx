@@ -27,7 +27,7 @@ export class App extends Component {
         </div>
         <div>
           <QnA />
-          <RnR />
+          <RnR className="RnR-container" />
           <ConnectedRelatedProducts />
         </div>
       </div>
