@@ -1,10 +1,11 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Question = ({ data }) => (
   <div>
     <p>
-      {data.question_body}
+      {`Q: ${data.question_body}`}
     </p>
   </div>
 );
