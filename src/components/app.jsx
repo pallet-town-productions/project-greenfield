@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import QnA from './QnA.jsx';
 import '../styles/standard-styles.scss';
 
 class App extends Component {
@@ -10,8 +11,13 @@ class App extends Component {
   render() {
     return (
       <div>
-Hello World
-        <button type="button">test</button>
+        <div>
+          Hello World
+          <button type="button">test</button>
+        </div>
+        <div>
+          <QnA />
+        </div>
       </div>
     );
   }
