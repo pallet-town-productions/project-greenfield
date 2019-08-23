@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview/styleSelector/changeStyle';
 import StyleThumbnail from './styleThumbnail';
@@ -35,6 +36,11 @@ const StyleSelector = function ({ styleList, handleSwitchStyle }) {
       }
     </div>
   );
+};
+
+StyleSelector.propTypes = {
+  styleList: PT.arrayOf(PT.object).isRequired,
+  handleSwitchStyle: PT.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StyleSelector);
