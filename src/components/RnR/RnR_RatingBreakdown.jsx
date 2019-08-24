@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import StarRating from './RnR_StarRating';
 
 class RatingBreakdown extends Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props;
+    this.state = {};
   }
 
   render() {
@@ -12,9 +13,7 @@ class RatingBreakdown extends Component {
       <div>
         <h2 className="rating-average">
           3.5
-          <span className="star-rating">
-           *****
-          </span>
+          <StarRating starCount={3.5} />
         </h2>
         <p className="percent-recommended">100% of reviews recommend this product</p>
         <ul className="star-breakdown">
