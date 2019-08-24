@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import RatingBreakdown from '../../components/RnR/RnR_RatingBreakdown';
 
@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 function testRatingBreakdown() {
   const props = {
   };
-  const enzymeWrapper = shallow(<RatingBreakdown />);
+  const enzymeWrapper = mount(<RatingBreakdown />);
   return {
     props,
     enzymeWrapper,

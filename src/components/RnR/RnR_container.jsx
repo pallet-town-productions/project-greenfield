@@ -1,5 +1,4 @@
 import React from 'react';
-import List from './RnR_list';
 import RatingBreakdown from './RnR_RatingBreakdown';
 import Sort from './RnR_sort_list';
 
@@ -15,7 +14,6 @@ class RnR extends React.Component {
       <div>
         <h2>Ratings and Reviews</h2>
         <RatingBreakdown />
-        <List />
         <Sort />
       </div>
     );
