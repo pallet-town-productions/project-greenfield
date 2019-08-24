@@ -5,10 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/rootReducer';
 
 import exampleStyleData from './exampleStyleData';
-// import exampleProductData from './exampleProductData';
+import exampleProductData from './exampleProductData';
 
 const initialData = {
-  // productData: exampleProductData,
+  productData: exampleProductData,
   style: exampleStyleData,
   productId: 1,
 };
