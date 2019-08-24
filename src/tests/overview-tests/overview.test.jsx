@@ -9,14 +9,15 @@ Enzyme.configure({ adapter: new Adapter() });
 const shallowSetup = function () {
   const shallowWrapper = shallow(<Overview />);
   return shallowWrapper;
-}
+};
 
 describe('components', () => {
   describe('Overview', () => {
     it('should render self and subcomponents', () => {
       const wrapper = shallowSetup();
       expect(wrapper.exists('ImageGallery')).toBeTruthy();
-      // expect(wrapper.exists('StyleSelector')).toBeTruthy(); why does ImageGallery pass but not StyleSelector?
+      // expect(wrapper.exists('StyleSelector')).toBeTruthy();
+      // why does ImageGallery pass but not StyleSelector?
     });
   });
 });

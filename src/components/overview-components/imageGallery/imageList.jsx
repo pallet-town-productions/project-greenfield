@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import changePhoto from '../../../actions/overview-Actions/imageGallery/changePhoto';
 import ImageThumbnail from './imageThumbnail';
-import util from '../../../util/util';
+import { zeroPad } from '../../../util/util';
 // import bunch of other child components
 
 const mapStateToProps = function (state) {
@@ -29,10 +29,10 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
   return (
     <ul>
       {imageList.map((image, imageIndex) => {
-        const key = util.zeroPad(currentStyleIndex, 4) + util.zeroPad(imageIndex, 4);
+        const key = zeroPad(currentStyleIndex, 4) + zeroPad(imageIndex, 4);
         return (
           <ImageThumbnail
-            key={util.zeroPad(key)}
+            key={zeroPad(key)}
             photoIndex={imageIndex}
             url={imageList[imageIndex].thumbnail_url}
             handleClick={handleSwitchStyle}
