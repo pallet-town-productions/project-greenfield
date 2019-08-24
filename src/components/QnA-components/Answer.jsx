@@ -2,26 +2,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Answer = ({ answers, helpfulClickHandler }) => (
+
+const Answer = ({ answer, helpfulClickHandler }) => (
   <div>
-    {answers.results.map((answer) => (
-      <div>
-        <p>
-          {answer.body}
-        </p>
-        <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>Helpful?</button>
-      </div>
-    ))}
+    <p>{console.log(answer)}</p>
   </div>
 );
 
 Answer.propTypes = {
-  answers: PropTypes.shape(PropTypes.object),
+  answer: PropTypes.shape(PropTypes.object),
   helpfulClickHandler: PropTypes.func,
 };
 
 Answer.defaultProps = {
-  answers: {},
+  answer: {},
   helpfulClickHandler: () => {},
 };
 

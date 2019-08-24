@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Ask from './Ask';
 import List from './List';
 import Search from './Search';
@@ -25,27 +26,35 @@ class QnA extends React.Component {
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
-        currentState.questions = result;
+        currentState.questions = result.results.slice(0, 2);
         this.setState(currentState);
+        console.log(currentState);
       });
   }
 
   render() {
-    const { productId } = this.state;
+    const { questions } = this.state;
     return (
       <div>
         <h3>
-          QUESTIONS & ANSWERS PRODUCTID:
-          {productId}
+          QUESTIONS & ANSWERS
         </h3>
         <Search />
-        {/* <List QnA={results} answers={answers} /> */}
+        <List questions={questions} />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
         <Ask />
       </div>
     );
   }
 }
+
+QnA.propTypes = {
+  productId: PropTypes.number,
+};
+
+QnA.defaultProps = {
+  productId: 1,
+};
 
 const connectedQnA = connect(mapStateToProps, null)(QnA);
 export default connectedQnA;
