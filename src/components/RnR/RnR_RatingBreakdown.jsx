@@ -1,11 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import StarRating from './RnR_StarRating';
 import StarBreakdown from './RnR_StarBreakdown';
-
-const mapStateToProps = (state) => ({
-  ...state,
-});
 
 const RatingBreakdown = () => (
   <div>
@@ -18,5 +13,4 @@ const RatingBreakdown = () => (
   </div>
 );
 
-const connectedRatingBreakdown = connect(mapStateToProps, null)(RatingBreakdown);
-export default connectedRatingBreakdown;
+export default RatingBreakdown;

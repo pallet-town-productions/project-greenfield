@@ -1,17 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import RatingBreakdown from './RnR_RatingBreakdown';
 import Sort from './RnR_sort_list';
 
-const mapStateToProps = (state) => ({
-  ...state,
-});
-
-class RnRContainer extends React.Component {
+class RnR extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = this.props;
   }
 
   render() {
@@ -25,5 +20,4 @@ class RnRContainer extends React.Component {
   }
 }
 
-const connectedRnRContainer = connect(mapStateToProps, null)(RnRContainer);
-export default connectedRnRContainer;
+export default RnR;
