@@ -1,6 +1,15 @@
+$thumbnailDimension: 100px;
 
 .thumbnail {
-  height: 100px;
+  height: $thumbnailDimension;
+  width: $thumbnailDimension;
+  margin: 5px;
+  background-position: center center;
+  object-fit: cover;
+}
+
+.style-thumbnail {
+  border-radius: $thumbnailDimension/2;
 }
 
 #mainphoto {
