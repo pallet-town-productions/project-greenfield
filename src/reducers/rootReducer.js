@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import currentStyleIndex from './overview/styleSelector/currentStyle';
-import style from './overview/styleSelector/styleList';
-import currentPhotoIndex from './overview/imageGallery/currentPhoto';
+import currentStyleIndex from './overview-Reducers/styleSelector/currentStyle';
+import style from './overview-Reducers/styleSelector/styleList';
+import currentPhotoIndex from './overview-Reducers/imageGallery/currentPhoto';
 import productId from './reducer-test';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 

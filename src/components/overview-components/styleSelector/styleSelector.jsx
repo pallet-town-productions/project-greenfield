@@ -1,7 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import changeStyle from '../../../actions/overview/styleSelector/changeStyle';
+import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
 import StyleThumbnail from './styleThumbnail';
 
 const mapStateToProps = function (state) {
