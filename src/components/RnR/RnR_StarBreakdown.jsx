@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+const mapStateToProps = (state) => ({
+  ...state,
+});
 
-const StarBreakdown = ({ ratings }) => {
+const StarBreakdown = (props) => {
+  const { ratings } = props;
   const defaultRatings = {
     1: 0,
     2: 0,
@@ -41,10 +46,9 @@ const StarBreakdown = ({ ratings }) => {
   );
 };
 
-
 StarBreakdown.propTypes = {
   ratings: PropTypes.shape({}).isRequired,
 };
 
-
-export default StarBreakdown;
+const connectedStarBreakdown = connect(mapStateToProps, null)(StarBreakdown);
+export default connectedStarBreakdown;
