@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import RnR from '../../components/RnR/RnR_container';
-import List from '../../components/RnR/RnR_list';
+// import List from '../../components/RnR/RnR_list';
 
 configure({ adapter: new Adapter() });
 
@@ -27,22 +27,24 @@ describe('List and sub components exist', () => {
 });
 
 // Tests for List
-function testList() {
-  const props = {
-  };
-  const enzymeWrapper = shallow(<List />);
-  return {
-    props,
-    enzymeWrapper,
-  };
-}
+// Test no longer applicable
+// function testList() {
+//   const props = {
+//   };
+//   const enzymeWrapper = shallow(<List />);
+//   return {
+//     props,
+//     enzymeWrapper,
+//   };
+// }
 
-describe('List and sub components exist', () => {
-  describe('List', () => {
-    it('should have a header', () => {
-      const { enzymeWrapper } = testList();
-      expect(enzymeWrapper.find('h3').text()).toBe('List of Reviews');
-      expect(enzymeWrapper.find('h3').hasClass('reviews-list')).toBe(true);
-    });
-  });
-});
+
+// describe('List and sub components exist', () => {
+//   describe('List', () => {
+//     it('should have a header', () => {
+//       const { enzymeWrapper } = testList();
+//       expect(enzymeWrapper.find('h3').text()).toBe('List of Reviews');
+//       expect(enzymeWrapper.find('h3').hasClass('reviews-list')).toBe(true);
+//     });
+//   });
+// });
