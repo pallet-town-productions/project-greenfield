@@ -2,6 +2,7 @@ import React from 'react';
 import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
 import { ExpandedProductName, CategoryName, ProductDescription } from './productInformation/productInfo';
+import Price from './productInformation/price';
 import '../../styles/overview.scss';
 // import bunch of other child components
 
@@ -21,7 +22,7 @@ const Overview = function () {
           <ExpandedProductName />
         </div>
         <div>
-          $369
+          <Price />
         </div>
         <StyleSelector />
       </summary>

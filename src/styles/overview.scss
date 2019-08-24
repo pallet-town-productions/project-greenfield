@@ -1,8 +1,29 @@
+$thumbnailDimension: 100px;
 
 .thumbnail {
-  height: 100px;
+  height: $thumbnailDimension;
+  width: $thumbnailDimension;
+  margin: 5px;
+  background-position: center center;
+  object-fit: cover;
+}
+
+.style-thumbnail {
+  border-radius: $thumbnailDimension/2;
+}
+
+.price {
+  margin: 5px 10px;
 }
 
 #mainphoto {
   height: 350px;
+}
+
+#sale-price {
+  color: red;
+}
+
+#original-price {
+  text-decoration: line-through;
 }

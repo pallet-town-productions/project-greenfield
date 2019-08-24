@@ -6,7 +6,7 @@ const StyleThumbnail = function ({ style, styleIndex, handleClick }) {
     <span onClick={() => handleClick(styleIndex)} role="presentation">
       <img
         src={style.photos[0].thumbnail_url}
-        className="thumbnail"
+        className="thumbnail style-thumbnail"
         alt={`Thumbnail for style ${style.name}`}
       />
     </span>
