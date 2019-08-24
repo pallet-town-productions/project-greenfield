@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
-import './../../styles/overview.scss';
+import '../../styles/overview.scss';
 // import bunch of other child components
 
 const Overview = function () {
