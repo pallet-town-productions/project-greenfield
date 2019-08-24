@@ -19,23 +19,23 @@ class RatingBreakdown extends Component {
         <ul className="star-breakdown">
           <li>
             <a href="google.com">5 stars</a>
-            -------___
+            <progress value="70" max="100" />
           </li>
           <li>
             <a href="google.com">4 stars</a>
-            -------___
+            <progress value="90" max="100" />
           </li>
           <li>
             <a href="google.com">3 stars</a>
-            -------___
+            <progress value="60" max="100" />
           </li>
           <li>
             <a href="google.com">2 stars</a>
-            -------___
+            <progress value="30" max="100" />
           </li>
           <li>
             <a href="google.com">1 stars</a>
-            -------___
+            <progress value="40" max="100" />
           </li>
         </ul>
       </div>
