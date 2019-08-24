@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Question = ({ data }) => (
+const Question = ({ data, helpfulClickHandler }) => (
   <div className="questionsQuestionContainer">
     <p>
       {`Q: ${data.question_body}`}
@@ -10,7 +10,7 @@ const Question = ({ data }) => (
     <span className="questionsQuestionTools">
       <p>
         Helpful?
-        <button className="questionsHelpfulBtn" type="submit">
+        <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
           <u>
             Yes
           </u>
@@ -34,7 +34,7 @@ const Question = ({ data }) => (
           </p>
           <p>
             {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
-            <button className="questionsHelpfulBtn" type="submit">
+            <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
               <u>Yes</u>
             </button>
             {` (${answer.helpfulness}) | `}
@@ -50,6 +50,7 @@ const Question = ({ data }) => (
 
 Question.propTypes = {
   data: PropTypes.shape(PropTypes.object),
+  helpfulClickHandler: PropTypes.func.isRequired,
 };
 
 Question.defaultProps = {

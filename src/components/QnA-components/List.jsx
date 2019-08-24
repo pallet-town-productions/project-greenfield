@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question';
-import Answer from './Answer';
+
 
 class List extends React.Component {
   constructor({ questions }) {
@@ -19,6 +19,7 @@ class List extends React.Component {
         {questions.map((question) => (
           <Question
             key={question.question_id}
+            helpfulClickHandler={this.helpfulClickHandler}
             data={question}
           />
         ))}
