@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-export class List extends Component {
+class List extends Component {
   constructor(props) {
     super(props);
     this.state = this.props;
