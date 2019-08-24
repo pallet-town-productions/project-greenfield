@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-const StarBreakdown = (props) => {
+export const StarBreakdown = (props) => {
   const { ratings } = props;
   const defaultRatings = {
     1: 0,
