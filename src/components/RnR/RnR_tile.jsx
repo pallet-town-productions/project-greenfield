@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PT from 'prop-types';
 
 class Tile extends Component {
   constructor(props) {
@@ -6,14 +7,21 @@ class Tile extends Component {
     this.state = this.props;
   }
 
+  componentDidMount() {
+  }
+
   render() {
+    const { text } = this.props;
     return (
       <div>
-        <ul>Im a tile!</ul>
-        <ul>Im another tile! Woah!</ul>
+        <div>{text}</div>
       </div>
     );
   }
 }
+
+Tile.propTypes = {
+  text: PT.string.isRequired,
+};
 
 export default Tile;
