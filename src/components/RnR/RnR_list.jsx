@@ -20,7 +20,7 @@ class List extends Component {
       return (
         <div>
           <h3 className="reviews-list">List of Reviews</h3>
-          {reviewList.map((review) => <Tile text={review.body} />)}
+          {reviewList.map((review) => <Tile review={review} />)}
         </div>
       );
     }
@@ -31,6 +31,7 @@ class List extends Component {
     );
   }
 }
+
 List.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,
 };

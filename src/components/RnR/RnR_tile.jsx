@@ -1,27 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PT from 'prop-types';
 
-class Tile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props;
-  }
-
-  componentDidMount() {
-  }
-
-  render() {
-    const { text } = this.props;
-    return (
+const Tile = (props) => {
+  const { review } = props;
+  return (
+    <div>
+      <div />
+      <div>{review.rating}</div>
       <div>
-        <div>{text}</div>
+        {review.reviewer_name}
+        {review.date}
       </div>
-    );
-  }
-}
+      <div>{review.summary}</div>
+      <div>{review.body}</div>
+      <div>
+        Helpful?
+        (
+        {review.helpfulness}
+        )
+      </div>
+      <div>Report</div>
+
+    </div>
+  );
+};
 
 Tile.propTypes = {
-  text: PT.string.isRequired,
+  review: PT.string.isRequired,
 };
 
 export default Tile;
