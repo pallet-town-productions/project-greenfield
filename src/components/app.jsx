@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import Header from './overview/header';
-import Overview from './overview/overview';
+import Header from './overview-components/header';
+import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';
