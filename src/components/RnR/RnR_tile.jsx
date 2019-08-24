@@ -8,29 +8,27 @@ const Tile = (props) => {
   const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />));
   return (
     <div>
-      <div />
-      <div>{review.rating}</div>
-      <div>
+      <p>{review.rating}</p>
+      <p>
         {review.reviewer_name}
         {review.date}
-      </div>
-      <div>{review.summary}</div>
-      <div>{review.body}</div>
-      <div>{images}</div>
-      <div>
+      </p>
+      <p>{review.summary}</p>
+      <p>{review.body}</p>
+      <p>{images}</p>
+      <p>
         Helpful?
         (
         {review.helpfulness}
         )
-      </div>
-      <div>Report</div>
-
+      </p>
+      <p>Report</p>
     </div>
   );
 };
 
 Tile.propTypes = {
-  review: PT.string.isRequired,
+  review: PT.arrayOf(PT.object).isRequired,
 };
 
 export default Tile;
