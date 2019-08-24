@@ -6,7 +6,7 @@ class RnR extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props;
+    this.state = {};
   }
 
   render() {
