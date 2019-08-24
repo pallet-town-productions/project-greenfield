@@ -12,6 +12,18 @@ $thumbnailDimension: 100px;
   border-radius: $thumbnailDimension/2;
 }
 
+.price {
+  margin: 5px 10px;
+}
+
 #mainphoto {
   height: 350px;
+}
+
+#sale-price {
+  color: red;
+}
+
+#original-price {
+  text-decoration: line-through;
 }
