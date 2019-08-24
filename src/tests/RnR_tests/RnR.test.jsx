@@ -25,26 +25,3 @@ describe('List and sub components exist', () => {
     });
   });
 });
-
-// Tests for List
-// Test no longer applicable
-// function testList() {
-//   const props = {
-//   };
-//   const enzymeWrapper = shallow(<List />);
-//   return {
-//     props,
-//     enzymeWrapper,
-//   };
-// }
-
-
-// describe('List and sub components exist', () => {
-//   describe('List', () => {
-//     it('should have a header', () => {
-//       const { enzymeWrapper } = testList();
-//       expect(enzymeWrapper.find('h3').text()).toBe('List of Reviews');
-//       expect(enzymeWrapper.find('h3').hasClass('reviews-list')).toBe(true);
-//     });
-//   });
-// });
