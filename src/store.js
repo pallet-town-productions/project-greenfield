@@ -10,8 +10,6 @@ import exampleStyleData from './exampleStyleData';
 const initialData = {
   // productData: exampleProductData,
   style: exampleStyleData,
-  currentStyleIndex: 0,
-  currentPhotoIndex: 0,
   productId: 1,
 };
 
