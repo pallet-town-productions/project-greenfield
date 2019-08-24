@@ -1,16 +1,44 @@
-import React from 'react';
+/* eslint-disable linebreak-style */
+import React, { Component } from 'react';
+import PT from 'prop-types';
+import { connect } from 'react-redux';
+import QnA from './QnA-components/QnA';
+import RnR from './RnR/RnR_container';
+import ConnectedRelatedProducts from './related-Products-components/related-Products';
 import '../styles/standard-styles.scss';
-import Header from './overview/header';
-import Overview from './overview/overview';
 
-const App = function () {
-  return (
-    <div id="container">
-      <Header />
-      <Overview />
+const mapStateToProps = (state) => ({
+  ...state,
+});
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { productId: props.productId };
+  }
 
-    </div>
-  );
+  render() {
+    const { productId } = this.state;
+    return (
+      <div>
+        <div>
+          Hello World, Product:
+          { productId }
+          <button type="button">test</button>
+        </div>
+        <div>
+          <QnA />
+          <RnR className="RnR-container" />
+          <ConnectedRelatedProducts />
+        </div>
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  productId: PT.number.isRequired,
 };
 
-export default App;
+const connectedApp = connect(mapStateToProps, null)(App);
+export default connectedApp;
+// will need to update with map state to props and map dispatch to props
