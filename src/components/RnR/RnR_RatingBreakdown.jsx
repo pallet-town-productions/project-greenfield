@@ -17,7 +17,7 @@ class RatingBreakdown extends Component {
           <StarRating starCount={3.5} />
         </h2>
         <p className="percent-recommended">100% of reviews recommend this product</p>
-        <StarBreakdown />
+        <StarBreakdown ratings={{ 1: 5, 4: 7 }} />
       </div>
     );
   }
