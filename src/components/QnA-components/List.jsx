@@ -43,8 +43,13 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  QnA: PropTypes.arrayOf.isRequired,
-  answers: PropTypes.arrayOf.isRequired,
+  QnA: PropTypes.arrayOf(PropTypes.object),
+  answers: PropTypes.shape(PropTypes.object),
+};
+
+List.defaultProps = {
+  QnA: [{}],
+  answers: {},
 };
 
 export default List;

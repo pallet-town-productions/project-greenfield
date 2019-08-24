@@ -16,7 +16,13 @@ const Answer = ({ answers, helpfulClickHandler }) => (
 );
 
 Answer.propTypes = {
-  answers: PropTypes.arrayOf.isRequired,
-  helpfulClickHandler: PropTypes.func.isRequired,
+  answers: PropTypes.shape(PropTypes.object),
+  helpfulClickHandler: PropTypes.func,
 };
+
+Answer.defaultProps = {
+  answers: {},
+  helpfulClickHandler: () => {},
+};
+
 export default Answer;

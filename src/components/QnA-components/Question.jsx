@@ -11,7 +11,11 @@ const Question = ({ data }) => (
 );
 
 Question.propTypes = {
-  data: PropTypes.arrayOf.isRequired,
+  data: PropTypes.shape(PropTypes.object),
+};
+
+Question.defaultProps = {
+  data: {},
 };
 
 export default Question;
