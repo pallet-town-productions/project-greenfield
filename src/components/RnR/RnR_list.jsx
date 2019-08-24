@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Tile from './RnR_tile';
 
+const mapStateToProps = (state) => ({
+  ...state,
+});
+
 class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props;
+
+
+  componentDidMount() {
+    const {relatedReducer} = this.props;
+    console.log(relatedReducer);
   }
 
   render() {
@@ -18,4 +25,5 @@ class List extends Component {
   }
 }
 
-export default List;
+const connectList = connect(mapStateToProps, null)(List);
+export default connectList;
