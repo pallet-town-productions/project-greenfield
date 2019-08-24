@@ -22,10 +22,6 @@ body {
   background-color: $backgroundColor;
 }
 
-.thumbnail {
-  height: 100px;
-}
-
 .search-input-icons i { 
   padding-left: 10px;
   padding-top: 8px;
@@ -55,10 +51,6 @@ body {
 
 .search-input-field:focus::-webkit-input-placeholder {
   opacity: 0;
-}
-
-#mainphoto {
-  height: 350px;
 }
 
 #search-bar-container {
