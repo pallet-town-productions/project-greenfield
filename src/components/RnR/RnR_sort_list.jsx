@@ -30,7 +30,6 @@ class Sort extends Component {
     Promise.all([listData, metaData]).then((info) => { dispatch(updateReviewsToRender(info)); });
   }
 
-
   render() {
     return (
       <div>
