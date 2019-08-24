@@ -30,9 +30,9 @@ export class App extends Component {
         <div id="container">
           <Header />
           <Overview />
-          {/* <QnA />
+          <QnA />
           <RnR className="RnR-container" />
-          <ConnectedRelatedProducts /> */}
+          <ConnectedRelatedProducts />
         </div>
       </div>
     );
