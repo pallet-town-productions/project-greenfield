@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
 
 export const Carousel = (props) => {
   const { relatedReducer } = props;
+  console.log(relatedReducer)
   return (
     <div className="carousel-container">
       {relatedReducer.map((related) => <ConnectedRelatedCard key={related} productId={related} />)}
