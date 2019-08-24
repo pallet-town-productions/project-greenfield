@@ -14,12 +14,7 @@ class Sort extends Component {
   }
 
   componentDidMount() {
-    this.getAllReviews();
-  }
-
-  getAllReviews() {
     const { productId, dispatch } = this.state;
-
     const listData = fetch(`http://18.217.220.129/reviews/${productId}/list`)
       .then((response) => {
         if (response.status !== 200) { console.log('problem'); }
@@ -34,6 +29,7 @@ class Sort extends Component {
 
     Promise.all([listData, metaData]).then((info) => { dispatch(updateReviewsToRender(info)); });
   }
+
 
   render() {
     return (

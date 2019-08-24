@@ -10,32 +10,23 @@ const mapStateToProps = (state) => ({
 class List extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      reviewList: [],
-      reviewMeta: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getReviews();
-  }
-
-  getReviews() {
-    setTimeout(() => {
-      const { updateReviews } = this.props;
-      this.setState({
-        reviewList: updateReviews[0],
-        reviewMeta: updateReviews[1],
-      });
-    }, 400);
+    this.state = this.props;
   }
 
   render() {
+    const { updateReviews } = this.props;
+    if (updateReviews.length) {
+      const reviewList = updateReviews[0].results;
+      return (
+        <div>
+          <h3 className="reviews-list">List of Reviews</h3>
+          {reviewList.map((review) => <Tile text={review.body} />)}
+        </div>
+      );
+    }
     return (
       <div>
         <h3 className="reviews-list">List of Reviews</h3>
-        <Tile reviewList={this.state.reviewList} reviewMeta={this.state.reviewMeta}/>
-        <Tile />
       </div>
     );
   }
