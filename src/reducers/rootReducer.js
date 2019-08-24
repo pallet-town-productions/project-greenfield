@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { style, currentStyleIndex } from './overview-Reducers/styleSelector/styleSelectorReducers';
+import { currentSizeIndex, currentQuantity } from './overview-Reducers/addToCart/addToCartReducers';
 import currentPhotoIndex from './overview-Reducers/imageGallery/currentPhotoReducers';
 import productData from './overview-Reducers/productInformation/productDataReducers';
 import productId from './reducer-test';
@@ -8,5 +9,8 @@ import updateReviews from './RnR-Reducers/RnR-reducer';
 
 export default combineReducers({
   // eslint-disable-next-line max-len
-  productId, relatedReducer, updateReviews, currentStyleIndex, style, currentPhotoIndex, productData,
+  productId, 
+  relatedReducer, 
+  updateReviews, 
+  currentStyleIndex, style, currentSizeIndex, currentQuantity, currentPhotoIndex, productData,
 });
