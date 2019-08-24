@@ -7,5 +7,5 @@ import productId from './reducer-test';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 
 export default combineReducers({
-  productId, relatedReducer, currentStyleIndex, style, currentPhotoIndex
+  productId, relatedReducer, currentStyleIndex, style, currentPhotoIndex,
 });
