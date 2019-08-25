@@ -11,7 +11,7 @@ const Tile = (props) => {
       <p>{review.rating}</p>
       <p>
         {review.reviewer_name}
-        {review.date}
+        {new Date(review.date).toLocaleDateString()}
       </p>
       <p>{review.summary}</p>
       <p>{review.body}</p>
@@ -28,7 +28,16 @@ const Tile = (props) => {
 };
 
 Tile.propTypes = {
-  review: PT.shape({}).isRequired,
+  review: PT.shape({
+    photos: PT.arrayOf(PT.object).isRequired,
+    rating: PT.number,
+    review: PT.string,
+    date: PT.string,
+    reviewer_name: PT.string,
+    summary: PT.string,
+    body: PT.string,
+    helpfulness: PT.number,
+  }).isRequired,
 };
 
 export default Tile;
