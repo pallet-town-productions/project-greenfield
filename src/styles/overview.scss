@@ -1,5 +1,9 @@
 $thumbnailDimension: 100px;
 
+.dropdown-selector {
+  display: inline-block,
+}
+
 .thumbnail {
   height: $thumbnailDimension;
   width: $thumbnailDimension;
@@ -26,4 +30,12 @@ $thumbnailDimension: 100px;
 
 #original-price {
   text-decoration: line-through;
+}
+
+#size-selector {
+  // put in stuff
+}
+
+#quantity-selector {
+  // put in stuff
 }

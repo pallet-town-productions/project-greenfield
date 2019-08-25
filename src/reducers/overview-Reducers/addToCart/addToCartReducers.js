@@ -16,7 +16,17 @@ const currentQuantity = function (currentQty = 1, action) {
   }
 };
 
+const showQuantities = function (show = false, action) {
+  switch (action.type) {
+    case 'TOGGLE_SHOW_QUANTITIES':
+      return action.showQuantities;
+    default:
+      return show;
+  }
+};
+
 export {
   currentSizeIndex,
   currentQuantity,
+  showQuantities,
 };

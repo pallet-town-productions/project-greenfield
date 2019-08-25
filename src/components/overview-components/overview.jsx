@@ -1,8 +1,9 @@
 import React from 'react';
-//import child components
+// import child components
 import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
 import SizeSelector from './addToCart/sizeSelector';
+import QuantitySelector from './addToCart/quantitySelector';
 import { ExpandedProductName, CategoryName, ProductDescription } from './productInformation/productInfo';
 import Price from './productInformation/price';
 import StarRating from '../RnR/RnR_StarRating';
@@ -17,9 +18,9 @@ const Overview = function () {
       <summary>
         <div>
           <span>
-            <StarRating starCount={0.75}/>
-            <a href="">Read all reviews</a>
-          {/* how does it ultimately communicate with RnR? */}
+            <StarRating starCount={0.75} />
+            <a href="http://www.google.com">Read all reviews</a>
+            {/* how does it ultimately communicate with RnR? */}
           </span>
         </div>
         <div>
@@ -33,6 +34,7 @@ const Overview = function () {
         </div>
         <StyleSelector />
         <SizeSelector />
+        <QuantitySelector />
       </summary>
       <article>
         <ProductDescription />
