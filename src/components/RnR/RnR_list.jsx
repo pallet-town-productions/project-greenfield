@@ -10,27 +10,29 @@ const mapStateToProps = (state) => ({
 class List extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props;
+    this.state = {
+      currentView: 2,
+    };
+  }
+
+  showMore() {
+    const { currentView } = this.state;
+    this.setState(() => ({ currentView: currentView + 2 }));
   }
 
   render() {
     const { updateReviews } = this.props;
-    if (updateReviews.length) {
-      const reviewList = updateReviews[0].results;
-      return (
-        <div>
-          <h3 className="reviews-list">List of Reviews</h3>
-          {reviewList.map((review) => <Tile text={review.body} />)}
-        </div>
-      );
-    }
+    const { currentView } = this.state;
     return (
       <div>
         <h3 className="reviews-list">List of Reviews</h3>
+        {updateReviews.slice(0, currentView).map((review) => <Tile review={review} />)}
+        <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>
       </div>
     );
   }
 }
+
 List.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,
 };
