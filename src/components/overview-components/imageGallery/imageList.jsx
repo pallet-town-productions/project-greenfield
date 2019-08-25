@@ -1,7 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import changePhoto from '../../../actions/overview-Actions/imageGallery/changePhoto';
+import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ImageThumbnail from './imageThumbnail';
 import { zeroPad } from '../../../util/util';
 // import bunch of other child components
