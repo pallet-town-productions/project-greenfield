@@ -2,6 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
+import changePhoto from '../../../actions/overview-Actions/imageGallery/changePhoto';
 import StyleThumbnail from './styleThumbnail';
 
 const mapStateToProps = function (state) {
@@ -17,6 +18,7 @@ const mapDispatchToProps = function (dispatch) {
   return {
     handleSwitchStyle: (styleIndex) => {
       dispatch(changeStyle(styleIndex));
+      dispatch(changePhoto(0)); // reset photo to first one upon each style switch
     },
   };
 };
