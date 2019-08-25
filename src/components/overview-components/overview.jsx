@@ -13,6 +13,9 @@ import '../../styles/overview.scss';
 const Overview = function () {
   return (
     <main>
+      <div id="image-gallery-overlay">
+        {/* Place Image Gallery Expanded View Here */}
+      </div>
       <header>SITE WIDE ANNOUNCEMENT:  SALE</header>
       <ImageGallery />
       <summary>
