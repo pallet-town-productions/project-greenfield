@@ -28,7 +28,7 @@ const Tile = (props) => {
 };
 
 Tile.propTypes = {
-  review: PT.arrayOf(PT.object).isRequired,
+  review: PT.shape({}).isRequired,
 };
 
 export default Tile;
