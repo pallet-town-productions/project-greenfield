@@ -1,6 +1,14 @@
 $thumbnailDimension: 100px;
 $overlayPercent: 80%;
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 .dropdown-selector {
   display: inline-block,
 }
@@ -23,7 +31,6 @@ $overlayPercent: 80%;
 
 #image-gallery-overlay {
   position: fixed;
-  display: block;
   height: $overlayPercent;
   width: $overlayPercent;
   margin: 0 (100% - $overlayPercent)/2;

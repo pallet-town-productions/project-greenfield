@@ -5,6 +5,7 @@ import StyleSelector from './styleSelector/styleSelector';
 import SizeSelector from './addToCart/sizeSelector';
 import QuantitySelector from './addToCart/quantitySelector';
 import { ExpandedProductName, CategoryName, ProductDescription } from './productInformation/productInfo';
+import ExpandedViewOverlay from './imageGallery/expandedViewOverlay';
 import Price from './productInformation/price';
 import StarRating from '../RnR/RnR_StarRating';
 // import style sheets
@@ -13,9 +14,7 @@ import '../../styles/overview.scss';
 const Overview = function () {
   return (
     <main>
-      <div id="image-gallery-overlay">
-        {/* Place Image Gallery Expanded View Here */}
-      </div>
+      <ExpandedViewOverlay />
       <header>SITE WIDE ANNOUNCEMENT:  SALE</header>
       <ImageGallery />
       <summary>

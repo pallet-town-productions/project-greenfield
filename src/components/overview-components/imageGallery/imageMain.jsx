@@ -1,6 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 
 const mapStateToProps = function (state) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
@@ -24,6 +25,7 @@ const ImageMain = function ({ currentBigPicture, currentStyleName }) {
       id="mainphoto"
       src={currentBigPicture}
       alt={`DUMMY, put in product name, ${currentStyleName}`}
+      // onClick={() => {}}
     />
   );
 };
