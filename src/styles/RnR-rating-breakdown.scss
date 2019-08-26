@@ -19,6 +19,23 @@ $componentWidth: 250px;
   margin: 0px;
 }
 
+.bar {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  color: $progressValueColor;
+  background-color: $progressBarColor;
+
+  width: 30%;
+  height: 6px;
+}
+
+.product-breakdown-bar {
+  margin-right: $defaultMargin;
+}
+
 .rating-breakdown {
 
   .rating-average {

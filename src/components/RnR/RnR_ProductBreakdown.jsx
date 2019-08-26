@@ -5,9 +5,9 @@ const ProductBreakdown = () => (
     <ul className="breakdown-list">
       Label
       <li className="product-breakdown-item">
-        <progress />
-        <progress />
-        <progress />
+        <progress className="product-breakdown-bar bar" />
+        <progress className="product-breakdown-bar bar" />
+        <progress className="product-breakdown-bar bar" />
       </li>
     </ul>
   </div>
