@@ -28,7 +28,7 @@ class List extends Component {
     const { currentView } = this.state;
     let button;
     if (updateReviews.length > currentView) {
-      button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>
+      button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
     } else {
       button = <div />;
     }

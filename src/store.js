@@ -10,7 +10,7 @@ import exampleProductData from './exampleProductData';
 const initialData = {
   productData: exampleProductData,
   style: exampleStyleData,
-  productId: 25,
+  productId: 24,
 };
 
 export default function configureStore(initialState = initialData) {
