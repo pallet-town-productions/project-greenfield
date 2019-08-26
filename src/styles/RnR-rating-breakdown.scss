@@ -19,6 +19,7 @@ $componentWidth: 250px;
   margin: 0px;
 }
 
+// Bar styles for star breakdown and product breakdown
 .bar {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -27,15 +28,42 @@ $componentWidth: 250px;
   border-radius: 0;
   color: $progressValueColor;
   background-color: $progressBarColor;
-
   width: 30%;
   height: 6px;
 }
 
-.product-breakdown-bar {
-  margin-right: $defaultMargin;
+.bar::-webkit-progress-bar {
+  background-color: $progressBarColor;
 }
 
+.bar::-moz-progress-bar { 
+  background-color: $progressBarColor;	
+}
+
+.bar::-webkit-progress-value {
+  background-color: $progressValueColor;
+}
+
+.bar::-moz-progress-value {
+  background-color: $progressValueColor;
+}
+
+// Product Breakdown specific styles
+
+.product-breakdown {
+  
+  .product-breakdown-bar {
+    margin-right: $defaultMargin;
+  }
+  .product-breakdown-bottom-label {
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+  }
+}
+
+
+// Rating Breakdown specific styles
 .rating-breakdown {
 
   .rating-average {
@@ -68,29 +96,10 @@ $componentWidth: 250px;
       margin-top: $defaultMargin * 2;
 
       .star-breakdown-bar {
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-        border: none;
-        border-radius: 0;
-        color: $progressValueColor;
-        background-color: $progressBarColor;
         margin-left: $defaultMargin * 2;
         width: 75%;
-        height: 6px;
       }
 
-      .star-breakdown-bar::-webkit-progress-bar {
-          background-color: $progressBarColor;
-      }
-      
-      .star-breakdown-bar::-moz-progress-bar { 
-        background-color: $progressValueColor;	
-      }
-      
-      .star-breakdown-bar::-webkit-progress-value {
-        background-color: $progressValueColor;
-      }
     }
   }
 }
