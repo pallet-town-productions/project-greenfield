@@ -10,6 +10,7 @@ class Tile extends React.Component {
     this.state = {
       body: review.body.slice(0, 250),
       hasVotedHelpfulness: false,
+      hasReported: false,
     };
   }
 
@@ -29,6 +30,21 @@ class Tile extends React.Component {
         method: 'PUT',
       })
         .then(() => this.setState(() => ({ hasVotedHelpfulness: true })));
+    }
+    return 'done';
+  }
+
+  report() {
+    const { hasReported } = this.state;
+    if (!hasReported) {
+      const { review } = this.props;
+      // eslint-disable-next-line camelcase
+      const { review_id } = review;
+      // eslint-disable-next-line camelcase
+      return fetch(`http://18.217.220.129/reviews/report/${review_id}`, {
+        method: 'PUT',
+      })
+        .then(() => this.setState(() => ({ hasReported: true })));
     }
     return 'done';
   }
@@ -70,6 +86,7 @@ class Tile extends React.Component {
           (
           {review.helpfulness}
           )
+          <div className="report-link" onClick={this.report.bind(this)} onKeyDown={this.report.bind(this)} tabIndex={0} role="link">Report</div>
         </div>
       </div>
     );
