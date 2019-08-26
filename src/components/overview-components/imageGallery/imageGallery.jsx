@@ -18,7 +18,11 @@ const ImageGallery = function ({ dispatchExpandedView }) {
   return (
     <section>
       <ImageList />
-      <ImageMain handleClick={dispatchExpandedView} />
+      <ImageMain
+        handleClick={dispatchExpandedView}
+        onHover="onHover-zoomin"
+        thisId="mainphoto"
+      />
     </section>
   );
 };
