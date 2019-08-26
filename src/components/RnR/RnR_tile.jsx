@@ -25,12 +25,16 @@ class Tile extends React.Component {
     if (body.length > 249) {
       body = (
         <div>
-          <p className="tile-body">{body}</p>
+          <p className="tile-body">{body.slice(0, 1000)}</p>
           <button type="button" onClick={this.showFullBody.bind(this)}>Show more</button>
         </div>
       );
     } else {
-      body = <p className="tile-body">{body}</p>;
+      body = <p className="tile-body">{body.slice(0, 1000)}</p>;
+    }
+    let recommend;
+    if (review.recommend) {
+      recommend = <p className="recommend">I recommend this product</p>;
     }
     return (
       <div>
@@ -41,6 +45,7 @@ class Tile extends React.Component {
         </p>
         <p className="tile-summary">{summary}</p>
         {body}
+        {recommend}
         <p>{images}</p>
         <p>
           Helpful?
@@ -64,6 +69,7 @@ Tile.propTypes = {
     summary: PT.string,
     body: PT.string,
     helpfulness: PT.number,
+    recommend: PT.number,
   }).isRequired,
 };
 
