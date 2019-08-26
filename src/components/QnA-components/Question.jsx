@@ -10,7 +10,7 @@ const Question = ({ data, helpfulClickHandler }) => (
     <span className="questionsQuestionTools">
       <p>
         Helpful?
-        <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
+        <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', 'question', data.question_id)}>
           <u>
             Yes
           </u>
@@ -32,9 +32,12 @@ const Question = ({ data, helpfulClickHandler }) => (
           <p>
             {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
           </p>
+          {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
+            <img alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+          ))}
           <p>
             {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
-            <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
+            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', 'answer', answer.id)}>
               <u>Yes</u>
             </button>
             {` (${answer.helpfulness}) | `}

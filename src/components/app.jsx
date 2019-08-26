@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './overview-components/header';
 import Overview from './overview-components/overview';
@@ -11,19 +11,36 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
-export const App = () => {
-  return (
-    <div id="main-container">
-      <div id="component-container">
-        <Header />
-        <Overview />
-        <QnA />
-        <RnR className="RnR-container" />
-        <ConnectedRelatedProducts />
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.helpfulClickHandler = (component, id, type) => {
+      if (component === 'reviews') {
+        fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
+          method: 'PUT',
+        });
+      } else {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+          method: 'PUT',
+        });
+      }
+    };
+  }
+
+  render() {
+    return (
+      <div id="main-container">
+        <div id="component-container">
+          <Header />
+          <Overview />
+          <QnA helpfulClickHandler={this.helpfulClickHandler} />
+          <RnR className="RnR-container" />
+          <ConnectedRelatedProducts />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const connectedApp = connect(mapStateToProps, null)(App);
 export default connectedApp;

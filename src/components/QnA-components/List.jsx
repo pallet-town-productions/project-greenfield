@@ -5,21 +5,18 @@ import Question from './Question';
 
 
 class List extends React.Component {
-  constructor({ questions }) {
-    super({ questions });
-    this.helpfulClickHandler = () => {
-      console.log('so very helpful');
-    };
+  constructor({ questions, helpfulClickHandler }) {
+    super({ questions, helpfulClickHandler });
   }
 
   render() {
-    const { questions } = this.props;
+    const { questions, helpfulClickHandler } = this.props;
     return (
       <div>
         {questions.map((question) => (
           <Question
             key={question.question_id}
-            helpfulClickHandler={this.helpfulClickHandler}
+            helpfulClickHandler={helpfulClickHandler}
             data={question}
           />
         ))}
@@ -30,6 +27,7 @@ class List extends React.Component {
 
 List.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  helpfulClickHandler: PropTypes.func.isRequired,
 };
 
 export default List;
