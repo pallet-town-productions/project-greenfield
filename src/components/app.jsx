@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { Component } from 'react';
-import PT from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import Header from './overview-components/header';
 import Overview from './overview-components/overview';
