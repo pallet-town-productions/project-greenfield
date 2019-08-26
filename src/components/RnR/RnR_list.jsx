@@ -17,17 +17,31 @@ class List extends Component {
 
   showMore() {
     const { currentView } = this.state;
-    this.setState(() => ({ currentView: currentView + 2 }));
+    const { updateReviews } = this.props;
+    if (currentView <= updateReviews.length) {
+      this.setState(() => ({ currentView: currentView + 2 }));
+    }
   }
 
   render() {
     const { updateReviews } = this.props;
     const { currentView } = this.state;
+    let button;
+    if (updateReviews.length > currentView) {
+      button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
+    } else {
+      button = <div />;
+    }
     return (
       <div>
         <h3 className="reviews-list">List of Reviews</h3>
-        {updateReviews.slice(0, currentView).map((review) => <Tile review={review} />)}
-        <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>
+        {updateReviews.slice(0, currentView).map((review) => (
+          <Tile
+            review={review}
+            key={review.review_id}
+          />
+        ))}
+        {button}
       </div>
     );
   }
