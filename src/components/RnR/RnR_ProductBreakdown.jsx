@@ -9,6 +9,10 @@ const ProductBreakdown = () => (
         <progress className="product-breakdown-bar bar" />
         <progress className="product-breakdown-bar bar" />
       </li>
+      <p className="product-breakdown-bottom-label">
+        <span>Left Label</span>
+        <span>Right Label</span>
+      </p>
     </ul>
   </div>
 );
