@@ -5,7 +5,10 @@ import '../../styles/RnR-styles.scss';
 
 const Tile = (props) => {
   const { review } = props;
-  const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />));
+  console.log(review.summary.length)
+  const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />)).slice(0, 5);
+  const summary = review.summary.slice(0, 60);
+  console.log(summary.length)
   return (
     <div>
       <p>{review.rating}</p>
@@ -13,7 +16,7 @@ const Tile = (props) => {
         {review.reviewer_name}
         {new Date(review.date).toLocaleDateString()}
       </p>
-      <p>{review.summary}</p>
+      <p>{summary}</p>
       <p>{review.body}</p>
       <p>{images}</p>
       <p>
