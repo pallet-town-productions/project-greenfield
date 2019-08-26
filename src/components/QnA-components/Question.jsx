@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddAnswer from './AddAnswer';
 
 const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
   <div className="questionsQuestionContainer">
@@ -19,11 +20,7 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
         {data.question_helpfulness}
         )
         |
-        <button className="questionsAddAnswerBtn" type="submit">
-          <u>
-            Add Answer
-          </u>
-        </button>
+        <AddAnswer />
       </p>
     </span>
     <div>
