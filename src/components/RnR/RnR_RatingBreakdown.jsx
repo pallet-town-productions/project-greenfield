@@ -1,9 +1,10 @@
 import React from 'react';
 import StarRating from './RnR_StarRating';
 import ConnectedStarBreakdown from './RnR_StarBreakdown';
+import '../../styles/RnR-rating-breakdown.scss';
 
 const RatingBreakdown = () => (
-  <div>
+  <div className="rating-breakdown">
     <h1 className="rating-average">
       3.5
       <StarRating starCount={3.5} />
