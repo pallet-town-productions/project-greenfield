@@ -1,7 +1,6 @@
 import React from 'react';
 import StarRating from './RnR_StarRating';
 import ConnectedStarBreakdown from './RnR_StarBreakdown';
-import '../../styles/RnR-rating-breakdown.scss';
 
 const RatingBreakdown = () => (
   <div className="rating-breakdown breakdown-widget">
