@@ -2,15 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Question = ({ data, helpfulClickHandler }) => (
+const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
   <div className="questionsQuestionContainer">
     <p>
       {`Q: ${data.question_body}`}
     </p>
     <span className="questionsQuestionTools">
-      <p>
+      <p id={`Q${data.question_id}`}>
         Helpful?
-        <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', 'question', data.question_id)}>
+        <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
           <u>
             Yes
           </u>
@@ -37,11 +37,11 @@ const Question = ({ data, helpfulClickHandler }) => (
           ))}
           <p>
             {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
-            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', 'answer', answer.id)}>
+            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
               <u>Yes</u>
             </button>
             {` (${answer.helpfulness}) | `}
-            <button className="questionsReportBtn" type="submit">
+            <button className="questionsReportBtn" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
               <u>Report</u>
             </button>
           </p>
@@ -54,6 +54,7 @@ const Question = ({ data, helpfulClickHandler }) => (
 Question.propTypes = {
   data: PropTypes.shape(PropTypes.object),
   helpfulClickHandler: PropTypes.func.isRequired,
+  reportClickHandler: PropTypes.func.isRequired,
 };
 
 Question.defaultProps = {

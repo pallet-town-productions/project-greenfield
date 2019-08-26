@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
 export class App extends Component {
   constructor(props) {
     super(props);
+
     this.helpfulClickHandler = (component, id, type) => {
       if (component === 'reviews') {
         fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
@@ -21,6 +22,18 @@ export class App extends Component {
         });
       } else {
         fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+          method: 'PUT',
+        });
+      }
+    };
+
+    this.reportClickHandler = (component, id, type) => {
+      if (component === 'reviews') {
+        fetch(`http://18.217.220.129/${component}/report/${id}`, {
+          method: 'PUT',
+        });
+      } else {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/report`, {
           method: 'PUT',
         });
       }
@@ -33,7 +46,10 @@ export class App extends Component {
         <div id="component-container">
           <Header />
           <Overview />
-          <QnA helpfulClickHandler={this.helpfulClickHandler} />
+          <QnA
+            helpfulClickHandler={this.helpfulClickHandler}
+            reportClickHandler={this.reportClickHandler}
+          />
           <RnR className="RnR-container" />
           <ConnectedRelatedProducts />
         </div>
