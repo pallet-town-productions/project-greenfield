@@ -15,15 +15,14 @@
     "react-test-renderer": "^16.9.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
-    "underscore": "^1.9.1"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js --ext .jsx . --fix"
+    "lint": "eslint --ext .js --ext .jsx ."
   },
   "eslintConfig": {
     "extends": "airbnb",
