@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
 
-const mapStateToProps = (state) => ({
-  ...state,
-});
+// const mapStateToProps = (state) => ({
+//   ...state,
+// });
 
 export const RelatedCard = (props) => {
-  const { productId, relatedReducer } = props;
+  const { productId } = props;
   return (
     <div className="card-container">
-      Product related to:
-      {productId}
+      Product related to 1:
       <div>
-      Related Products:
-        {relatedReducer}
+      Related Product:
+        {productId}
       </div>
     </div>
   );
@@ -24,12 +23,7 @@ export const RelatedCard = (props) => {
 
 RelatedCard.propTypes = {
   productId: PT.number.isRequired,
-  relatedReducer: PT.arrayOf(PT.number),
 };
 
-RelatedCard.defaultProps = {
-  relatedReducer: [],
-};
-
-const connectedRelatedCard = connect(mapStateToProps, null)(RelatedCard);
+const connectedRelatedCard = connect(null, null)(RelatedCard);
 export default connectedRelatedCard;

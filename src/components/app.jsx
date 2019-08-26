@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { Component } from 'react';
-import PT from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import Header from './overview-components/header';
 import Overview from './overview-components/overview';
@@ -12,6 +11,7 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
+<<<<<<< HEAD
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -30,17 +30,24 @@ export class App extends Component {
         <div id="container">
           <Header />
           <Overview />
-          <QnA />
+          {/* <QnA />
           <RnR className="RnR-container" />
-          <ConnectedRelatedProducts />
+          <ConnectedRelatedProducts /> */}
         </div>
+=======
+export const App = () => {
+  return (
+    <div id="main-container">
+      <div id="component-container">
+        <Header />
+        <Overview />
+        <QnA />
+        <RnR className="RnR-container" />
+        <ConnectedRelatedProducts />
+>>>>>>> 328957fbb500467a4ba2591377a554580255738b
       </div>
-    );
-  }
-}
-
-App.propTypes = {
-  productId: PT.number.isRequired,
+    </div>
+  );
 };
 
 const connectedApp = connect(mapStateToProps, null)(App);

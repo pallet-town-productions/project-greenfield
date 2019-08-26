@@ -18,19 +18,22 @@ const mapStateToProps = function (state) {
   };
 };
 
-const ImageMain = function ({ currentBigPicture, currentStyleName }) {
+const ImageMain = function ({ currentBigPicture, currentStyleName, handleClick }) {
   return (
-    <img
-      id="mainphoto"
-      src={currentBigPicture}
-      alt={`DUMMY, put in product name, ${currentStyleName}`}
-    />
+    <div onClick={handleClick} role="presentation">
+      <img
+        id="mainphoto"
+        src={currentBigPicture}
+        alt={`DUMMY, put in product name, ${currentStyleName}`}
+      />
+    </div>
   );
 };
 
 ImageMain.propTypes = {
   currentBigPicture: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
+  handleClick: PT.func.isRequired,
 };
 
 export default connect(mapStateToProps, null)(ImageMain);

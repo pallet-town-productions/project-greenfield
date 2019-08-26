@@ -8,8 +8,14 @@
   border-width: $borderThickness;
   font-family: $font;
   border-style: solid;
+  margin: $defaultMargin;
+  padding: $defaultPadding;
 }
 
 .related-products-container {
   font-family: $font;
+}
+
+.carousel-container {
+  display: flex;
 }
