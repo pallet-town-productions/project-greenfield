@@ -10,21 +10,21 @@ const mapDispatchToProps = function (dispatch) {
   return {
     dispatchExpandedView: () => {
       dispatch(toggleExpandedView(true));
-    }
+    },
   };
 };
 
-const ImageGallery = function( {dispatchExpandedView} ) {
+const ImageGallery = function ({ dispatchExpandedView }) {
   return (
     <section>
       <ImageList />
-      <ImageMain handleClick={dispatchExpandedView}/>
+      <ImageMain handleClick={dispatchExpandedView} />
     </section>
   );
 };
 
 ImageGallery.propTypes = {
   dispatchExpandedView: PT.func.isRequired,
-}
+};
 
 export default connect(null, mapDispatchToProps)(ImageGallery);

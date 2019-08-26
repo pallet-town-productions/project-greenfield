@@ -9,8 +9,8 @@ const toggleExpandedView = function (showExpanded = false) {
   return {
     type: 'TOGGLE_EXPANDED_VIEW',
     showExpandedView: showExpanded,
-  }
-}
+  };
+};
 
 export {
   changePhoto,

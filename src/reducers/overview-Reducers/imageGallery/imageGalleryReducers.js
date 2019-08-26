@@ -1,9 +1,9 @@
-const currentPhotoIndex = function (currentPhotoIndex = 0, action) {
+const currentPhotoIndex = function (currentPhotoIdx = 0, action) {
   switch (action.type) {
     case 'CHANGE_PHOTO':
       return action.currentPhotoIndex;
     default:
-      return currentPhotoIndex;
+      return currentPhotoIdx;
   }
 };
 

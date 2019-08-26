@@ -8,7 +8,7 @@ import ExitButton from './exitButton';
 
 const mapStateToProps = function (state) {
   const { showExpandedView } = state;
-  return { showExpandedView }; 
+  return { showExpandedView };
 };
 
 const mapDispatchToProps = function (dispatch) {
@@ -23,11 +23,11 @@ const mapDispatchToProps = function (dispatch) {
 };
 
 const ExpandedViewOverlay = function ({ showExpandedView, handleHideExpandedView, handleZoom }) {
-  let display = (showExpandedView) ? 'show' : 'hide';
+  const display = (showExpandedView) ? 'show' : 'hide';
   return (
     <div className={display} id="image-gallery-overlay">
-      <ExitButton handleExit={handleHideExpandedView}/>
-      <ImageMain handleClick={handleZoom}/>
+      <ExitButton handleExit={handleHideExpandedView} />
+      <ImageMain handleClick={handleZoom} />
       <ImageList />
     </div>
   );
