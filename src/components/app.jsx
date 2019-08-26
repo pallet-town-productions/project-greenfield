@@ -16,6 +16,11 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = { productId: props.productId };
+    this.helpfulClickHandler = (component, type, id) => {
+      fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+        method: 'PUT',
+      });
+    };
   }
 
   render() {
@@ -30,7 +35,7 @@ export class App extends Component {
         <div id="container">
           <Header />
           <Overview />
-          <QnA />
+          <QnA helpfulClickHandler={this.helpfulClickHandler} />
           <RnR className="RnR-container" />
           <ConnectedRelatedProducts />
         </div>

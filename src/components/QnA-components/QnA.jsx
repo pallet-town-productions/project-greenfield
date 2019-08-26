@@ -11,8 +11,8 @@ const mapStateToProps = (state) => ({
 });
 
 class QnA extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, { helpfulClickHandler }) {
+    super(props, { helpfulClickHandler });
     this.state = {
       productId: props.productId,
       questions: [],
@@ -28,19 +28,20 @@ class QnA extends React.Component {
         const currentState = this.state;
         currentState.questions = result.results.slice(0, 2);
         this.setState(currentState);
-        console.log(currentState);
+        console.log(result);
       });
   }
 
   render() {
     const { questions } = this.state;
+    const { helpfulClickHandler } = this.props;
     return (
       <div>
         <h3>
           QUESTIONS & ANSWERS
         </h3>
         <Search />
-        <List questions={questions} />
+        <List questions={questions} helpfulClickHandler={helpfulClickHandler} />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
         <Ask />
       </div>
@@ -50,6 +51,7 @@ class QnA extends React.Component {
 
 QnA.propTypes = {
   productId: PropTypes.number,
+  helpfulClickHandler: PropTypes.func.isRequired,
 };
 
 QnA.defaultProps = {
