@@ -23,7 +23,7 @@ describe('components', () => {
     it('should render self and subcomponents', () => {
       const { enzymeWrapper } = setup();
 
-      expect(enzymeWrapper.find('.card-container').text()).toBe('Product related to:1Related Products:');
+      expect(enzymeWrapper.find('.card-container').text()).toBe('Product related to 1:Related Product:1');
     });
   });
 });

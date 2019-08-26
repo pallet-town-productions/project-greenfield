@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import ConnectedRelatedCard from './relatedCard';
+import ConnectedCarousel from './carousel';
 import relatedAction from '../../actions/related-Products-Actions/related-products-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
@@ -24,7 +24,7 @@ export class RelatedProducts extends Component {
       <div className="related-products-container">
         Products Related To:
         {productId}
-        <ConnectedRelatedCard />
+        <ConnectedCarousel />
       </div>
     );
   }

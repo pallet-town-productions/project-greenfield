@@ -57,3 +57,14 @@ body {
   width: 50%;
 }
 
+#component-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+#main-container {
+  display: flex;
+  justify-content: center;
+}
+
