@@ -32,6 +32,9 @@ const Question = ({ data, helpfulClickHandler }) => (
           <p>
             {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
           </p>
+          {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
+            <img alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+          ))}
           <p>
             {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
             <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('answer', answer.id)}>
