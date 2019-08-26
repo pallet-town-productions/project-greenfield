@@ -9,16 +9,6 @@ const Modal = ({ handleClose, show, children }) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClose(false);
-          }}
-        >
-Submit
-
-        </button>
       </section>
     </div>
   );
@@ -27,7 +17,7 @@ Submit
 Modal.propTypes = {
   handleClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Modal;

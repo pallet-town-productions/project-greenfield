@@ -37,6 +37,15 @@ class AddAnswer extends React.Component {
             <input className="questionsModalAnswerEmail" type="text" placeholder="Your Email" />
             <br />
             <input className="questionsModalAnswerPic" name="pic" type="file" accept="image/*" />
+            <br />
+            <input
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.hideModal(false);
+              }}
+            />
           </form>
         </Modal>
       </button>

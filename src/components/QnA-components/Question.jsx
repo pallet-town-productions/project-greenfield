@@ -49,13 +49,14 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
 );
 
 Question.propTypes = {
-  data: PropTypes.shape(PropTypes.object),
+  data: PropTypes.shape({
+    question_body: PropTypes.string.isRequired,
+    question_id: PropTypes.number.isRequired,
+    question_helpfulness: PropTypes.number.isRequired,
+    answers: PropTypes.shape({}).isRequired,
+  }).isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
-};
-
-Question.defaultProps = {
-  data: {},
 };
 
 export default Question;
