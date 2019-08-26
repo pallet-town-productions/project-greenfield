@@ -4,14 +4,23 @@ $progressValueColor: #2AEB5D;
 $progressBarColor: #cac6c6;
 $componentWidth: 250px;
 
-.rating-breakdown {
+.breakdown-widget {
   font-family: $font;
   height: auto;
   width: $componentWidth;
   margin: $defaultMargin;
   padding: $defaultPadding;
   font-size: small;
-  
+}
+
+.breakdown-list {
+  list-style-type: none;
+  padding: $defaultPadding;
+  margin: 0px;
+}
+
+.rating-breakdown {
+
   .rating-average {
     display: flex;
     flex-direction: row;
@@ -35,9 +44,6 @@ $componentWidth: 250px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    list-style-type: none;
-    padding: $defaultPadding;
-    margin: 0px;
 
     .star-breakdown-item {
       display: flex;
@@ -45,6 +51,7 @@ $componentWidth: 250px;
       margin-top: $defaultMargin * 2;
 
       .star-breakdown-bar {
+        -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
         border: none;

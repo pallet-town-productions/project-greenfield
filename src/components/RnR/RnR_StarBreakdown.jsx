@@ -21,7 +21,7 @@ export const StarBreakdown = (props) => {
     .reduce(reducer);
 
   return (
-    <ul className="star-breakdown">
+    <ul className="star-breakdown breakdown-list">
       <li className="star-breakdown-item">
         <a href="google.com">5 stars</a>
         <progress className="star-breakdown-bar" value={allRatings[5]} max={totalRatings} />

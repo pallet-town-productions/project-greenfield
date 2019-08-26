@@ -4,7 +4,7 @@ import ConnectedStarBreakdown from './RnR_StarBreakdown';
 import '../../styles/RnR-rating-breakdown.scss';
 
 const RatingBreakdown = () => (
-  <div className="rating-breakdown">
+  <div className="rating-breakdown breakdown-widget">
     <h1 className="rating-average">
       3.5
       <StarRating starCount={3.5} />
