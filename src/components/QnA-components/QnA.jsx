@@ -28,7 +28,6 @@ class QnA extends React.Component {
         const currentState = this.state;
         currentState.questions = result.results.slice(0, 2);
         this.setState(currentState);
-        console.log(result);
       });
   }
 
