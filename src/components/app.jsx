@@ -14,10 +14,16 @@ const mapStateToProps = (state) => ({
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.helpfulClickHandler = (component, type, id) => {
-      fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
-        method: 'PUT',
-      });
+    this.helpfulClickHandler = (component, id, type) => {
+      if (component === 'reviews') {
+        fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
+          method: 'PUT',
+        });
+      } else {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+          method: 'PUT',
+        });
+      }
     };
   }
 
