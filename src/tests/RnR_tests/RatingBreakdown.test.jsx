@@ -20,7 +20,7 @@ function testRatingBreakdown() {
 describe('RnR - Rating Breakdown', () => {
   const { enzymeWrapper } = testRatingBreakdown();
   it('should have proper classes assigned to elements', () => {
-    expect(enzymeWrapper.find('h2').hasClass('rating-average')).toBe(true);
+    expect(enzymeWrapper.find('h1').hasClass('rating-average')).toBe(true);
     expect(enzymeWrapper.find('p').hasClass('percent-recommended')).toBe(true);
   });
 });
