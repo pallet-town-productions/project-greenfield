@@ -20,7 +20,7 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
         {data.question_helpfulness}
         )
         |
-        <AddAnswer />
+        <AddAnswer data={data} />
       </p>
     </span>
     <div>
