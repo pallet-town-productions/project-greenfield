@@ -1,10 +1,14 @@
 import React from 'react';
+// import child components
 import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
+import SizeSelector from './addToCart/sizeSelector';
+import QuantitySelector from './addToCart/quantitySelector';
 import { ExpandedProductName, CategoryName, ProductDescription } from './productInformation/productInfo';
 import Price from './productInformation/price';
+import StarRating from '../RnR/RnR_StarRating';
+// import style sheets
 import '../../styles/overview.scss';
-// import bunch of other child components
 
 const Overview = function () {
   return (
@@ -13,7 +17,11 @@ const Overview = function () {
       <ImageGallery />
       <summary>
         <div>
-          Ratings
+          <span>
+            <StarRating starCount={0.75} />
+            <a href="http://www.google.com">Read all reviews</a>
+            {/* how does it ultimately communicate with RnR? */}
+          </span>
         </div>
         <div>
           <CategoryName />
@@ -25,6 +33,8 @@ const Overview = function () {
           <Price />
         </div>
         <StyleSelector />
+        <SizeSelector />
+        <QuantitySelector />
       </summary>
       <article>
         <ProductDescription />

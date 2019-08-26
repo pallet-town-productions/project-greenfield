@@ -1,7 +1,7 @@
-const changePhoto = function (photoNum = 0) {
+const changePhoto = function (photoIndex = 0) {
   return {
     type: 'CHANGE_PHOTO',
-    currentPhotoIndex: photoNum,
+    currentPhotoIndex: photoIndex,
   };
 };
 
