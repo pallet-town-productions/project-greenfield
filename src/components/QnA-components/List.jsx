@@ -7,8 +7,10 @@ import Question from './Question';
 class List extends React.Component {
   constructor({ questions }) {
     super({ questions });
-    this.helpfulClickHandler = () => {
-      console.log('so very helpful');
+    this.helpfulClickHandler = (type, id) => {
+      fetch(`http://18.217.220.129/qa/${type}/${id}/helpful`, {
+        method: 'PUT',
+      });
     };
   }
 
