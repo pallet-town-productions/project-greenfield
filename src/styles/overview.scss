@@ -1,4 +1,19 @@
 $thumbnailDimension: 100px;
+$overlayPercent: 80%;
+
+.onHover-pointer {
+  cursor: pointer;
+}
+
+// .onHover
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
 
 .dropdown-selector {
   display: inline-block,
@@ -18,6 +33,14 @@ $thumbnailDimension: 100px;
 
 .price {
   margin: 5px 10px;
+}
+
+#image-gallery-overlay {
+  position: fixed;
+  height: $overlayPercent;
+  width: $overlayPercent;
+  margin: 0 (100% - $overlayPercent)/2;
+  background-color: white;
 }
 
 #mainphoto {
