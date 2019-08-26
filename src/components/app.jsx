@@ -11,30 +11,6 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
-<<<<<<< HEAD
-export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { productId: props.productId };
-  }
-
-  render() {
-    const { productId } = this.state;
-    return (
-      <div>
-        <div>
-          Hello World, Product:
-          { productId }
-          <button type="button">test</button>
-        </div>
-        <div id="container">
-          <Header />
-          <Overview />
-          {/* <QnA />
-          <RnR className="RnR-container" />
-          <ConnectedRelatedProducts /> */}
-        </div>
-=======
 export const App = () => {
   return (
     <div id="main-container">
@@ -44,7 +20,6 @@ export const App = () => {
         <QnA />
         <RnR className="RnR-container" />
         <ConnectedRelatedProducts />
->>>>>>> 328957fbb500467a4ba2591377a554580255738b
       </div>
     </div>
   );
