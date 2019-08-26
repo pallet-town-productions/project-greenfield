@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 // import components
+// import { exportAllDeclaration } from '@babel/types';
 import Overview from '../../components/overview-components/overview';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -15,7 +16,7 @@ describe('components', () => {
   describe('Overview', () => {
     it('should render self and subcomponents', () => {
       const wrapper = shallowSetup();
-      // expect(wrapper.exists('ExpandedViewOverlay')).toBeTruthy();
+      expect(wrapper.exists('div')).toBeTruthy();
       // expect(wrapper.exists('StyleSelector')).toBeTruthy();
       // why does ImageGallery pass but not StyleSelector?
     });
