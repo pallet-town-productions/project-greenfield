@@ -26,7 +26,7 @@ class AddAnswer extends React.Component {
     return (
       <button type="button" onClick={() => this.showModal(true)}>
         <u>Add Answer</u>
-        <Modal show={show} handleClose={this.hideModal}>
+        <Modal show={show}>
           <h1>Submit your Answer</h1>
           <h3>{`PRODUCT NAME: ${data.question_body}`}</h3>
           <form>
