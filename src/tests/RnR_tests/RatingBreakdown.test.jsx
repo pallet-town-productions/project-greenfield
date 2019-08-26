@@ -61,5 +61,6 @@ describe('RnR - StarBreakdown', () => {
   it('should have proper classes assigned to elements', () => {
     const { enzymeWrapper } = testStarBreakdown({ 1: 3, 4: 5 });
     expect(enzymeWrapper.find('ul').hasClass('star-breakdown')).toBe(true);
+    expect(enzymeWrapper.find('ul').childAt(0).hasClass('star-breakdown-item')).toBe(true);
   });
 });
