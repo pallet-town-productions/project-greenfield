@@ -22,25 +22,25 @@ export const StarBreakdown = (props) => {
 
   return (
     <ul className="star-breakdown">
-      <li>
+      <li className="star-breakdown-item">
         <a href="google.com">5 stars</a>
-        <progress value={allRatings[5]} max={totalRatings} />
+        <progress className="star-breakdown-bar" value={allRatings[5]} max={totalRatings} />
       </li>
-      <li>
+      <li className="star-breakdown-item">
         <a href="google.com">4 stars</a>
-        <progress value={allRatings[4]} max={totalRatings} />
+        <progress className="star-breakdown-bar" value={allRatings[4]} max={totalRatings} />
       </li>
-      <li>
+      <li className="star-breakdown-item">
         <a href="google.com">3 stars</a>
-        <progress value={allRatings[3]} max={totalRatings} />
+        <progress className="star-breakdown-bar" value={allRatings[3]} max={totalRatings} />
       </li>
-      <li>
+      <li className="star-breakdown-item">
         <a href="google.com">2 stars</a>
-        <progress value={allRatings[2]} max={totalRatings} />
+        <progress className="star-breakdown-bar" value={allRatings[2]} max={totalRatings} />
       </li>
-      <li>
+      <li className="star-breakdown-item">
         <a href="google.com">1 stars</a>
-        <progress value={allRatings[1]} max={totalRatings} />
+        <progress className="star-breakdown-bar" value={allRatings[1]} max={totalRatings} />
       </li>
     </ul>
   );
