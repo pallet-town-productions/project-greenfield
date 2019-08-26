@@ -5,21 +5,40 @@ $overlayPercent: 80%;
   cursor: pointer;
 }
 
-// .onHover
+.onHover-zoomin {
+  cursor: zoom-in;
+}
+
+.onHover-zoomout {
+  cursor: zoom-out;
+}
+
+.onHover-crosshair {
+  cursor: crosshair;
+}
+
+// .onHover-highlight {
+// for highlighting a thumbnail on hover
+// }
+
+// .onSelect-highlight {
+// for highlighting a style thumbnail on select
+  // includes corner checkmark
+// }
 
 .show {
-  display: block;
+  display: inline-block;
 }
 
 .hide {
   display: none;
 }
 
-.dropdown-selector {
+.dropdown-selector { // modify
   display: inline-block,
 }
 
-.thumbnail {
+.thumbnail { // modify
   height: $thumbnailDimension;
   width: $thumbnailDimension;
   margin: 5px;
@@ -31,7 +50,7 @@ $overlayPercent: 80%;
   border-radius: $thumbnailDimension/2;
 }
 
-.price {
+.price { // modify
   margin: 5px 10px;
 }
 
@@ -39,12 +58,22 @@ $overlayPercent: 80%;
   position: fixed;
   height: $overlayPercent;
   width: $overlayPercent;
-  margin: 0 (100% - $overlayPercent)/2;
+  // margin-left: (100% - $overlayPercent)/2;
+  margin-right: (100% - $overlayPercent)/2;
   background-color: white;
 }
 
-#mainphoto {
+#mainphoto { // modify
   height: 350px;
+}
+
+#expandedmainphoto { // modify
+  height: 100%;
+}
+
+#zoomphoto {
+  // magnify 2.5x
+  // zoom and pan functionality?
 }
 
 #sale-price {
