@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PT from 'prop-types';
+import { connect } from 'react-redux';
 import ImageList from './imageList';
 import ImageMain from './imageMain';
+import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 // import bunch of other child components
 
-class ImageGallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // currentImage: 0, // for now
-      // imageList: []
-    };
-  }
+const mapDispatchToProps = function (dispatch) {
+  return {
+    dispatchExpandedView: () => {
+      dispatch(toggleExpandedView(true));
+    }
+  };
+};
 
-  render() {
-    return (
-      <section>
-        <ImageList />
-        <ImageMain />
-      </section>
-    );
-  }
+const ImageGallery = function( {dispatchExpandedView} ) {
+  return (
+    <section>
+      <ImageList />
+      <ImageMain handleClick={dispatchExpandedView}/>
+    </section>
+  );
+};
+
+ImageGallery.propTypes = {
+  dispatchExpandedView: PT.func.isRequired,
 }
 
-export default ImageGallery;
+export default connect(null, mapDispatchToProps)(ImageGallery);

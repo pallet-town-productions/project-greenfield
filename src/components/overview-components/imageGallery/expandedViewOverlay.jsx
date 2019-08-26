@@ -1,9 +1,10 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ImageMain from './imageMain';
 import ImageList from './imageList';
+import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import ExitButton from './exitButton';
 
 const mapStateToProps = function (state) {
   const { showExpandedView } = state;
@@ -12,21 +13,30 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    toggleExpandedView: (showExpanded) => {
-      dispatch(toggleExpandedView(showExpanded));
-      console.log(showExpanded);
-    }
-  }
+    handleHideExpandedView: () => {
+      dispatch(toggleExpandedView(false));
+    },
+    handleZoom: () => {
+    //   // WRITE ZOOM FUNCTION
+    },
+  };
 };
 
-const ExpandedViewOverlay = function ({ showExpandedView, toggleExpandedView }) {
+const ExpandedViewOverlay = function ({ showExpandedView, handleHideExpandedView, handleZoom }) {
   let display = (showExpandedView) ? 'show' : 'hide';
   return (
     <div className={display} id="image-gallery-overlay">
-      <ImageMain />
+      <ExitButton handleExit={handleHideExpandedView}/>
+      <ImageMain handleClick={handleZoom}/>
       <ImageList />
     </div>
   );
+};
+
+ExpandedViewOverlay.propTypes = {
+  showExpandedView: PT.bool.isRequired,
+  handleHideExpandedView: PT.func.isRequired,
+  handleZoom: PT.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpandedViewOverlay);
