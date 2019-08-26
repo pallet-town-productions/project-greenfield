@@ -2,6 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
+import StarRating from './RnR_StarRating';
 
 class Tile extends React.Component {
   constructor(props) {
@@ -70,8 +71,10 @@ class Tile extends React.Component {
     }
 
     return (
-      <div>
-        <p>{review.rating}</p>
+      <div className="tile">
+        <div className="star-ratings">
+          <StarRating starCount={review.rating} />
+        </div>
         <p>
           {review.reviewer_name}
           {new Date(review.date).toLocaleDateString()}

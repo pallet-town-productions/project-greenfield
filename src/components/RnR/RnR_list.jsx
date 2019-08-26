@@ -34,7 +34,6 @@ class List extends Component {
     }
     return (
       <div>
-        <h3 className="reviews-list">List of Reviews</h3>
         {updateReviews.slice(0, currentView).map((review) => (
           <Tile
             review={review}

@@ -62,11 +62,12 @@ class Sort extends Component {
   }
 
   render() {
+    const { updateReviews } = this.props;
     const { currentView } = this.state;
     return (
-      <div>
-        <h3 className="sort">Sort for lists</h3>
-        <form>
+      <div className="tile-container">
+        <form className="sort-list">
+          Sort by
           <select className="selector" value={currentView} onChange={this.handleTypeChange.bind(this)}>
             <option value="relevance">Relevance</option>
             <option value="date">Date</option>
