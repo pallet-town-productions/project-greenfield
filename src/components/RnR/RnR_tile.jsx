@@ -2,21 +2,22 @@ import React from 'react';
 import PT from 'prop-types';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
+import StarRating from './RnR_StarRating';
 
 class Tile extends React.Component {
   constructor(props) {
     super(props);
-    const { review } = this.props;
     this.state = {
-      body: review.body.slice(0, 250),
+      showFullBody: false,
       hasVotedHelpfulness: false,
       hasReported: false,
     };
   }
 
   showFullBody() {
-    const { review } = this.props;
-    this.setState(() => ({ body: review.body }));
+    this.setState((prevState) => ({
+      showFullBody: !prevState.showFullBody,
+    }));
   }
 
   markAsHelpful() {
@@ -53,40 +54,57 @@ class Tile extends React.Component {
     const { review } = this.props;
     const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />)).slice(0, 5);
     const summary = review.summary.slice(0, 60);
-    let { body } = this.state;
+    let { body } = review;
 
     if (body.length > 249) {
+      const { showFullBody } = this.state;
       body = (
         <div>
-          <p className="tile-body">{body.slice(0, 1000)}</p>
-          <button type="button" onClick={this.showFullBody.bind(this)}>Show more</button>
+          {showFullBody ? (
+            <div>
+              <p className="tile-body">{body}</p>
+              <div onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show Less</div>
+            </div>
+          )
+            : (
+              <div>
+                <p className="tile-body">{body.slice(0, 250)}</p>
+                <div onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show More</div>
+              </div>
+            )}
         </div>
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
 
     let recommend;
     if (review.recommend) {
-      recommend = <p className="recommend">I recommend this product</p>;
+      recommend = <p className="recommend">&#10004; I recommend this product</p>;
     }
 
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return (
-      <div>
-        <p>{review.rating}</p>
-        <p>
-          {review.reviewer_name}
-          {new Date(review.date).toLocaleDateString()}
-        </p>
-        <p className="tile-summary">{summary}</p>
-        {body}
-        {recommend}
+      <div className="tile">
+        <div className="top-row">
+          <StarRating className="star-rating" starCount={review.rating} />
+          <p className="user">{new Date(review.date).toLocaleDateString('en-US', options)}</p>
+          <p className="user">
+            {review.reviewer_name}
+            ,
+          </p>
+        </div>
+        <p className="summary">{summary}</p>
+        <div className="body">{body}</div>
+        <div className="recommend">{recommend}</div>
         <p>{images}</p>
-        <div className="helpful">
-          <p>Helpful?</p>
-          <div className="helpful-link" onClick={this.markAsHelpful.bind(this)} onKeyUp={this.markAsHelpful.bind(this)} tabIndex={0} role="link">Yes</div>
-          (
-          {review.helpfulness}
-          )
-          <div className="report-link" onClick={this.report.bind(this)} onKeyDown={this.report.bind(this)} tabIndex={0} role="link">Report</div>
+        <div className="lower-row">
+          <p className="lower">Helpful?</p>
+          <div className="lower test" onClick={this.markAsHelpful.bind(this)} onKeyUp={this.markAsHelpful.bind(this)} tabIndex={0} role="link">Yes</div>
+          <div className="lower helpfulness">
+            (
+            {review.helpfulness}
+            )
+          </div>
+          <div className="lower test report" onClick={this.report.bind(this)} onKeyDown={this.report.bind(this)} tabIndex={0} role="link">Report</div>
         </div>
       </div>
     );
@@ -106,7 +124,6 @@ Tile.propTypes = {
     recommend: PT.number,
     review_id: PT.number,
   }).isRequired,
-  // productId: PT.number.isRequired,
 };
 
 export default Tile;

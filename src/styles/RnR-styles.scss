@@ -1,15 +1,52 @@
-.thumbnail {
-    height: 100px
+
+.tile-container {
+    background-color: #BCE8C8;
 }
 
-.tile-summary {
-    font-weight: bold
+.tile {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 5px;
+    background-color: #F0FFCF;
+
+    .thumbnail {
+        height: 100px
+    }
+    .top-row {
+        display: inline;
+        font-size: 12px;
+        .user {
+            float: right;
+            margin: 5px;
+            color: grey;
+        }
+    }
+    .summary {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .body {
+        font-size: 14px;
+    }
+    .recommend {
+        font-size: 14px;
+    }
+    .lower-row {
+        white-space: nowrap;
+        overflow-x: auto;
+        font-size: 12px;
+        .lower {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .helpfulness {
+            margin-left: 1px;
+        }
+        .test {
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+      }
 }
 
-.helpful-link {
-    text-decoration: underline
-}
 
-.report-link {
-    text-decoration: underline
-}
