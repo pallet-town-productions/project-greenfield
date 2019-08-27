@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddAnswer from './AddAnswer';
 
 const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
   <div className="questionsQuestionContainer">
@@ -19,11 +20,7 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
         {data.question_helpfulness}
         )
         |
-        <button className="questionsAddAnswerBtn" type="submit">
-          <u>
-            Add Answer
-          </u>
-        </button>
+        <AddAnswer data={data} />
       </p>
     </span>
     <div>
@@ -52,13 +49,14 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
 );
 
 Question.propTypes = {
-  data: PropTypes.shape(PropTypes.object),
+  data: PropTypes.shape({
+    question_body: PropTypes.string.isRequired,
+    question_id: PropTypes.number.isRequired,
+    question_helpfulness: PropTypes.number.isRequired,
+    answers: PropTypes.shape({}).isRequired,
+  }).isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
-};
-
-Question.defaultProps = {
-  data: {},
 };
 
 export default Question;
