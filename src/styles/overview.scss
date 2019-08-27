@@ -72,8 +72,11 @@ $overlayPercent: 80%;
 }
 
 #zoomphoto {
-  // magnify 2.5x
-  // zoom and pan functionality?
+  transform: scale(2.5);
+  background-repeat: no-repeat;
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }
 
 #sale-price {
