@@ -21,7 +21,18 @@ const mapStateToProps = function (state) {
 const ImageMain = function ({
   currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
-  return (
+  if (thisId === 'zoomphoto') { // if zoom view, return a div with id zoomphoto
+    return (
+      // FULL SCREEN THING
+      <div
+        onClick={handleClick}
+        role="presentation"
+        className={onHover}
+        id={thisId}
+      />
+    );
+  }
+  return ( // if expanded or default view, return a span
     <span
       onClick={handleClick}
       role="presentation"
