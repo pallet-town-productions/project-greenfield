@@ -42,6 +42,7 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
               <u>Report</u>
             </button>
           </p>
+          {Object.keys(data.answers).length > 2 && Object.values(data.answers)[0] !== answer ? <button type="button">Load More Answers...</button> : ''}
         </span>
       ))}
     </div>

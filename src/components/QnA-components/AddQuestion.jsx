@@ -31,11 +31,26 @@ class AddQuestion extends React.Component {
           <h1>Ask Your Question</h1>
           <h3>About the PRODUCT NAME</h3>
           <form name="QnA-add-answer-form">
-            <textarea id="QnA-modal-q-body" className="questionsModalAnswer" type="text" placeholder="Your question here..." />
+            <textarea
+              id="QnA-modal-q-body"
+              className="questionsModalAnswer"
+              type="text"
+              placeholder="Your question here..."
+            />
             <br />
-            <input id="QnA-modal-q-nickname" className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
+            <input
+              id="QnA-modal-q-nickname"
+              className="questionsModalAnswerNick"
+              type="text"
+              placeholder="Your Nickname"
+            />
             <br />
-            <input id="QnA-modal-q-email" className="questionsModalAnswerEmail" placeholder="Email" type="text" />
+            <input
+              id="QnA-modal-q-email"
+              className="questionsModalAnswerEmail"
+              type="text"
+              placeholder="Email"
+            />
             <br />
             <input
               type="submit"
@@ -43,7 +58,7 @@ class AddQuestion extends React.Component {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const test = {
+                const questionReq = {
                   body: document.getElementById('QnA-modal-q-body').value,
                   name: document.getElementById('QnA-modal-q-nickname').value,
                   email: document.getElementById('QnA-modal-q-email').value,
@@ -51,7 +66,7 @@ class AddQuestion extends React.Component {
 
                 fetch(`http://18.217.220.129/qa/${productId}`, {
                   method: 'POST',
-                  body: JSON.stringify(test),
+                  body: JSON.stringify(questionReq),
                   headers: {
                     'Content-Type': 'application/json',
                   },
