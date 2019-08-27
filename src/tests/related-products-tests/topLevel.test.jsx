@@ -25,8 +25,6 @@ describe('components', () => {
       const { enzymeWrapper } = setup();
 
       expect(enzymeWrapper.find('div').hasClass('related-products-container')).toBe(true);
-
-      expect(enzymeWrapper.find('div').text()).toBe('Products Related To:1');
     });
   });
 });
