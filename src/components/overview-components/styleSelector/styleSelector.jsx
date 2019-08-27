@@ -21,19 +21,23 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const StyleSelector = function ({ styleList, handleSwitchStyle }) {
+const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleIndex }) {
   return (
     <div>
-      {
+      <div id="style-name">{styleList[currentStyleIndex].name}</div>
+      <div id="style-thumbnail-grid">
+        {
         styleList.map((styleObj, index) => (
           <StyleThumbnail
             key={styleList[index].style_id}
             styleIndex={index}
             style={styleObj}
             handleClick={handleSwitchStyle}
+            currentStyleIndex={currentStyleIndex}
           />
         ))
       }
+      </div>
     </div>
   );
 };
@@ -41,6 +45,7 @@ const StyleSelector = function ({ styleList, handleSwitchStyle }) {
 StyleSelector.propTypes = {
   styleList: PT.arrayOf(PT.object).isRequired,
   handleSwitchStyle: PT.func.isRequired,
+  currentStyleIndex: PT.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StyleSelector);

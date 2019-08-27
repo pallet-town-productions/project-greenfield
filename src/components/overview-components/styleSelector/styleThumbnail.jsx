@@ -1,16 +1,35 @@
 import React from 'react';
 import PT from 'prop-types';
 
-const StyleThumbnail = function ({ style, styleIndex, handleClick }) {
+const CheckBox = function ({ isRendered }) {
+  if (isRendered) {
+    return (
+      <i className="material-icons" id="check-icon">check_box</i>
+    );
+  }
+  return null;
+};
+
+const StyleThumbnail = function ({
+  style, styleIndex, currentStyleIndex, handleClick,
+}) {
   return (
-    <span onClick={() => handleClick(styleIndex)} role="presentation">
+    <div
+      onClick={() => handleClick(styleIndex)}
+      role="presentation"
+    >
+      <CheckBox isRendered={styleIndex === currentStyleIndex} />
       <img
         src={style.photos[0].thumbnail_url}
         className="thumbnail style-thumbnail"
         alt={`Thumbnail for style ${style.name}`}
       />
-    </span>
+    </div>
   );
+};
+
+CheckBox.propTypes = {
+  isRendered: PT.bool.isRequired,
 };
 
 StyleThumbnail.propTypes = {
@@ -19,6 +38,7 @@ StyleThumbnail.propTypes = {
     name: PT.string.isRequired,
   }).isRequired,
   styleIndex: PT.number.isRequired,
+  currentStyleIndex: PT.number.isRequired,
   handleClick: PT.func.isRequired,
 };
 

@@ -1,4 +1,4 @@
-$thumbnailDimension: 100px;
+$thumbnailDimension: 80px;
 $overlayPercent: 80%;
 
 .onHover-pointer {
@@ -46,6 +46,10 @@ $overlayPercent: 80%;
   object-fit: cover;
 }
 
+.thumbnail:hover {
+  box-shadow: 0 0 2px 1px gray;
+}
+
 .style-thumbnail {
   border-radius: $thumbnailDimension/2;
 }
@@ -88,6 +92,27 @@ $overlayPercent: 80%;
 
 #original-price {
   text-decoration: line-through;
+}
+
+#selected-image-thumbnail {
+  box-shadow: 0 0 2px 2px black;
+}
+
+#check-icon {
+  transform: scale($thumbnailDimension/80px);
+  position: fixed;
+  margin-left: $thumbnailDimension * 0.8;
+  color: black;
+}
+
+#style-thumbnail-grid {
+  display: grid;
+  grid-template-columns: $thumbnailDimension $thumbnailDimension $thumbnailDimension $thumbnailDimension;
+  grid-auto-rows: $thumbnailDimension;
+  grid-gap: $thumbnailDimension/4;
+  div {
+    display: inline-block;
+  }
 }
 
 #size-selector {
