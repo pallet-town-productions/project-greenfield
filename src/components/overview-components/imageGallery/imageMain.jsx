@@ -18,15 +18,32 @@ const mapStateToProps = function (state) {
   };
 };
 
-const ImageMain = function ({ currentBigPicture, currentStyleName, handleClick }) {
-  return (
-    <div onClick={handleClick} role="presentation">
+const ImageMain = function ({
+  currentBigPicture, currentStyleName, handleClick, onHover, thisId,
+}) {
+  if (thisId === 'zoomphoto') { // if zoom view, return a div with id zoomphoto
+    return (
+      // FULL SCREEN THING
+      <div
+        onClick={handleClick}
+        role="presentation"
+        className={onHover}
+        id={thisId}
+      />
+    );
+  }
+  return ( // if expanded or default view, return a span
+    <span
+      onClick={handleClick}
+      role="presentation"
+      className={onHover}
+    >
       <img
-        id="mainphoto"
+        id={thisId}
         src={currentBigPicture}
         alt={`DUMMY, put in product name, ${currentStyleName}`}
       />
-    </div>
+    </span>
   );
 };
 
@@ -34,6 +51,8 @@ ImageMain.propTypes = {
   currentBigPicture: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
   handleClick: PT.func.isRequired,
+  onHover: PT.string.isRequired, // this is a class name that CSS uses
+  thisId: PT.string.isRequired, // this is an ID name that CSS uses
 };
 
 export default connect(mapStateToProps, null)(ImageMain);

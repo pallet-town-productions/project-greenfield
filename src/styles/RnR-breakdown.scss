@@ -1,0 +1,105 @@
+@import 'standard-styles';
+
+$progressValueColor: #2AEB5D;
+$progressBarColor: #cac6c6;
+$componentWidth: 250px;
+
+.breakdown-widget {
+  font-family: $font;
+  height: auto;
+  width: $componentWidth;
+  margin: $defaultMargin;
+  padding: $defaultPadding;
+  font-size: small;
+}
+
+.breakdown-list {
+  list-style-type: none;
+  padding: $defaultPadding;
+  margin: 0px;
+}
+
+// Bar styles for star breakdown and product breakdown
+.bar {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  color: $progressValueColor;
+  background-color: $progressBarColor;
+  width: 30%;
+  height: 6px;
+}
+
+.bar::-webkit-progress-bar {
+  background-color: $progressBarColor;
+}
+
+.bar::-moz-progress-bar { 
+  background-color: $progressBarColor;	
+}
+
+.bar::-webkit-progress-value {
+  background-color: $progressValueColor;
+}
+
+.bar::-moz-progress-value {
+  background-color: $progressValueColor;
+}
+
+// Product Breakdown specific styles
+
+.product-breakdown {
+  
+  .product-breakdown-bar {
+    margin-right: $defaultMargin;
+  }
+  .product-breakdown-bottom-label {
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+  }
+}
+
+
+// Rating Breakdown specific styles
+.rating-breakdown {
+
+  .rating-average {
+    display: flex;
+    flex-direction: row;
+    font-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-items: flex-start;
+
+    .star-rating {
+      font-size: small;
+      margin-left: 20px;
+      margin-top: $defaultMargin;
+    }
+  }
+
+  .percent-recommended {
+    margin-bottom: 0px;
+  }
+
+  .star-breakdown{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .star-breakdown-item {
+      display: flex;
+      align-items: baseline;
+      margin-top: $defaultMargin * 2;
+
+      .star-breakdown-bar {
+        margin-left: $defaultMargin * 2;
+        width: 75%;
+      }
+
+    }
+  }
+}

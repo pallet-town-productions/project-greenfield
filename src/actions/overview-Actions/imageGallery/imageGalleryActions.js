@@ -12,7 +12,15 @@ const toggleExpandedView = function (showExpanded = false) {
   };
 };
 
+const toggleZoomView = function (showZoom = false) {
+  return {
+    type: 'TOGGLE_ZOOM_VIEW',
+    showZoomView: showZoom,
+  };
+};
+
 export {
   changePhoto,
   toggleExpandedView,
+  toggleZoomView,
 };

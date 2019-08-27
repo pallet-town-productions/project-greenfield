@@ -16,8 +16,18 @@ const showExpandedView = function (showExpanded = false, action) {
   }
 };
 
+const showZoomView = function (showZoom = false, action) {
+  switch (action.type) {
+    case 'TOGGLE_ZOOM_VIEW':
+      return action.showZoomView;
+    default:
+      return showZoom;
+  }
+};
+
 
 export {
   currentPhotoIndex,
   showExpandedView,
+  showZoomView,
 };

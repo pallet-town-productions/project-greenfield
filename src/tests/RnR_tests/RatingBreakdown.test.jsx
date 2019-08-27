@@ -20,7 +20,7 @@ function testRatingBreakdown() {
 describe('RnR - Rating Breakdown', () => {
   const { enzymeWrapper } = testRatingBreakdown();
   it('should have proper classes assigned to elements', () => {
-    expect(enzymeWrapper.find('h2').hasClass('rating-average')).toBe(true);
+    expect(enzymeWrapper.find('h1').hasClass('rating-average')).toBe(true);
     expect(enzymeWrapper.find('p').hasClass('percent-recommended')).toBe(true);
   });
 });
@@ -61,5 +61,6 @@ describe('RnR - StarBreakdown', () => {
   it('should have proper classes assigned to elements', () => {
     const { enzymeWrapper } = testStarBreakdown({ 1: 3, 4: 5 });
     expect(enzymeWrapper.find('ul').hasClass('star-breakdown')).toBe(true);
+    expect(enzymeWrapper.find('ul').childAt(0).hasClass('star-breakdown-item')).toBe(true);
   });
 });

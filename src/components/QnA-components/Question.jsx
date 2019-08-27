@@ -1,16 +1,17 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddAnswer from './AddAnswer';
 
-const Question = ({ data, helpfulClickHandler }) => (
+const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
   <div className="questionsQuestionContainer">
     <p>
       {`Q: ${data.question_body}`}
     </p>
     <span className="questionsQuestionTools">
-      <p>
+      <p id={`Q${data.question_id}`}>
         Helpful?
-        <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
+        <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
           <u>
             Yes
           </u>
@@ -19,11 +20,7 @@ const Question = ({ data, helpfulClickHandler }) => (
         {data.question_helpfulness}
         )
         |
-        <button className="questionsAddAnswerBtn" type="submit">
-          <u>
-            Add Answer
-          </u>
-        </button>
+        <AddAnswer data={data} />
       </p>
     </span>
     <div>
@@ -32,13 +29,16 @@ const Question = ({ data, helpfulClickHandler }) => (
           <p>
             {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
           </p>
+          {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
+            <img alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+          ))}
           <p>
             {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
-            <button className="questionsHelpfulBtn" type="submit" onClick={helpfulClickHandler}>
+            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
               <u>Yes</u>
             </button>
             {` (${answer.helpfulness}) | `}
-            <button className="questionsReportBtn" type="submit">
+            <button className="questionsReportBtn" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
               <u>Report</u>
             </button>
           </p>
@@ -49,12 +49,14 @@ const Question = ({ data, helpfulClickHandler }) => (
 );
 
 Question.propTypes = {
-  data: PropTypes.shape(PropTypes.object),
+  data: PropTypes.shape({
+    question_body: PropTypes.string.isRequired,
+    question_id: PropTypes.number.isRequired,
+    question_helpfulness: PropTypes.number.isRequired,
+    answers: PropTypes.shape({}).isRequired,
+  }).isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
-};
-
-Question.defaultProps = {
-  data: {},
+  reportClickHandler: PropTypes.func.isRequired,
 };
 
 export default Question;

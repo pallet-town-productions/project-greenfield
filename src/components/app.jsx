@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './overview-components/header';
 import Overview from './overview-components/overview';
@@ -11,44 +11,52 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
-<<<<<<< HEAD
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { productId: props.productId };
+
+    this.helpfulClickHandler = (component, id, type) => {
+      if (component === 'reviews') {
+        fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
+          method: 'PUT',
+        });
+      } else {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+          method: 'PUT',
+        });
+      }
+    };
+
+    this.reportClickHandler = (component, id, type) => {
+      if (component === 'reviews') {
+        fetch(`http://18.217.220.129/${component}/report/${id}`, {
+          method: 'PUT',
+        });
+      } else {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/report`, {
+          method: 'PUT',
+        });
+      }
+    };
   }
 
   render() {
-    const { productId } = this.state;
     return (
-      <div>
-        <div>
-          Hello World, Product:
-          { productId }
-          <button type="button">test</button>
-        </div>
-        <div id="container">
+      <div id="main-container">
+        <div id="component-container">
           <Header />
           <Overview />
-          {/* <QnA />
+          <QnA
+            helpfulClickHandler={this.helpfulClickHandler}
+            reportClickHandler={this.reportClickHandler}
+          />
           <RnR className="RnR-container" />
-          <ConnectedRelatedProducts /> */}
+          <ConnectedRelatedProducts />
         </div>
-=======
-export const App = () => {
-  return (
-    <div id="main-container">
-      <div id="component-container">
-        <Header />
-        <Overview />
-        <QnA />
-        <RnR className="RnR-container" />
-        <ConnectedRelatedProducts />
->>>>>>> 328957fbb500467a4ba2591377a554580255738b
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const connectedApp = connect(mapStateToProps, null)(App);
 export default connectedApp;
