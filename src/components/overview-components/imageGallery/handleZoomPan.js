@@ -5,34 +5,34 @@ export default function (e, imageUrl) {
   e.preventDefault();
 
   // probably a lot faster to just set this as a state on style change
-  let i = new Image();
+  const i = new Image();
   i.src = imageUrl;
-  let imgWidth = i.width * ZOOMRATIO;
-  let imgHeight = i.height * ZOOMRATIO;
+  const imgWidth = i.width * ZOOMRATIO;
+  const imgHeight = i.height * ZOOMRATIO;
 
-  let screenWidth = 1600; // this will be dynamic based on screen
-  let screenHeight = 975; // this will be dynamic based on screen
-  
-  let cursorX = e.clientX;
-  let cursorY = e.clientY;
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
 
   // // this is key but each have to be really good
-  // let imgX = (screenWidth-imgWidth) * cursorX / (screenWidth); 
+  // let imgX = (screenWidth-imgWidth) * cursorX / (screenWidth);
   // // this is key but each have to be really good
-  // let imgY = (screenWidth-imgWidth) * cursorY / (screenHeight); 
+  // let imgY = (screenWidth-imgWidth) * cursorY / (screenHeight);
 
-  let imgPctX = 100 * cursorX / screenWidth;
-  let imgPctY = 100 * cursorY / screenHeight;
-  
-  let zoom = document.getElementById("zoomphoto");
+  const imgPctX = (100 * cursorX) / screenWidth;
+  const imgPctY = (100 * cursorY) / screenHeight;
+
+  const zoom = document.getElementById('zoomphoto');
   zoom.style.backgroundImage = `url("${imageUrl}")`;
+  // zoom.style.backgroundSize = `${imgWidth-cursorX}px ${imgWidth-cursorY}px`;
   zoom.style.backgroundPosition = `${imgPctX}% ${imgPctY}%`;
 
-  console.log(`CursorXY: ${cursorX}, ${cursorY}`, 
-  `WidthHeight: ${imgWidth}, ${imgHeight}`,
-  `ScreenXY: ${screenWidth}, ${screenHeight}`);
-
-};
+  console.log(`CursorXY: ${cursorX}, ${cursorY}`,
+    `WidthHeight: ${imgWidth}, ${imgHeight}`,
+    `ScreenXY: ${screenWidth}, ${screenHeight}`);
+}
 
 // export default function(imgId, resultId) {
 //   var img = document.getElementById(imgId);
@@ -40,7 +40,7 @@ export default function (e, imageUrl) {
 
 //   var lens = document.createElement('DIV');
 //   lens.setAttribute('class', 'img-zoom-lens');
-  
+
 //   function moveLens(e) {
 //     var pos, cursorX, cursorY;
 //     /* Prevent any other actions that may occur when moving over the image */

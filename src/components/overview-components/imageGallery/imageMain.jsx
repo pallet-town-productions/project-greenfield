@@ -19,34 +19,32 @@ const mapStateToProps = function (state) {
 };
 
 const ImageMain = function ({
-  currentBigPicture, currentStyleName, handleClick, onHover, thisId
+  currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
-  if (thisId === "zoomphoto") { // if zoom view, return a div with id zoomphoto
+  if (thisId === 'zoomphoto') { // if zoom view, return a div with id zoomphoto
     return (
-      //FULL SCREEN THING
+      // FULL SCREEN THING
       <div
-      onClick={handleClick}
-      role="presentation"
-      className={onHover}
-      id={thisId}
-      >
-      </div>
-    )
-  } else {
-    return ( // if expanded or default view, return a span
-      <span
         onClick={handleClick}
         role="presentation"
         className={onHover}
-      >
-        <img
-          id={thisId}
-          src={currentBigPicture}
-          alt={`DUMMY, put in product name, ${currentStyleName}`}
-        />
-      </span>
+        id={thisId}
+      />
     );
   }
+  return ( // if expanded or default view, return a span
+    <span
+      onClick={handleClick}
+      role="presentation"
+      className={onHover}
+    >
+      <img
+        id={thisId}
+        src={currentBigPicture}
+        alt={`DUMMY, put in product name, ${currentStyleName}`}
+      />
+    </span>
+  );
 };
 
 ImageMain.propTypes = {
