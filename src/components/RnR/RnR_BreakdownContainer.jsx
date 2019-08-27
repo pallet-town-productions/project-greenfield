@@ -16,7 +16,7 @@ export class BreakdownContainer extends Component {
     fetch(`http://18.217.220.129/reviews/${productId}/meta`)
       .then((response) => response.json())
       .then((data) => dispatch(getMetaData(data)))
-      .catch((err) => { console.log(err); });
+      .catch(() => dispatch(getMetaData({}))); // place holder error handling
   }
 
   render() {
