@@ -11,19 +11,17 @@ import '../styles/standard-styles.scss';
 const mapStateToProps = (state) => ({
   ...state,
 });
-export const App = () => {
-  return (
-    <div id="main-container">
-      <div id="component-container">
-        <Header />
-        <Overview />
-        <QnA />
+export const App = () => (
+  <div id="main-container">
+    <div id="component-container">
+      <Header />
+      <Overview />
+      {/* <QnA />
         <RnR className="RnR-container" />
-        <ConnectedRelatedProducts />
-      </div>
+        <ConnectedRelatedProducts /> */}
     </div>
-  );
-};
+  </div>
+);
 
 const connectedApp = connect(mapStateToProps, null)(App);
 export default connectedApp;
