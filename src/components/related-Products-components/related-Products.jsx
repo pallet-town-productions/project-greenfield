@@ -5,6 +5,8 @@ import ConnectedCarousel from './carousel';
 import relatedAction from '../../actions/related-Products-Actions/related-products-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -22,8 +24,10 @@ export class RelatedProducts extends Component {
     const { productId } = this.props;
     return (
       <div className="related-products-container">
-        Products Related To:
-        {productId}
+        <p>
+          Products Related To:
+          {productId}
+        </p>
         <ConnectedCarousel />
       </div>
     );

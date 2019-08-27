@@ -14,8 +14,17 @@
 
 .related-products-container {
   font-family: $font;
+  // display: flex;
+  // align-items: center;
+  // flex-direction: column;
 }
 
-.carousel-container {
-  display: flex;
+img {
+  max-width: 100%;
+  max-height: 90%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
 }
