@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import RatingBreakdown from '../../components/RnR/RnR_RatingBreakdown';
+import { RatingBreakdown } from '../../components/RnR/RnR_RatingBreakdown';
 import { StarBreakdown } from '../../components/RnR/RnR_StarBreakdown';
 
 configure({ adapter: new Adapter() });
 
 // Rating Breakdown
-function testRatingBreakdown() {
+function testRatingBreakdown(testRatings) {
   const props = {
   };
-  const enzymeWrapper = shallow(<RatingBreakdown />);
+  const enzymeWrapper = shallow(<RatingBreakdown getMetaData={{ ratings: testRatings }} />);
   return {
     props,
     enzymeWrapper,
@@ -18,17 +18,17 @@ function testRatingBreakdown() {
 }
 
 describe('RnR - Rating Breakdown', () => {
-  const { enzymeWrapper } = testRatingBreakdown();
+  const { enzymeWrapper } = testRatingBreakdown({ 1: 2, 4: 5 });
   it('should have proper classes assigned to elements', () => {
     expect(enzymeWrapper.find('h1').hasClass('rating-average')).toBe(true);
     expect(enzymeWrapper.find('p').hasClass('percent-recommended')).toBe(true);
   });
 });
 
-function testStarBreakdown(ratings) {
+function testStarBreakdown(testRatings) {
   const props = {
   };
-  const enzymeWrapper = shallow(<StarBreakdown ratings={ratings} />);
+  const enzymeWrapper = shallow(<StarBreakdown ratings={{ ratings: testRatings }} />);
   return {
     props,
     enzymeWrapper,
