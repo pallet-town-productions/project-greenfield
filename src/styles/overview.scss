@@ -46,6 +46,10 @@ $overlayPercent: 80%;
   object-fit: cover;
 }
 
+.thumbnail:hover {
+  box-shadow: 0 0 2px 1px gray;
+}
+
 .style-thumbnail {
   border-radius: $thumbnailDimension/2;
 }
@@ -88,6 +92,21 @@ $overlayPercent: 80%;
 
 #original-price {
   text-decoration: line-through;
+}
+
+#selected-image-thumbnail {
+  box-shadow: 0 0 2px 2px black;
+}
+
+#selected-style-thumbnail {
+  // put in stuff
+}
+
+#check-icon {
+  transform: scale(1.25);
+  position: fixed;
+  margin-left: -$thumbnailDimension/3;
+  color: black;
 }
 
 #size-selector {

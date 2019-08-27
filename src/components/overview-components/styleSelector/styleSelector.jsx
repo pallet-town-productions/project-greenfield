@@ -21,7 +21,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const StyleSelector = function ({ styleList, handleSwitchStyle }) {
+const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleIndex }) {
   return (
     <div>
       {
@@ -31,6 +31,7 @@ const StyleSelector = function ({ styleList, handleSwitchStyle }) {
             styleIndex={index}
             style={styleObj}
             handleClick={handleSwitchStyle}
+            currentStyleIndex={currentStyleIndex}
           />
         ))
       }
