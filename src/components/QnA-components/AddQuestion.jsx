@@ -1,11 +1,12 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 
 class AddQuestion extends React.Component {
-  constructor(props, { data }) {
-    super(props, { data });
+  constructor(props, { productId }) {
+    super(props, { productId });
 
     this.state = {
       show: false,
@@ -22,21 +23,19 @@ class AddQuestion extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { data } = this.props;
+    const { productId } = this.props;
     return (
       <button type="button" onClick={() => this.showModal(true)}>
-        <u>Add Answer</u>
+        <u>ADD A QUESTION</u>
         <Modal show={show}>
-          <h1>Submit your Answer</h1>
-          <h3>{`PRODUCT NAME: ${data.question_body}`}</h3>
+          <h1>Ask Your Question</h1>
+          <h3>About the PRODUCT NAME</h3>
           <form name="QnA-add-answer-form">
-            <textarea name="text" id="QnA-modal-body" className="questionsModalAnswer" type="text" placeholder="Your answer here..." />
+            <textarea id="QnA-modal-q-body" className="questionsModalAnswer" type="text" placeholder="Your question here..." />
             <br />
-            <input id="QnA-modal-nickname" className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
+            <input id="QnA-modal-q-nickname" className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
             <br />
-            <input name="qna-email-field" id="QnA-modal-email" className="questionsModalAnswerEmail" placeholder="Email" type="text" />
-            <br />
-            <input id="QnA-modal-pic" className="questionsModalAnswerPic" type="text" placeholder="URL link to picture" />
+            <input id="QnA-modal-q-email" className="questionsModalAnswerEmail" placeholder="Email" type="text" />
             <br />
             <input
               type="submit"
@@ -45,19 +44,25 @@ class AddQuestion extends React.Component {
                 e.stopPropagation();
 
                 const test = {
-                  body: document.getElementById('QnA-modal-body').value,
-                  name: document.getElementById('QnA-modal-nickname').value,
-                  email: document.getElementById('QnA-modal-email').value,
-                  photos: [document.getElementById('QnA-modal-pic').value],
+                  body: document.getElementById('QnA-modal-q-body').value,
+                  name: document.getElementById('QnA-modal-q-nickname').value,
+                  email: document.getElementById('QnA-modal-q-email').value,
                 };
 
-                fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+                fetch(`http://18.217.220.129/qa/${productId}`, {
                   method: 'POST',
                   body: JSON.stringify(test),
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                });
+                })
+                  .then((result) => {
+                    if (result.ok) {
+                      alert('Question sent!');
+                    } else {
+                      alert('Question failed to be sent. Please make sure your email is correct!');
+                    }
+                  });
 
                 this.hideModal(false);
               }}
@@ -70,16 +75,7 @@ class AddQuestion extends React.Component {
 }
 
 AddQuestion.propTypes = {
-  data: PropTypes.shape({
-    question_body: PropTypes.string.isRequired,
-    question_id: PropTypes.number.isRequired,
-  }),
-};
-
-AddQuestion.defaultProps = {
-  data: {
-    question_body: 'Please browse for a real product.',
-  },
+  productId: PropTypes.number.isRequired,
 };
 
 export default AddQuestion;

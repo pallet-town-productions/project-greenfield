@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AddAnswer from './AddAnswer';
+import AddQuestion from './AddQuestion';
 import List from './List';
 import Search from './Search';
 import '../../styles/QnA-styles.scss';
@@ -33,7 +33,7 @@ class QnA extends React.Component {
   }
 
   render() {
-    const { questions } = this.state;
+    const { questions, productId } = this.state;
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
@@ -47,7 +47,7 @@ class QnA extends React.Component {
           reportClickHandler={reportClickHandler}
         />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
-        <AddAnswer />
+        <AddQuestion productId={productId} />
       </div>
     );
   }

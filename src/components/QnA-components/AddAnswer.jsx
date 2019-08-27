@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
@@ -57,7 +58,14 @@ class AddAnswer extends React.Component {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                });
+                })
+                  .then((result) => {
+                    if (result.ok) {
+                      alert('Answer sent!');
+                    } else {
+                      alert('Answer failed to be sent. Please make sure your email address is correct!');
+                    }
+                  });
 
                 this.hideModal(false);
               }}
