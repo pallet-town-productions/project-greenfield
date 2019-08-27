@@ -25,7 +25,8 @@ const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleInde
   return (
     <div>
       <div id="style-name">{styleList[currentStyleIndex].name}</div>
-      <div id="style-thumbnail-grid">{
+      <div id="style-thumbnail-grid">
+        {
         styleList.map((styleObj, index) => (
           <StyleThumbnail
             key={styleList[index].style_id}
@@ -35,7 +36,8 @@ const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleInde
             currentStyleIndex={currentStyleIndex}
           />
         ))
-      }</div>
+      }
+      </div>
     </div>
   );
 };
@@ -43,6 +45,7 @@ const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleInde
 StyleSelector.propTypes = {
   styleList: PT.arrayOf(PT.object).isRequired,
   handleSwitchStyle: PT.func.isRequired,
+  currentStyleIndex: PT.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StyleSelector);

@@ -6,16 +6,19 @@ const CheckBox = function ({ isRendered }) {
     return (
       <i className="material-icons" id="check-icon">check_box</i>
     );
-  } else {
-    return null;
   }
-}
+  return null;
+};
 
-const StyleThumbnail = function ({ style, styleIndex, currentStyleIndex, handleClick }) {
+const StyleThumbnail = function ({
+  style, styleIndex, currentStyleIndex, handleClick,
+}) {
   return (
-    <div onClick={() => handleClick(styleIndex)} 
-    role="presentation">
-    <CheckBox isRendered={styleIndex===currentStyleIndex} />
+    <div
+      onClick={() => handleClick(styleIndex)}
+      role="presentation"
+    >
+      <CheckBox isRendered={styleIndex === currentStyleIndex} />
       <img
         src={style.photos[0].thumbnail_url}
         className="thumbnail style-thumbnail"
@@ -25,12 +28,17 @@ const StyleThumbnail = function ({ style, styleIndex, currentStyleIndex, handleC
   );
 };
 
+CheckBox.propTypes = {
+  isRendered: PT.bool.isRequired,
+};
+
 StyleThumbnail.propTypes = {
   style: PT.shape({
     photos: PT.array,
     name: PT.string.isRequired,
   }).isRequired,
   styleIndex: PT.number.isRequired,
+  currentStyleIndex: PT.number.isRequired,
   handleClick: PT.func.isRequired,
 };
 

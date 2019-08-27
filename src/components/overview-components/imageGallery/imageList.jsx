@@ -27,7 +27,9 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ImageList = function ({ currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto }) {
+const ImageList = function ({
+  currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto,
+}) {
   return (
     <ul>
       {imageList.map((image, imageIndex) => {
@@ -38,7 +40,7 @@ const ImageList = function ({ currentStyleIndex, currentPhotoIndex, imageList, h
             photoIndex={imageIndex}
             url={imageList[imageIndex].thumbnail_url}
             handleClick={handleSwitchPhoto}
-            isSelected={currentPhotoIndex===imageIndex}
+            isSelected={currentPhotoIndex === imageIndex}
           />
         );
       })}
@@ -48,6 +50,7 @@ const ImageList = function ({ currentStyleIndex, currentPhotoIndex, imageList, h
 
 ImageList.propTypes = {
   currentStyleIndex: PT.number.isRequired,
+  currentPhotoIndex: PT.number.isRequired,
   imageList: PT.arrayOf(PT.shape({
     thumbnail_url: PT.string.isRequired,
     url: PT.string.isRequired,
