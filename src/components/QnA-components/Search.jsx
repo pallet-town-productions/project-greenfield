@@ -3,18 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Search extends React.Component {
-  constructor({ questions }, props) {
-    super({ questions }, props);
+  constructor(props) {
+    super(props);
     this.state = {
       search: '',
-    }
+    };
     this.searchFilter = () => {
-      const { search } = this.state;
       const { questions } = this.props;
       this.setState({ search: document.getElementById('qna-searchbar').value }, () => {
-        if (search.length >= 2) {
+        const { search } = this.state;
+        if (search.length >= 3) {
           const filteredQuestions = questions.filter(
-            (question) => question.question_body.includes(search),
+            (question) => question.question_body.toLowerCase().includes(search.toLowerCase()),
           );
           console.log(filteredQuestions);
         }
