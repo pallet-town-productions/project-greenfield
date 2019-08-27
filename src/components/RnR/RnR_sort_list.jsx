@@ -64,10 +64,11 @@ class Sort extends Component {
   render() {
     const { updateReviews } = this.props;
     const { currentView } = this.state;
+    const upperStr = `${updateReviews.length} reviews, sorted by `;
     return (
       <div className="tile-container">
         <form className="sort-list">
-          Sort by
+          {upperStr}
           <select className="selector" value={currentView} onChange={this.handleTypeChange.bind(this)}>
             <option value="relevance">Relevance</option>
             <option value="date">Date</option>
@@ -82,6 +83,7 @@ class Sort extends Component {
 
 Sort.propTypes = {
   productId: PT.number.isRequired,
+  updateReviews: PT.arrayOf(PT.object).isRequired,
   dispatch: PT.func.isRequired,
 };
 
