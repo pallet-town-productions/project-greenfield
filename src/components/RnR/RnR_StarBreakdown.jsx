@@ -6,8 +6,8 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-export const StarBreakdown = ({ ratings = {} }) => {
-  console.log(ratings);
+export const StarBreakdown = (props) => {
+  const { ratings } = props;
   const defaultRatings = {
     1: 0,
     2: 0,
@@ -46,11 +46,24 @@ export const StarBreakdown = ({ ratings = {} }) => {
   );
 };
 
-// StarBreakdown.defaultProps = {
-//   ratings: {},
-// };
 StarBreakdown.propTypes = {
-  ratings: PropTypes.shape({}).isRequired,
+  ratings: PropTypes.shape({
+    1: PropTypes.number,
+    2: PropTypes.number,
+    3: PropTypes.number,
+    4: PropTypes.number,
+    5: PropTypes.number,
+  }),
+};
+
+StarBreakdown.defaultProps = {
+  ratings: {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  },
 };
 
 const connectedStarBreakdown = connect(mapStateToProps, null)(StarBreakdown);
