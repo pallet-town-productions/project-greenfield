@@ -46,7 +46,21 @@
             text-decoration: underline;
             margin-left: 10px;
         }
-      }
+    }
+    .response {
+        background-color: lightgray;
+        padding: 2px;
+        margin: 1px;
+        .response-text {
+            font-size: 13px;
+        }
+        .response-text-header {
+            font-size: 13px;
+            font-weight: bold;
+        }
+    }
 }
+
+
 
 

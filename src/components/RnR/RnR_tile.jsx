@@ -52,9 +52,10 @@ class Tile extends React.Component {
 
   render() {
     const { review } = this.props;
+    let { body } = review;
+    let { response } = review;
     const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />)).slice(0, 5);
     const summary = review.summary.slice(0, 60);
-    let { body } = review;
 
     if (body.length > 249) {
       const { showFullBody } = this.state;
@@ -76,6 +77,15 @@ class Tile extends React.Component {
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
 
+    if (review.response) {
+      response = (
+        <div className="response">
+          <p className="response-text-header">Response</p>
+          <p className="response-text">{review.response}</p>
+        </div>
+      );
+    }
+
     let recommend;
     if (review.recommend) {
       recommend = <p className="recommend">&#10004; I recommend this product</p>;
@@ -95,6 +105,7 @@ class Tile extends React.Component {
         <p className="summary">{summary}</p>
         <div className="body">{body}</div>
         <div className="recommend">{recommend}</div>
+        <div className="response">{response}</div>
         <p>{images}</p>
         <div className="lower-row">
           <p className="lower">Helpful?</p>
@@ -117,6 +128,7 @@ Tile.propTypes = {
     rating: PT.number,
     review: PT.string,
     date: PT.string,
+    response: PT.string,
     reviewer_name: PT.string,
     summary: PT.string,
     body: PT.string,

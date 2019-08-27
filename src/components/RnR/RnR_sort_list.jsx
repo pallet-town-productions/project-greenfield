@@ -14,7 +14,7 @@ class Sort extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: 'relevance',
+      currentView: 'date',
     };
   }
 
@@ -57,6 +57,7 @@ class Sort extends Component {
   }
 
   handleTypeChange(event) {
+    console.log(event.target.value);
     this.setState({ currentView: event.target.value });
     this.getAllReviews();
   }
