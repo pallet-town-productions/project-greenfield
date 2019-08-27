@@ -25,24 +25,18 @@ class Sort extends Component {
   getAllReviews() {
     const { currentView } = this.state;
     const { productId, dispatch } = this.props;
-    const listData = fetch(`http://18.217.220.129/reviews/${productId}/list`)
+    fetch(`http://18.217.220.129/reviews/${productId}/list`)
       .then((response) => {
         if (response.status !== 200) { console.log('problem'); }
         return response.json();
-      });
-    const metaData = fetch(`http://18.217.220.129/reviews/${productId}/meta`)
-      .then((response) => {
-        if (response.status !== 200) { console.log('problem'); }
-        return response.json();
-      });
-    Promise.all([listData, metaData])
+      })
       .then((data) => {
         if (currentView === 'helpfulness') {
-          return data[0].results.sort((a, b) => ((a.helpfulness < b.helpfulness) ? 1 : -1));
+          return data.results.sort((a, b) => ((a.helpfulness < b.helpfulness) ? 1 : -1));
         } if (currentView === 'date') {
-          return data[0].results.sort((a, b) => ((a.date < b.date) ? 1 : -1));
+          return data.results.sort((a, b) => ((a.date < b.date) ? 1 : -1));
         }
-        return data[0].results.sort((a, b) => {
+        return data.results.sort((a, b) => {
           if (a.helpfulness > 4 || b.helpfulness > 4) {
             return 1;
           }
@@ -57,7 +51,6 @@ class Sort extends Component {
   }
 
   handleTypeChange(event) {
-    console.log(event.target.value);
     this.setState({ currentView: event.target.value });
     this.getAllReviews();
   }
