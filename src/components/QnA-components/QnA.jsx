@@ -17,6 +17,20 @@ class QnA extends React.Component {
     this.state = {
       productId: props.productId,
       questions: [],
+      search: '',
+    };
+
+    this.searchFilter = () => {
+      const { questions } = this.state;
+      this.setState({ search: document.getElementById('qna-searchbar').value }, () => {
+        const { search } = this.state;
+        if (search.length >= 3) {
+          const filteredQuestions = questions.filter(
+            (question) => question.question_body.toLowerCase().includes(search.toLowerCase()),
+          );
+          this.setState({ questions: filteredQuestions });
+        }
+      });
     };
   }
 
@@ -40,7 +54,7 @@ class QnA extends React.Component {
         <h3>
           QUESTIONS & ANSWERS
         </h3>
-        <Search questions={questions} />
+        <Search searchFilter={this.searchFilter} />
         <List
           questions={questions.slice(0, 2)}
           helpfulClickHandler={helpfulClickHandler}
