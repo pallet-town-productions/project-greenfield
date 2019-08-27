@@ -6,12 +6,14 @@ import productData from './overview-Reducers/productInformation/productDataReduc
 import productId from './reducer-test';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 import updateReviews from './RnR-Reducers/RnR-reducer';
+import getMetaData from './RnR-Reducers/RnR-meta-reducer';
 
 export default combineReducers({
   // eslint-disable-next-line max-len
   productId,
   relatedReducer,
   updateReviews,
+  getMetaData,
   currentStyleIndex,
   style,
   currentSizeIndex,
