@@ -4,7 +4,9 @@ import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
 import SizeSelector from './addToCart/sizeSelector';
 import QuantitySelector from './addToCart/quantitySelector';
-import { ExpandedProductName, CategoryName, ProductDescription } from './productInformation/productInfo';
+import {
+  ExpandedProductName, CategoryName, ProductDescription, SocialMediaButtons,
+} from './productInformation/productInfo';
 import ExpandedViewOverlay from './imageGallery/expandedViewOverlay';
 import ZoomViewOverlay from './imageGallery/zoomViewOverlay';
 import Price from './productInformation/price';
@@ -42,6 +44,7 @@ const Overview = function () {
       </summary>
       <article>
         <ProductDescription />
+        <SocialMediaButtons />
       </article>
     </main>
   );
