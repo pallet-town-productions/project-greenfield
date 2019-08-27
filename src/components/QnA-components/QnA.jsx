@@ -16,6 +16,7 @@ class QnA extends React.Component {
     super(props, { helpfulClickHandler, reportClickHandler });
     this.state = {
       productId: props.productId,
+      filteredQuestions: [],
       questions: [],
       search: '',
     };
@@ -28,7 +29,9 @@ class QnA extends React.Component {
           const filteredQuestions = questions.filter(
             (question) => question.question_body.toLowerCase().includes(search.toLowerCase()),
           );
-          this.setState({ questions: filteredQuestions });
+          this.setState({ filteredQuestions });
+        } else {
+          this.setState({ filteredQuestions: [] });
         }
       });
     };
@@ -47,7 +50,7 @@ class QnA extends React.Component {
   }
 
   render() {
-    const { questions, productId } = this.state;
+    const { questions, productId, filteredQuestions } = this.state;
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
@@ -56,7 +59,7 @@ class QnA extends React.Component {
         </h3>
         <Search searchFilter={this.searchFilter} />
         <List
-          questions={questions.slice(0, 2)}
+          questions={filteredQuestions.length === 0 ? questions.slice(0, 2) : filteredQuestions}
           helpfulClickHandler={helpfulClickHandler}
           reportClickHandler={reportClickHandler}
         />
