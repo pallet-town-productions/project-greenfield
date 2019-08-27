@@ -1,4 +1,4 @@
-$thumbnailDimension: 100px;
+$thumbnailDimension: 80px;
 $overlayPercent: 80%;
 
 .onHover-pointer {
@@ -98,15 +98,21 @@ $overlayPercent: 80%;
   box-shadow: 0 0 2px 2px black;
 }
 
-#selected-style-thumbnail {
-  // put in stuff
+#check-icon {
+  transform: scale($thumbnailDimension/80px);
+  position: fixed;
+  margin-left: $thumbnailDimension * 0.8;
+  color: black;
 }
 
-#check-icon {
-  transform: scale(1.25);
-  position: fixed;
-  margin-left: -$thumbnailDimension/3;
-  color: black;
+#style-thumbnail-grid {
+  display: grid;
+  grid-template-columns: $thumbnailDimension $thumbnailDimension $thumbnailDimension $thumbnailDimension;
+  grid-auto-rows: $thumbnailDimension;
+  grid-gap: $thumbnailDimension/4;
+  div {
+    display: inline-block;
+  }
 }
 
 #size-selector {

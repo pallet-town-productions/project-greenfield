@@ -13,15 +13,15 @@ const CheckBox = function ({ isRendered }) {
 
 const StyleThumbnail = function ({ style, styleIndex, currentStyleIndex, handleClick }) {
   return (
-    <span onClick={() => handleClick(styleIndex)} 
+    <div onClick={() => handleClick(styleIndex)} 
     role="presentation">
+    <CheckBox isRendered={styleIndex===currentStyleIndex} />
       <img
         src={style.photos[0].thumbnail_url}
         className="thumbnail style-thumbnail"
         alt={`Thumbnail for style ${style.name}`}
       />
-      <CheckBox isRendered={styleIndex===currentStyleIndex} />
-    </span>
+    </div>
   );
 };
 
