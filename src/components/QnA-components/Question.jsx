@@ -5,13 +5,13 @@ import AddAnswer from './AddAnswer';
 
 
 class Question extends React.Component {
-  constructor({
+  constructor(props, {
     data,
     helpfulClickHandler,
     reportClickHandler,
     productName,
   }) {
-    super({
+    super(props, {
       data,
       helpfulClickHandler,
       reportClickHandler,
@@ -26,6 +26,7 @@ class Question extends React.Component {
       reportClickHandler,
       helpfulClickHandler,
     } = this.props;
+
     return (
       <div className="questionsQuestionContainer">
         <p>
