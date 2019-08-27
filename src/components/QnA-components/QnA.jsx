@@ -16,7 +16,24 @@ class QnA extends React.Component {
     super(props, { helpfulClickHandler, reportClickHandler });
     this.state = {
       productId: props.productId,
+      filteredQuestions: [],
       questions: [],
+      search: '',
+    };
+
+    this.searchFilter = () => {
+      const { questions } = this.state;
+      this.setState({ search: document.getElementById('qna-searchbar').value }, () => {
+        const { search } = this.state;
+        if (search.length >= 3) {
+          const filteredQuestions = questions.filter(
+            (question) => question.question_body.toLowerCase().includes(search.toLowerCase()),
+          );
+          this.setState({ filteredQuestions });
+        } else {
+          this.setState({ filteredQuestions: [] });
+        }
+      });
     };
   }
 
@@ -27,22 +44,22 @@ class QnA extends React.Component {
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
-        currentState.questions = result.results.slice(0, 2);
+        currentState.questions = result.results;
         this.setState(currentState);
       });
   }
 
   render() {
-    const { questions, productId } = this.state;
+    const { questions, productId, filteredQuestions } = this.state;
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
         <h3>
           QUESTIONS & ANSWERS
         </h3>
-        <Search />
+        <Search searchFilter={this.searchFilter} />
         <List
-          questions={questions}
+          questions={filteredQuestions.length === 0 ? questions.slice(0, 2) : filteredQuestions}
           helpfulClickHandler={helpfulClickHandler}
           reportClickHandler={reportClickHandler}
         />
