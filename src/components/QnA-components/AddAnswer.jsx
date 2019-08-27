@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Modal from './Modal';
 
 class AddAnswer extends React.Component {
-  constructor(props, { data }) {
-    super(props, { data });
+  constructor(props, { data, productName }) {
+    super(props, { data, productName });
 
     this.state = {
       show: false,
@@ -23,13 +23,13 @@ class AddAnswer extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { data } = this.props;
+    const { data, productName } = this.props;
     return (
       <button type="button" onClick={() => this.showModal(true)}>
         <u>Add Answer</u>
         <Modal show={show}>
           <h1>Submit your Answer</h1>
-          <h3>{`PRODUCT NAME: ${data.question_body}`}</h3>
+          <h3>{`${productName}: ${data.question_body}`}</h3>
           <form name="QnA-add-answer-form">
             <textarea
               id="QnA-modal-body"
@@ -102,6 +102,7 @@ AddAnswer.propTypes = {
     question_body: PropTypes.string.isRequired,
     question_id: PropTypes.number.isRequired,
   }),
+  productName: PropTypes.string.isRequired,
 };
 
 AddAnswer.defaultProps = {

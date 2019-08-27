@@ -3,7 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AddAnswer from './AddAnswer';
 
-const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
+const Question = ({
+  data,
+  helpfulClickHandler,
+  reportClickHandler,
+  productName,
+}) => (
   <div className="questionsQuestionContainer">
     <p>
       {`Q: ${data.question_body}`}
@@ -20,7 +25,7 @@ const Question = ({ data, helpfulClickHandler, reportClickHandler }) => (
         {data.question_helpfulness}
         )
         |
-        <AddAnswer data={data} />
+        <AddAnswer data={data} productName={productName} />
       </p>
     </span>
     <div>
@@ -58,6 +63,7 @@ Question.propTypes = {
   }).isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 };
 
 export default Question;

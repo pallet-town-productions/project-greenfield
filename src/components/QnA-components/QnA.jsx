@@ -72,7 +72,10 @@ class QnA extends React.Component {
           reportClickHandler={reportClickHandler}
         />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
-        <AddQuestion productId={productId} />
+        <AddQuestion
+          productId={productId}
+          productName={productName}
+        />
       </div>
     );
   }
