@@ -26,13 +26,16 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ZoomViewDisplay = function ({ showZoomView, currentBigPicture, handleHideZoomView, handleZoomPan }) {
+const ZoomViewDisplay = function ({
+  showZoomView, currentBigPicture, handleHideZoomView, handleZoomPan,
+}) {
   const display = (showZoomView) ? 'show' : 'hide';
-  var handleZoomPanBound = (e) => {handleZoomPan(e, currentBigPicture)};
+  const handleZoomPanBound = (e) => { handleZoomPan(e, currentBigPicture); };
   return (
-    <div className={display} 
-    // id="zoomphoto"
-    onMouseMove={handleZoomPanBound}>
+    <div
+      className={display}
+      onMouseMove={handleZoomPanBound}
+    >
       <ImageMain
         handleClick={handleHideZoomView}
         onHover="onHover-zoomout"
@@ -44,6 +47,7 @@ const ZoomViewDisplay = function ({ showZoomView, currentBigPicture, handleHideZ
 
 ZoomViewDisplay.propTypes = {
   showZoomView: PT.bool.isRequired,
+  currentBigPicture: PT.string.isRequired,
   handleHideZoomView: PT.func.isRequired,
   handleZoomPan: PT.func.isRequired,
 };
