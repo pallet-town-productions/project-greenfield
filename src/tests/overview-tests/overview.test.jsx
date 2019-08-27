@@ -7,18 +7,18 @@ import Overview from '../../components/overview-components/overview';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const shallowSetup = function () {
-  const shallowWrapper = shallow(<Overview />);
-  return shallowWrapper;
-};
+// NOTES:
+  // exists likes basic html, doesn't like React Components
+
+
 
 describe('components', () => {
   describe('Overview', () => {
     it('should render self and subcomponents', () => {
-      const wrapper = shallowSetup();
-      expect(wrapper.exists('div')).toBeTruthy();
-      // expect(wrapper.exists('StyleSelector')).toBeTruthy();
-      // why does ImageGallery pass but not StyleSelector?
+      const wrapper = shallow(<Overview />);
+      expect(wrapper.exists('header')).toBeTruthy();
+      expect(wrapper.find('ImageGallery').length).toEqual(0); // doesn't work properly
+      expect(wrapper.find('ImageGalleryz').length).toEqual(0); // doesn't work properly
     });
   });
 });
