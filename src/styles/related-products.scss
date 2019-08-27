@@ -21,10 +21,14 @@
 
 img {
   max-width: 100%;
-  max-height: 90%;
+  max-height: 70%;
 }
 
 .slick-prev:before,
 .slick-next:before {
   color: black;
+}
+
+.related-title {
+  text-align: center;
 }

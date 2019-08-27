@@ -22,12 +22,11 @@ export const Carousel = (props) => {
         speed={500}
         slidesToShow={4}
         slidesToScroll={1}
+        centerMode
       >
         {relatedReducer.map(
           (related, index) => (
-            <div>
-              <ConnectedRelatedCard index={index + 1} key={related} productId={related} />
-            </div>
+            <ConnectedRelatedCard index={index + 1} key={related} productId={related} />
           ),
         )}
       </Slider>

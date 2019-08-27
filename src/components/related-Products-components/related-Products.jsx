@@ -24,7 +24,7 @@ export class RelatedProducts extends Component {
     const { productId } = this.props;
     return (
       <div className="related-products-container">
-        <p>
+        <p className="related-title">
           Products Related To:
           {productId}
         </p>
