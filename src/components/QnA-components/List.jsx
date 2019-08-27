@@ -5,13 +5,13 @@ import Question from './Question';
 
 
 class List extends React.Component {
-  constructor({
+  constructor(props, {
     questions,
     helpfulClickHandler,
     reportClickHandler,
     productName,
   }) {
-    super({
+    super(props, {
       questions,
       helpfulClickHandler,
       reportClickHandler,
