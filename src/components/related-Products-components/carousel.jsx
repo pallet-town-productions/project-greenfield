@@ -18,7 +18,6 @@ export const Carousel = (props) => {
     <div className="carousel-container">
       <Slider
         dots
-        arrows
         infinite={false}
         speed={500}
         slidesToShow={4}
