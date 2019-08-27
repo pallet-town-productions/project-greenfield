@@ -77,13 +77,15 @@ class Tile extends React.Component {
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
 
-    if (review.response) {
+    if (review.response !== 'null') {
       response = (
         <div className="response">
           <p className="response-text-header">Response</p>
           <p className="response-text">{review.response}</p>
         </div>
       );
+    } else {
+      response = <div />;
     }
 
     let recommend;
@@ -105,7 +107,7 @@ class Tile extends React.Component {
         <p className="summary">{summary}</p>
         <div className="body">{body}</div>
         <div className="recommend">{recommend}</div>
-        <div className="response">{response}</div>
+        <div>{response}</div>
         <p>{images}</p>
         <div className="lower-row">
           <p className="lower">Helpful?</p>
