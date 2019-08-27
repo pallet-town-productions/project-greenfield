@@ -27,7 +27,7 @@ class QnA extends React.Component {
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
-        currentState.questions = result.results.slice(0, 2);
+        currentState.questions = result.results;
         this.setState(currentState);
       });
   }
@@ -40,9 +40,9 @@ class QnA extends React.Component {
         <h3>
           QUESTIONS & ANSWERS
         </h3>
-        <Search />
+        <Search questions={questions} />
         <List
-          questions={questions}
+          questions={questions.slice(0, 2)}
           helpfulClickHandler={helpfulClickHandler}
           reportClickHandler={reportClickHandler}
         />
