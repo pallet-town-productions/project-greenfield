@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
@@ -29,20 +30,43 @@ class AddAnswer extends React.Component {
         <Modal show={show}>
           <h1>Submit your Answer</h1>
           <h3>{`PRODUCT NAME: ${data.question_body}`}</h3>
-          <form>
-            <input className="questionsModalAnswer" type="text" placeholder="Your Answer" />
+          <form name="QnA-add-answer-form">
+            <textarea name="text" id="QnA-modal-body" className="questionsModalAnswer" type="text" placeholder="Your answer here..." />
             <br />
-            <input className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
+            <input id="QnA-modal-nickname" className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
             <br />
-            <input className="questionsModalAnswerEmail" type="text" placeholder="Your Email" />
+            <input name="qna-email-field" id="QnA-modal-email" className="questionsModalAnswerEmail" placeholder="Email" type="text" />
             <br />
-            <input className="questionsModalAnswerPic" name="pic" type="file" accept="image/*" />
+            <input id="QnA-modal-pic" className="questionsModalAnswerPic" type="text" placeholder="URL link to picture" />
             <br />
             <input
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+
+                const test = {
+                  body: document.getElementById('QnA-modal-body').value,
+                  name: document.getElementById('QnA-modal-nickname').value,
+                  email: document.getElementById('QnA-modal-email').value,
+                  photos: [document.getElementById('QnA-modal-pic').value],
+                };
+
+                fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+                  method: 'POST',
+                  body: JSON.stringify(test),
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                })
+                  .then((result) => {
+                    if (result.ok) {
+                      alert('Answer sent!');
+                    } else {
+                      alert('Answer failed to be sent. Please make sure your email address is correct!');
+                    }
+                  });
+
                 this.hideModal(false);
               }}
             />
@@ -56,6 +80,7 @@ class AddAnswer extends React.Component {
 AddAnswer.propTypes = {
   data: PropTypes.shape({
     question_body: PropTypes.string.isRequired,
+    question_id: PropTypes.number.isRequired,
   }),
 };
 
