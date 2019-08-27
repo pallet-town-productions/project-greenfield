@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 
-class AddAnswer extends React.Component {
+class AddQuestion extends React.Component {
   constructor(props, { data }) {
     super(props, { data });
 
@@ -69,17 +69,17 @@ class AddAnswer extends React.Component {
   }
 }
 
-AddAnswer.propTypes = {
+AddQuestion.propTypes = {
   data: PropTypes.shape({
     question_body: PropTypes.string.isRequired,
     question_id: PropTypes.number.isRequired,
   }),
 };
 
-AddAnswer.defaultProps = {
+AddQuestion.defaultProps = {
   data: {
     question_body: 'Please browse for a real product.',
   },
 };
 
-export default AddAnswer;
+export default AddQuestion;

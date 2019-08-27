@@ -2,9 +2,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Ask from './Ask';
+import AddAnswer from './AddAnswer';
 import List from './List';
 import Search from './Search';
+import '../../styles/QnA-styles.scss';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -46,7 +47,7 @@ class QnA extends React.Component {
           reportClickHandler={reportClickHandler}
         />
         <button type="submit">MORE ANSWERED QUESTIONS</button>
-        <Ask />
+        <AddAnswer />
       </div>
     );
   }
