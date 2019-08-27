@@ -12,6 +12,9 @@ export class RelatedCard extends Component {
     super(props);
     this.state = {
       loading: true,
+      productData: {
+        name: null,
+      },
     };
   }
 
@@ -32,19 +35,19 @@ export class RelatedCard extends Component {
 
   render() {
     const { loading } = this.state;
-    if (loading) {
+    if (!loading) {
+      const { photos } = this.state;
+      const { productData } = this.state;
+      const { name } = productData;
       return (
-        <p>Loading</p>
+        <div className="card-container">
+          <img src={photos[0][0].thumbnail_url} alt="defualt-style" />
+          <p>{name}</p>
+        </div>
       );
     }
-    const { photos } = this.state;
-    const { productData } = this.state;
-    const { name } = productData;
     return (
-      <div className="card-container">
-        <img src={photos[0][0].thumbnail_url} alt="defualt-style" />
-        <p>{name}</p>
-      </div>
+      <p>Loading</p>
     );
   }
 }
