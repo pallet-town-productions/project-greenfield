@@ -19,6 +19,7 @@ class QnA extends React.Component {
       filteredQuestions: [],
       questions: [],
       search: '',
+      productName: props.productData.name,
     };
 
     this.searchFilter = () => {
@@ -50,7 +51,13 @@ class QnA extends React.Component {
   }
 
   render() {
-    const { questions, productId, filteredQuestions } = this.state;
+    const {
+      questions,
+      productId,
+      filteredQuestions,
+      productName,
+    } = this.state;
+
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
@@ -60,6 +67,7 @@ class QnA extends React.Component {
         <Search searchFilter={this.searchFilter} />
         <List
           questions={filteredQuestions.length === 0 ? questions.slice(0, 2) : filteredQuestions}
+          productName={productName}
           helpfulClickHandler={helpfulClickHandler}
           reportClickHandler={reportClickHandler}
         />
@@ -74,6 +82,9 @@ QnA.propTypes = {
   productId: PropTypes.number,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
+  productData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 QnA.defaultProps = {
