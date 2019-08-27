@@ -23,7 +23,6 @@ export const RatingBreakdown = ({ getMetaData }) => {
   );
 };
 
-
 RatingBreakdown.propTypes = {
   getMetaData: PropTypes.shape({
     product_id: PropTypes.string,
