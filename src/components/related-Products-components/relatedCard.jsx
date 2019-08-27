@@ -3,6 +3,8 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // const mapStateToProps = (state) => ({
 //   ...state,
@@ -47,7 +49,9 @@ export class RelatedCard extends Component {
       );
     }
     return (
-      <p>Loading</p>
+      <div className="card-container">
+        <p>Loading</p>
+      </div>
     );
   }
 }
