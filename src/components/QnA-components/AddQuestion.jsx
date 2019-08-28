@@ -4,9 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 
-class AddAnswer extends React.Component {
-  constructor(props, { data, productName }) {
-    super(props, { data, productName });
+class AddQuestion extends React.Component {
+  constructor(props, { productId, productName }) {
+    super(props, { productId, productName });
 
     this.state = {
       show: false,
@@ -23,40 +23,33 @@ class AddAnswer extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { data, productName } = this.props;
+    const { productId, productName } = this.props;
     return (
       <button type="button" onClick={() => this.showModal(true)}>
-        <u>Add Answer</u>
+        <u>ADD A QUESTION</u>
         <Modal show={show}>
-          <h1>Submit your Answer</h1>
-          <h3>{`${productName}: ${data.question_body}`}</h3>
+          <h1>Ask Your Question</h1>
+          <h3>{`About the ${productName}`}</h3>
           <form name="QnA-add-answer-form">
             <textarea
-              id="QnA-modal-body"
+              id="QnA-modal-q-body"
               className="questionsModalAnswer"
               type="text"
-              placeholder="Your answer here..."
+              placeholder="Your question here..."
             />
             <br />
             <input
-              id="QnA-modal-nickname"
+              id="QnA-modal-q-nickname"
               className="questionsModalAnswerNick"
               type="text"
               placeholder="Your Nickname"
             />
             <br />
             <input
-              id="QnA-modal-email"
+              id="QnA-modal-q-email"
               className="questionsModalAnswerEmail"
               type="text"
               placeholder="Email"
-            />
-            <br />
-            <input
-              id="QnA-modal-pic"
-              className="questionsModalAnswerPic"
-              type="text"
-              placeholder="URL link to picture"
             />
             <br />
             <input
@@ -66,13 +59,12 @@ class AddAnswer extends React.Component {
                 e.stopPropagation();
 
                 const questionReq = {
-                  body: document.getElementById('QnA-modal-body').value,
-                  name: document.getElementById('QnA-modal-nickname').value,
-                  email: document.getElementById('QnA-modal-email').value,
-                  photos: [document.getElementById('QnA-modal-pic').value],
+                  body: document.getElementById('QnA-modal-q-body').value,
+                  name: document.getElementById('QnA-modal-q-nickname').value,
+                  email: document.getElementById('QnA-modal-q-email').value,
                 };
 
-                fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+                fetch(`http://18.217.220.129/qa/${productId}`, {
                   method: 'POST',
                   body: JSON.stringify(questionReq),
                   headers: {
@@ -81,9 +73,9 @@ class AddAnswer extends React.Component {
                 })
                   .then((result) => {
                     if (result.ok) {
-                      alert('Answer sent!');
+                      alert('Question sent!');
                     } else {
-                      alert('Answer failed to be sent. Please make sure your email address is correct!');
+                      alert('Question failed to be sent. Please make sure your email is correct!');
                     }
                   });
 
@@ -97,18 +89,9 @@ class AddAnswer extends React.Component {
   }
 }
 
-AddAnswer.propTypes = {
-  data: PropTypes.shape({
-    question_body: PropTypes.string.isRequired,
-    question_id: PropTypes.number.isRequired,
-  }),
+AddQuestion.propTypes = {
+  productId: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
 };
 
-AddAnswer.defaultProps = {
-  data: {
-    question_body: 'Please browse for a real product.',
-  },
-};
-
-export default AddAnswer;
+export default AddQuestion;

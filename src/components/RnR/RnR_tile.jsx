@@ -11,7 +11,14 @@ class Tile extends React.Component {
       showFullBody: false,
       hasVotedHelpfulness: false,
       hasReported: false,
+      isOpen: false,
     };
+  }
+
+  isModalOpen() {
+    this.setState((prevState) => ({
+      isOpen: !prevState.isOpen,
+    }));
   }
 
   showFullBody() {
@@ -52,9 +59,31 @@ class Tile extends React.Component {
 
   render() {
     const { review } = this.props;
-    const images = review.photos.map((photo) => (<img className="thumbnail" src={photo.url} alt="" />)).slice(0, 5);
-    const summary = review.summary.slice(0, 60);
     let { body } = review;
+    let { response } = review;
+    const { isOpen } = this.state;
+    const summary = review.summary.slice(0, 60);
+    const images = review.photos.map((photo) => (
+      <div
+        className="container"
+        onClick={this.isModalOpen.bind(this)}
+        onKeyDown={this.showFullBody.bind(this)}
+        role="link"
+        tabIndex={0}
+      >
+        <img
+          className="thumbnail"
+          src={photo.url}
+          alt=""
+        />
+        {isOpen ? (
+          <div className="RnR-modal">
+            <span className="close">&times;</span>
+            <img className="modal-content" src={photo.url} alt="" />
+          </div>
+        ) : <div />}
+      </div>
+    )).slice(0, 5);
 
     if (body.length > 249) {
       const { showFullBody } = this.state;
@@ -63,18 +92,29 @@ class Tile extends React.Component {
           {showFullBody ? (
             <div>
               <p className="tile-body">{body}</p>
-              <div onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show Less</div>
+              <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show Less</div>
             </div>
           )
             : (
               <div>
                 <p className="tile-body">{body.slice(0, 250)}</p>
-                <div onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show More</div>
+                <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show More</div>
               </div>
             )}
         </div>
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
+
+    if (review.response !== 'null') {
+      response = (
+        <div className="response">
+          <p className="response-text-header">Response</p>
+          <p className="response-text">{review.response}</p>
+        </div>
+      );
+    } else {
+      response = <div />;
+    }
 
     let recommend;
     if (review.recommend) {
@@ -95,7 +135,8 @@ class Tile extends React.Component {
         <p className="summary">{summary}</p>
         <div className="body">{body}</div>
         <div className="recommend">{recommend}</div>
-        <p>{images}</p>
+        <div>{response}</div>
+        <div>{images}</div>
         <div className="lower-row">
           <p className="lower">Helpful?</p>
           <div className="lower test" onClick={this.markAsHelpful.bind(this)} onKeyUp={this.markAsHelpful.bind(this)} tabIndex={0} role="link">Yes</div>
@@ -117,6 +158,7 @@ Tile.propTypes = {
     rating: PT.number,
     review: PT.string,
     date: PT.string,
+    response: PT.string,
     reviewer_name: PT.string,
     summary: PT.string,
     body: PT.string,
