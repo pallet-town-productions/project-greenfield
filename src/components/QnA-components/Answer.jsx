@@ -37,12 +37,12 @@ class Answer extends React.Component {
     return (
       <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
-          <span key={`s${answer.id}`} className="questionsAnswerTools">
+          <span key={`sa${answer.id}`} className="questionsAnswerTools">
             <p>
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
-              <img key={`i${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+              <img key={`ia${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
             ))}
             <p>
               {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)} | Helpful? `}
