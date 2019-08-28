@@ -17,12 +17,11 @@ export const Carousel = (props) => {
   return (
     <div className="carousel-container">
       <Slider
-        dots
+        dots={false}
         infinite={false}
         speed={500}
         slidesToShow={4}
         slidesToScroll={1}
-        centerMode
       >
         {relatedReducer.map(
           (related, index) => (

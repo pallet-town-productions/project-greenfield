@@ -8,7 +8,8 @@
   border-width: $borderThickness;
   font-family: $font;
   border-style: solid;
-  margin: $defaultMargin;
+  margin: auto;
+  margin-bottom: 10px;
   padding: $defaultPadding;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,8 @@
 .related-products-container {
   font-family: $font;
   background-color: $tileColor;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
@@ -51,3 +54,8 @@ img {
   margin: 0px;
   font-size: 12px;
 }
+
+// .slick-slide {
+//   margin-left: 20px;
+// }
+
