@@ -24,9 +24,10 @@ class PictureModal extends React.Component {
     const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
     return (
-      <div>
+      <div className="qna-pmodal-container">
         <span
           role="button"
+          className="qna-span-thumbnail"
           onClick={this.showModal}
           tabIndex={0}
           onKeyPress={this.showModal}
@@ -38,23 +39,23 @@ class PictureModal extends React.Component {
             className="thumbnail"
           />
         </span>
-        <span className={showHideClassName}>
-          <section className="modal-main">
+        <span
+          className={showHideClassName}
+          role="button"
+          tabIndex={0}
+          onKeyPress={() => this.hideModal(false)}
+          onClick={(e) => {
+            e.stopPropagation();
+            this.hideModal(false);
+          }}
+        >
+          <section className="qna-modal-main">
             <img
               key={`ia${answer.id}`}
               alt={`Uploaded by: ${answer.answerer_name}`}
               src={photo}
-              className="modal-picture"
+              className="qna-modal-picture"
             />
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                this.hideModal(false);
-              }}
-            >
-              Close
-            </button>
           </section>
         </span>
       </div>

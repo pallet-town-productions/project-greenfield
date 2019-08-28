@@ -5,6 +5,18 @@
   resize: none;
 }
 
-.thumbnail:hover {
-opacity: 0.7;
+.qna-span-thumbnail:focus {
+  outline: none;
+}
+
+.qna-modal-main {
+  display: flex;
+  padding-top: 5%;
+  justify-content: center;
+  img {
+    width: 70%;
+    max-width: 700px;
+    height: 70%;
+    max-height: 700px;
+  }
 }
