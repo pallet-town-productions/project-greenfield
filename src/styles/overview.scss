@@ -1,5 +1,5 @@
-$thumbnailDimension: 75px;
-// $mainPhotoDimension: $thumbnailDimension * 8;
+$thumbnailDimension: 65px;
+$mainPhotoDimension: 600px;
 $overlayPercent: 80%;
 
 .onHover-pointer {
@@ -70,14 +70,17 @@ $overlayPercent: 80%;
     grid-area: main-image;
     #image-gallery-grid-default {
       display: grid;
-      grid-template-areas: 'carousel main';
-      grid-template-columns: $thumbnailDimension*2  auto;
+      grid-template-areas: 
+        'main'
+        'carousel';
+      grid-template-rows: $mainPhotoDimension $thumbnailDimension*1.5;
       #mainphoto {
         grid-area: main;
       }
       #image-thumbnail-slide-default {
+        text-align: center;
         grid-area: carousel;
-        // max-width: $thumbnailDimension;
+        max-width: $mainPhotoDimension;
       }
     }
   }
@@ -97,7 +100,8 @@ $overlayPercent: 80%;
     grid-area: features;
   }
   section {
-    background-color: white;
+    // background-color: white;
+    display: inline-block;
     // text-align: center;
     // padding: 20px 0;
     // font-size: 30px;

@@ -37,10 +37,10 @@ const ImageList = function ({
   let sliderOptions = {
     dots: isExpanded,
     infinite: false,
-    slidesToShow: 5,
+    slidesToShow: 7,
     slidesToScroll: 1,
-    vertical: !isExpanded, 
-    verticalSwiping: !isExpanded,
+    // vertical: !isExpanded, 
+    // verticalSwiping: !isExpanded,
     focusOnSelect: true,
   };
   return (
