@@ -19,6 +19,8 @@ class QnA extends React.Component {
       filteredQuestions: [],
       questions: [],
       search: '',
+      questionDisplayCount: 2,
+      productName: props.productData.name,
     };
 
     this.searchFilter = () => {
@@ -35,6 +37,11 @@ class QnA extends React.Component {
         }
       });
     };
+
+    this.increaseDisplayCount = () => {
+      const { questionDisplayCount } = this.state;
+      this.setState({ questionDisplayCount: questionDisplayCount + 2 });
+    };
   }
 
   componentDidMount() {
@@ -50,7 +57,14 @@ class QnA extends React.Component {
   }
 
   render() {
-    const { questions, productId, filteredQuestions } = this.state;
+    const {
+      questions,
+      productId,
+      filteredQuestions,
+      productName,
+      questionDisplayCount,
+    } = this.state;
+
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
@@ -59,12 +73,29 @@ class QnA extends React.Component {
         </h3>
         <Search searchFilter={this.searchFilter} />
         <List
-          questions={filteredQuestions.length === 0 ? questions.slice(0, 2) : filteredQuestions}
+          questions={
+            filteredQuestions.length === 0
+              ? questions.slice(0, questionDisplayCount)
+              : filteredQuestions
+            }
+          productName={productName}
           helpfulClickHandler={helpfulClickHandler}
           reportClickHandler={reportClickHandler}
         />
-        <button type="submit">MORE ANSWERED QUESTIONS</button>
-        <AddQuestion productId={productId} />
+        { questions.length <= questionDisplayCount
+          ? ''
+          : (
+            <button
+              type="submit"
+              onClick={this.increaseDisplayCount}
+            >
+            MORE ANSWERED QUESTIONS
+            </button>
+          ) }
+        <AddQuestion
+          productId={productId}
+          productName={productName}
+        />
       </div>
     );
   }
@@ -74,6 +105,9 @@ QnA.propTypes = {
   productId: PropTypes.number,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
+  productData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 QnA.defaultProps = {

@@ -5,18 +5,35 @@ import Question from './Question';
 
 
 class List extends React.Component {
-  constructor({ questions, helpfulClickHandler, reportClickHandler }) {
-    super({ questions, helpfulClickHandler, reportClickHandler });
+  constructor(props, {
+    questions,
+    helpfulClickHandler,
+    reportClickHandler,
+    productName,
+  }) {
+    super(props, {
+      questions,
+      helpfulClickHandler,
+      reportClickHandler,
+      productName,
+    });
   }
 
   render() {
-    const { questions, helpfulClickHandler, reportClickHandler } = this.props;
+    const {
+      questions,
+      helpfulClickHandler,
+      reportClickHandler,
+      productName,
+    } = this.props;
+
     return (
       <div>
         {questions.map((question) => (
           <Question
             key={`Q${question.question_id}`}
             helpfulClickHandler={helpfulClickHandler}
+            productName={productName}
             data={question}
             reportClickHandler={reportClickHandler}
           />
@@ -30,6 +47,7 @@ List.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 };
 
 export default List;
