@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 export const RatingBreakdown = ({ getMetaData }) => {
-  const { ratings } = getMetaData;
+  const { ratings, recommended } = getMetaData;
   const defaultRatings = {
     1: 0,
     2: 0,
@@ -17,14 +17,24 @@ export const RatingBreakdown = ({ getMetaData }) => {
     4: 0,
     5: 0,
   };
-  const allRatings = { ...defaultRatings, ...ratings };
+  const defaultRecommended = {
+    0: 0,
+    1: 0,
+  };
   const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
+
+  // Calculate Rating Distribution and Average Star Rating
+  const allRatings = { ...defaultRatings, ...ratings };
   const totalRatings = Object.values(allRatings).reduce(sumReducer);
-  const sum = Object.values(allRatings)
+  const sumofRatings = Object.values(allRatings)
     .map((starcount, index) => (starcount * index))
     .reduce(sumReducer);
-  const averageStars = totalRatings > 0 ? parseFloat((sum / totalRatings).toFixed(1)) : 0;
-  const recommended = 0;
+  const averageStars = totalRatings > 0 ? parseFloat((sumofRatings / totalRatings).toFixed(1)) : 0;
+
+  // Calculate Percent Recommended
+  const allRecommendations = { ...defaultRecommended, ...recommended };
+  const totalRecommendations = Object.values(allRecommendations).reduce(sumReducer);
+  const percentRecommended = totalRecommendations > 0 ? parseFloat(((allRecommendations['0'] / totalRecommendations) * 100).toFixed(1)) : 0;
 
   return (
     <div className="rating-breakdown breakdown-widget">
@@ -33,7 +43,7 @@ export const RatingBreakdown = ({ getMetaData }) => {
         <StarRating starCount={averageStars} />
       </h1>
       <p className="percent-recommended">
-        {recommended}
+        {percentRecommended}
         % of reviews recommend this product
       </p>
       <ConnectedStarBreakdown allRatings={allRatings} totalRatings={totalRatings} />
