@@ -7,19 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 export const StarBreakdown = (props) => {
-  const { ratings } = props;
-  const defaultRatings = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-  };
-  const allRatings = { ...defaultRatings, ...ratings };
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  const totalRatings = Object.values(allRatings)
-    .reduce(reducer);
-
+  const { allRatings, totalRatings } = props;
   return (
     <ul className="star-breakdown breakdown-list">
       <li className="star-breakdown-item">
@@ -47,23 +35,25 @@ export const StarBreakdown = (props) => {
 };
 
 StarBreakdown.propTypes = {
-  ratings: PropTypes.shape({
+  allRatings: PropTypes.shape({
     1: PropTypes.number,
     2: PropTypes.number,
     3: PropTypes.number,
     4: PropTypes.number,
     5: PropTypes.number,
   }),
+  totalRatings: PropTypes.number,
 };
 
 StarBreakdown.defaultProps = {
-  ratings: {
+  allRatings: {
     1: 0,
     2: 0,
     3: 0,
     4: 0,
     5: 0,
   },
+  totalRatings: 0,
 };
 
 const connectedStarBreakdown = connect(mapStateToProps, null)(StarBreakdown);

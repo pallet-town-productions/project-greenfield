@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
 
 export const RatingBreakdown = ({ getMetaData }) => {
   const { ratings } = getMetaData;
-
   const defaultRatings = {
     1: 0,
     2: 0,
@@ -24,7 +23,7 @@ export const RatingBreakdown = ({ getMetaData }) => {
   const sum = Object.values(allRatings)
     .map((starcount, index) => (starcount * index))
     .reduce(sumReducer);
-  const averageStars = totalRatings > 0 ? (sum / totalRatings).toFixed(1) : 0;
+  const averageStars = totalRatings > 0 ? parseFloat((sum / totalRatings).toFixed(1)) : 0;
   const recommended = 0;
 
   return (
@@ -37,7 +36,7 @@ export const RatingBreakdown = ({ getMetaData }) => {
         {recommended}
         % of reviews recommend this product
       </p>
-      <ConnectedStarBreakdown ratings={ratings} />
+      <ConnectedStarBreakdown allRatings={allRatings} totalRatings={totalRatings} />
     </div>
   );
 };
