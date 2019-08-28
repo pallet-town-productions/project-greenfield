@@ -14,7 +14,6 @@ class Sort extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: 'date',
     };
   }
 
@@ -23,7 +22,7 @@ class Sort extends Component {
   }
 
   getAllReviews() {
-    const { currentView } = this.state;
+    const currentView = document.getElementById('sort-selector').value;
     const { productId, dispatch } = this.props;
     fetch(`http://18.217.220.129/reviews/${productId}/list`)
       .then((response) => {
@@ -50,20 +49,14 @@ class Sort extends Component {
       .then((info) => { dispatch(updateReviewsToRender(info)); });
   }
 
-  handleTypeChange(event) {
-    this.setState({ currentView: event.target.value });
-    this.getAllReviews();
-  }
-
   render() {
     const { updateReviews } = this.props;
-    const { currentView } = this.state;
     const upperStr = `${updateReviews.length} reviews, sorted by `;
     return (
       <div className="tile-container">
         <form className="sort-list">
           {upperStr}
-          <select className="selector" value={currentView} onChange={this.handleTypeChange.bind(this)}>
+          <select id="sort-selector" className="selector" onChange={this.getAllReviews.bind(this)}>
             <option value="relevance">Relevance</option>
             <option value="date">Date</option>
             <option value="helpfulness">Helpfulness</option>

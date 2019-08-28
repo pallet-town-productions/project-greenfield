@@ -1,6 +1,22 @@
-
 .tile-container {
     background-color: #BCE8C8;
+    padding: 5px;
+    margin: 5px;
+}
+
+.sort-list {
+    padding: 10px;
+}
+
+.selector {
+    position: relative;
+    appearance: none;
+    background-color: #BCE8C8;
+    border: 6px solid transparent;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0px;
+    text-decoration: underline;
 }
 
 .RnR-modal {
@@ -36,11 +52,8 @@
     }
 }
 
-
-
 .tile {
     padding: 10px;
-    border: 1px solid black;
     margin: 5px;
     background-color: #F0FFCF;
     .show {
