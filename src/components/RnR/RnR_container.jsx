@@ -12,7 +12,7 @@ class RnR extends React.Component {
   render() {
     return (
       <div>
-        <a id="scrollRnR"><h2>Ratings and Reviews</h2></a>
+        <h2 id="scrollRnR">Ratings and Reviews</h2>
         <BreakdownContainer />
         <Sort />
       </div>
