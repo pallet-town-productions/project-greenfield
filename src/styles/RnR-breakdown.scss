@@ -91,15 +91,26 @@ $componentWidth: 250px;
     align-items: stretch;
 
     .star-breakdown-item {
-      display: flex;
-      align-items: baseline;
-      margin-top: $defaultMargin * 2;
+      .star-breakdown-div {
+        display: flex;
+        align-items: baseline;
+        margin-top: $defaultMargin;
+        margin-bottom: $defaultMargin;
+        cursor: pointer;
 
-      .star-breakdown-bar {
-        margin-left: $defaultMargin * 2;
-        width: 75%;
+        .star-breakdown-span {
+          text-decoration: underline;
+        }
+
+        .star-breakdown-bar {
+          margin-left: $defaultMargin * 2;
+          width: 80%;
+        }
       }
 
+      .star-breakdown-div:hover {
+        background-color: $tileColor;
+      }
     }
   }
 }
