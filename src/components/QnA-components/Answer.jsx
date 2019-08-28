@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import PictureModal from './PictureModal';
 
 class Answer extends React.Component {
   constructor(props, {
@@ -42,7 +43,7 @@ class Answer extends React.Component {
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
-              <img key={`ia${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+              <PictureModal key={`pa${answer.id}`} photo={photo} answer={answer} />
             ))}
             <p>
               {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)} | Helpful? `}
