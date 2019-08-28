@@ -16,8 +16,8 @@ const mapDispatchToProps = function (dispatch) {
 
 const ImageGallery = function ({ dispatchExpandedView }) {
   return (
-    <section>
-      <ImageList />
+    <section id="image-gallery-grid-default">
+      <ImageList isExpanded={false}/>
       <ImageMain
         handleClick={dispatchExpandedView}
         onHover="onHover-zoomin"

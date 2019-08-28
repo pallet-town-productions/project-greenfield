@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ImageThumbnail from './imageThumbnail';
 import { zeroPad } from '../../../util/util';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // import bunch of other child components
 
 const mapStateToProps = function (state) {
@@ -28,22 +31,36 @@ const mapDispatchToProps = function (dispatch) {
 };
 
 const ImageList = function ({
-  currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto,
+  currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto, isExpanded,
 }) {
+  const display = (isExpanded) ? "image-thumbnail-slide-expanded" : "image-thumbnail-slide-default";
+  let sliderOptions = {
+    dots: isExpanded,
+    infinite: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    vertical: !isExpanded, 
+    verticalSwiping: !isExpanded,
+    focusOnSelect: true,
+  };
   return (
-    <ul>
-      {imageList.map((image, imageIndex) => {
-        const key = zeroPad(currentStyleIndex, 4) + zeroPad(imageIndex, 4);
-        return (
-          <ImageThumbnail
-            key={zeroPad(key)}
-            photoIndex={imageIndex}
-            url={imageList[imageIndex].thumbnail_url}
-            handleClick={handleSwitchPhoto}
-            isSelected={currentPhotoIndex === imageIndex}
-          />
-        );
-      })}
+    <ul id={display}>
+      <Slider
+        {...sliderOptions}
+      >
+        {imageList.map((image, imageIndex) => {
+          const key = zeroPad(currentStyleIndex, 4) + zeroPad(imageIndex, 4);
+          return (
+            <ImageThumbnail
+              key={zeroPad(key)}
+              photoIndex={imageIndex}
+              url={imageList[imageIndex].thumbnail_url}
+              handleClick={handleSwitchPhoto}
+              isSelected={currentPhotoIndex === imageIndex}
+            />
+          );
+        })}
+      </Slider>
     </ul>
   );
 };

@@ -1,5 +1,5 @@
-$thumbnailDimension: 80px;
-$mainPhotoDimension: $thumbnailDimension * 8;
+$thumbnailDimension: 75px;
+// $mainPhotoDimension: $thumbnailDimension * 8;
 $overlayPercent: 80%;
 
 .onHover-pointer {
@@ -68,6 +68,18 @@ $overlayPercent: 80%;
   }
   #image-gallery-section {
     grid-area: main-image;
+    #image-gallery-grid-default {
+      display: grid;
+      grid-template-areas: 'carousel main';
+      grid-template-columns: $thumbnailDimension*2  auto;
+      #mainphoto {
+        grid-area: main;
+      }
+      #image-thumbnail-slide-default {
+        grid-area: carousel;
+        // max-width: $thumbnailDimension;
+      }
+    }
   }
   #product-info-section {
     grid-area: info;
@@ -92,6 +104,10 @@ $overlayPercent: 80%;
   }
 }
 
+#image-thumbnail-slide-default {
+  max-width: $thumbnailDimension;
+}
+
 #image-gallery-overlay {
   z-index: 998;
   position: absolute;
@@ -102,8 +118,15 @@ $overlayPercent: 80%;
   background-color: white;
 }
 
+#image-thumbnail-slide-expanded {
+  // ADD CODE HERE
+}
+
 #mainphoto { // modify
-  height: $mainPhotoDimension;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
 }
 
 #expandedmainphoto { // modify
@@ -116,8 +139,6 @@ $overlayPercent: 80%;
   transform: scale(2.5);
   transform-origin: top left;
   background-repeat: no-repeat;
-  // height: 100%;
-  // width: 100%;
   width: 500px;
   height: 350px;
   box-shadow: 0 0 2px 5px black;
