@@ -50,7 +50,7 @@ export class RelatedCard extends Component {
       const { reviewAvg } = this.state;
       return (
         <div className="card-container">
-          <img src={photos[0][0].thumbnail_url} alt="defualt-style" />
+          <img src={photos[0][0].thumbnail_url} alt="default-style" />
           <div className="card-info-container">
             <p className="card-sub-text">{category}</p>
             <p className="card-info">{name}</p>
