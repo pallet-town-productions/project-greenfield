@@ -8,8 +8,7 @@ import Overview from '../../components/overview-components/overview';
 Enzyme.configure({ adapter: new Adapter() });
 
 // NOTES:
-  // exists likes basic html, doesn't like React Components
-
+// exists likes basic html, doesn't like React Components
 
 
 describe('components', () => {
