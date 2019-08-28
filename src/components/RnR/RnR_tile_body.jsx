@@ -20,21 +20,20 @@ class TileBody extends React.Component {
   render() {
     let { body } = this.props;
     const { showFullBody } = this.state;
+    let buttonText;
+
+    if (showFullBody) {
+      buttonText = 'show less';
+    } else {
+      buttonText = 'show more';
+      body = body.slice(0, 250);
+    }
+
     if (body.length > 249) {
       body = (
         <div>
-          {showFullBody ? (
-            <div>
-              <p className="tile-body">{body}</p>
-              <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show Less</div>
-            </div>
-          )
-            : (
-              <div>
-                <p className="tile-body">{body.slice(0, 250)}</p>
-                <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show More</div>
-              </div>
-            )}
+          <p className="tile-body">{body}</p>
+          <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">{buttonText}</div>
         </div>
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
