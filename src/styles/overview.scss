@@ -44,10 +44,9 @@ $overlayPercent: 80%;
   margin: 5px;
   background-position: center center;
   object-fit: cover;
-}
-
-.thumbnail:hover {
-  box-shadow: 0 0 2px 1px gray;
+  &:hover {
+    box-shadow: 0 0 2px 1px gray;
+  }
 }
 
 .style-thumbnail {
@@ -59,7 +58,7 @@ $overlayPercent: 80%;
 }
 
 #image-gallery-overlay {
-  position: fixed;
+  position: absolute;
   height: $overlayPercent;
   width: $overlayPercent;
   // margin-left: (100% - $overlayPercent)/2;
@@ -76,10 +75,10 @@ $overlayPercent: 80%;
 }
 
 #zoomphoto {
+  position: fixed;
   transform: scale(2.5);
   transform-origin: top left;
   background-repeat: no-repeat;
-  position: fixed;
   // height: 100%;
   // width: 100%;
   width: 500px;
@@ -98,11 +97,34 @@ $overlayPercent: 80%;
   box-shadow: 0 0 2px 2px black;
 }
 
+#selected-style-thumbnail {
+  position: relative;
+}
+
 #check-icon {
   transform: scale($thumbnailDimension/80px);
-  position: fixed;
+  position: absolute;
   margin-left: $thumbnailDimension * 0.8;
   color: black;
+}
+
+#add-to-cart-button {
+  font-weight: bold;
+  display: inline-block;
+  background-color: #c29e00;
+  box-shadow: 0 0 2px 1px black;
+  border-radius: 2px;
+  padding: 2px;
+  margin: 4px;
+  i {
+    vertical-align: -1px;
+  }
+  span {
+    vertical-align: 4px;
+  }
+  &:hover {
+    background-color: #d3ac00;
+  }
 }
 
 #style-thumbnail-grid {
