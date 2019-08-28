@@ -15,20 +15,24 @@ export const StarBreakdown = (props) => {
         className="star-breakdown-item"
         key={rating}
       >
-        <span
+        <div
+          className="star-breakdown-div"
           onClick={() => {}}
           onKeyPress={() => {}}
-          role="button"
-          tabIndex={0}
+          role="presentation"
         >
-          {rating}
-          &nbsp;stars
+          <span
+            className="star-breakdown-span"
+          >
+            {rating}
+            &nbsp;stars
+          </span>
           <progress
             className="star-breakdown-bar bar"
             value={allRatings[rating]}
             max={totalRatings}
           />
-        </span>
+        </div>
       </li>
     ));
   return (
