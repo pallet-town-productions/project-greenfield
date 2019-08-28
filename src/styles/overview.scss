@@ -17,14 +17,9 @@ $overlayPercent: 80%;
   cursor: crosshair;
 }
 
-// .onHover-highlight {
-// for highlighting a thumbnail on hover
-// }
-
-// .onSelect-highlight {
-// for highlighting a style thumbnail on select
-  // includes corner checkmark
-// }
+.onHover-not-allowed {
+  cursor: not-allowed;
+}
 
 .show {
   display: inline-block;
@@ -123,6 +118,23 @@ $overlayPercent: 80%;
   }
 }
 
+#add-to-cart-button-out-of-stock {
+  font-weight: bold;
+  color: rgba(85, 85, 85, 0.89);
+  display: inline-block;
+  background-color: white;
+  box-shadow: 0 0 2px 1px black;
+  border-radius: 2px;
+  padding: 2px;
+  margin: 4px;
+  i {
+    vertical-align: -1px;
+  }
+  span {
+    vertical-align: 4px;
+  }
+}
+
 #style-thumbnail-grid {
   display: grid;
   grid-template-columns: $thumbnailDimension $thumbnailDimension $thumbnailDimension $thumbnailDimension;
@@ -139,4 +151,9 @@ $overlayPercent: 80%;
 
 #quantity-selector {
   // put in stuff
+}
+
+#select-size-prompt {
+  color: red;
+  font-size: 0.8em;
 }

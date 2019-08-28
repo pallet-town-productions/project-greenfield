@@ -26,8 +26,16 @@ const toggleShowQuantities = function (show) {
   };
 };
 
+const togglePromptSelectSize = function (show) {
+  return {
+    type: 'PROMPT_SELECT_SIZE',
+    promptSelectSize: show,
+  };
+};
+
 export {
   changeSize,
   changeQuantity,
   toggleShowQuantities,
+  togglePromptSelectSize,
 };

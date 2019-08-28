@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import { style, currentStyleIndex } from './overview-Reducers/styleSelector/styleSelectorReducers';
-import { currentSizeIndex, currentQuantity, showQuantities } from './overview-Reducers/addToCart/addToCartReducers';
+import {
+  currentSizeIndex, currentQuantity, showQuantities, promptSelectSize,
+} from './overview-Reducers/addToCart/addToCartReducers';
 import { currentPhotoIndex, showExpandedView, showZoomView } from './overview-Reducers/imageGallery/imageGalleryReducers';
 import productData from './overview-Reducers/productInformation/productDataReducers';
 import productId from './reducer-test';
@@ -23,4 +25,5 @@ export default combineReducers({
   showZoomView,
   productData,
   showQuantities,
+  promptSelectSize,
 });
