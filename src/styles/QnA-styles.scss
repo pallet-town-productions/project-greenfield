@@ -60,3 +60,17 @@
     max-height: 700px;
   }
 }
+
+.question-q-container {
+  display: flex;
+}
+
+.question-q-text-container {
+  width: 70%;
+}
+
+.questions-q-tools {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -29,25 +29,29 @@ class Question extends React.Component {
     } = this.props;
 
     return (
-      <div className="questionsQuestionContainer">
-        <p>
-          {`Q: ${data.question_body}`}
-        </p>
-        <span className="questionsQuestionTools">
-          <p id={`Q${data.question_id}`}>
-            Helpful?
-            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
-              <u>
-                Yes
-              </u>
-            </button>
-            (
-            {data.question_helpfulness}
-            )
-            |
-            <AddAnswer data={data} productName={productName} />
-          </p>
-        </span>
+      <div className="questions-qna-container">
+        <div className="question-q-container">
+          <div className="question-q-text-container">
+            <p>
+              {`Q: ${data.question_body}`}
+            </p>
+          </div>
+          <span className="questions-q-tools">
+            <p id={`Q${data.question_id}`}>
+              Helpful?
+              <button className="questions-helpful-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
+                <u>
+                  Yes
+                </u>
+              </button>
+              (
+              {data.question_helpfulness}
+              )
+              |
+              <AddAnswer data={data} productName={productName} />
+            </p>
+          </span>
+        </div>
         <div>
           <Answer
             data={data}
