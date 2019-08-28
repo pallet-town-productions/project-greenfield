@@ -32,6 +32,7 @@ class Answer extends React.Component {
     } = this.props;
 
     const { displayCount } = this.state;
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return (
       <div key={`da${data.answers}`}>
@@ -44,7 +45,7 @@ class Answer extends React.Component {
               <img key={`i${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
             ))}
             <p>
-              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
+              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)} | Helpful? `}
               <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
                 <u>Yes</u>
               </button>
