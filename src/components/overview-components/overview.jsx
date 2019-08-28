@@ -29,6 +29,7 @@ const Overview = function () {
         </span>
         <CategoryName />
         <ExpandedProductName />
+        <Price />
       </section>
       <section id="style-selector-section"><StyleSelector /></section>
       <section id="cart-section">
@@ -44,39 +45,6 @@ const Overview = function () {
         <FeatureList />
       </section>
     </main>
-
-
-    // <main>
-    //   <ZoomViewOverlay />
-    //   <ExpandedViewOverlay />
-    //   <header>SITE WIDE ANNOUNCEMENT:  SALE</header>
-    //   <section id="image-gallery"><ImageGallery /></section>
-    //   <summary>
-    //     <div>
-    //       <span>
-    //         <StarRating starCount={0.75} />
-    //         <a href="#scrollRnR">Read all reviews</a>
-    //       </span>
-    //     </div>
-    //     <div>
-    //       <CategoryName />
-    //     </div>
-    //     <div>
-    //       <ExpandedProductName />
-    //     </div>
-    //     <div>
-    //       <Price />
-    //     </div>
-    //     <StyleSelector />
-    //     <SizeSelector />
-    //     <QuantitySelector />
-    //     <AddToCartButton />
-    //   </summary>
-    //   <article>
-    //     <ProductDescription />
-    //     <SocialMediaButtons />
-    //   </article>
-    // </main>
   );
 };
 

@@ -56,24 +56,24 @@ $overlayPercent: 80%;
 #overview-grid-container {
   display: grid;
   grid-template-areas: 
-    'header header header header header'
-    'image image image name name'
-    'image image image style style'
-    'image image image cart cart'
+    'heading heading heading heading heading'
+    'main-image main-image main-image info info'
+    'main-image main-image main-image style-selector style-selector'
+    'main-image main-image main-image cart cart'
     'description description description features features';
   grid-gap: 10px; //modify
   padding: 10px; //modify
   header {
-    grid-area: header;
+    grid-area: heading;
   }
   #image-gallery-section {
-    grid-area: image;
+    grid-area: main-image;
   }
   #product-info-section {
-    grid-area: name;
+    grid-area: info;
   }
   #style-selector-section {
-    grid-area: style;
+    grid-area: style-selector;
   }
   #cart-section {
     grid-area: cart;
