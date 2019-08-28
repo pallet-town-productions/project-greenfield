@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import PictureModal from './PictureModal';
 
 class Answer extends React.Component {
   constructor(props, {
@@ -32,19 +33,20 @@ class Answer extends React.Component {
     } = this.props;
 
     const { displayCount } = this.state;
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return (
       <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
-          <span key={`s${answer.id}`} className="questionsAnswerTools">
+          <span key={`sa${answer.id}`} className="questionsAnswerTools">
             <p>
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
-              <img key={`i${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+              <PictureModal key={`pa${answer.id}`} photo={photo} answer={answer} />
             ))}
             <p>
-              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
+              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)} | Helpful? `}
               <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
                 <u>Yes</u>
               </button>
