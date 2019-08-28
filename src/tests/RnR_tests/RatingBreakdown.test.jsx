@@ -49,7 +49,6 @@ function testRatingBreakdown(testRatings) {
 
 describe('RnR - Rating Breakdown', () => {
   const { enzymeWrapper } = testRatingBreakdown(getMetaData);
-
   describe('Rating Calculations', () => {
     it('should correctly calculate average rating', () => {
       expect(enzymeWrapper.find('.rating-average').text()).toContain('4.5');
@@ -67,12 +66,12 @@ describe('RnR - Rating Breakdown', () => {
 });
 
 // Star Breakdown (child of RatingBreakdown)
-function testStarBreakdown(testRatings, totalRatings) {
+function testStarBreakdown(testRatings, testCount) {
   const props = {
   };
   const enzymeWrapper = shallow(<StarBreakdown
     allRatings={testRatings}
-    totalRatings={totalRatings}
+    totalRatings={testCount}
   />);
   return {
     props,
@@ -81,14 +80,17 @@ function testStarBreakdown(testRatings, totalRatings) {
 }
 
 describe('RnR - StarBreakdown', () => {
+  const testRatings = {
+    1: 3, 2: 0, 3: 0, 4: 5, 5: 0,
+  };
+  const testCount = 8;
+  const { enzymeWrapper } = testStarBreakdown(testRatings, testCount);
   it('should have an ul element with 5 li elements for star breakdown', () => {
-    const { enzymeWrapper } = testStarBreakdown({ 1: 3, 4: 5 }, 8);
     expect((enzymeWrapper.find('ul').length)).toBe(1);
     expect((enzymeWrapper.find('li').length)).toBe(5);
   });
 
-  it('should render all child elements even if all 5 star properties are not passed', () => {
-    const { enzymeWrapper } = testStarBreakdown({ 4: 3, 5: 5 }, 8);
+  it('should render all 5 child elements', () => {
     expect(enzymeWrapper.find('ul').childAt(0).type()).toBe('li');
     expect(enzymeWrapper.find('ul').childAt(1).type()).toBe('li');
     expect(enzymeWrapper.find('ul').childAt(2).type()).toBe('li');
@@ -96,14 +98,7 @@ describe('RnR - StarBreakdown', () => {
     expect(enzymeWrapper.find('ul').childAt(4).type()).toBe('li');
   });
 
-  it('should render all elements if no props passed', () => {
-    const { enzymeWrapper } = testStarBreakdown();
-    expect((enzymeWrapper.find('ul').length)).toBe(1);
-    expect((enzymeWrapper.find('li').length)).toBe(5);
-  });
-
   it('should have proper classes assigned to elements', () => {
-    const { enzymeWrapper } = testStarBreakdown({ 1: 3, 4: 5 }, 8);
     expect(enzymeWrapper.find('ul').hasClass('star-breakdown')).toBe(true);
     expect(enzymeWrapper.find('ul').childAt(0).hasClass('star-breakdown-item')).toBe(true);
   });

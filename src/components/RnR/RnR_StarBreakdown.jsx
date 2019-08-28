@@ -8,29 +8,26 @@ const mapStateToProps = (state) => ({
 
 export const StarBreakdown = (props) => {
   const { allRatings, totalRatings } = props;
+  const sortedList = Object.keys(allRatings)
+    .sort((a, b) => b - a)
+    .map((rating) => (
+      <li
+        className="star-breakdown-item"
+        key={rating}
+      >
+        <span>
+          {rating}
+          &nbsp;stars
+        </span>
+        <progress
+          className="star-breakdown-bar bar"
+          value={allRatings[rating]}
+          max={totalRatings}
+        />
+      </li>
+    ));
   return (
-    <ul className="star-breakdown breakdown-list">
-      <li className="star-breakdown-item">
-        <a href="google.com">5 stars</a>
-        <progress className="star-breakdown-bar bar" value={allRatings[5]} max={totalRatings} />
-      </li>
-      <li className="star-breakdown-item">
-        <a href="google.com">4 stars</a>
-        <progress className="star-breakdown-bar bar" value={allRatings[4]} max={totalRatings} />
-      </li>
-      <li className="star-breakdown-item">
-        <a href="google.com">3 stars</a>
-        <progress className="star-breakdown-bar bar" value={allRatings[3]} max={totalRatings} />
-      </li>
-      <li className="star-breakdown-item">
-        <a href="google.com">2 stars</a>
-        <progress className="star-breakdown-bar bar" value={allRatings[2]} max={totalRatings} />
-      </li>
-      <li className="star-breakdown-item">
-        <a href="google.com">1 stars</a>
-        <progress className="star-breakdown-bar bar" value={allRatings[1]} max={totalRatings} />
-      </li>
-    </ul>
+    <ul className="star-breakdown breakdown-list">{sortedList}</ul>
   );
 };
 
