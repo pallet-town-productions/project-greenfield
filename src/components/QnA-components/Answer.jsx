@@ -20,9 +20,7 @@ class Answer extends React.Component {
 
     this.increaseDisplayCount = () => {
       const { displayCount } = this.state;
-      this.setState({ displayCount: displayCount + 2 }, () => {
-        console.log(this.state);
-      });
+      this.setState({ displayCount: displayCount + 2 });
     };
   }
 
@@ -36,14 +34,14 @@ class Answer extends React.Component {
     const { displayCount } = this.state;
 
     return (
-      <div>
+      <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
-          <span className="questionsAnswerTools">
+          <span key={`s${answer.id}`} className="questionsAnswerTools">
             <p>
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
-              <img alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
+              <img key={`i${answer.id}`} alt={`Uploaded by: ${answer.answerer_name}`} src={photo} className="thumbnail" />
             ))}
             <p>
               {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString()} | Helpful? `}
@@ -55,9 +53,8 @@ class Answer extends React.Component {
                 <u>Report</u>
               </button>
             </p>
-            {console.log(data.answers[1360])}
-            {data.answers[Object.keys(data.answers).length - displayCount] === answer
-              && displayCount <= Object.keys(data.answers).length
+            {data.answers[Object.keys(data.answers)[displayCount - 1]] === answer
+              && displayCount < Object.keys(data.answers).length
               ? <button type="button" onClick={this.increaseDisplayCount}>Load More Answers...</button> : ''}
           </span>
         ))}
