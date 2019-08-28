@@ -33,7 +33,15 @@ class TileBody extends React.Component {
       body = (
         <div>
           <p className="tile-body">{body}</p>
-          <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">{buttonText}</div>
+          <div
+            className="show"
+            onClick={this.showFullBody.bind(this)}
+            onKeyDown={this.showFullBody.bind(this)}
+            tabIndex={0}
+            role="link"
+          >
+            {buttonText}
+          </div>
         </div>
       );
     } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
