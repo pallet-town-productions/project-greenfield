@@ -10,14 +10,33 @@ const mapStateToProps = (state) => ({
 
 export const RatingBreakdown = ({ getMetaData }) => {
   const { ratings } = getMetaData;
-  const averageStars = 3.5;
+
+  const defaultRatings = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  };
+  const allRatings = { ...defaultRatings, ...ratings };
+  const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
+  const totalRatings = Object.values(allRatings).reduce(sumReducer);
+  const sum = Object.values(allRatings)
+    .map((starcount, index) => (starcount * index))
+    .reduce(sumReducer);
+  const averageStars = totalRatings > 0 ? (sum / totalRatings).toFixed(1) : 0;
+  const recommended = 0;
+
   return (
     <div className="rating-breakdown breakdown-widget">
       <h1 className="rating-average">
         {averageStars}
         <StarRating starCount={averageStars} />
       </h1>
-      <p className="percent-recommended">100% of reviews recommend this product</p>
+      <p className="percent-recommended">
+        {recommended}
+        % of reviews recommend this product
+      </p>
       <ConnectedStarBreakdown ratings={ratings} />
     </div>
   );
