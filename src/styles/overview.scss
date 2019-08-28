@@ -53,6 +53,7 @@ $overlayPercent: 80%;
 }
 
 #image-gallery-overlay {
+  z-index: 998;
   position: absolute;
   height: $overlayPercent;
   width: $overlayPercent;
@@ -70,6 +71,7 @@ $overlayPercent: 80%;
 }
 
 #zoomphoto {
+  z-index: 999;
   position: fixed;
   transform: scale(2.5);
   transform-origin: top left;
