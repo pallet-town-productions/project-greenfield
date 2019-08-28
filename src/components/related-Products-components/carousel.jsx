@@ -17,7 +17,7 @@ export const Carousel = (props) => {
   return (
     <div className="carousel-container">
       <Slider
-        dots
+        dots={false}
         infinite={false}
         speed={500}
         slidesToShow={4}
@@ -25,9 +25,7 @@ export const Carousel = (props) => {
       >
         {relatedReducer.map(
           (related, index) => (
-            <div>
-              <ConnectedRelatedCard index={index + 1} key={related} productId={related} />
-            </div>
+            <ConnectedRelatedCard index={index + 1} key={related} productId={related} />
           ),
         )}
       </Slider>

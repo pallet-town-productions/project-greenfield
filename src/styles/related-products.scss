@@ -3,28 +3,59 @@
 .card-container {
   height: 300px;
   width: 200px;
-  background-color: $tileColor;
+  background-color: $widgetColor;
   border-color: $borderColor;
   border-width: $borderThickness;
   font-family: $font;
   border-style: solid;
-  margin: $defaultMargin;
+  margin: auto;
+  margin-bottom: 10px;
   padding: $defaultPadding;
+  display: flex;
+  flex-direction: column;
 }
 
 .related-products-container {
   font-family: $font;
-  // display: flex;
-  // align-items: center;
-  // flex-direction: column;
+  background-color: $tileColor;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
   max-width: 100%;
-  max-height: 90%;
+  max-height: 70%;
 }
 
 .slick-prev:before,
 .slick-next:before {
   color: black;
 }
+
+.related-title {
+  display: flex;
+  justify-content: center;
+}
+
+.card-info {
+  padding: 0px;
+  margin: 0px;
+}
+
+.card-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.card-sub-text {
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+}
+
+// .slick-slide {
+//   margin-left: 20px;
+// }
+

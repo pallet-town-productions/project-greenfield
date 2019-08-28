@@ -21,13 +21,11 @@ export class RelatedProducts extends Component {
   }
 
   render() {
-    const { productId } = this.props;
     return (
       <div className="related-products-container">
-        <p>
-          Products Related To:
-          {productId}
-        </p>
+        <span className="related-title">
+          <p>Related Products:</p>
+        </span>
         <ConnectedCarousel />
       </div>
     );
