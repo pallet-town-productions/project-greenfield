@@ -37,7 +37,9 @@ const ProductDescriptionComponent = function ({ productData }) {
   );
 };
 
-const FeatureList = function ({ featureList, productId }) {
+const FeatureListComponent = function ({ productData }) {
+  const featureList = productData.features;
+  const productId = productData.id;
   return (
     <ul>
       {
@@ -95,21 +97,23 @@ const PRODUCTDATAPROPTYPES = {
 ExpandedProductNameComponent.propTypes = PRODUCTDATAPROPTYPES;
 CategoryNameComponent.propTypes = PRODUCTDATAPROPTYPES;
 ProductDescriptionComponent.propTypes = PRODUCTDATAPROPTYPES;
+FeatureListComponent.propTypes = PRODUCTDATAPROPTYPES;
 SocialMediaButtonsComponent.propTypes = {
   thisUrl: PT.string.isRequired,
   currentBigPicture: PT.string.isRequired,
   ...PRODUCTDATAPROPTYPES,
 };
-FeatureList.propTypes = PRODUCTDATAPROPTYPES.features;
 
 const ExpandedProductName = connect(mapStateToProps, null)(ExpandedProductNameComponent);
 const CategoryName = connect(mapStateToProps, null)(CategoryNameComponent);
 const ProductDescription = connect(mapStateToProps, null)(ProductDescriptionComponent);
+const FeatureList = connect(mapStateToProps, null)(FeatureListComponent);
 const SocialMediaButtons = connect(mapStateToProps, null)(SocialMediaButtonsComponent);
 
 export {
   ExpandedProductName,
   CategoryName,
   ProductDescription,
+  FeatureList,
   SocialMediaButtons,
 };

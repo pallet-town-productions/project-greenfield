@@ -53,6 +53,44 @@ $overlayPercent: 80%;
   margin: 5px 10px;
 }
 
+#overview-grid-container {
+  display: grid;
+  grid-template-areas: 
+    'header header header header header'
+    'image image image name name'
+    'image image image style style'
+    'image image image cart cart'
+    'description description description features features';
+  grid-gap: 10px; //modify
+  padding: 10px; //modify
+  header {
+    grid-area: header;
+  }
+  #image-gallery-section {
+    grid-area: image;
+  }
+  #product-info-section {
+    grid-area: name;
+  }
+  #style-selector-section {
+    grid-area: style;
+  }
+  #cart-section {
+    grid-area: cart;
+  };
+  #description-section {
+    grid-area: description;
+  }
+  #features-section {
+    grid-area: features;
+  }
+  // section {
+  //   // text-align: center;
+  //   // padding: 20px 0;
+  //   // font-size: 30px;
+  // }
+}
+
 #image-gallery-overlay {
   z-index: 998;
   position: absolute;
