@@ -25,8 +25,18 @@ const showQuantities = function (show = false, action) {
   }
 };
 
+const promptSelectSize = function (show = false, action) {
+  switch (action.type) {
+    case 'PROMPT_SELECT_SIZE':
+      return action.promptSelectSize;
+    default:
+      return show;
+  }
+};
+
 export {
   currentSizeIndex,
   currentQuantity,
   showQuantities,
+  promptSelectSize,
 };
