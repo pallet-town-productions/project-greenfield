@@ -10,7 +10,6 @@ import LowerBar from './RnR_tile_lower_bar';
 
 
 const Tile = (props) => {
-
   const { review } = props;
   const { body } = review;
   let { response } = review;
