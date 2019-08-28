@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Modal from './Modal';
 
 class AddAnswer extends React.Component {
-  constructor(props, { data }) {
-    super(props, { data });
+  constructor(props, { data, productName }) {
+    super(props, { data, productName });
 
     this.state = {
       show: false,
@@ -23,21 +23,41 @@ class AddAnswer extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { data } = this.props;
+    const { data, productName } = this.props;
     return (
       <button type="button" onClick={() => this.showModal(true)}>
         <u>Add Answer</u>
         <Modal show={show}>
           <h1>Submit your Answer</h1>
-          <h3>{`PRODUCT NAME: ${data.question_body}`}</h3>
+          <h3>{`${productName}: ${data.question_body}`}</h3>
           <form name="QnA-add-answer-form">
-            <textarea name="text" id="QnA-modal-body" className="questionsModalAnswer" type="text" placeholder="Your answer here..." />
+            <textarea
+              id="QnA-modal-body"
+              className="questionsModalAnswer"
+              type="text"
+              placeholder="Your answer here..."
+            />
             <br />
-            <input id="QnA-modal-nickname" className="questionsModalAnswerNick" type="text" placeholder="Your Nickname" />
+            <input
+              id="QnA-modal-nickname"
+              className="questionsModalAnswerNick"
+              type="text"
+              placeholder="Your Nickname"
+            />
             <br />
-            <input name="qna-email-field" id="QnA-modal-email" className="questionsModalAnswerEmail" placeholder="Email" type="text" />
+            <input
+              id="QnA-modal-email"
+              className="questionsModalAnswerEmail"
+              type="text"
+              placeholder="Email"
+            />
             <br />
-            <input id="QnA-modal-pic" className="questionsModalAnswerPic" type="text" placeholder="URL link to picture" />
+            <input
+              id="QnA-modal-pic"
+              className="questionsModalAnswerPic"
+              type="text"
+              placeholder="URL link to picture"
+            />
             <br />
             <input
               type="submit"
@@ -45,7 +65,7 @@ class AddAnswer extends React.Component {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const test = {
+                const questionReq = {
                   body: document.getElementById('QnA-modal-body').value,
                   name: document.getElementById('QnA-modal-nickname').value,
                   email: document.getElementById('QnA-modal-email').value,
@@ -54,7 +74,7 @@ class AddAnswer extends React.Component {
 
                 fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
                   method: 'POST',
-                  body: JSON.stringify(test),
+                  body: JSON.stringify(questionReq),
                   headers: {
                     'Content-Type': 'application/json',
                   },
@@ -82,6 +102,7 @@ AddAnswer.propTypes = {
     question_body: PropTypes.string.isRequired,
     question_id: PropTypes.number.isRequired,
   }),
+  productName: PropTypes.string.isRequired,
 };
 
 AddAnswer.defaultProps = {

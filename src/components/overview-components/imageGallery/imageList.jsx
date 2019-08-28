@@ -7,11 +7,13 @@ import { zeroPad } from '../../../util/util';
 // import bunch of other child components
 
 const mapStateToProps = function (state) {
-  const { currentStyleIndex } = state;
+  const { currentStyleIndex, currentPhotoIndex } = state;
   const imageList = state.style.results[currentStyleIndex].photos;
   return {
     // currently selected Style as an index of all styles FOR THIS PRODUCT
     currentStyleIndex,
+    // currently selected photo, to render thumbnail with highlight
+    currentPhotoIndex,
     // list of images for the currently selected Style
     imageList,
   };
@@ -19,13 +21,15 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSwitchStyle: (photoIndex) => {
+    handleSwitchPhoto: (photoIndex) => {
       dispatch(changePhoto(photoIndex));
     },
   };
 };
 
-const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle }) {
+const ImageList = function ({
+  currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto,
+}) {
   return (
     <ul>
       {imageList.map((image, imageIndex) => {
@@ -35,7 +39,8 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
             key={zeroPad(key)}
             photoIndex={imageIndex}
             url={imageList[imageIndex].thumbnail_url}
-            handleClick={handleSwitchStyle}
+            handleClick={handleSwitchPhoto}
+            isSelected={currentPhotoIndex === imageIndex}
           />
         );
       })}
@@ -45,11 +50,12 @@ const ImageList = function ({ currentStyleIndex, imageList, handleSwitchStyle })
 
 ImageList.propTypes = {
   currentStyleIndex: PT.number.isRequired,
+  currentPhotoIndex: PT.number.isRequired,
   imageList: PT.arrayOf(PT.shape({
     thumbnail_url: PT.string.isRequired,
     url: PT.string.isRequired,
   })).isRequired,
-  handleSwitchStyle: PT.func.isRequired,
+  handleSwitchPhoto: PT.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
