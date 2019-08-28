@@ -84,11 +84,12 @@ $overlayPercent: 80%;
   #features-section {
     grid-area: features;
   }
-  // section {
-  //   // text-align: center;
-  //   // padding: 20px 0;
-  //   // font-size: 30px;
-  // }
+  section {
+    background-color: white;
+    // text-align: center;
+    // padding: 20px 0;
+    // font-size: 30px;
+  }
 }
 
 #image-gallery-overlay {
