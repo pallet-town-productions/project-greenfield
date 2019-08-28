@@ -72,7 +72,7 @@ class Sort extends Component {
             <option value="date">Date</option>
             <option value="helpfulness">Helpfulness</option>
           </select>
-          <input type="submit" value="Submit" />
+          <button type="submit" value="Submit">Select</button>
         </form>
         <List />
       </div>
