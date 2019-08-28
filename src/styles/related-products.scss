@@ -10,6 +10,8 @@
   border-style: solid;
   margin: $defaultMargin;
   padding: $defaultPadding;
+  display: flex;
+  flex-direction: column;
 }
 
 .related-products-container {
@@ -31,4 +33,16 @@ img {
 
 .related-title {
   text-align: center;
+}
+
+.card-info {
+  padding: 0px;
+  margin: 0px;
+}
+
+.card-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: auto;
 }

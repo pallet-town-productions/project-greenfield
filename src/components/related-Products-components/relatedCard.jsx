@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import StarRating from '../RnR/RnR_StarRating'
+import StarRating from '../RnR/RnR_StarRating';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
@@ -17,6 +17,7 @@ export class RelatedCard extends Component {
       loading: true,
       productData: {
         name: null,
+        default_price: null,
       },
     };
   }
@@ -42,13 +43,20 @@ export class RelatedCard extends Component {
     if (!loading) {
       const { photos } = this.state;
       const { productData } = this.state;
+      const { default_price } = productData;
       const { name } = productData;
       const { reviewAvg } = this.state;
       return (
         <div className="card-container">
           <img src={photos[0][0].thumbnail_url} alt="defualt-style" />
-          <p>{name}</p>
-          <StarRating starCount={reviewAvg} />
+          <div className="card-info-container">
+            <p className="card-info">{name}</p>
+            <p className="card-info">
+              $
+              {default_price}
+            </p>
+            <StarRating starCount={reviewAvg || 0} />
+          </div>
         </div>
       );
     }
