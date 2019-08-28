@@ -47,7 +47,6 @@ function testRatingBreakdown(testRatings) {
   };
 }
 
-
 describe('RnR - Rating Breakdown', () => {
   const { enzymeWrapper } = testRatingBreakdown(getMetaData);
 
