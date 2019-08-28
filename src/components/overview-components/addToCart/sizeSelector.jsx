@@ -30,6 +30,7 @@ const mapDispatchToProps = function (dispatch) {
 const SizeSelector = function ({ sizeList, sizeSkus, handleChangeSize }) {
   return (
     <div id="size-selector" className="dropdown-selector">
+      <br />
       <select
         onChange={() => { handleChangeSize(); }}
         id="current-size"
