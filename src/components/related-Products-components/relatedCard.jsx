@@ -18,6 +18,7 @@ export class RelatedCard extends Component {
       productData: {
         name: null,
         default_price: null,
+        category: null,
       },
     };
   }
@@ -44,14 +45,16 @@ export class RelatedCard extends Component {
       const { photos } = this.state;
       const { productData } = this.state;
       const { default_price } = productData;
+      const { category } = productData;
       const { name } = productData;
       const { reviewAvg } = this.state;
       return (
         <div className="card-container">
           <img src={photos[0][0].thumbnail_url} alt="defualt-style" />
           <div className="card-info-container">
+            <p className="card-sub-text">{category}</p>
             <p className="card-info">{name}</p>
-            <p className="card-info">
+            <p className="card-sub-text">
               $
               {default_price}
             </p>
