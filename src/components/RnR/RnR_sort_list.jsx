@@ -52,7 +52,11 @@ class Sort extends Component {
 
   handleTypeChange(event) {
     this.setState({ currentView: event.target.value });
+  }
+
+  handleSubmit(event) {
     this.getAllReviews();
+    event.preventDefault();
   }
 
   render() {
@@ -61,13 +65,14 @@ class Sort extends Component {
     const upperStr = `${updateReviews.length} reviews, sorted by `;
     return (
       <div className="tile-container">
-        <form className="sort-list">
+        <form className="sort-list" onSubmit={this.handleSubmit.bind(this)}>
           {upperStr}
           <select className="selector" value={currentView} onChange={this.handleTypeChange.bind(this)}>
             <option value="relevance">Relevance</option>
             <option value="date">Date</option>
             <option value="helpfulness">Helpfulness</option>
           </select>
+          <input type="submit" value="Submit" />
         </form>
         <List />
       </div>
