@@ -44,7 +44,7 @@ export class RelatedCard extends Component {
     if (!loading) {
       const { photos } = this.state;
       const { productData } = this.state;
-      const { default_price } = productData;
+      const { default_price: defaultPrice } = productData;
       const { category } = productData;
       const { name } = productData;
       const { reviewAvg } = this.state;
@@ -56,7 +56,7 @@ export class RelatedCard extends Component {
             <p className="card-info">{name}</p>
             <p className="card-sub-text">
               $
-              {default_price}
+              {defaultPrice}
             </p>
             <StarRating starCount={reviewAvg || 0} />
           </div>
