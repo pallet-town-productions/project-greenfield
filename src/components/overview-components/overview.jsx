@@ -4,6 +4,7 @@ import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
 import SizeSelector from './addToCart/sizeSelector';
 import QuantitySelector from './addToCart/quantitySelector';
+import AddToCartButton from './addToCart/addToCartButton';
 import {
   ExpandedProductName, CategoryName, ProductDescription, SocialMediaButtons,
 } from './productInformation/productInfo';
@@ -25,8 +26,7 @@ const Overview = function () {
         <div>
           <span>
             <StarRating starCount={0.75} />
-            <a href="http://www.google.com">Read all reviews</a>
-            {/* how does it ultimately communicate with RnR? */}
+            <a href="#scrollRnR">Read all reviews</a>
           </span>
         </div>
         <div>
@@ -41,6 +41,7 @@ const Overview = function () {
         <StyleSelector />
         <SizeSelector />
         <QuantitySelector />
+        <AddToCartButton />
       </summary>
       <article>
         <ProductDescription />
