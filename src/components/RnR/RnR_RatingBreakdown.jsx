@@ -22,12 +22,11 @@ export const RatingBreakdown = ({ getMetaData }) => {
     1: 0,
   };
   const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
-
   // Calculate Rating Distribution and Average Star Rating
   const allRatings = { ...defaultRatings, ...ratings };
   const totalRatings = Object.values(allRatings).reduce(sumReducer);
   const sumofRatings = Object.values(allRatings)
-    .map((starcount, index) => (starcount * index))
+    .map((starcount, index) => (starcount * (index + 1)))
     .reduce(sumReducer);
   const averageStars = totalRatings > 0 ? parseFloat((sumofRatings / totalRatings).toFixed(1)) : 0;
 
