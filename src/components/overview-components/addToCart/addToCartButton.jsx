@@ -1,12 +1,12 @@
 import React from 'react';
-import PT from 'prop-types';
+// import PT from 'prop-types';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    // have multiple actions for multiple functionalities of AddToCartButton
-  };
-};
+// const mapDispatchToProps = function (dispatch) {
+//   return {
+//     // have multiple actions for multiple functionalities of AddToCartButton
+//   };
+// };
 
 const AddToCartButton = function () {
   return (
