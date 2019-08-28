@@ -4,22 +4,16 @@ import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 import StarRating from './RnR_StarRating';
 import PhotoThumbnails from './RnR_tile_photos';
+import TileBody from './RnR_tile_body';
 
 
 class Tile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showFullBody: false,
       hasVotedHelpfulness: false,
       hasReported: false,
     };
-  }
-
-  showFullBody() {
-    this.setState((prevState) => ({
-      showFullBody: !prevState.showFullBody,
-    }));
   }
 
   markAsHelpful() {
@@ -57,30 +51,11 @@ class Tile extends React.Component {
     let { body } = review;
     let { response } = review;
     const summary = review.summary.slice(0, 60);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     const photos = review.photos.map((photo) => (
       <PhotoThumbnails photo={photo} />
     ));
-
-    if (body.length > 249) {
-      const { showFullBody } = this.state;
-      body = (
-        <div>
-          {showFullBody ? (
-            <div>
-              <p className="tile-body">{body}</p>
-              <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show Less</div>
-            </div>
-          )
-            : (
-              <div>
-                <p className="tile-body">{body.slice(0, 250)}</p>
-                <div className="show" onClick={this.showFullBody.bind(this)} onKeyDown={this.showFullBody.bind(this)} tabIndex={0} role="link">Show More</div>
-              </div>
-            )}
-        </div>
-      );
-    } else { body = <p className="tile-body">{body.slice(0, 1000)}</p>; }
 
     if (review.response !== 'null') {
       response = (
@@ -98,7 +73,6 @@ class Tile extends React.Component {
       recommend = <p className="recommend">&#10004; I recommend this product</p>;
     }
 
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return (
       <div className="tile">
         <div className="top-row">
@@ -110,10 +84,10 @@ class Tile extends React.Component {
           </p>
         </div>
         <p className="summary">{summary}</p>
-        <div className="body">{body}</div>
+        <div className="body"><TileBody body={body}/></div>
         <div className="recommend">{recommend}</div>
         <div>{response}</div>
-        <div>{photos}</div>
+        <div className="photos">{photos}</div>
         <div className="lower-row">
           <p className="lower">Helpful?</p>
           <div className="lower test" onClick={this.markAsHelpful.bind(this)} onKeyUp={this.markAsHelpful.bind(this)} tabIndex={0} role="link">Yes</div>
