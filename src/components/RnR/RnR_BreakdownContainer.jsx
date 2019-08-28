@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import RatingBreakdown from './RnR_RatingBreakdown';
+import ConnectedRatingBreakdown from './RnR_RatingBreakdown';
 import ProductBreakdown from './RnR_ProductBreakdown';
 import getMetaData from '../../actions/RnR-Actions/RnR-meta-action';
 import '../../styles/RnR-breakdown.scss';
@@ -22,7 +22,7 @@ export class BreakdownContainer extends Component {
   render() {
     return (
       <div className="breakdown-container">
-        <RatingBreakdown />
+        <ConnectedRatingBreakdown />
         <ProductBreakdown />
       </div>
     );
