@@ -6,10 +6,10 @@ import StarRating from '../../RnR/RnR_StarRating';
 const mapStateToProps = function (state) {
   const { updateReviews } = state;
   return { updateReviews };
-}
+};
 
 const ReviewsLinkComponent = function ({ updateReviews }) {
-  let readReviewsString = function (numReviews) {
+  const readReviewsString = (function (numReviews) {
     switch (numReviews) {
       case 0:
         return '';
@@ -18,7 +18,7 @@ const ReviewsLinkComponent = function ({ updateReviews }) {
       default:
         return `Read all ${numReviews} reviews`;
     }
-  }(updateReviews.length);
+  }(updateReviews.length));
 
   return (
     <span>
@@ -30,6 +30,6 @@ const ReviewsLinkComponent = function ({ updateReviews }) {
 
 ReviewsLinkComponent.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,
-}
+};
 
 export default connect(mapStateToProps, null)(ReviewsLinkComponent);
