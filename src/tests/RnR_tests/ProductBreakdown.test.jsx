@@ -18,7 +18,6 @@ function testProductBreakdown() {
 
 describe('RnR - Product Breakdown', () => {
   describe('Util Functions', () => {
-
     describe('setProductRatingValue', () => {
       test('should have default value of 0 for left, center, and right if no value passed', () => {
         const ratingValues = setProductRatingValue();
