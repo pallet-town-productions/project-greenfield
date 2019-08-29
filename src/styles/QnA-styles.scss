@@ -95,6 +95,19 @@
   outline: none;
 }
 
+.qna-load-more-q {
+  display: inline-block;
+  height: 60px;
+  width: 275px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid black;
+}
+
+.qna-load-more-q:hover {
+  cursor: pointer;
+}
+
 #qna-searchbar::-webkit-input-placeholder {
   font-family: 'arabic-font-2013bold';
   font-size: 18px;
