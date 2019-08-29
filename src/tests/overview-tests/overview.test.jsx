@@ -141,7 +141,7 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-
+  it('should display the correct number of thumbnails in the selector', ()=> {} )
 });
 
 // describe('Header', () => {});

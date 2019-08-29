@@ -32,7 +32,7 @@ const Overview = function () {
         <section id="product-info-section">
           <span>
             <StarRating starCount={0.75} />
-            <a href="#scrollRnR">Read all reviews</a>
+            <a href="#scrollRnR">{`Read all ${updateReviews.length} reviews`}</a>
           </span>
           <CategoryName />
           <ExpandedProductName />
