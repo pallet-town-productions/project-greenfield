@@ -39,7 +39,7 @@ class Answer extends React.Component {
       <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
           <span key={`sa${answer.id}`} className="questionsAnswerTools">
-            <p style={{ fontSize: '18px', color: '#524242', marginTop: Object.values(data.answers)[0] === answer ? 0 : '' }}>
+            <p style={{ fontSize: '18px', color: '#524242', margin: 0 }}>
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (

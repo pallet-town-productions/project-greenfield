@@ -43,7 +43,7 @@ class Question extends React.Component {
             </p>
           </div>
           <span className="questions-q-tools">
-            <p style={{ fontSize: '14px', color: 'gray', fontFamily: 'Arial' }} id={`Q${data.question_id}`}>
+            <p style={{ fontSize: '14px', color: 'gray', fontFamily: 'Arial', margin: 0}} id={`Q${data.question_id}`}>
               Helpful?
               <button className="questions-helpful-btn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
                 <u style={{ fontSize: '13px', color: 'gray' }}>
