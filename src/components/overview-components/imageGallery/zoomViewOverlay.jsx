@@ -38,8 +38,8 @@ const ZoomViewDisplay = function ({
     >
       <ImageMain
         handleClick={handleHideZoomView}
-        onHover="onHover-zoomout"
-        thisId="zoomphoto"
+        onHover="cursor-zoomout"
+        thisId="zoom-photo"
       />
     </div>
   );

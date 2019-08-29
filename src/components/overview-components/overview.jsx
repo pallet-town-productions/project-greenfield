@@ -1,12 +1,13 @@
 import React from 'react';
 // import child components
+import Header from './header';
 import ImageGallery from './imageGallery/imageGallery';
 import StyleSelector from './styleSelector/styleSelector';
 import SizeSelector from './addToCart/sizeSelector';
 import QuantitySelector from './addToCart/quantitySelector';
 import AddToCartButton from './addToCart/addToCartButton';
 import {
-  ExpandedProductName, CategoryName, ProductDescription, SocialMediaButtons,
+  ExpandedProductName, CategoryName, ProductDescription, FeatureList, SocialMediaButtons,
 } from './productInformation/productInfo';
 import ExpandedViewOverlay from './imageGallery/expandedViewOverlay';
 import ZoomViewOverlay from './imageGallery/zoomViewOverlay';
@@ -17,37 +18,41 @@ import '../../styles/overview.scss';
 
 const Overview = function () {
   return (
-    <main>
+    <div>
       <ZoomViewOverlay />
-      <ExpandedViewOverlay />
-      <header>SITE WIDE ANNOUNCEMENT:  SALE</header>
-      <ImageGallery />
-      <summary>
-        <div>
+      <main id="overview-grid-container">
+        <ExpandedViewOverlay />
+        <header>
+          <Header />
+          SITE WIDE ANNOUNCEMENT:  SALE
+        </header>
+        <section id="image-gallery-section">
+          <ImageGallery />
+        </section>
+        <section id="product-info-section">
           <span>
             <StarRating starCount={0.75} />
             <a href="#scrollRnR">Read all reviews</a>
           </span>
-        </div>
-        <div>
           <CategoryName />
-        </div>
-        <div>
           <ExpandedProductName />
-        </div>
-        <div>
           <Price />
-        </div>
-        <StyleSelector />
-        <SizeSelector />
-        <QuantitySelector />
-        <AddToCartButton />
-      </summary>
-      <article>
-        <ProductDescription />
-        <SocialMediaButtons />
-      </article>
-    </main>
+        </section>
+        <section id="style-selector-section"><StyleSelector /></section>
+        <section id="cart-section">
+          <SizeSelector />
+          <QuantitySelector />
+          <AddToCartButton />
+        </section>
+        <section id="description-section">
+          <ProductDescription />
+          <SocialMediaButtons />
+        </section>
+        <section id="features-section">
+          <FeatureList />
+        </section>
+      </main>
+    </div>
   );
 };
 

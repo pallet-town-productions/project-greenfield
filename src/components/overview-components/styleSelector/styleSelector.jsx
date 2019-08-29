@@ -24,7 +24,10 @@ const mapDispatchToProps = function (dispatch) {
 const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleIndex }) {
   return (
     <div>
-      <div id="style-name">{styleList[currentStyleIndex].name}</div>
+      <div id="style-name">
+        <strong>STYLE &gt; </strong>
+        {styleList[currentStyleIndex].name}
+      </div>
       <div id="style-thumbnail-grid">
         {
         styleList.map((styleObj, index) => (

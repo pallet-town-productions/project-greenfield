@@ -33,7 +33,7 @@ const AddToCartButton = function ({ isOutOfStock, handleClick }) {
       <div>
         <div
           id="add-to-cart-button-out-of-stock"
-          className="onHover-not-allowed"
+          className="cursor-not-allowed"
         >
           <i className="material-icons">
             remove_shopping_cart
@@ -47,7 +47,7 @@ const AddToCartButton = function ({ isOutOfStock, handleClick }) {
     <div>
       <div
         id="add-to-cart-button"
-        className="onHover-pointer"
+        className="cursor-pointer"
         onClick={handleClick}
         role="presentation"
       >
