@@ -1,16 +1,17 @@
+/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import initialData
-import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+// IMPORT initialData
+// import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
-// import components
+// IMPORT components
 import Overview from '../../components/overview-components/overview';
-// image gallery components
-import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-import ImageMain from '../../components/overview-components/imageGallery/imageMain';
-// product info components
+// IMPORT image gallery components
+// import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
+// import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+// IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
   ExpandedProductNameComponent,
@@ -115,25 +116,41 @@ describe('Product Information', () => {
     it('should display default price when there\'s no original price', () => {
       exampleStyle.results[0].original_price = '0';
       exampleStyle.results[0].sale_price = '0';
-      const wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0} />);
+      const wrapper = shallow(<PriceComponent
+        productData={exampleProductData}
+        style={exampleStyle}
+        currentStyleIndex={0}
+      />);
       expect(wrapper.find('span')).toHaveLength(1);
       expect(wrapper.find('span').text()).toEqual(`$${exampleProductData.default_price}`);
     });
     it('should display original price when there\'s no sale price', () => {
       exampleStyle.results[0].original_price = '2';
-      const wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0} />);
+      const wrapper = shallow(<PriceComponent
+        productData={exampleProductData}
+        style={exampleStyle}
+        currentStyleIndex={0}
+      />);
       expect(wrapper.find('span')).toHaveLength(1);
       expect(wrapper.find('span').text()).toEqual('$2');
     });
     it('should display sale price when there is a sale price', () => {
       exampleStyle.results[0].sale_price = '1';
-      let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0} />);
+      let wrapper = shallow(<PriceComponent
+        productData={exampleProductData}
+        style={exampleStyle}
+        currentStyleIndex={0}
+      />);
       expect(wrapper.find('span')).toHaveLength(2);
       expect(wrapper.find('span').get(0).props.children).toEqual('$1');
       expect(wrapper.find('span').get(1).props.children).toEqual('$2');
 
       exampleStyle.results[0].original_price = '0';
-      wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0} />);
+      wrapper = shallow(<PriceComponent
+        productData={exampleProductData}
+        style={exampleStyle}
+        currentStyleIndex={0}
+      />);
       expect(wrapper.find('span')).toHaveLength(2);
       expect(wrapper.find('span').get(1).props.children).toEqual(`$${exampleProductData.default_price}`);
     });
@@ -141,7 +158,7 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-  it('should display the correct number of thumbnails in the selector', () => {});
+  it('should display the correct number of thumbnails in the selector', () => { });
 });
 
 // describe('Header', () => {});
