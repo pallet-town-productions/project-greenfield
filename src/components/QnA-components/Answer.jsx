@@ -39,19 +39,26 @@ class Answer extends React.Component {
       <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
           <span key={`sa${answer.id}`} className="questionsAnswerTools">
-            <p style={{ fontSize: '18px', color: '#524242', margin: 0 }}>
-              {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
+            <p style={{ fontSize: '22px', color: '#3B3B3B', margin: 0 }}>
+              {Object.values(data.answers)[0] === answer ? `A: ${answer.body}`
+                : (
+                  <span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {answer.body}
+                  </span>
+                )}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
               <PictureModal key={`pa${answer.id}`} photo={photo} answer={answer} />
             ))}
             <p style={{
-              marginTop: 0,
+              marginTop: '7px',
               fontSize: '14px',
               color: 'gray',
               fontFamily: 'Arial',
             }}
             >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
               &nbsp;&nbsp;&nbsp;
               | &nbsp;&nbsp;&nbsp; Helpful?
