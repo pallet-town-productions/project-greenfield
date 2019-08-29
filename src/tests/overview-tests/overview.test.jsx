@@ -116,26 +116,32 @@ describe('Product Information', () => {
       exampleStyle.results[0].original_price = '0';
       exampleStyle.results[0].sale_price = '0';
       let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span')).toHaveLength(1);
       expect(wrapper.find('span').text()).toEqual(`$${exampleProductData.default_price}`);
     });
     it('should display original price when there\'s no sale price', () => {
       exampleStyle.results[0].original_price = '2';
       let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span')).toHaveLength(1);
       expect(wrapper.find('span').text()).toEqual(`$2`);
     });
     it('should display sale price when there is a sale price', () => {
       exampleStyle.results[0].sale_price = '1';
       let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span')).toHaveLength(2);
       expect(wrapper.find('span').get(0).props.children).toEqual(`$1`);
       expect(wrapper.find('span').get(1).props.children).toEqual(`$2`);
 
       exampleStyle.results[0].original_price = '0';
       wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span')).toHaveLength(2);
       expect(wrapper.find('span').get(1).props.children).toEqual(`$${exampleProductData.default_price}`);
     });
   });
 });
 
-// describe('Style Selector', () => {});
+describe('Style Selector', () => {
+
+});
 
 // describe('Header', () => {});
