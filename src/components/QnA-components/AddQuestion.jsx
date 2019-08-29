@@ -25,8 +25,14 @@ class AddQuestion extends React.Component {
     const { show } = this.state;
     const { productId, productName } = this.props;
     return (
-      <button type="button" onClick={() => this.showModal(true)}>
-        <u>ADD A QUESTION</u>
+      <span
+        role="presentation"
+        className="qna-add-q-btn"
+        onClick={() => this.showModal(true)}
+      >
+        <p style={{ lineHeight: '20px', textAlign: 'center', fontSize: '18px' }}>
+          ADD A QUESTION
+        </p>
         <Modal show={show}>
           <h1>Ask Your Question</h1>
           <h3>{`About the ${productName}`}</h3>
@@ -84,7 +90,7 @@ class AddQuestion extends React.Component {
             />
           </form>
         </Modal>
-      </button>
+      </span>
     );
   }
 }
