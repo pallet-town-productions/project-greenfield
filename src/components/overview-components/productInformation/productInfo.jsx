@@ -11,7 +11,7 @@ const mapStateToProps = function (state) {
   return { productData, thisUrl, currentBigPicture };
 };
 
-const ExpandedProductNameComponent = function ({ productData }) {
+export const ExpandedProductNameComponent = function ({ productData }) {
   return (
     <div id="product-name">
       {productData.name}
@@ -19,7 +19,7 @@ const ExpandedProductNameComponent = function ({ productData }) {
   );
 };
 
-const CategoryNameComponent = function ({ productData }) {
+export const CategoryNameComponent = function ({ productData }) {
   return (
     <div id="category-name">
       {productData.category}
@@ -27,7 +27,7 @@ const CategoryNameComponent = function ({ productData }) {
   );
 };
 
-const ProductDescriptionComponent = function ({ productData }) {
+export const ProductDescriptionComponent = function ({ productData }) {
   return (
     <div>
       <strong id="slogan">{productData.slogan}</strong>
@@ -36,7 +36,7 @@ const ProductDescriptionComponent = function ({ productData }) {
   );
 };
 
-const FeatureListComponent = function ({ productData }) {
+export const FeatureListComponent = function ({ productData }) {
   const featureList = productData.features;
   const productId = productData.id;
   return (
@@ -52,7 +52,7 @@ const FeatureListComponent = function ({ productData }) {
   );
 };
 
-const SocialMediaButtonsComponent = function ({ thisUrl, productData, currentBigPicture }) {
+export const SocialMediaButtonsComponent = function ({ thisUrl, productData, currentBigPicture }) {
   const productName = productData.name;
   return (
     <div>

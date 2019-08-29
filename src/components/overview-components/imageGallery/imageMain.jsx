@@ -48,7 +48,7 @@ const ImageMain = function ({
       );
     default:
       return ( // if default view, return imageList inside this bigger div
-        <section
+        <div
           onClick={handleClick}
           role="presentation"
           className={onHover}
