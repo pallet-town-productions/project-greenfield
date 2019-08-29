@@ -22,7 +22,7 @@ const Overview = function () {
       <ZoomViewOverlay />
       <main id="overview-grid-container">
         <ExpandedViewOverlay />
-        <header>
+        <header id="main-header-section">
           <Header />
           SITE WIDE ANNOUNCEMENT:  SALE
         </header>
