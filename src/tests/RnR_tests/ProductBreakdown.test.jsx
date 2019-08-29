@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ProductBreakdown from '../../components/RnR/RnR_ProductBreakdown';
+import { ProductBreakdown } from '../../components/RnR/RnR_ProductBreakdown';
 
 configure({ adapter: new Adapter() });
 
