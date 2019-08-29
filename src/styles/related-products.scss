@@ -59,3 +59,22 @@ img {
 //   margin-left: 20px;
 // }
 
+.slick-list> div {
+  margin-left: 0px;
+  }
+
+  .add-to-outfit {
+    height: 300px;
+    width: 200px;
+    background-color: $widgetColor;
+    border-color: $borderColor;
+    border-width: $borderThickness;
+    font-family: $font;
+    border-style: solid;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-left: 55px;
+    padding: $defaultPadding;
+    display: flex;
+    flex-direction: column;
+  }
