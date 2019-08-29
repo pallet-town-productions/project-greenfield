@@ -32,22 +32,28 @@ class Question extends React.Component {
       <div className="questions-qna-container">
         <div className="question-q-container">
           <div className="question-q-text-container">
-            <p>
+            <p style={{
+              fontSize: '22px',
+              color: '#3B3B3B',
+              letterSpacing: '0.5px',
+              marginBottom: '0',
+            }}
+            >
               {`Q: ${data.question_body}`}
             </p>
           </div>
           <span className="questions-q-tools">
-            <p id={`Q${data.question_id}`}>
+            <p style={{ fontSize: '14px', color: 'gray', fontFamily: 'Arial' }} id={`Q${data.question_id}`}>
               Helpful?
-              <button className="questions-helpful-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
-                <u>
+              <button className="questions-helpful-btn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
+                <u style={{ fontSize: '13px', color: 'gray' }}>
                   Yes
                 </u>
               </button>
-              (
-              {data.question_helpfulness}
-              )
-              |
+              {`(${data.question_helpfulness})`}
+              &nbsp;&nbsp;&nbsp;
+                |
+              &nbsp;&nbsp;
               <AddAnswer data={data} productName={productName} />
             </p>
           </span>

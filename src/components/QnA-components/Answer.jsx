@@ -39,25 +39,45 @@ class Answer extends React.Component {
       <div key={`da${data.answers}`}>
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
           <span key={`sa${answer.id}`} className="questionsAnswerTools">
-            <p>
+            <p style={{ fontSize: '18px', color: '#524242', marginTop: Object.values(data.answers)[0] === answer ? 0 : '' }}>
               {Object.values(data.answers)[0] === answer ? `A: ${answer.body}` : answer.body}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
               <PictureModal key={`pa${answer.id}`} photo={photo} answer={answer} />
             ))}
-            <p>
-              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)} | Helpful? `}
-              <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
-                <u>Yes</u>
+            <p style={{
+              marginTop: 0,
+              fontSize: '14px',
+              color: 'gray',
+              fontFamily: 'Arial',
+            }}
+            >
+              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
+              &nbsp;&nbsp;&nbsp;
+              | &nbsp;&nbsp;&nbsp; Helpful?
+              <button className="questionsHelpfulBtn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
+                <u style={{ color: 'gray' }}>Yes</u>
               </button>
-              {` (${answer.helpfulness}) | `}
-              <button className="questionsReportBtn" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
-                <u>Report</u>
+              {`(${answer.helpfulness})`}
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <button className="questionsReportBtn questions-clear-btn" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
+                <u style={{ color: 'gray' }}>Report</u>
               </button>
             </p>
             {data.answers[Object.keys(data.answers)[displayCount - 1]] === answer
               && displayCount < Object.keys(data.answers).length
-              ? <button type="button" onClick={this.increaseDisplayCount}>Load More Answers...</button> : ''}
+              ? (
+                <span
+                  role="presentation"
+                  onKeyPress={this.increaseDisplayCount}
+                  onClick={this.increaseDisplayCount}
+                  className="questions-clear-btn"
+                  style={{ fontFamily: 'arabic-font-2013bold' }}
+                >
+                  LOAD MORE ANSWERS
+                </span>
+              )
+              : ''}
           </span>
         ))}
       </div>
