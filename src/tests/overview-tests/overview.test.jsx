@@ -2,16 +2,16 @@
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { zeroPad } from '../../util/util';
+// import { zeroPad } from '../../util/util';
 // IMPORT initialData
-import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+// import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
 import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
-import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+// import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
+// import ImageMain from '../../components/overview-components/imageGallery/imageMain';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 // IMPORT product info components
@@ -80,9 +80,9 @@ describe('Image Gallery', () => {
 describe('Add To Cart', () => {
   describe('Size Selector', () => {
     let sizeList = ['Select Size', 'S', 'XL'];
-    let sizeSkus = [0, 1, 2];
-    let handleChangeSize = () => {};
-    let wrapper = render(<SizeSelectorComponent 
+    const sizeSkus = [0, 1, 2];
+    const handleChangeSize = () => {};
+    const wrapper = render(<SizeSelectorComponent
       sizeList={sizeList}
       sizeSkus={sizeSkus}
       promptSelectSize={false}
@@ -102,7 +102,7 @@ describe('Add To Cart', () => {
     });
     it('should display OUT OF STOCK if there\'s no available sizes', () => {
       sizeList = [];
-      let outOfStockWrapper = render(<SizeSelectorComponent 
+      const outOfStockWrapper = render(<SizeSelectorComponent
         sizeList={sizeList}
         sizeSkus={[]}
         promptSelectSize={false}
@@ -112,10 +112,10 @@ describe('Add To Cart', () => {
       expect(outOfStockWrapper.find('select').text()).toEqual('OUT OF STOCK');
     });
     it('should prompt to select size if promptSelectSize is set to true', () => {
-      let promptWrapper = render(<SizeSelectorComponent 
+      const promptWrapper = render(<SizeSelectorComponent
         sizeList={sizeList}
         sizeSkus={[]}
-        promptSelectSize={true}
+        promptSelectSize
         handleChangeSize={handleChangeSize}
         isOutOfStock={sizeList.length === 0}
       />);
@@ -126,10 +126,35 @@ describe('Add To Cart', () => {
     });
   });
   describe('Quantity Selector', () => {
+    it('should display Quantity Selector', () => {
 
+    });
+    it('should display "-" if Size isn\'t selected', () => {
+
+    });
+    it('should display 1 as default once Size is selected', () => {
+
+    });
+    // it('should display 1 to N if there\'s fewer than 15 in stock', () => {
+
+    // });
+    // it('should display 1 to 15 if there\'s at least 15 in stock', () => {
+
+    // });
   });
   describe('Add to Cart Button', () => {
+    it('should display Add To Cart Button', () => {
 
+    });
+    // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
+
+    // });
+    // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
+
+    // });
+    // it('should not be clickable if Out Of Stock', () => {
+
+    // });
   });
 });
 
@@ -219,10 +244,10 @@ describe('Product Information', () => {
 
 describe('Style Selector', () => {
   describe('Style Selector', () => {
-    let styleList = exampleStyleData.results;
-    let handleSwitchStyle = () => { }; //handle this
-    let i = 0;
-    let wrapper = mount(<StyleSelectorComponent
+    const styleList = exampleStyleData.results;
+    const handleSwitchStyle = () => { }; // handle this
+    const i = 0;
+    const wrapper = mount(<StyleSelectorComponent
       styleList={styleList}
       handleSwitchStyle={handleSwitchStyle}
       currentStyleIndex={i}
@@ -240,7 +265,7 @@ describe('Style Selector', () => {
   });
   describe('Style Thumbnail', () => {
     it('should display a checkbox if it\'s the selected style', () => {
-      let wrapper = render(<StyleThumbnail
+      const wrapper = render(<StyleThumbnail
         thisId={0}
         style={exampleStyleData.results[0]}
         styleIndex={1}
@@ -250,7 +275,7 @@ describe('Style Selector', () => {
       expect(wrapper.find('i')).toHaveLength(1);
     });
     it('should not display a checkbox if it\'s not the selected style', () => {
-      let wrapper = shallow(<StyleThumbnail
+      const wrapper = shallow(<StyleThumbnail
         thisId={0}
         style={exampleStyleData.results[0]}
         styleIndex={2}

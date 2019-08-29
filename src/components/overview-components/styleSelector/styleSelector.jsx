@@ -22,7 +22,11 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-export const StyleSelectorComponent = function ({ styleList, handleSwitchStyle, currentStyleIndex }) {
+export const StyleSelectorComponent = function ({
+  styleList,
+  handleSwitchStyle,
+  currentStyleIndex,
+}) {
   return (
     <div>
       <div id="style-name">
