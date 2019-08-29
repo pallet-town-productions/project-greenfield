@@ -85,12 +85,15 @@ class QnA extends React.Component {
         { questions.length <= questionDisplayCount
           ? ''
           : (
-            <button
-              type="submit"
+            <span
+              role="presentation"
+              className="qna-load-more-q"
               onClick={this.increaseDisplayCount}
             >
-            MORE ANSWERED QUESTIONS
-            </button>
+              <p style={{ lineHeight: '20px', textAlign: 'center', fontSize: '18px' }}>
+                MORE ANSWERED QUESTIONS
+              </p>
+            </span>
           ) }
         <AddQuestion
           productId={productId}
