@@ -81,7 +81,7 @@ class Answer extends React.Component {
                   className="questions-clear-btn"
                   style={{ fontFamily: 'arabic-font-2013bold' }}
                 >
-                  LOAD MORE ANSWERS
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOAD MORE ANSWERS
                 </span>
               )
               : ''}
