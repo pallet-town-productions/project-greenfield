@@ -32,15 +32,18 @@ const ZoomViewDisplay = function ({
   const display = (showZoomView) ? 'show' : 'hide';
   const handleZoomPanBound = (e) => { handleZoomPan(e, currentBigPicture); };
   return (
-    <div
-      className={display}
-      onMouseMove={handleZoomPanBound}
-    >
-      <ImageMain
-        handleClick={handleHideZoomView}
-        onHover="onHover-zoomout"
-        thisId="zoomphoto"
-      />
+    <div>
+      <div
+        className={display}
+        onMouseMove={handleZoomPanBound}
+        id="zoom-view-mouse-move"
+      >
+        <ImageMain
+          handleClick={handleHideZoomView}
+          onHover="cursor-zoomout"
+          thisId="zoom-photo"
+        />
+      </div>
     </div>
   );
 };

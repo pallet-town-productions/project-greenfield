@@ -1,4 +1,3 @@
-// imgId is expandedmainphoto
 const ZOOMRATIO = 2.5;
 
 export default function (e, imageUrl) {
@@ -24,7 +23,7 @@ export default function (e, imageUrl) {
   const imgPctX = (100 * cursorX) / screenWidth;
   const imgPctY = (100 * cursorY) / screenHeight;
 
-  const zoom = document.getElementById('zoomphoto');
+  const zoom = document.getElementById('zoom-photo');
   zoom.style.backgroundImage = `url("${imageUrl}")`;
   // zoom.style.backgroundSize = `${imgWidth-cursorX}px ${imgWidth-cursorY}px`;
   zoom.style.backgroundPosition = `${imgPctX}% ${imgPctY}%`;

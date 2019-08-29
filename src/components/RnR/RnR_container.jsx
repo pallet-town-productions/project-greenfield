@@ -1,5 +1,5 @@
 import React from 'react';
-import BreakdownContainer from './RnR_BreakdownContainer';
+import ConnectedBreakdownContainer from './RnR_BreakdownContainer';
 import Sort from './RnR_sort_list';
 
 class RnR extends React.Component {
@@ -12,8 +12,8 @@ class RnR extends React.Component {
   render() {
     return (
       <div>
-        <h2>Ratings and Reviews</h2>
-        <BreakdownContainer />
+        <h2 id="scrollRnR">Ratings and Reviews</h2>
+        <ConnectedBreakdownContainer />
         <Sort />
       </div>
     );

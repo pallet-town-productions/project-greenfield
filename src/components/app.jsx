@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from './overview-components/header';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
@@ -44,7 +43,6 @@ export class App extends Component {
     return (
       <div id="main-container">
         <div id="component-container">
-          <Header />
           <Overview />
           <QnA
             helpfulClickHandler={this.helpfulClickHandler}

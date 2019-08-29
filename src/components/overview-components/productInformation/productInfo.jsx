@@ -5,13 +5,15 @@ import '../../../styles/overview.scss';
 import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (state) {
-  const { productData } = state;
-  return { productData };
+  const { productData, currentStyleIndex, currentPhotoIndex } = state;
+  const thisUrl = 'http://ww17.dummyurl.com/'; // THIS NEEDS TO BE UPDATED!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~
+  const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
+  return { productData, thisUrl, currentBigPicture };
 };
 
 const ExpandedProductNameComponent = function ({ productData }) {
   return (
-    <div>
+    <div id="product-name">
       {productData.name}
     </div>
   );
@@ -19,7 +21,7 @@ const ExpandedProductNameComponent = function ({ productData }) {
 
 const CategoryNameComponent = function ({ productData }) {
   return (
-    <div>
+    <div id="category-name">
       {productData.category}
     </div>
   );
@@ -30,12 +32,13 @@ const ProductDescriptionComponent = function ({ productData }) {
     <div>
       <strong id="slogan">{productData.slogan}</strong>
       <div id="productdescription">{productData.description}</div>
-      <FeatureList featureList={productData.features} productId={productData.id} />
     </div>
   );
 };
 
-const FeatureList = function ({ featureList, productId }) {
+const FeatureListComponent = function ({ productData }) {
+  const featureList = productData.features;
+  const productId = productData.id;
   return (
     <ul>
       {
@@ -46,6 +49,32 @@ const FeatureList = function ({ featureList, productId }) {
         ))
       }
     </ul>
+  );
+};
+
+const SocialMediaButtonsComponent = function ({ thisUrl, productData, currentBigPicture }) {
+  const productName = productData.name;
+  return (
+    <div>
+      <a href={`https://www.facebook.com/sharer/sharer.php?u=${thisUrl}&t=${productName}`}>
+        <img
+          src="https://img.icons8.com/color/48/000000/facebook.png"
+          alt="Share On Facebook"
+        />
+      </a>
+      <a href={`https://twitter.com/intent/tweet?url=${thisUrl}&text=${productName}`}>
+        <img
+          src="https://img.icons8.com/color/48/000000/twitter.png"
+          alt="Share On Twitter"
+        />
+      </a>
+      <a href={`http://pinterest.com/pin/create/button/?url=${thisUrl}&media=${currentBigPicture}&description=${productName}`}>
+        <img
+          src="https://img.icons8.com/color/48/000000/pinterest--v1.png"
+          alt="Share On Pinterest"
+        />
+      </a>
+    </div>
   );
 };
 
@@ -67,14 +96,23 @@ const PRODUCTDATAPROPTYPES = {
 ExpandedProductNameComponent.propTypes = PRODUCTDATAPROPTYPES;
 CategoryNameComponent.propTypes = PRODUCTDATAPROPTYPES;
 ProductDescriptionComponent.propTypes = PRODUCTDATAPROPTYPES;
-FeatureList.propTypes = PRODUCTDATAPROPTYPES.features;
+FeatureListComponent.propTypes = PRODUCTDATAPROPTYPES;
+SocialMediaButtonsComponent.propTypes = {
+  thisUrl: PT.string.isRequired,
+  currentBigPicture: PT.string.isRequired,
+  ...PRODUCTDATAPROPTYPES,
+};
 
 const ExpandedProductName = connect(mapStateToProps, null)(ExpandedProductNameComponent);
 const CategoryName = connect(mapStateToProps, null)(CategoryNameComponent);
 const ProductDescription = connect(mapStateToProps, null)(ProductDescriptionComponent);
+const FeatureList = connect(mapStateToProps, null)(FeatureListComponent);
+const SocialMediaButtons = connect(mapStateToProps, null)(SocialMediaButtonsComponent);
 
 export {
   ExpandedProductName,
   CategoryName,
   ProductDescription,
+  FeatureList,
+  SocialMediaButtons,
 };

@@ -16,13 +16,13 @@ const mapDispatchToProps = function (dispatch) {
 
 const ImageGallery = function ({ dispatchExpandedView }) {
   return (
-    <section>
-      <ImageList />
+    <section id="image-gallery-grid-default">
       <ImageMain
         handleClick={dispatchExpandedView}
-        onHover="onHover-zoomin"
-        thisId="mainphoto"
+        onHover="cursor-zoomin"
+        thisId="main-photo"
       />
+      <ImageList isExpanded={false} />
     </section>
   );
 };

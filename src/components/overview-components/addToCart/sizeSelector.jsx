@@ -1,16 +1,19 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import { changeSize, toggleShowQuantities } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
+import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (state) {
-  const { currentSizeIndex, currentStyleIndex } = state;
+  const { currentSizeIndex, currentStyleIndex, promptSelectSize } = state;
   const sizeList = Object.keys(state.style.results[currentStyleIndex].skus);
   const sizeSkus = Object.values(state.style.results[currentStyleIndex].skus);
+  const isOutOfStock = sizeList.length === 0;
   sizeList.unshift('Select Size');
   sizeSkus.unshift(-1);
-  return { currentSizeIndex, sizeList, sizeSkus };
+  return {
+    currentSizeIndex, sizeList, sizeSkus, promptSelectSize, isOutOfStock,
+  };
 };
 
 const mapDispatchToProps = function (dispatch) {
@@ -21,36 +24,81 @@ const mapDispatchToProps = function (dispatch) {
         dispatch(toggleShowQuantities(false));
       } else {
         dispatch(toggleShowQuantities(true));
+        dispatch(togglePromptSelectSize(false)); // hide prompt to select size
       }
       dispatch(changeSize(selectedSize));
     },
   };
 };
 
-const SizeSelector = function ({ sizeList, sizeSkus, handleChangeSize }) {
-  return (
-    <div id="size-selector" className="dropdown-selector">
-      <select
-        onChange={() => { handleChangeSize(); }}
-        id="current-size"
-      >
-        {sizeList.map((size, index) => (
-          <option
-            key={zeroPad(sizeSkus[index], 3)}
-            sku={sizeSkus[index]}
-            value={index}
-          >
-            {size}
-          </option>
-        ))}
+const DropDown = function ({
+  sizeList, sizeSkus, handleChangeSize, isOutOfStock,
+}) {
+  if (isOutOfStock) {
+    return (
+      <select>
+        <option>OUT OF STOCK</option>
       </select>
+    );
+  }
+  return (
+    <select
+      onChange={() => { handleChangeSize(); }}
+      id="current-size"
+    >
+      {sizeList.map((size, index) => (
+        <option
+          key={zeroPad(sizeSkus[index], 3)}
+          sku={sizeSkus[index]}
+          value={index}
+        >
+          {size}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+const PromptSizeText = function ({ promptSelectSize }) {
+  return (
+    <div id="select-size-prompt">
+      {(promptSelectSize) ? 'Please Select Size' : <br />}
     </div>
   );
+};
+
+const SizeSelector = function ({
+  sizeList, sizeSkus, promptSelectSize, isOutOfStock, handleChangeSize,
+}) {
+  return (
+    <div id="size-selector" className="dropdown-selector">
+      <PromptSizeText promptSelectSize={promptSelectSize} />
+      <DropDown
+        sizeList={sizeList}
+        sizeSkus={sizeSkus}
+        handleChangeSize={handleChangeSize}
+        isOutOfStock={isOutOfStock}
+      />
+    </div>
+  );
+};
+
+DropDown.propTypes = {
+  sizeList: PT.arrayOf(PT.string.isRequired).isRequired,
+  sizeSkus: PT.arrayOf(PT.number.isRequired).isRequired,
+  isOutOfStock: PT.bool.isRequired,
+  handleChangeSize: PT.func.isRequired,
+};
+
+PromptSizeText.propTypes = {
+  promptSelectSize: PT.bool.isRequired,
 };
 
 SizeSelector.propTypes = {
   sizeList: PT.arrayOf(PT.string.isRequired).isRequired,
   sizeSkus: PT.arrayOf(PT.number.isRequired).isRequired,
+  promptSelectSize: PT.bool.isRequired,
+  isOutOfStock: PT.bool.isRequired,
   handleChangeSize: PT.func.isRequired,
 };
 
