@@ -10,9 +10,15 @@ const mapStateToProps = (state) => ({
 class List extends Component {
   constructor(props) {
     super(props);
+    const { updateReviews } = this.props;
     this.state = {
       currentView: 2,
+      reviewsToShow: updateReviews,
     };
+  }
+
+  componentDidMount() {
+    this.showReviews();
   }
 
   showMore() {
@@ -23,13 +29,14 @@ class List extends Component {
     }
   }
 
-  render() {
+  showReviews() {
     const { updateReviews } = this.props;
     const { currentView } = this.state;
+    const { reviewsToShow } = this.state;
     const { updateStarReviews } = this.props;
     const { filteredReviews } = updateStarReviews;
-    let reviewsToShow = updateReviews;
     const filter = [];
+
     filteredReviews.forEach((arr) => {
       if (arr.length > 1) {
         arr.forEach((review) => {
@@ -38,16 +45,33 @@ class List extends Component {
       } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
     });
 
+    console.log(filter)
+    console.log(updateReviews)
+    console.log(reviewsToShow)
+
     if (filter.length) {
-      reviewsToShow = filter
+      this.setState({ reviewsToShow: filter });
+    } else {
+      this.setState({ reviewsToShow: updateReviews });
     }
+  }
+
+  render() {
+    const { updateReviews } = this.props;
+    const { currentView } = this.state;
+    const { reviewsToShow } = this.state;
+    const { updateStarReviews } = this.props;
+    const { filteredReviews } = updateStarReviews;
 
     let button;
-    if (updateReviews.length > currentView) {
+    if (reviewsToShow.length > currentView) {
       button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
     } else {
       button = <div />;
     }
+
+    console.log(reviewsToShow);
+
     return (
       <div>
         {reviewsToShow.slice(0, currentView).map((review) => (
