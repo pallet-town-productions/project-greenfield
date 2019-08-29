@@ -6,7 +6,7 @@ const ExitButton = function ({ handleExit }) {
     <div
       onClick={handleExit}
       role="presentation"
-      className="onHover-pointer exit-button"
+      className="cursor-pointer exit-button"
     >
       <i className="material-icons">
         close

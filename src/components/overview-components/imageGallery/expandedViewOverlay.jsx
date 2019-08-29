@@ -37,8 +37,8 @@ const ExpandedViewOverlay = function ({
       <ExitButton handleExit={handleHideExpandedView} />
       <ImageMain
         handleClick={handleShowZoomView}
-        onHover="onHover-crosshair"
-        thisId="expandedmainphoto"
+        onHover="cursor-crosshair"
+        thisId="expanded-main-photo"
       />
       <ImageList isExpanded={true} />
     </div>

@@ -19,8 +19,8 @@ const ImageGallery = function ({ dispatchExpandedView }) {
     <section id="image-gallery-grid-default">
       <ImageMain
         handleClick={dispatchExpandedView}
-        onHover="onHover-zoomin"
-        thisId="mainphoto"
+        onHover="cursor-zoomin"
+        thisId="main-photo"
       />
       <ImageList isExpanded={false} />
     </section>

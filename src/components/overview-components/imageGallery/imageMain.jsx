@@ -22,7 +22,7 @@ const ImageMain = function ({
   currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
   switch (thisId) {
-    case 'zoomphoto': // if zoom view, return a div with id zoomphoto
+    case 'zoom-photo': // if zoom view, return a div with id zoom-photo
       return (
         // FULL SCREEN THING
         <div
@@ -32,7 +32,7 @@ const ImageMain = function ({
           id={thisId}
         />
       );
-    case 'expandedmainphoto':
+    case 'expanded-main-photo':
       return ( // if expanded view, return imageList separately from this image
         <span
           onClick={handleClick}
