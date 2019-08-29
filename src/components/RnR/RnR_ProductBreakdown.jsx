@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
+// Function to set value for characteristic rating scale represented by progress bar
 const setProductRatingValue = (value = 0) => {
   const values = {
     leftValue: 0,
@@ -24,6 +25,7 @@ const setProductRatingValue = (value = 0) => {
   return values;
 };
 
+// Function to set characteristic sublabels for rating scale
 const setSublables = (label = 'Default') => {
   const defaultSubLabels = {
     Size: {
@@ -69,6 +71,7 @@ const setSublables = (label = 'Default') => {
   };
 };
 
+// Functional Component
 const ProductBreakdown = ({ getMetaData }) => {
   const { characteristics } = getMetaData;
   const productLabels = Object.keys(characteristics || [])
@@ -105,7 +108,6 @@ const ProductBreakdown = ({ getMetaData }) => {
     </div>
   );
 };
-
 
 ProductBreakdown.propTypes = {
   getMetaData: PropTypes.shape({
