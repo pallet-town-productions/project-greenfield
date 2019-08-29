@@ -37,6 +37,7 @@ class PictureModal extends React.Component {
             key={`ia${answer.id}`}
             alt={`Uploaded by: ${answer.answerer_name}`}
             src={photo}
+            style={{ marginTop: '10px' }}
             className="thumbnail"
           />
         </span>
