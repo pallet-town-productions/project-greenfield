@@ -13,7 +13,7 @@ const mapStateToProps = function (state) {
 
 const ExpandedProductNameComponent = function ({ productData }) {
   return (
-    <div>
+    <div id="product-name">
       {productData.name}
     </div>
   );
@@ -21,7 +21,7 @@ const ExpandedProductNameComponent = function ({ productData }) {
 
 const CategoryNameComponent = function ({ productData }) {
   return (
-    <div>
+    <div id="category-name">
       {productData.category}
     </div>
   );
@@ -32,7 +32,6 @@ const ProductDescriptionComponent = function ({ productData }) {
     <div>
       <strong id="slogan">{productData.slogan}</strong>
       <div id="productdescription">{productData.description}</div>
-      <FeatureList featureList={productData.features} productId={productData.id} />
     </div>
   );
 };

@@ -39,8 +39,6 @@ const ImageList = function ({
     infinite: false,
     slidesToShow: 7,
     slidesToScroll: 1,
-    // vertical: !isExpanded, 
-    // verticalSwiping: !isExpanded,
     focusOnSelect: true,
   };
   return (
