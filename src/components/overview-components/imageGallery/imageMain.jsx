@@ -1,7 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import ImageList from './imageList';
 
 const mapStateToProps = function (state) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
@@ -33,17 +32,6 @@ const ImageMain = function ({
           id={thisId}
         />
       );
-    case 'mainphoto':
-      return ( // if default view, return imageList inside this bigger div
-        <section
-          onClick={handleClick}
-          role="presentation"
-          className={onHover}
-          id={thisId}
-          style={{ backgroundImage: `url(${currentBigPicture})` }}
-        >
-        </section>
-      );
     case 'expandedmainphoto':
       return ( // if expanded view, return imageList separately from this image
         <span
@@ -57,6 +45,16 @@ const ImageMain = function ({
             alt={`DUMMY, put in product name, ${currentStyleName}`}
           />
         </span>
+      );
+    default:
+      return ( // if default view, return imageList inside this bigger div
+        <section
+          onClick={handleClick}
+          role="presentation"
+          className={onHover}
+          id={thisId}
+          style={{ backgroundImage: `url(${currentBigPicture})` }}
+        />
       );
   }
 };

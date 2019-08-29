@@ -22,7 +22,7 @@ const ImageGallery = function ({ dispatchExpandedView }) {
         onHover="onHover-zoomin"
         thisId="mainphoto"
       />
-      <ImageList isExpanded={false}/>
+      <ImageList isExpanded={false} />
     </section>
   );
 };

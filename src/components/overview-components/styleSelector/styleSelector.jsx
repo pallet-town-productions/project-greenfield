@@ -25,7 +25,7 @@ const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleInde
   return (
     <div>
       <div id="style-name">
-        <strong>STYLE > </strong>
+        <strong>STYLE &gt; </strong>
         {styleList[currentStyleIndex].name}
       </div>
       <div id="style-thumbnail-grid">
