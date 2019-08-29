@@ -40,7 +40,7 @@ const ExpandedViewOverlay = function ({
         onHover="cursor-crosshair"
         thisId="expanded-main-photo"
       />
-      <ImageList isExpanded />
+      <ImageList isExpanded={true} />
     </div>
   );
 };

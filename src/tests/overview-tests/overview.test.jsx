@@ -81,7 +81,7 @@ describe('Add To Cart', () => {
   describe('Size Selector', () => {
     let sizeList = ['Select Size', 'S', 'XL'];
     const sizeSkus = [0, 1, 2];
-    const handleChangeSize = () => {};
+    const handleChangeSize = () => { };
     const wrapper = render(<SizeSelectorComponent
       sizeList={sizeList}
       sizeSkus={sizeSkus}

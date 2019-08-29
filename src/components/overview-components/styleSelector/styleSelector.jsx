@@ -35,17 +35,17 @@ export const StyleSelectorComponent = function ({
       </div>
       <div id="style-thumbnail-grid">
         {
-        styleList.map((styleObj, index) => (
-          <StyleThumbnail
-            key={styleList[index].style_id}
-            thisId={zeroPad(styleList[index].style_id, 6)}
-            styleIndex={index}
-            style={styleObj}
-            handleClick={handleSwitchStyle}
-            currentStyleIndex={currentStyleIndex}
-          />
-        ))
-      }
+          styleList.map((styleObj, index) => (
+            <StyleThumbnail
+              key={styleList[index].style_id}
+              thisId={zeroPad(styleList[index].style_id, 6)}
+              styleIndex={index}
+              style={styleObj}
+              handleClick={handleSwitchStyle}
+              currentStyleIndex={currentStyleIndex}
+            />
+          ))
+        }
       </div>
     </div>
   );
