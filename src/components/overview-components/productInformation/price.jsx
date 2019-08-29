@@ -8,7 +8,7 @@ const mapStateToProps = function (state) {
   return { productData, style, currentStyleIndex };
 };
 
-const Price = function ({ productData, style, currentStyleIndex }) {
+export const PriceComponent = function ({ productData, style, currentStyleIndex }) {
   const price = Number(style.results[currentStyleIndex].original_price)
     || Number(productData.default_price);
   const salePrice = Number(style.results[currentStyleIndex].sale_price); // default 0
@@ -28,7 +28,7 @@ const Price = function ({ productData, style, currentStyleIndex }) {
   );
 };
 
-Price.propTypes = {
+PriceComponent.propTypes = {
   productData: PT.shape({
     default_price: PT.string.isRequired, // sketchy!!
   }).isRequired,
@@ -41,4 +41,4 @@ Price.propTypes = {
   currentStyleIndex: PT.number.isRequired,
 };
 
-export default connect(mapStateToProps, null)(Price);
+export default connect(mapStateToProps, null)(PriceComponent);

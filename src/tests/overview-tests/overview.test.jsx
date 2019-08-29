@@ -10,7 +10,7 @@ import Overview from '../../components/overview-components/overview';
 import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
 import ImageMain from '../../components/overview-components/imageGallery/imageMain';
 // product info components
-import Price from '../../components/overview-components/productInformation/price';
+import {PriceComponent} from '../../components/overview-components/productInformation/price';
 import {
   ExpandedProductNameComponent,
   CategoryNameComponent,
@@ -109,6 +109,30 @@ describe('Product Information', () => {
     // it('social media buttons should work', () => {
       
     // });
+  });
+  describe("Price", () => {
+    let exampleStyle = Object.assign(exampleStyleData, {});
+    it('should display default price when there\'s no original price', () => {
+      exampleStyle.results[0].original_price = '0';
+      exampleStyle.results[0].sale_price = '0';
+      let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span').text()).toEqual(`$${exampleProductData.default_price}`);
+    });
+    it('should display original price when there\'s no sale price', () => {
+      exampleStyle.results[0].original_price = '2';
+      let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span').text()).toEqual(`$2`);
+    });
+    it('should display sale price when there is a sale price', () => {
+      exampleStyle.results[0].sale_price = '1';
+      let wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span').get(0).props.children).toEqual(`$1`);
+      expect(wrapper.find('span').get(1).props.children).toEqual(`$2`);
+
+      exampleStyle.results[0].original_price = '0';
+      wrapper = shallow(<PriceComponent productData={exampleProductData} style={exampleStyle} currentStyleIndex={0}/>);
+      expect(wrapper.find('span').get(1).props.children).toEqual(`$${exampleProductData.default_price}`);
+    });
   });
 });
 
