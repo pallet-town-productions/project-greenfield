@@ -12,7 +12,7 @@ import {
 import ExpandedViewOverlay from './imageGallery/expandedViewOverlay';
 import ZoomViewOverlay from './imageGallery/zoomViewOverlay';
 import Price from './productInformation/price';
-import StarRating from '../RnR/RnR_StarRating';
+import ReviewsLink from './productInformation/reviewsLink';
 // import style sheets
 import '../../styles/overview.scss';
 
@@ -30,10 +30,7 @@ const Overview = function () {
           <ImageGallery />
         </section>
         <section id="product-info-section">
-          <span>
-            <StarRating starCount={0.75} />
-            <a href="#scrollRnR">{`Read all ${updateReviews.length} reviews`}</a>
-          </span>
+          <ReviewsLink />
           <CategoryName />
           <ExpandedProductName />
           <Price />
