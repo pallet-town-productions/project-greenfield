@@ -3,6 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
 import StyleThumbnail from './styleThumbnail';
+import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (state) {
   const styleList = state.style.results;
@@ -21,7 +22,11 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleIndex }) {
+export const StyleSelectorComponent = function ({
+  styleList,
+  handleSwitchStyle,
+  currentStyleIndex,
+}) {
   return (
     <div>
       <div id="style-name">
@@ -30,25 +35,26 @@ const StyleSelector = function ({ styleList, handleSwitchStyle, currentStyleInde
       </div>
       <div id="style-thumbnail-grid">
         {
-        styleList.map((styleObj, index) => (
-          <StyleThumbnail
-            key={styleList[index].style_id}
-            styleIndex={index}
-            style={styleObj}
-            handleClick={handleSwitchStyle}
-            currentStyleIndex={currentStyleIndex}
-          />
-        ))
-      }
+          styleList.map((styleObj, index) => (
+            <StyleThumbnail
+              key={styleList[index].style_id}
+              thisId={zeroPad(styleList[index].style_id, 6)}
+              styleIndex={index}
+              style={styleObj}
+              handleClick={handleSwitchStyle}
+              currentStyleIndex={currentStyleIndex}
+            />
+          ))
+        }
       </div>
     </div>
   );
 };
 
-StyleSelector.propTypes = {
+StyleSelectorComponent.propTypes = {
   styleList: PT.arrayOf(PT.object).isRequired,
   handleSwitchStyle: PT.func.isRequired,
   currentStyleIndex: PT.number.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StyleSelector);
+export default connect(mapStateToProps, mapDispatchToProps)(StyleSelectorComponent);

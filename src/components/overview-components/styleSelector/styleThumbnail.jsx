@@ -11,10 +11,11 @@ const CheckBox = function ({ isRendered }) {
 };
 
 const StyleThumbnail = function ({
-  style, styleIndex, currentStyleIndex, handleClick,
+  thisId, style, styleIndex, currentStyleIndex, handleClick,
 }) {
   return (
     <div
+      id={thisId}
       onClick={() => handleClick(styleIndex)}
       role="presentation"
     >
@@ -33,6 +34,7 @@ CheckBox.propTypes = {
 };
 
 StyleThumbnail.propTypes = {
+  thisId: PT.string.isRequired,
   style: PT.shape({
     photos: PT.array,
     name: PT.string.isRequired,

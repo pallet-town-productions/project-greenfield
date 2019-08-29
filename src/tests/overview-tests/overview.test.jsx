@@ -1,7 +1,8 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+// import { zeroPad } from '../../util/util';
 // IMPORT initialData
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 import exampleStyleData from '../../exampleStyleData';
@@ -11,6 +12,8 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 // import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
 // import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+// IMPORT add to cart components
+import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -20,6 +23,9 @@ import {
   FeatureListComponent,
   SocialMediaButtonsComponent,
 } from '../../components/overview-components/productInformation/productInfo';
+// IMPORT style selector components
+import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
+import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -71,7 +77,86 @@ describe('Image Gallery', () => {
   // describe('Zoom View' , () => {} )
 });
 
-// describe('Add To Cart', () => {});
+describe('Add To Cart', () => {
+  describe('Size Selector', () => {
+    let sizeList = ['Select Size', 'S', 'XL'];
+    const sizeSkus = [0, 1, 2];
+    const handleChangeSize = () => { };
+    const wrapper = render(<SizeSelectorComponent
+      sizeList={sizeList}
+      sizeSkus={sizeSkus}
+      promptSelectSize={false}
+      handleChangeSize={handleChangeSize}
+      isOutOfStock={false}
+    />);
+    it('should display Size Selector', () => {
+      expect(wrapper.find('select').length).toBeTruthy();
+    });
+    it('should have a default value of Select Size if there are available sizes', () => {
+      expect(wrapper.find('select').text().indexOf('Select Size')).toEqual(0);
+    });
+    it('should only display available Sizes in the dropdown', () => {
+      expect(wrapper.find('option')).toHaveLength(3);
+      expect(wrapper.find('option').get(1).children[0].data).toEqual(sizeList[1]);
+      expect(wrapper.find('option').get(2).children[0].data).toEqual(sizeList[2]);
+    });
+    it('should display OUT OF STOCK if there\'s no available sizes', () => {
+      sizeList = [];
+      const outOfStockWrapper = render(<SizeSelectorComponent
+        sizeList={sizeList}
+        sizeSkus={[]}
+        promptSelectSize={false}
+        handleChangeSize={handleChangeSize}
+        isOutOfStock={sizeList.length === 0}
+      />);
+      expect(outOfStockWrapper.find('select').text()).toEqual('OUT OF STOCK');
+    });
+    it('should prompt to select size if promptSelectSize is set to true', () => {
+      const promptWrapper = render(<SizeSelectorComponent
+        sizeList={sizeList}
+        sizeSkus={[]}
+        promptSelectSize
+        handleChangeSize={handleChangeSize}
+        isOutOfStock={sizeList.length === 0}
+      />);
+      expect(promptWrapper.find('#select-size-prompt').text()).toEqual('Please Select Size');
+    });
+    it('should not prompt to select size if promptSelectSize is set to false', () => {
+      expect(wrapper.find('#select-size-prompt').text()).toEqual('');
+    });
+  });
+  describe('Quantity Selector', () => {
+    it('should display Quantity Selector', () => {
+
+    });
+    it('should display "-" if Size isn\'t selected', () => {
+
+    });
+    it('should display 1 as default once Size is selected', () => {
+
+    });
+    // it('should display 1 to N if there\'s fewer than 15 in stock', () => {
+
+    // });
+    // it('should display 1 to 15 if there\'s at least 15 in stock', () => {
+
+    // });
+  });
+  describe('Add to Cart Button', () => {
+    it('should display Add To Cart Button', () => {
+
+    });
+    // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
+
+    // });
+    // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
+
+    // });
+    // it('should not be clickable if Out Of Stock', () => {
+
+    // });
+  });
+});
 
 describe('Product Information', () => {
   it('should display the correct product name', () => {
@@ -158,7 +243,48 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-  it('should display the correct number of thumbnails in the selector', () => { });
+  describe('Style Selector', () => {
+    const styleList = exampleStyleData.results;
+    const handleSwitchStyle = () => { }; // handle this
+    const i = 0;
+    const wrapper = mount(<StyleSelectorComponent
+      styleList={styleList}
+      handleSwitchStyle={handleSwitchStyle}
+      currentStyleIndex={i}
+    />);
+    it('should display the correct number of thumbnails in the selector', () => {
+      expect(wrapper.find('img')).toHaveLength(styleList.length);
+    });
+    // it('should switch styles upon click', () => {
+    //   wrapper.find(`"#${zeroPad(2, 6)}"`).simulate('click');
+    //   expect(1+1===2).toBeTruthy();
+    // });
+    it('should display currently-selected style name above thumbnails', () => {
+      expect(wrapper.find('#style-name').text().includes(styleList[i].name)).toBeTruthy();
+    });
+  });
+  describe('Style Thumbnail', () => {
+    it('should display a checkbox if it\'s the selected style', () => {
+      const wrapper = render(<StyleThumbnail
+        thisId={0}
+        style={exampleStyleData.results[0]}
+        styleIndex={1}
+        currentStyleIndex={1}
+        handleClick={() => { }}
+      />);
+      expect(wrapper.find('i')).toHaveLength(1);
+    });
+    it('should not display a checkbox if it\'s not the selected style', () => {
+      const wrapper = shallow(<StyleThumbnail
+        thisId={0}
+        style={exampleStyleData.results[0]}
+        styleIndex={2}
+        currentStyleIndex={1}
+        handleClick={() => { }}
+      />);
+      expect(wrapper.find('i')).toHaveLength(0);
+    });
+  });
 });
 
 // describe('Header', () => {});
