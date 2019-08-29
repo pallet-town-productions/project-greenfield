@@ -6,9 +6,26 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-const ProductBreakdown = ({ getMetaData }) => {
-  const { characteristics } = getMetaData;
-  const sublabels = {
+const setProductRatingValue = (value = 0) => {
+  const values = {
+    leftValue: 0,
+    centerValue: 0,
+    rightValue: 0,
+  };
+  if (value > 0 && value < 1.5) {
+    values.leftValue = value;
+  }
+  if (value >= 1.5 && value < 3) {
+    values.centerValue = value;
+  }
+  if (value >= 3 && value <= 5) {
+    values.rightValue = value;
+  }
+  return values;
+};
+
+const setSublables = (label = 'Default') => {
+  const defaultSubLabels = {
     Size: {
       left: 'A size too small',
       center: 'Perfect',
@@ -45,24 +62,42 @@ const ProductBreakdown = ({ getMetaData }) => {
       right: 'Too much',
     },
   };
+  return {
+    leftSublabel: defaultSubLabels[label].left || defaultSubLabels.Default.left,
+    centerSublabel: defaultSubLabels[label].center || defaultSubLabels.Default.center,
+    rightSublabel: defaultSubLabels[label].right || defaultSubLabels.Default.right,
+  };
+};
+
+const ProductBreakdown = ({ getMetaData }) => {
+  const { characteristics } = getMetaData;
   const productLabels = Object.keys(characteristics || [])
-    .map((label) => (
-      <li key={label} className="product-breakdown-item">
-        <div>
-          {label}
+    .map((label) => {
+      const { leftSublabel, centerSublabel, rightSublabel } = setSublables(label);
+      const {
+        leftValue,
+        centerValue,
+        rightValue,
+      } = setProductRatingValue(characteristics[label].value);
+
+      return (
+        <li key={label} className="product-breakdown-item">
           <div>
-            <progress className="product-breakdown-bar bar" />
-            <progress className="product-breakdown-bar bar" />
-            <progress className="product-breakdown-bar bar" />
+            {label}
+            <div>
+              <progress className="product-breakdown-bar bar" value={leftValue} max={1.5} />
+              <progress className="product-breakdown-bar bar" value={centerValue} max={3} />
+              <progress className="product-breakdown-bar bar" value={rightValue} max={5} />
+            </div>
+            <p className="product-breakdown-bottom-label">
+              <span>{leftSublabel}</span>
+              <span>{centerSublabel}</span>
+              <span>{rightSublabel}</span>
+            </p>
           </div>
-          <p className="product-breakdown-bottom-label">
-            <span>{sublabels[label].left || sublabels.Default.left}</span>
-            <span>{sublabels[label].center || sublabels.Default.center}</span>
-            <span>{sublabels[label].right || sublabels.Default.right}</span>
-          </p>
-        </div>
-      </li>
-    ));
+        </li>
+      );
+    });
 
   return (
     <div className="product-breakdown breakdown-widget">
