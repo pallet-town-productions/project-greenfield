@@ -1,15 +1,4 @@
-$buttonColor: #CFFFEA;
-$tileColor: #BCE8C8;
-$backgroundColor: #DBFFDB;
-$widgetColor: #CBE8BC;
-$modalColor: #F0FFCF;
-$borderColor:	#808080;
-$font: arial;
-$buttonHeight: 30px;
-$borderThickness: 2px;
-$defaultPadding: 5px;
-$fontColor: black;
-$defaultMargin: 5px;
+@import "variables";
 
 button {
   height: $buttonHeight;
@@ -66,7 +55,7 @@ body {
 #component-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: $componentContainerWidth;
 }
 
 #main-container {

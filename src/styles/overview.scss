@@ -1,10 +1,4 @@
-$thumbnailDimension: 65px;
-$mainPhotoDimension: 600px;
-$overlayPercent: 80%;
-$zoomWindowWidth: 600px;
-$zoomWindowHeight: 350px;
-$addToCartWidth: 150px;
-$selectorFontSize: 1em;
+@import "variables";
 
 // DESCRIBES CURSOR UPON MOUSE HOVER
 .cursor-pointer {
@@ -145,11 +139,18 @@ $selectorFontSize: 1em;
   }
 }
 
+#zoom-view-mouse-move {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 calc(50% - 50vw - #{$defaultPadding} - #{$defaultMargin});
+}
+
 #zoom-photo {
   z-index: 999;
   position: fixed;
   transform: scale(2.5);
   transform-origin: top left;
+  right: calc((100%-#{$componentContainerWidth}) * 0.6);
   background-repeat: no-repeat;
   width: $zoomWindowWidth;
   height: $zoomWindowHeight;
