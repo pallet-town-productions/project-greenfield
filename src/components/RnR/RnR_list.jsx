@@ -25,8 +25,23 @@ class List extends Component {
 
   render() {
     const { updateReviews } = this.props;
-    console.log(updateReviews)
     const { currentView } = this.state;
+    const { updateStarReviews } = this.props;
+    const { filteredReviews } = updateStarReviews;
+    let reviewsToShow = updateReviews;
+    const filter = [];
+    filteredReviews.forEach((arr) => {
+      if (arr.length > 1) {
+        arr.forEach((review) => {
+          if (!filter.some((e) => e.review_id === review.review_id)) { filter.push(review); }
+        });
+      } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
+    });
+
+    if (filter.length) {
+      reviewsToShow = filter
+    }
+
     let button;
     if (updateReviews.length > currentView) {
       button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
@@ -35,7 +50,7 @@ class List extends Component {
     }
     return (
       <div>
-        {updateReviews.slice(0, currentView).map((review) => (
+        {reviewsToShow.slice(0, currentView).map((review) => (
           <Tile
             review={review}
             key={review.review_id}

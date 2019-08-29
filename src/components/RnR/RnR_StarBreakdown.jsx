@@ -17,15 +17,16 @@ class StarBreakdown extends React.Component {
 
   handleClick(rating) {
     const { dispatch, productId } = this.props;
+    const { filtered } = this.state;
     fetch(`http://18.217.220.129/reviews/${productId}/list`)
       .then((data) => data.json())
       .then((data) => data.results.filter((review) => review.rating === parseInt(rating, 10)))
       .then((data) => {
-        if (this.state.filtered) {
-          console.log('ffs');
-          dispatch(filterReviews(data))
+        if (filtered) {
+          dispatch(filterReviews(data));
         } else {
           dispatch(updateReviewsToRender(data));
+          dispatch(filterReviews(data));
           this.setState((prevState) => ({
             filtered: !prevState.filtered,
           }));
@@ -45,7 +46,6 @@ class StarBreakdown extends React.Component {
           <div
             className="star-breakdown-div"
             onClick={() => this.handleClick(rating)}
-            onKeyPress={() => {}}
             role="presentation"
           >
             <span
