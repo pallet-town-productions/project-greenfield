@@ -25,6 +25,7 @@ class List extends Component {
 
   render() {
     const { updateReviews } = this.props;
+    console.log(updateReviews)
     const { currentView } = this.state;
     let button;
     if (updateReviews.length > currentView) {
