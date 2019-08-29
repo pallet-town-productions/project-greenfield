@@ -68,7 +68,7 @@ class QnA extends React.Component {
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
-        <h3>
+        <h3 style={{ color: '#525252' }}>
           QUESTIONS & ANSWERS
         </h3>
         <Search searchFilter={this.searchFilter} />

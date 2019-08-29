@@ -29,25 +29,43 @@ class Question extends React.Component {
     } = this.props;
 
     return (
-      <div className="questionsQuestionContainer">
-        <p>
-          {`Q: ${data.question_body}`}
-        </p>
-        <span className="questionsQuestionTools">
-          <p id={`Q${data.question_id}`}>
-            Helpful?
-            <button className="questionsHelpfulBtn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
-              <u>
-                Yes
-              </u>
-            </button>
-            (
-            {data.question_helpfulness}
-            )
-            |
-            <AddAnswer data={data} productName={productName} />
-          </p>
-        </span>
+      <div className="questions-qna-container">
+        <div className="question-q-container">
+          <div className="question-q-text-container">
+            <p style={{
+              fontSize: '22px',
+              color: '#3B3B3B',
+              letterSpacing: '0.5px',
+              marginBottom: '0',
+            }}
+            >
+              {`Q: ${data.question_body}`}
+            </p>
+          </div>
+          <span className="questions-q-tools">
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'gray',
+                fontFamily: 'Arial',
+                margin: 0,
+              }}
+              id={`Q${data.question_id}`}
+            >
+              Helpful?
+              <button className="questions-helpful-btn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
+                <u style={{ fontSize: '13px', color: 'gray' }}>
+                  Yes
+                </u>
+              </button>
+              {`(${data.question_helpfulness})`}
+              &nbsp;&nbsp;&nbsp;
+                |
+              &nbsp;&nbsp;
+              <AddAnswer data={data} productName={productName} />
+            </p>
+          </span>
+        </div>
         <div>
           <Answer
             data={data}

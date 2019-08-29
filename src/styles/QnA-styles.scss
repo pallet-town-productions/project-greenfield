@@ -1,41 +1,48 @@
+@font-face {
+  font-family: 'arabic-font-2013bold';
+  src: url('./fonts/arabic-font-2013-webfont.woff2') format('woff2'),
+       url('./fonts/arabic-font-2013-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 #qna-container {
+  font-family: 'arabic-font-2013bold';
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 65%;
+  height: 80%;
+  margin: auto;
 }
 
 #search-bar-container {
-  height: 50px;
-  width: 80%;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
 }
 
-.search-input-icons { 
-  width: 100%; 
-  height: 30px;
-  margin-bottom: 10px; 
+#qna-searchbar {
+  margin-top: 10px;
+  outline: none;
+}
+
+.search-input-icons {
+  width: 100%;
+  height: 48px;
 
   i {
-    padding-left: 10px;
-    padding-top: 15px;
-    position: absolute; 
+    padding-left: 15px;
+    padding-top: 20px;
+    position: absolute;
   }
-} 
-
-.search-input-field { 
-  width: 100%; 
-  height: 100%;
-  padding: 10px; 
-  border: 1px solid black;
-  text-align: center; 
-} 
-
-.search-input-field::-webkit-input-placeholder {
-  color: black;
-  font-weight: bold;
 }
 
-.search-input-field:focus::-webkit-input-placeholder {
-  opacity: 0;
+.search-input-field {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: none;
 }
 
 .questionsModalAnswer {
@@ -43,10 +50,6 @@
   height: 100px;
   padding: 12px 10px;
   resize: none;
-}
-
-.qna-span-thumbnail:focus {
-  outline: none;
 }
 
 .qna-modal-main {
@@ -59,4 +62,45 @@
     height: 70%;
     max-height: 700px;
   }
+}
+
+.question-q-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.question-q-text-container {
+  width: 70%;
+}
+
+.questions-q-tools {
+  width: 30%;
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.questions-clear-btn {
+  background-color: transparent;
+  background-repeat:no-repeat;
+  height: 15px;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+
+.qna-span-thumbnail:focus {
+  outline: none;
+}
+
+#qna-searchbar::-webkit-input-placeholder {
+  font-family: 'arabic-font-2013bold';
+  font-size: 18px;
+  color: #524242;
+}
+
+#qna-searchbar:focus::-webkit-input-placeholder {
+  opacity: 0;
 }
