@@ -1,16 +1,17 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { zeroPad } from '../../util/util';
 // IMPORT initialData
-// import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
 import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
-// import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-// import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
+import ImageMain from '../../components/overview-components/imageGallery/imageMain';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -20,6 +21,9 @@ import {
   FeatureListComponent,
   SocialMediaButtonsComponent,
 } from '../../components/overview-components/productInformation/productInfo';
+// IMPORT style selector components
+import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
+import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -158,7 +162,48 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-  it('should display the correct number of thumbnails in the selector', () => { });
+  describe('Style Selector', () => {
+    let styleList = exampleStyleData.results;
+    let handleSwitchStyle = () => { }; //handle this
+    let i = 0;
+    let wrapper = mount(<StyleSelectorComponent
+      styleList={styleList}
+      handleSwitchStyle={handleSwitchStyle}
+      currentStyleIndex={i}
+    />);
+    it('should display the correct number of thumbnails in the selector', () => {
+      expect(wrapper.find('img')).toHaveLength(styleList.length);
+    });
+    // it('should switch styles upon click', () => {
+    //   wrapper.find(`"#${zeroPad(2, 6)}"`).simulate('click');
+    //   expect(1+1===2).toBeTruthy();
+    // });
+    it('should display currently-selected style name above thumbnails', () => {
+      expect(wrapper.find('#style-name').text().includes(styleList[i].name)).toBeTruthy();
+    });
+  });
+  describe('Style Thumbnail', () => {
+    it('should display a checkbox if it\'s the selected style', () => {
+      let wrapper = render(<StyleThumbnail
+        thisId={0}
+        style={exampleStyleData.results[0]}
+        styleIndex={1}
+        currentStyleIndex={1}
+        handleClick={() => { }}
+      />);
+      expect(wrapper.find('i')).toHaveLength(1);
+    });
+    it('should not display a checkbox if it\'s not the selected style', () => {
+      let wrapper = shallow(<StyleThumbnail
+        thisId={0}
+        style={exampleStyleData.results[0]}
+        styleIndex={2}
+        currentStyleIndex={1}
+        handleClick={() => { }}
+      />);
+      expect(wrapper.find('i')).toHaveLength(0);
+    });
+  });
 });
 
 // describe('Header', () => {});
