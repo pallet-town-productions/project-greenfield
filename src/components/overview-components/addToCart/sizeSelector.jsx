@@ -67,7 +67,7 @@ const PromptSizeText = function ({ promptSelectSize }) {
   );
 };
 
-const SizeSelector = function ({
+export const SizeSelectorComponent = function ({
   sizeList, sizeSkus, promptSelectSize, isOutOfStock, handleChangeSize,
 }) {
   return (
@@ -94,7 +94,7 @@ PromptSizeText.propTypes = {
   promptSelectSize: PT.bool.isRequired,
 };
 
-SizeSelector.propTypes = {
+SizeSelectorComponent.propTypes = {
   sizeList: PT.arrayOf(PT.string.isRequired).isRequired,
   sizeSkus: PT.arrayOf(PT.number.isRequired).isRequired,
   promptSelectSize: PT.bool.isRequired,
@@ -102,4 +102,4 @@ SizeSelector.propTypes = {
   handleChangeSize: PT.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SizeSelector);
+export default connect(mapStateToProps, mapDispatchToProps)(SizeSelectorComponent);

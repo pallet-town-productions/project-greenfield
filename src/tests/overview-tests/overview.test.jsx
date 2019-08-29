@@ -12,6 +12,8 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
 import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+// IMPORT add to cart components
+import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -75,7 +77,61 @@ describe('Image Gallery', () => {
   // describe('Zoom View' , () => {} )
 });
 
-// describe('Add To Cart', () => {});
+describe('Add To Cart', () => {
+  describe('Size Selector', () => {
+    let sizeList = ['Select Size', 'S', 'XL'];
+    let sizeSkus = [0, 1, 2];
+    let handleChangeSize = () => {};
+    let wrapper = render(<SizeSelectorComponent 
+      sizeList={sizeList}
+      sizeSkus={sizeSkus}
+      promptSelectSize={false}
+      handleChangeSize={handleChangeSize}
+      isOutOfStock={false}
+    />);
+    it('should display Size Selector', () => {
+      expect(wrapper.find('select').length).toBeTruthy();
+    });
+    it('should have a default value of Select Size if there are available sizes', () => {
+      expect(wrapper.find('select').text().indexOf('Select Size')).toEqual(0);
+    });
+    it('should only display available Sizes in the dropdown', () => {
+      expect(wrapper.find('option')).toHaveLength(3);
+      expect(wrapper.find('option').get(1).children[0].data).toEqual(sizeList[1]);
+      expect(wrapper.find('option').get(2).children[0].data).toEqual(sizeList[2]);
+    });
+    it('should display OUT OF STOCK if there\'s no available sizes', () => {
+      sizeList = [];
+      let outOfStockWrapper = render(<SizeSelectorComponent 
+        sizeList={sizeList}
+        sizeSkus={[]}
+        promptSelectSize={false}
+        handleChangeSize={handleChangeSize}
+        isOutOfStock={sizeList.length === 0}
+      />);
+      expect(outOfStockWrapper.find('select').text()).toEqual('OUT OF STOCK');
+    });
+    it('should prompt to select size if promptSelectSize is set to true', () => {
+      let promptWrapper = render(<SizeSelectorComponent 
+        sizeList={sizeList}
+        sizeSkus={[]}
+        promptSelectSize={true}
+        handleChangeSize={handleChangeSize}
+        isOutOfStock={sizeList.length === 0}
+      />);
+      expect(promptWrapper.find('#select-size-prompt').text()).toEqual('Please Select Size');
+    });
+    it('should not prompt to select size if promptSelectSize is set to false', () => {
+      expect(wrapper.find('#select-size-prompt').text()).toEqual('');
+    });
+  });
+  describe('Quantity Selector', () => {
+
+  });
+  describe('Add to Cart Button', () => {
+
+  });
+});
 
 describe('Product Information', () => {
   it('should display the correct product name', () => {
