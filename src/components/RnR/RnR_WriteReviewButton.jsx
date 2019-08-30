@@ -28,6 +28,7 @@ class WriteReviewButton extends Component {
         type="button"
         onClick={() => this.showModal(showModal)}
       >
+        Add Review
         <Modal show={showModal}>
           <WriteReviewForm hideModal={this.hideModal} />
         </Modal>
