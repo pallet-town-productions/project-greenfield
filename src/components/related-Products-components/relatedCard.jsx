@@ -3,6 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
+import ConnectedModalTable from './related-modal-table';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
@@ -60,6 +61,10 @@ export class RelatedCard extends Component {
     this.setState({ showModal: true });
   }
 
+  handleHideModal() {
+    this.setState({ showModal: false });
+  }
+
   render() {
     const { loading } = this.state;
     if (!loading) {
@@ -75,8 +80,17 @@ export class RelatedCard extends Component {
       const { showModal } = this.state;
       const modal = showModal ? (
         <ConnectedRelatedModal>
-          <div className="related-modal-container">
-            yeet it boi
+          <div
+            className="related-modal-container"
+            onClick={() => this.handleHideModal()}
+            role="button"
+            tabIndex={0}
+            onKeyPress={() => this.handleHideModal()}
+          >
+            <div className="related-modal">
+              <ConnectedModalTable compareData={productData} />
+              comparison info
+            </div>
           </div>
         </ConnectedRelatedModal>
       ) : null;
