@@ -68,18 +68,7 @@ class WriteReviewForm extends Component {
           <RadioGroupInput label="Rating" options={ratingOptions} handleInputChange={this.handleInputChange} />
           <RadioGroupInput label="Recommended" options={recommended} handleInputChange={this.handleInputChange} />
           <RadioGroupInput label="Characteristic" options={characteristics} handleInputChange={this.handleInputChange} />
-          <br />
-          <TextInput label="Review Summary" id="review-summary" />
-          <label htmlFor="reviewSummary">
-          reviewSummary
-            <input
-              id="reviewSummary"
-              name="reviewSummary"
-              type="text"
-              value={reviewSummary}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <TextInput label="Review Summary" id="review-summary" value={reviewSummary} />
           <br />
           <label htmlFor="reviewBody">
           reviewBody
