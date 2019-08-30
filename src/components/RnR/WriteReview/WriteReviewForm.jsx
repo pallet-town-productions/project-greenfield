@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RadioGroupInput from './RadioGroupInput';
+import TextInput from './TextInput';
 
 class WriteReviewForm extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class WriteReviewForm extends Component {
           <RadioGroupInput label="Recommended" options={recommended} handleInputChange={this.handleInputChange} />
           <RadioGroupInput label="Characteristic" options={characteristics} handleInputChange={this.handleInputChange} />
           <br />
+          <TextInput label="Review Summary" id="review-summary" />
           <label htmlFor="reviewSummary">
           reviewSummary
             <input

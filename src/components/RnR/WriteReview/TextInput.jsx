@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextInput = (props) => {
-  const { label, placeHolder, handleInputChange } = props;
+  const {
+    label, id, placeHolder = '', handleInputChange,
+  } = props;
   return (
-    <label htmlFor={label}>
+    <label htmlFor={id}>
       {label}
       <input
-        id={label}
-        name={label}
+        id={id}
+        name={id}
         type="text"
         placeholder={placeHolder}
         onChange={handleInputChange}
@@ -19,6 +21,7 @@ const TextInput = (props) => {
 
 TextInput.propTypes = {
   label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   placeHolder: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
 };
