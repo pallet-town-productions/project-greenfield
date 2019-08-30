@@ -39,9 +39,8 @@ class WriteReviewForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const formData = this.state;
+    // const formData = this.state;
     this.hideModal();
-    console.log(formData);
     // check if data is valid
     // make a post with form data if everything all good
     // otherwise render some errors
@@ -151,6 +150,7 @@ class WriteReviewForm extends Component {
               onChange={this.handleInputChange}
             />
           </label>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
