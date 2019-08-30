@@ -2,8 +2,8 @@
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { zeroPad } from '../../util/util';
 import sinon from 'sinon';
+import { zeroPad } from '../../util/util';
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 // IMPORT initialData
 import exampleStyleData from '../../exampleStyleData';
@@ -127,16 +127,16 @@ describe('Add To Cart', () => {
     });
   });
   describe('Quantity Selector', () => {
-    let currentAvailQuantity = 4;
-    let handleQuantityChange = () => {};
+    const currentAvailQuantity = 4;
+    const handleQuantityChange = () => {};
 
     describe('(Size not selected)', () => {
-      let wrapper = shallow(<QuantitySelectorComponent 
+      const wrapper = shallow(<QuantitySelectorComponent
         currentAvailQuantity={currentAvailQuantity}
         showQuantities={false}
         handleQuantityChange={handleQuantityChange}
       />);
-  
+
       it('should display Quantity Selector', () => {
         expect(wrapper.find('select').length).toBeTruthy();
       });
@@ -144,13 +144,12 @@ describe('Add To Cart', () => {
         expect(wrapper.find('select').text()).toEqual('-');
         expect(wrapper.find('option')).toHaveLength(1);
       });
-
     });
 
     describe('(Size selected)', () => {
-      let wrapper = render(<QuantitySelectorComponent 
+      let wrapper = render(<QuantitySelectorComponent
         currentAvailQuantity={currentAvailQuantity}
-        showQuantities={true}
+        showQuantities
         handleQuantityChange={handleQuantityChange}
       />);
 
@@ -161,9 +160,9 @@ describe('Add To Cart', () => {
         expect(wrapper.find('option')).toHaveLength(4);
       });
       it('should display 1 to 15 if there\'s at least 15 in stock', () => {
-        wrapper = render(<QuantitySelectorComponent 
+        wrapper = render(<QuantitySelectorComponent
           currentAvailQuantity={500}
-          showQuantities={true}
+          showQuantities
           handleQuantityChange={handleQuantityChange}
         />);
         expect(wrapper.find('option')).toHaveLength(15);
@@ -172,7 +171,7 @@ describe('Add To Cart', () => {
   });
 
   describe('Add to Cart Button', () => {
-    let handleClick = sinon.spy();
+    const handleClick = sinon.spy();
     let wrapper = shallow(<AddToCartButtonComponent
       isOutOfStock={false}
       handleClick={handleClick}
@@ -193,7 +192,7 @@ describe('Add To Cart', () => {
     // });
     it('should not be clickable if Out Of Stock', () => {
       wrapper = shallow(<AddToCartButtonComponent
-        isOutOfStock={true}
+        isOutOfStock
         handleClick={handleClick}
       />);
       expect(wrapper.exists('#add-to-cart-button-out-of-stock')).toBeTruthy();
@@ -288,13 +287,12 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-  
   describe('Style Selector', () => {
-    let i = 0;
+    const i = 0;
     const styleList = exampleStyleData.results;
     const handleClick = sinon.spy();
-    
-    let wrapper = mount(<StyleSelectorComponent 
+
+    const wrapper = mount(<StyleSelectorComponent
       styleList={styleList}
       currentStyleIndex={i}
       handleSwitchStyle={handleClick}
@@ -314,21 +312,21 @@ describe('Style Selector', () => {
   describe('Style Thumbnail', () => {
     it('should display a checkbox if it\'s the selected style', () => {
       const wrapper = render(<StyleThumbnail
-        thisId={'#000001'}
+        thisId="#000001"
         style={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
-        handleClick={()=>{}}
+        handleClick={() => {}}
       />);
       expect(wrapper.find('i')).toHaveLength(1);
     });
     it('should not display a checkbox if it\'s not the selected style', () => {
       const wrapper = shallow(<StyleThumbnail
-        thisId={'#000001'}
+        thisId="#000001"
         style={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
-        handleClick={()=>{}}
+        handleClick={() => {}}
       />);
       expect(wrapper.find('i')).toHaveLength(0);
     });
