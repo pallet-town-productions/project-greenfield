@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RadioGroupInput = (props) => {
   const {
-    options, handleInputChange,
+    label, options, handleInputChange,
   } = props;
   const buttons = options.map((option) => (
     <div key={option}>
@@ -19,11 +19,15 @@ const RadioGroupInput = (props) => {
     </div>
   ));
   return (
-    <div className="RadioGroup">{buttons}</div>
+    <div className="RadioGroup">
+      {label}
+      {buttons}
+    </div>
   );
 };
 
 RadioGroupInput.propTypes = {
+  label: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

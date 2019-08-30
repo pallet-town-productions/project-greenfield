@@ -6,14 +6,14 @@ class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recommended: true,
-      characteristics: false,
+      ratingOptions: ['1', '2', '3', '4', '5'],
+      recommended: ['Yes', 'No'],
+      characteristics: ['Temp 1', 'Temp 2'],
       reviewSummary: '',
       reviewBody: '',
       photos: '',
       nickname: '',
       email: '',
-      ratingOptions: ['1', '2', '3', '4', '5'],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -64,28 +64,9 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form>
-          <RadioGroupInput options={ratingOptions} handleInputChange={this.handleInputChange} />
-          <label htmlFor="recommended">
-          Recommended
-            <input
-              id="recommended"
-              name="recommended"
-              type="radio"
-              value={recommended}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-          <label htmlFor="characteristics">
-          Characteristics
-            <input
-              id="characteristics"
-              name="characteristics"
-              type="radio"
-              value={characteristics}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <RadioGroupInput label="Rating" options={ratingOptions} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Recommended" options={recommended} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Characteristic" options={characteristics} handleInputChange={this.handleInputChange} />
           <br />
           <label htmlFor="reviewSummary">
           reviewSummary
