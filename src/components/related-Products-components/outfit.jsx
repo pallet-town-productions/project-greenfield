@@ -112,7 +112,7 @@ export class Outfit extends Component {
 
 Outfit.propTypes = {
   productId: PT.number.isRequired,
-  productData: PT.shape({}).isRequired,
+  productData: PT.shape({ name: PT.string }).isRequired,
 };
 
 const connectedOutfit = connect(mapStateToProps, null)(Outfit);
