@@ -53,6 +53,7 @@ img {
   padding: 0px;
   margin: 0px;
   font-size: 12px;
+  font-family: $font;
 }
 
 .slick-list> div {
@@ -74,6 +75,11 @@ img {
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+
+  .add-text {
+    margin: 5px;
+    font-family: $font;
   }
 
   
