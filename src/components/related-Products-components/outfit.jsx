@@ -25,16 +25,58 @@ export class Outfit extends Component {
     const { localStorage } = window;
     if (localStorage.length) {
       const outfit = JSON.parse(localStorage.getItem('outfit'));
-      this.setState({ outfit });
+      this.setState({ outfit, hasOutfit: true });
     }
   }
 
   addToOutfit() {
+    const { localStorage } = window;
     const { productId } = this.props;
+    const outfit = this.state;
+    if (outfit.length) {
+      if (outfit.includes(productId)) {
+        return;
+      }
+      localStorage.setItem('outfit', JSON.stringify([...outfit, productId]));
+      this.setState({ outfit: [...outfit, productId] });
+      return;
+    }
+    localStorage.setItem('outfit', JSON.stringify([productId]));
+    this.setState({ outfit: [productId], hasOutfit: true });
   }
 
   render() {
     const { outfit } = this.state;
+    const { hasOutfit } = this.state;
+    if (hasOutfit) {
+      return (
+        <div className="carousel-container">
+          <Slider
+            dots={false}
+            infinite={false}
+            speed={500}
+            slidesToShow={3.5}
+            slidesToScroll={1}
+            variableWidth
+          >
+            <div
+              className="add-to-outfit"
+              onClick={() => this.addToOutfit()}
+              role="button"
+              tabIndex={0}
+              onKeyPress={() => this.addToOutfit()}
+            >
+              Add to your outfit
+            </div>
+            {outfit.map(
+              (id, index) => (
+                <ConnectedRelatedCard index={index + 1} key={id} productId={id} />
+              ),
+            )}
+          </Slider>
+        </div>
+      );
+    }
     return (
       <div className="carousel-container">
         <Slider
@@ -44,7 +86,13 @@ export class Outfit extends Component {
           slidesToShow={3.5}
           slidesToScroll={1}
         >
-          <div className="add-to-outfit">
+          <div
+            className="add-to-outfit"
+            onClick={() => this.addToOutfit()}
+            role="button"
+            tabIndex={0}
+            onKeyPress={() => this.addToOutfit()}
+          >
             Add to your outfit
           </div>
         </Slider>
