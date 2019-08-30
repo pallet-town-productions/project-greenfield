@@ -17,10 +17,6 @@ class List extends Component {
     };
   }
 
-  componentDidMount() {
-    this.showReviews();
-  }
-
   showMore() {
     const { currentView } = this.state;
     const { updateReviews } = this.props;
@@ -29,37 +25,10 @@ class List extends Component {
     }
   }
 
-  showReviews() {
-    const { updateReviews } = this.props;
-    const { currentView } = this.state;
-    const { reviewsToShow } = this.state;
-    const { updateStarReviews } = this.props;
-    const { filteredReviews } = updateStarReviews;
-    const filter = [];
-
-    filteredReviews.forEach((arr) => {
-      if (arr.length > 1) {
-        arr.forEach((review) => {
-          if (!filter.some((e) => e.review_id === review.review_id)) { filter.push(review); }
-        });
-      } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
-    });
-
-    console.log(filter)
-    console.log(updateReviews)
-    console.log(reviewsToShow)
-
-    if (filter.length) {
-      this.setState({ reviewsToShow: filter });
-    } else {
-      this.setState({ reviewsToShow: updateReviews });
-    }
-  }
-
   render() {
     const { updateReviews } = this.props;
     const { currentView } = this.state;
-    const { reviewsToShow } = this.state;
+    let { reviewsToShow } = this.state;
     const { updateStarReviews } = this.props;
     const { filteredReviews } = updateStarReviews;
 
@@ -70,7 +39,22 @@ class List extends Component {
       button = <div />;
     }
 
-    console.log(reviewsToShow);
+    const filter = [];
+
+    filteredReviews.forEach((arr) => {
+      if (arr.length > 1) {
+        arr.forEach((review) => {
+          if (!filter.some((e) => e.review_id === review.review_id)) { filter.push(review); }
+        });
+      } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
+    });
+    
+    if (filter.length) {
+      this.setState({ reviewsToShow: filter });
+    } else {
+      this.setState({ reviewsToShow: updateReviews });
+    }
+    console.log(filter);
 
     return (
       <div>
