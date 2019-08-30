@@ -12,26 +12,43 @@ class StarBreakdown extends React.Component {
     super(props);
     this.state = {
       filtered: false,
+      filters: [],
     };
   }
 
+  // handleClick(rating) {
+  //   const { dispatch, productId } = this.props;
+  //   const { filtered } = this.state;
+  //   fetch(`http://18.217.220.129/reviews/${productId}/list`)
+  //     .then((data) => data.json())
+  //     .then((data) => data.results.filter((review) => review.rating === parseInt(rating, 10)))
+  //     .then((data) => {
+  //       if (filtered) {
+  //         dispatch(filterReviews(data));
+  //       } else {
+  //         dispatch(updateReviewsToRender(data));
+  //         dispatch(filterReviews(data));
+  //         this.setState((prevState) => ({
+  //           filtered: !prevState.filtered,
+  //         }));
+  //       }
+  //     });
+  // }
+
+  componentDidUpdate(prevState) {
+    const { filters } = this.state;
+    const { dispatch } = this.props;
+    if (filters !== prevState.filters) {
+      console.log(filters);
+      dispatch(filterReviews(filters));
+    }
+  }
+
   handleClick(rating) {
-    const { dispatch, productId } = this.props;
-    const { filtered } = this.state;
-    fetch(`http://18.217.220.129/reviews/${productId}/list`)
-      .then((data) => data.json())
-      .then((data) => data.results.filter((review) => review.rating === parseInt(rating, 10)))
-      .then((data) => {
-        if (filtered) {
-          dispatch(filterReviews(data));
-        } else {
-          dispatch(updateReviewsToRender(data));
-          dispatch(filterReviews(data));
-          this.setState((prevState) => ({
-            filtered: !prevState.filtered,
-          }));
-        }
-      });
+    const { filters } = this.state;
+    if (!filters.includes(parseInt(rating, 10))) {
+      this.setState({ filters: filters.concat(parseInt(rating, 10)) });
+    }
   }
 
   render() {

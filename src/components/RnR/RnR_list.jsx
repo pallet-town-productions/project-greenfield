@@ -31,31 +31,30 @@ class List extends Component {
     let { reviewsToShow } = this.state;
     const { updateStarReviews } = this.props;
     const { filteredReviews } = updateStarReviews;
-
+    const filter = [];
     let button;
-    if (reviewsToShow.length > currentView) {
+
+    // filteredReviews.forEach((arr) => {
+    //   if (arr.length > 1) {
+    //     arr.forEach((review) => {
+    //       if (!filter.some((e) => e.review_id === review.review_id)) { filter.push(review); }
+    //     });
+    //   } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
+    // });
+
+    // let reviewsToMap = updateReviews;
+    // if (filter.length) reviewsToMap = filter;
+
+    if (updateReviews.length > currentView) {
       button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
     } else {
       button = <div />;
     }
 
-    const filter = [];
-
-    filteredReviews.forEach((arr) => {
-      if (arr.length > 1) {
-        arr.forEach((review) => {
-          if (!filter.some((e) => e.review_id === review.review_id)) { filter.push(review); }
-        });
-      } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
-    });
-    
-    let reviewsToMap = updateReviews;
-    if (filter.length) reviewsToMap = filter;
-    console.log(reviewsToMap)
     return (
       <div>
-        {/* .slice(0, currentView) */}
-        {reviewsToMap.map((review) => (
+        
+        {updateReviews.slice(0, currentView).map((review) => (
           <Tile
             review={review}
             key={review.review_id}
