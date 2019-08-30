@@ -39,6 +39,26 @@ export class RelatedCard extends Component {
       .then((reviewAvg) => this.setState({ reviewAvg: Math.round(reviewAvg * 10) / 10 }));
   }
 
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    const { productId: oldId } = prevProps;
+    if (oldId === productId) {
+      return;
+    }
+    fetch(`http://18.217.220.129/products/${productId}`)
+      .then((data) => data.json())
+      .then((productData) => this.setState({ productData }));
+    fetch(`http://18.217.220.129/products/${productId}/styles`)
+      .then((data) => data.json())
+      .then((productData) => productData.results.map((style) => style.photos))
+      .then((photos) => this.setState({ photos, loading: false }));
+    fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+      .then((data) => data.json())
+      .then((reviewData) => Object.values(reviewData.ratings))
+      .then((ratings) => ratings.reduce((element, acc) => acc + element, 0) / ratings.length)
+      .then((reviewAvg) => this.setState({ reviewAvg: Math.round(reviewAvg * 10) / 10 }));
+  }
+
   render() {
     const { loading } = this.state;
     if (!loading) {
@@ -49,11 +69,25 @@ export class RelatedCard extends Component {
       const { name } = productData;
       const { reviewAvg } = this.state;
       const { outfit } = this.props;
+      const { removeFromOutfit } = this.props;
+      const { productId } = this.props;
       return (
         <div className="card-container">
           <div className="image-container">
             <img src={photos[0][0].thumbnail_url} alt="default-style" />
-            {outfit && <i className="material-icons" id="compare-button">highlight_off</i>}
+            {outfit
+            && (
+            <i
+              role="button"
+              className="material-icons"
+              id="remove-button"
+              onClick={(() => removeFromOutfit(productId))}
+              tabIndex={0}
+              onKeyPress={() => removeFromOutfit(productId)}
+            >
+              highlight_off
+            </i>
+            )}
             {!outfit && <i className="material-icons" id="compare-button">star_border</i>}
           </div>
           <div className="card-info-container">
@@ -79,6 +113,11 @@ export class RelatedCard extends Component {
 RelatedCard.propTypes = {
   productId: PT.number.isRequired,
   outfit: PT.bool.isRequired,
+  removeFromOutfit: PT.func,
+};
+
+RelatedCard.defaultProps = {
+  removeFromOutfit: () => {},
 };
 
 const connectedRelatedCard = connect(null, null)(RelatedCard);

@@ -110,4 +110,17 @@ img {
     color: red;
   }
 
+  #remove-button {
+    position: absolute;
+    top: 1%;
+    left: 85%;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: red;
+  }
+
   
