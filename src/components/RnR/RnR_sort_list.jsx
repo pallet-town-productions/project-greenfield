@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import List from './RnR_list';
-import updateReviewsToRender from '../../actions/RnR-Actions/RnR-action';
+import { updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
@@ -50,8 +50,8 @@ class Sort extends Component {
   }
 
   render() {
-    const { updateReviews } = this.props;
-    const upperStr = `${updateReviews.length} reviews, sorted by `;
+    const { updateReviewNumber } = this.props;
+    const upperStr = `${updateReviewNumber} reviews, sorted by `;
     return (
       <div className="tile-container">
         <form className="sort-list">
@@ -70,7 +70,7 @@ class Sort extends Component {
 
 Sort.propTypes = {
   productId: PT.number.isRequired,
-  updateReviews: PT.arrayOf(PT.object).isRequired,
+  updateReviewNumber: PT.string.isRequired,
   dispatch: PT.func.isRequired,
 };
 
