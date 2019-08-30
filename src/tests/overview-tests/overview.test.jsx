@@ -16,6 +16,7 @@ import ImageMain from '../../components/overview-components/imageGallery/imageMa
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
+import { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -171,8 +172,18 @@ describe('Add To Cart', () => {
   });
 
   describe('Add to Cart Button', () => {
+    let handleClick = sinon.spy();
+    let wrapper = shallow(<AddToCartButtonComponent
+      isOutOfStock={false}
+      handleClick={handleClick}
+    />);
     it('should display Add To Cart Button', () => {
-
+      expect(wrapper.exists('.material-icons')).toBeTruthy();
+      expect(wrapper.exists('#add-to-cart-button')).toBeTruthy();
+    });
+    it('should be clickable', () => {
+      wrapper.find('#add-to-cart-button').simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
     });
     // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
 
@@ -180,9 +191,15 @@ describe('Add To Cart', () => {
     // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
 
     // });
-    // it('should not be clickable if Out Of Stock', () => {
-
-    // });
+    it('should not be clickable if Out Of Stock', () => {
+      wrapper = shallow(<AddToCartButtonComponent
+        isOutOfStock={true}
+        handleClick={handleClick}
+      />);
+      expect(wrapper.exists('#add-to-cart-button-out-of-stock')).toBeTruthy();
+      wrapper.find('#add-to-cart-button-out-of-stock').simulate('click');
+      expect(handleClick.calledTwice).toBeFalsy();
+    });
   });
 });
 

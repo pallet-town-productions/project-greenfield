@@ -27,7 +27,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const AddToCartButton = function ({ isOutOfStock, handleClick }) {
+export const AddToCartButtonComponent = function ({ isOutOfStock, handleClick }) {
   if (isOutOfStock) {
     return (
       <div>
@@ -60,9 +60,9 @@ const AddToCartButton = function ({ isOutOfStock, handleClick }) {
   );
 };
 
-AddToCartButton.propTypes = {
+AddToCartButtonComponent.propTypes = {
   isOutOfStock: PT.bool.isRequired,
   handleClick: PT.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddToCartButton);
+export default connect(mapStateToProps, mapDispatchToProps)(AddToCartButtonComponent);
