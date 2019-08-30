@@ -32,7 +32,7 @@ export class Outfit extends Component {
   addToOutfit() {
     const { localStorage } = window;
     const { productId } = this.props;
-    const outfit = this.state;
+    const { outfit } = this.state;
     if (outfit.length) {
       if (outfit.includes(productId)) {
         return;
@@ -65,7 +65,13 @@ export class Outfit extends Component {
               tabIndex={0}
               onKeyPress={() => this.addToOutfit()}
             >
-              Add to your outfit
+              <p>
+                Add to your outfit
+              </p>
+              <img
+                src="https://png2.cleanpng.com/sh/3af39c35f80007fc8fdf906c97f7050f/L0KzQYm3U8E2N6VsiZH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6TgBtfaQyi9twbj3mfLr3TfFzfF51hOd8LYPsd7A0VfFiaZU9UasANHPlR4a1U8U1OGM3SqQ6NUK0QYW9UMA6O2U8S5D5bne=/kisspng-computer-icons-plus-sign-clip-art-plus-sign-5aaad89954cb75.3540222215211460093473.png"
+                alt="plus-icon"
+              />
             </div>
             {outfit.map(
               (id, index) => (
