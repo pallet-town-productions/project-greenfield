@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filterReviews, updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
+import { filterReviews } from '../../actions/RnR-Actions/RnR-action';
 
 const mapStateToProps = (state) => ({
   ...state,
 });
 
-class StarBreakdown extends React.Component {
+export class StarBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,6 @@ class StarBreakdown extends React.Component {
     const { filters } = this.state;
     const { dispatch } = this.props;
     if (filters !== prevState.filters) {
-      console.log(filters);
       dispatch(filterReviews(filters));
     }
   }
@@ -77,7 +76,6 @@ StarBreakdown.propTypes = {
   }),
   totalRatings: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-  productId: PropTypes.number.isRequired,
 };
 
 StarBreakdown.defaultProps = {

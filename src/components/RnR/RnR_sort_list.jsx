@@ -50,8 +50,8 @@ class Sort extends Component {
   }
 
   render() {
-    const { updateReviews } = this.props;
-    const upperStr = `${updateReviews.length} reviews, sorted by `;
+    const { updateReviewNumber } = this.props;
+    const upperStr = `${updateReviewNumber} reviews, sorted by `;
     return (
       <div className="tile-container">
         <form className="sort-list">
@@ -70,7 +70,7 @@ class Sort extends Component {
 
 Sort.propTypes = {
   productId: PT.number.isRequired,
-  updateReviews: PT.arrayOf(PT.object).isRequired,
+  updateReviewNumber: PT.string.isRequired,
   dispatch: PT.func.isRequired,
 };
 

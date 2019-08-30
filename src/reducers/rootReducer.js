@@ -7,7 +7,7 @@ import { currentPhotoIndex, showExpandedView, showZoomView } from './overview-Re
 import productData from './overview-Reducers/productInformation/productDataReducers';
 import productId from './reducer-test';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
-import { updateReviews, updateStarReviews } from './RnR-Reducers/RnR-reducer';
+import { updateReviews, updateStarReviews, updateReviewNumber } from './RnR-Reducers/RnR-reducer';
 import getMetaData from './RnR-Reducers/RnR-meta-reducer';
 
 export default combineReducers({
@@ -16,6 +16,7 @@ export default combineReducers({
   relatedReducer,
   updateReviews,
   updateStarReviews,
+  updateReviewNumber,
   getMetaData,
   currentStyleIndex,
   style,
