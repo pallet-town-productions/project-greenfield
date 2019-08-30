@@ -85,10 +85,10 @@ export class RelatedCard extends Component {
               tabIndex={0}
               onKeyPress={() => removeFromOutfit(productId)}
             >
-              highlight_off
+              cancel
             </i>
             )}
-            {!outfit && <i className="material-icons" id="compare-button">star_border</i>}
+            {!outfit && <i className="material-icons" id="compare-button">stars</i>}
           </div>
           <div className="card-info-container">
             <p className="card-sub-text">{category}</p>
