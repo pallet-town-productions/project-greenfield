@@ -49,16 +49,13 @@ class List extends Component {
       } else if (arr[0] && !filter.some((e) => e.review_id === arr[0].review_id)) { filter.push(arr[0]); }
     });
     
-    if (filter.length) {
-      this.setState({ reviewsToShow: filter });
-    } else {
-      this.setState({ reviewsToShow: updateReviews });
-    }
-    console.log(filter);
-
+    let reviewsToMap = updateReviews;
+    if (filter.length) reviewsToMap = filter;
+    console.log(reviewsToMap)
     return (
       <div>
-        {reviewsToShow.slice(0, currentView).map((review) => (
+        {/* .slice(0, currentView) */}
+        {reviewsToMap.map((review) => (
           <Tile
             review={review}
             key={review.review_id}
