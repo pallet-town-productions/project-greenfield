@@ -14,8 +14,8 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleClick: (action) => {
-      dispatch({type: action});
-    }
+      dispatch({ type: action });
+    },
   };
 };
 
@@ -23,28 +23,39 @@ const showButton = function (isNext, currentPhotoIndex, imageListLength) {
   // last one, and isNext: don't show; first one and !isNext... don't show
   if (isNext && currentPhotoIndex === imageListLength - 1) {
     return false;
-  } else if (!isNext && currentPhotoIndex === 0) {
+  } if (!isNext && currentPhotoIndex === 0) {
     return false;
   } return true;
-}
+};
 
-const NavCarouselButtonComponent = function ({ isNext, handleClick, currentPhotoIndex, imageListLength }) {
+const NavCarouselButtonComponent = function ({
+  isNext, handleClick, currentPhotoIndex, imageListLength,
+}) {
   const action = (isNext) ? 'NEXT_PHOTO' : 'PREV_PHOTO';
   const thisHandleClick = function (e) {
     e.stopPropagation(); // prevents image behind arrow to be clicked
-    handleClick(action)
+    handleClick(action);
   };
   const button = (isNext) ? 'navigate_next' : 'navigate_before';
   const show = (showButton(isNext, currentPhotoIndex, imageListLength)) ? 'show' : 'hide';
 
   return (
-    <i className={`material-icons ${show} nav-carousel-button cursor-pointer`}
-      id={`${button}`}
-      onClick={thisHandleClick}
-    >
-      {button}
-    </i>
+    <span onClick={thisHandleClick} role="presentation">
+      <i
+        className={`material-icons ${show} nav-carousel-button cursor-pointer`}
+        id={`${button}`}
+      >
+        {button}
+      </i>
+    </span>
   );
+};
+
+NavCarouselButtonComponent.propTypes = {
+  isNext: PT.bool.isRequired,
+  handleClick: PT.func.isRequired,
+  currentPhotoIndex: PT.number.isRequired,
+  imageListLength: PT.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavCarouselButtonComponent);

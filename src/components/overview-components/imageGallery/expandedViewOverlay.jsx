@@ -26,7 +26,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ExpandedViewOverlay = function ({
+export const ExpandedViewOverlayComponent = function ({
   showExpandedView,
   handleHideExpandedView,
   handleShowZoomView,
@@ -45,10 +45,10 @@ const ExpandedViewOverlay = function ({
   );
 };
 
-ExpandedViewOverlay.propTypes = {
+ExpandedViewOverlayComponent.propTypes = {
   showExpandedView: PT.bool.isRequired,
   handleHideExpandedView: PT.func.isRequired,
   handleShowZoomView: PT.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExpandedViewOverlay);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpandedViewOverlayComponent);

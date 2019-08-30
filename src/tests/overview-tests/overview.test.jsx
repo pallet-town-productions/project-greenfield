@@ -3,16 +3,23 @@ import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
+import { Provider } from 'react-redux';
 import { zeroPad } from '../../util/util';
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+// IMPORT Provider and Store for deep mounts
+import configureStore from '../../store';
 // IMPORT initialData
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
 import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
-import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
+import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
+// import NavCarouselButton from '../../components/overview-components/imageGallery/navCarouselButton';
+// import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
+// import { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
+// import ExitButton from '../../components/overview-components/imageGallery/exitButton';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
@@ -64,18 +71,73 @@ describe('Overview', () => {
 });
 
 describe('Image Gallery', () => {
-  // let wrapper = shallow(
-  //   <Provider store={STORE}>
-  //     <ImageGallery />
-  //   </Provider>);
-  // it('should render Main Image', () => {
-  //   expect(wrapper.exists('div')).toBeTruthy();
-  // });
-  // describe('Main Image', () => {} )
-  // describe('Image Carousel', () => {} )
-  // describe('Image Thumbnail (not Style Thumbnail)', () => {} )
-  // describe('Expanded View', () => {} ) // including exit button
-  // describe('Zoom View' , () => {} )
+  const handleClick = sinon.spy();
+  const wrapper = mount(
+    <Provider store={configureStore()}>
+      <ImageGalleryComponent dispatchExpandedView={handleClick} />
+    </Provider>,
+  );
+  it('should render Main Image', () => {
+    expect(wrapper.exists('#main-photo')).toBeTruthy();
+  });
+  describe('Main Image', () => {
+    it('should be clickable', () => {
+      wrapper.find('#main-photo').simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
+    });
+    describe('Nav Carousel Buttons', () => {
+      it('should render one if at the first OR last image', () => {
+        // //////////
+        // CODE
+        // //////////
+      });
+      it('should render two if at a middle image', () => {
+        // //////////
+        // CODE
+        // //////////
+      });
+      it('should be clickable', () => {
+        // //////////
+        // CODE
+        // //////////
+      });
+    });
+  });
+  describe('Image Carousel', () => {
+    it('should have thumbnails for all the photos of this style', () => {
+      expect(wrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
+    });
+    it('should pass a click handler down to the thumbnail', () => {
+      const imageListWrapper = mount(
+        <ImageListComponent
+          currentPhotoIndex={0}
+          currentStyleIndex={0}
+          isExpanded={false}
+          handleSwitchPhoto={handleClick}
+          imageList={[
+            { thumbnail_url: 'dummy', url: 'bigdummy' },
+          ]}
+        />,
+      );
+      imageListWrapper.find('#selected-image-thumbnail').simulate('click');
+      expect(handleClick.calledTwice).toBeTruthy();
+    });
+  });
+  describe('Expanded View', () => {
+    // //////////
+    // CODE
+    // //////////
+    describe('Exit Button', () => {
+      // //////////
+      // CODE
+      // //////////
+    });
+  });
+  describe('Zoom View', () => {
+    // //////////
+    // CODE
+    // //////////
+  });
 });
 
 describe('Add To Cart', () => {
@@ -236,7 +298,7 @@ describe('Product Information', () => {
       expect(reduceUrls.includes('twitter.com')).toBeTruthy();
       expect(reduceUrls.includes('pinterest.com')).toBeTruthy();
     });
-    // it('social media buttons should work', () => {
+    // it('social media buttons should be clickable', () => {
 
     // });
   });

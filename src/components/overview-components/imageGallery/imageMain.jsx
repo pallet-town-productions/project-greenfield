@@ -19,7 +19,7 @@ const mapStateToProps = function (state) {
   };
 };
 
-const ImageMain = function ({
+export const ImageMainComponent = function ({
   currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
   switch (thisId) {
@@ -50,20 +50,20 @@ const ImageMain = function ({
     default:
       return ( // if default view, return imageList inside this bigger div
         <div
-        onClick={handleClick}
-        role="presentation"
-        className={onHover}
-        id={thisId}
-        style={{ backgroundImage: `url(${currentBigPicture})` }}
+          onClick={handleClick}
+          role="presentation"
+          className={onHover}
+          id={thisId}
+          style={{ backgroundImage: `url(${currentBigPicture})` }}
         >
-        <NavCarouselButton isNext={false}/>
-        <NavCarouselButton isNext={true}/>
+          <NavCarouselButton isNext={false} />
+          <NavCarouselButton isNext />
         </div>
       );
   }
 };
 
-ImageMain.propTypes = {
+ImageMainComponent.propTypes = {
   currentBigPicture: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
   handleClick: PT.func.isRequired,
@@ -71,4 +71,4 @@ ImageMain.propTypes = {
   thisId: PT.string.isRequired, // this is an ID name that CSS uses
 };
 
-export default connect(mapStateToProps, null)(ImageMain);
+export default connect(mapStateToProps, null)(ImageMainComponent);

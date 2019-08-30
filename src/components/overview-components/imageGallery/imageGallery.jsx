@@ -14,7 +14,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ImageGallery = function ({ dispatchExpandedView }) {
+export const ImageGalleryComponent = function ({ dispatchExpandedView }) {
   return (
     <section id="image-gallery-grid-default">
       <ImageMain
@@ -27,8 +27,8 @@ const ImageGallery = function ({ dispatchExpandedView }) {
   );
 };
 
-ImageGallery.propTypes = {
+ImageGalleryComponent.propTypes = {
   dispatchExpandedView: PT.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(ImageGallery);
+export default connect(null, mapDispatchToProps)(ImageGalleryComponent);

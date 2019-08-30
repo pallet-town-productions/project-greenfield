@@ -28,7 +28,8 @@ const mapDispatchToProps = function (dispatch) {
 export const QuantitySelectorComponent = function ({
   showQuantities,
   currentAvailQuantity,
-  handleQuantityChange }) {
+  handleQuantityChange,
+}) {
   const quantityList = range(1, Math.min(currentAvailQuantity, 15) + 1);
   const list = (showQuantities) ? quantityList : [BLANKQUANTITY];
   return (
