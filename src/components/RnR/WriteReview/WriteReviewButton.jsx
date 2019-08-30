@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Modal from '../QnA-components/Modal';
-import WriteReviewForm from './RnR_WriteReviewForm';
+import Modal from '../../QnA-components/Modal';
+import WriteReviewForm from './WriteReviewForm';
 
 class WriteReviewButton extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RadioGroupInput from './RnR_RadioGroupInput';
+import RadioGroupInput from './RadioGroupInput';
 
 class WriteReviewForm extends Component {
   constructor(props) {
