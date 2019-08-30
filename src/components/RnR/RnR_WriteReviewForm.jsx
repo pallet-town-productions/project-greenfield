@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RadioGroupInput from './RnR_RadioGroupInput';
 
 class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      overallRating: true,
       recommended: true,
       characteristics: false,
       reviewSummary: '',
@@ -13,6 +13,7 @@ class WriteReviewForm extends Component {
       photos: '',
       nickname: '',
       email: '',
+      ratingOptions: ['1', '2', '3', '4', '5'],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -48,7 +49,7 @@ class WriteReviewForm extends Component {
 
   render() {
     const {
-      overallRating,
+      ratingOptions,
       recommended,
       characteristics,
       reviewSummary,
@@ -63,17 +64,7 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form>
-          <label htmlFor="overallRating">
-            Overall Rating
-            <input
-              id="overallRating"
-              name="overallRating"
-              type="radio"
-              value={overallRating}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
+          <RadioGroupInput options={ratingOptions} handleInputChange={this.handleInputChange} />
           <label htmlFor="recommended">
           Recommended
             <input
