@@ -2,16 +2,19 @@
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import { zeroPad } from '../../util/util';
-// IMPORT initialData
+import { zeroPad } from '../../util/util';
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+// IMPORT store and provider
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+// IMPORT initialData
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
 import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
-// import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-// import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
+import ImageMain from '../../components/overview-components/imageGallery/imageMain';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 // IMPORT product info components
@@ -24,12 +27,15 @@ import {
   SocialMediaButtonsComponent,
 } from '../../components/overview-components/productInformation/productInfo';
 // IMPORT style selector components
-import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
+// import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
+import StyleSelector from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
+import changeStyle from '../../actions/overview-Actions/styleSelector/changeStyle';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 
+const MOCKSTORE = configureStore();
 // NOTES:
 // exists likes basic html, doesn't like React Components
 
@@ -243,22 +249,32 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
+  // const handleClick = (newStyleIndex) => {changeStyle(newStyleIndex)}
+  
   describe('Style Selector', () => {
-    const styleList = exampleStyleData.results;
-    const handleSwitchStyle = () => { }; // handle this
+    
+    const handleClick = () => {console.log('CLICKED')};
     const i = 0;
-    const wrapper = mount(<StyleSelectorComponent
-      styleList={styleList}
-      handleSwitchStyle={handleSwitchStyle}
-      currentStyleIndex={i}
+    const styleList = exampleStyleData.results;
+
+    let initialState = {
+      productData: exampleProductData,
+      style: exampleStyleData,
+      currentStyleIndex: i,
+      styleList: styleList,
+      handleSwitchStyle: handleClick,
+    };
+    let store = MOCKSTORE(initialState);
+    let wrapper = mount(<StyleSelector 
+      store={store}
     />);
+
     it('should display the correct number of thumbnails in the selector', () => {
       expect(wrapper.find('img')).toHaveLength(styleList.length);
     });
-    // it('should switch styles upon click', () => {
-    //   wrapper.find(`"#${zeroPad(2, 6)}"`).simulate('click');
-    //   expect(1+1===2).toBeTruthy();
-    // });
+    it('should switch styles upon click', () => {
+      wrapper.find(`#${zeroPad(3, 6)}`).simulate('click');
+    });
     it('should display currently-selected style name above thumbnails', () => {
       expect(wrapper.find('#style-name').text().includes(styleList[i].name)).toBeTruthy();
     });
@@ -266,21 +282,21 @@ describe('Style Selector', () => {
   describe('Style Thumbnail', () => {
     it('should display a checkbox if it\'s the selected style', () => {
       const wrapper = render(<StyleThumbnail
-        thisId={0}
+        thisId={'#000001'}
         style={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
-        handleClick={() => { }}
+        handleClick={()=>{}}
       />);
       expect(wrapper.find('i')).toHaveLength(1);
     });
     it('should not display a checkbox if it\'s not the selected style', () => {
       const wrapper = shallow(<StyleThumbnail
-        thisId={0}
+        thisId={'#000001'}
         style={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
-        handleClick={() => { }}
+        handleClick={()=>{}}
       />);
       expect(wrapper.find('i')).toHaveLength(0);
     });
