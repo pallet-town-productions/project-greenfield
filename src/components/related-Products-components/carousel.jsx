@@ -20,7 +20,7 @@ export const Carousel = (props) => {
         dots={false}
         infinite={false}
         speed={500}
-        slidesToShow={4}
+        slidesToShow={3.5}
         slidesToScroll={1}
       >
         {relatedReducer.map(
