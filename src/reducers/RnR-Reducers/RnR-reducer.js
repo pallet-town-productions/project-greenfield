@@ -19,7 +19,6 @@ export const updateStarReviews = (state = [], action) => {
 export const updateReviewNumber = (state = '', action) => {
   switch (action.type) {
     case 'REVIEW_NUMBER':
-      console.log(action.info);
       return action.info;
     default:
       return state;
