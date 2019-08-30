@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -25,71 +26,88 @@ class AddAnswer extends React.Component {
     const { show } = this.state;
     const { data, productName } = this.props;
     return (
-      <button className="questions-clear-btn" type="button" onClick={() => this.showModal(true)}>
+      <button
+        className="questions-clear-btn"
+        type="button"
+        onClick={() => this.showModal(true)}
+      >
         <u style={{ fontSize: '12px', color: 'gray' }}>Add Answer</u>
         <Modal show={show}>
-          <h1>Submit your Answer</h1>
-          <h3>{`${productName}: ${data.question_body}`}</h3>
-          <form name="QnA-add-answer-form">
-            <textarea
-              id="QnA-modal-body"
-              className="questionsModalAnswer"
-              type="text"
-              placeholder="Your answer here..."
-            />
-            <br />
-            <input
-              id="QnA-modal-nickname"
-              className="questionsModalAnswerNick"
-              type="text"
-              placeholder="Your Nickname"
-            />
-            <br />
-            <input
-              id="QnA-modal-email"
-              className="questionsModalAnswerEmail"
-              type="text"
-              placeholder="Email"
-            />
-            <br />
-            <input
-              id="QnA-modal-pic"
-              className="questionsModalAnswerPic"
-              type="text"
-              placeholder="URL link to picture"
-            />
-            <br />
-            <input
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+          <form
+            autoComplete="off"
+            className="form-style-7"
+            onSubmit={() => {
+              const modalData = {
+                body: document.getElementById('qna-modal-a-body').value,
+                name: document.getElementById('qna-modal-a-name').value,
+                email: document.getElementById('qna-modal-a-email').value,
+                photos: document.getElementById('qna-modal-a-pic').value.split(' '),
+              };
 
-                const questionReq = {
-                  body: document.getElementById('QnA-modal-body').value,
-                  name: document.getElementById('QnA-modal-nickname').value,
-                  email: document.getElementById('QnA-modal-email').value,
-                  photos: [document.getElementById('QnA-modal-pic').value],
-                };
-
-                fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
-                  method: 'POST',
-                  body: JSON.stringify(questionReq),
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                })
-                  .then((result) => {
-                    if (result.ok) {
-                      alert('Answer sent!');
-                    } else {
-                      alert('Answer failed to be sent. Please make sure your email address is correct!');
-                    }
-                  });
-
-                this.hideModal(false);
-              }}
-            />
+              fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+                method: 'POST',
+                body: JSON.stringify(modalData),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+                .then((result) => {
+                  if (result.ok) {
+                    alert('Thanks for answering!');
+                  } else {
+                    alert('Something went horribly wrong, we\'re so sorry!');
+                  }
+                });
+            }}
+          >
+            <h1>Submit your Answer</h1>
+            <h1>
+              {`${productName}: ${data.question_body}`}
+            </h1>
+            <ul>
+              <li>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  maxLength="60"
+                  id="qna-modal-a-name"
+                />
+                <span>Enter your nickname here</span>
+              </li>
+              <li>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  maxLength="60"
+                  id="qna-modal-a-email"
+                />
+                <span>Enter a valid email address</span>
+              </li>
+              <li>
+                <label htmlFor="url">Picture</label>
+                <input
+                  type="url"
+                  name="url"
+                  maxLength="240"
+                  id="qna-modal-a-pic"
+                />
+                <span>Valid link to your picture/s (eg: http://www.google.com)</span>
+              </li>
+              <li>
+                <label htmlFor="bio">Your Answer</label>
+                <textarea
+                  name="bio"
+                  maxLength="1000"
+                  id="qna-modal-a-body"
+                />
+                <span>{`Your answer to: ${data.question_body}`}</span>
+              </li>
+              <li>
+                <input type="submit" value="Send This" />
+              </li>
+            </ul>
           </form>
         </Modal>
       </button>

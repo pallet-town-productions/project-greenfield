@@ -1,12 +1,13 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 
 class AddQuestion extends React.Component {
-  constructor(props, { productId, productName }) {
-    super(props, { productId, productName });
+  constructor(props, { productName, productId }) {
+    super(props, { productName, productId });
 
     this.state = {
       show: false,
@@ -23,75 +24,88 @@ class AddQuestion extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { productId, productName } = this.props;
+    const { productName, productId } = this.props;
     return (
-      <button type="button" onClick={() => this.showModal(true)}>
-        <u>ADD A QUESTION</u>
+      <span
+        role="presentation"
+        className="qna-add-q-btn"
+        onClick={() => this.showModal(true)}
+      >
+        <p style={{ lineHeight: '20px', textAlign: 'center', fontSize: '18px' }}>
+          ADD A QUESTION
+        </p>
         <Modal show={show}>
-          <h1>Ask Your Question</h1>
-          <h3>{`About the ${productName}`}</h3>
-          <form name="QnA-add-answer-form">
-            <textarea
-              id="QnA-modal-q-body"
-              className="questionsModalAnswer"
-              type="text"
-              placeholder="Your question here..."
-            />
-            <br />
-            <input
-              id="QnA-modal-q-nickname"
-              className="questionsModalAnswerNick"
-              type="text"
-              placeholder="Your Nickname"
-            />
-            <br />
-            <input
-              id="QnA-modal-q-email"
-              className="questionsModalAnswerEmail"
-              type="text"
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+          <form
+            autoComplete="off"
+            className="form-style-7"
+            onSubmit={() => {
+              const modalData = {
+                body: document.getElementById('qna-modal-q-body').value,
+                name: document.getElementById('qna-modal-q-name').value,
+                email: document.getElementById('qna-modal-q-email').value,
+              };
 
-                const questionReq = {
-                  body: document.getElementById('QnA-modal-q-body').value,
-                  name: document.getElementById('QnA-modal-q-nickname').value,
-                  email: document.getElementById('QnA-modal-q-email').value,
-                };
-
-                fetch(`http://18.217.220.129/qa/${productId}`, {
-                  method: 'POST',
-                  body: JSON.stringify(questionReq),
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                })
-                  .then((result) => {
-                    if (result.ok) {
-                      alert('Question sent!');
-                    } else {
-                      alert('Question failed to be sent. Please make sure your email is correct!');
-                    }
-                  });
-
-                this.hideModal(false);
-              }}
-            />
+              fetch(`http://18.217.220.129/qa/${productId}`, {
+                method: 'POST',
+                body: JSON.stringify(modalData),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+                .then((result) => {
+                  if (result.ok) {
+                    alert('Thanks for sending in your question!');
+                  } else {
+                    alert('ErRor! erRoR! Please contact the digital overlords of this site.');
+                  }
+                });
+            }}
+          >
+            <h1>{productName}</h1>
+            <ul>
+              <li>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  maxLength="60"
+                  id="qna-modal-q-name"
+                />
+                <span>Enter your nickname here</span>
+              </li>
+              <li>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  maxLength="60"
+                  id="qna-modal-q-email"
+                />
+                <span>Enter a valid email address</span>
+              </li>
+              <li>
+                <label htmlFor="bio">Your Question</label>
+                <textarea
+                  name="bio"
+                  maxLength="1000"
+                  id="qna-modal-q-body"
+                />
+                <span>{`What question do you have about ${productName}?`}</span>
+              </li>
+              <li>
+                <input type="submit" value="Send This" />
+              </li>
+            </ul>
           </form>
         </Modal>
-      </button>
+      </span>
     );
   }
 }
 
 AddQuestion.propTypes = {
-  productId: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
 };
 
 export default AddQuestion;

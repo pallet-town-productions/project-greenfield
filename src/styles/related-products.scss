@@ -53,9 +53,39 @@ img {
   padding: 0px;
   margin: 0px;
   font-size: 12px;
+  font-family: $font;
 }
 
-// .slick-slide {
-//   margin-left: 20px;
-// }
+.slick-list> div {
+  margin-left: 0px;
+  }
 
+  .add-to-outfit {
+    height: 300px;
+    width: 200px !important;
+    background-color: $widgetColor;
+    border-color: $borderColor;
+    border-width: $borderThickness;
+    font-family: $font;
+    border-style: solid;
+    margin-bottom: 10px;
+    margin-left: 55px;
+    margin-right: 55px;
+    padding: $defaultPadding;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .add-text {
+    margin: 5px;
+    font-family: $font;
+  }
+  
+  .carousel-title {
+    font-family: $font;
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedCarousel from './carousel';
+import ConnectedOutfit from './outfit';
 import relatedAction from '../../actions/related-Products-Actions/related-products-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/related-products.scss';
@@ -23,10 +24,10 @@ export class RelatedProducts extends Component {
   render() {
     return (
       <div className="related-products-container">
-        <span className="related-title">
-          <p>Related Products:</p>
-        </span>
+        <p className="carousel-title">RELATED PRODUCTS:</p>
         <ConnectedCarousel />
+        <p className="carousel-title">YOUR OUTFIT:</p>
+        <ConnectedOutfit />
       </div>
     );
   }
