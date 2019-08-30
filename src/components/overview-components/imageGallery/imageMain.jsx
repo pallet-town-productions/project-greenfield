@@ -1,6 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import NavCarouselButton from './navCarouselButton';
 
 const mapStateToProps = function (state) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
@@ -49,12 +50,15 @@ const ImageMain = function ({
     default:
       return ( // if default view, return imageList inside this bigger div
         <div
-          onClick={handleClick}
-          role="presentation"
-          className={onHover}
-          id={thisId}
-          style={{ backgroundImage: `url(${currentBigPicture})` }}
-        />
+        onClick={handleClick}
+        role="presentation"
+        className={onHover}
+        id={thisId}
+        style={{ backgroundImage: `url(${currentBigPicture})` }}
+        >
+        <NavCarouselButton isNext={false}/>
+        <NavCarouselButton isNext={true}/>
+        </div>
       );
   }
 };

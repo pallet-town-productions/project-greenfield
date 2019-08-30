@@ -41,7 +41,7 @@ const ImageList = function ({
         infinite={false}
         slidesToShow={7}
         slidesToScroll={1}
-        focusOnSelect
+        focusOnSelect={true}
       >
         {imageList.map((image, imageIndex) => {
           const key = zeroPad(currentStyleIndex, 4) + zeroPad(imageIndex, 4);

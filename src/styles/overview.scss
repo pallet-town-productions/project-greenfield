@@ -57,6 +57,24 @@
   float: right;
 }
 
+.nav-carousel-button {
+  z-index: 998;
+  position: relative;
+  pointer-events: initial;
+  font-size: 400%;
+  background-color: rgba(230, 230, 230, 0.15);
+  top: 50%;
+  &:hover {
+    background-color: rgba(230, 230, 230, 0.45);
+  }
+  &#navigate_next {
+    float: right;
+  }
+  &#navigate_prev {
+    float: left;
+  }
+}
+
 // DESCRIBES IMAGE GALLERY IN DEFAULT VIEW
 #overview-grid-container {
   display: grid;
