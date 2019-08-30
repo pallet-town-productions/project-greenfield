@@ -24,9 +24,9 @@ export class RelatedProducts extends Component {
   render() {
     return (
       <div className="related-products-container">
-        <p>Related Products:</p>
+        <p className="carousel-title">RELATED PRODUCTS:</p>
         <ConnectedCarousel />
-        <p>Your Outfit:</p>
+        <p className="carousel-title">YOUR OUTFIT:</p>
         <ConnectedOutfit />
       </div>
     );
