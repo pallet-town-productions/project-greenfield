@@ -3,10 +3,8 @@ import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { zeroPad } from '../../util/util';
+import sinon from 'sinon';
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
-// IMPORT store and provider
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 // IMPORT initialData
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
@@ -27,18 +25,13 @@ import {
   SocialMediaButtonsComponent,
 } from '../../components/overview-components/productInformation/productInfo';
 // IMPORT style selector components
-// import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
-import StyleSelector from '../../components/overview-components/styleSelector/styleSelector';
+import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
-import changeStyle from '../../actions/overview-Actions/styleSelector/changeStyle';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-
-const MOCKSTORE = configureStore();
 // NOTES:
 // exists likes basic html, doesn't like React Components
-
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -249,31 +242,24 @@ describe('Product Information', () => {
 });
 
 describe('Style Selector', () => {
-  // const handleClick = (newStyleIndex) => {changeStyle(newStyleIndex)}
   
   describe('Style Selector', () => {
-    
-    const handleClick = () => {console.log('CLICKED')};
-    const i = 0;
+    let i = 0;
     const styleList = exampleStyleData.results;
-
-    let initialState = {
-      productData: exampleProductData,
-      style: exampleStyleData,
-      currentStyleIndex: i,
-      styleList: styleList,
-      handleSwitchStyle: handleClick,
-    };
-    let store = MOCKSTORE(initialState);
-    let wrapper = mount(<StyleSelector 
-      store={store}
+    const handleClick = sinon.spy();
+    
+    let wrapper = mount(<StyleSelectorComponent 
+      styleList={styleList}
+      currentStyleIndex={i}
+      handleSwitchStyle={handleClick}
     />);
 
     it('should display the correct number of thumbnails in the selector', () => {
       expect(wrapper.find('img')).toHaveLength(styleList.length);
     });
-    it('should switch styles upon click', () => {
+    it('should pass a working clickHandler down to StyleThumbnail', () => {
       wrapper.find(`#${zeroPad(3, 6)}`).simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
     });
     it('should display currently-selected style name above thumbnails', () => {
       expect(wrapper.find('#style-name').text().includes(styleList[i].name)).toBeTruthy();
