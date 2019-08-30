@@ -38,7 +38,7 @@ class PictureModal extends React.Component {
             alt={`Uploaded by: ${answer.answerer_name}`}
             src={photo}
             style={{ marginTop: '10px' }}
-            className="thumbnail"
+            className="thumbnail qna-thumbnail"
           />
         </span>
         <span

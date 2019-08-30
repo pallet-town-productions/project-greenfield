@@ -7,7 +7,7 @@ const Modal = ({ show, children }) => {
 
   return (
     <div className={showHideClassName}>
-      <section className="modal-main">
+      <section className="modal-main qna-modal-section">
         {children}
       </section>
     </div>
@@ -16,7 +16,11 @@ const Modal = ({ show, children }) => {
 
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.shape({}),
+};
+
+Modal.defaultProps = {
+  children: {},
 };
 
 export default Modal;

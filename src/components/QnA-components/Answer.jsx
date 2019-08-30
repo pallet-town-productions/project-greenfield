@@ -49,7 +49,7 @@ class Answer extends React.Component {
                 )}
             </p>
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
-              <PictureModal key={`pa${answer.id}`} photo={photo} answer={answer} />
+              <PictureModal key={`pa${answer.id + Math.random()}`} photo={photo} answer={answer} />
             ))}
             <p style={{
               marginTop: '7px',
