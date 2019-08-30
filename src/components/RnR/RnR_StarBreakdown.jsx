@@ -11,29 +11,9 @@ class StarBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filtered: false,
       filters: [],
     };
   }
-
-  // handleClick(rating) {
-  //   const { dispatch, productId } = this.props;
-  //   const { filtered } = this.state;
-  //   fetch(`http://18.217.220.129/reviews/${productId}/list`)
-  //     .then((data) => data.json())
-  //     .then((data) => data.results.filter((review) => review.rating === parseInt(rating, 10)))
-  //     .then((data) => {
-  //       if (filtered) {
-  //         dispatch(filterReviews(data));
-  //       } else {
-  //         dispatch(updateReviewsToRender(data));
-  //         dispatch(filterReviews(data));
-  //         this.setState((prevState) => ({
-  //           filtered: !prevState.filtered,
-  //         }));
-  //       }
-  //     });
-  // }
 
   componentDidUpdate(prevState) {
     const { filters } = this.state;
@@ -48,6 +28,8 @@ class StarBreakdown extends React.Component {
     const { filters } = this.state;
     if (!filters.includes(parseInt(rating, 10))) {
       this.setState({ filters: filters.concat(parseInt(rating, 10)) });
+    } else {
+      this.setState({ filters: filters.filter((b) => b !== parseInt(rating, 10)) });
     }
   }
 
