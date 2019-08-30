@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
+import '../../styles/related-products.scss';
 import '../../styles/standard-styles.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../../styles/related-products.scss';
 import ConnectedRelatedCard from './relatedCard';
 
 const mapStateToProps = (state) => ({
@@ -57,7 +57,6 @@ export class Outfit extends Component {
             speed={500}
             slidesToShow={3.5}
             slidesToScroll={1}
-            variableWidth
           >
             <div
               className="add-to-outfit"
