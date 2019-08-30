@@ -48,9 +48,14 @@ export class RelatedCard extends Component {
       const { category } = productData;
       const { name } = productData;
       const { reviewAvg } = this.state;
+      const { outfit } = this.props;
       return (
         <div className="card-container">
-          <img src={photos[0][0].thumbnail_url} alt="default-style" />
+          <div className="image-container">
+            <img src={photos[0][0].thumbnail_url} alt="default-style" />
+            {outfit && <i className="material-icons" id="compare-button">highlight_off</i>}
+            {!outfit && <i className="material-icons" id="compare-button">star_border</i>}
+          </div>
           <div className="card-info-container">
             <p className="card-sub-text">{category}</p>
             <p className="card-info">{name}</p>
@@ -73,6 +78,7 @@ export class RelatedCard extends Component {
 
 RelatedCard.propTypes = {
   productId: PT.number.isRequired,
+  outfit: PT.bool.isRequired,
 };
 
 const connectedRelatedCard = connect(null, null)(RelatedCard);

@@ -79,7 +79,7 @@ export class Outfit extends Component {
             </div>
             {outfit.map(
               (id, index) => (
-                <ConnectedRelatedCard index={index + 1} key={id} productId={id} />
+                <ConnectedRelatedCard index={index + 1} key={id} productId={id} outfit />
               ),
             )}
           </Slider>

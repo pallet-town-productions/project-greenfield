@@ -25,7 +25,12 @@ export const Carousel = (props) => {
       >
         {relatedReducer.map(
           (related, index) => (
-            <ConnectedRelatedCard index={index + 1} key={related} productId={related} />
+            <ConnectedRelatedCard
+              index={index + 1}
+              key={related}
+              productId={related}
+              outfit={false}
+            />
           ),
         )}
       </Slider>

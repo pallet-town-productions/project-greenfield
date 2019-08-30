@@ -24,7 +24,6 @@
 
 img {
   max-width: 100%;
-  max-height: 70%;
 }
 
 .slick-prev:before,
@@ -86,6 +85,29 @@ img {
     font-family: $font;
     font-size: 18px;
     padding-left: 10px;
+  }
+
+  .image-container {
+    position: relative;
+    height: 70%
+  }
+
+  .image-container img {
+    height: 100%;
+    width: 100%
+  }
+
+  #compare-button {
+    position: absolute;
+    top: 1%;
+    left: 85%;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: red;
   }
 
   
