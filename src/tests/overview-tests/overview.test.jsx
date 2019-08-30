@@ -15,6 +15,7 @@ import ImageGallery from '../../components/overview-components/imageGallery/imag
 import ImageMain from '../../components/overview-components/imageGallery/imageMain';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
+import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -125,22 +126,50 @@ describe('Add To Cart', () => {
     });
   });
   describe('Quantity Selector', () => {
-    it('should display Quantity Selector', () => {
+    let currentAvailQuantity = 4;
+    let handleQuantityChange = () => {};
+
+    describe('(Size not selected)', () => {
+      let wrapper = shallow(<QuantitySelectorComponent 
+        currentAvailQuantity={currentAvailQuantity}
+        showQuantities={false}
+        handleQuantityChange={handleQuantityChange}
+      />);
+  
+      it('should display Quantity Selector', () => {
+        expect(wrapper.find('select').length).toBeTruthy();
+      });
+      it('should display "-" if Size isn\'t selected', () => {
+        expect(wrapper.find('select').text()).toEqual('-');
+        expect(wrapper.find('option')).toHaveLength(1);
+      });
 
     });
-    it('should display "-" if Size isn\'t selected', () => {
 
+    describe('(Size selected)', () => {
+      let wrapper = render(<QuantitySelectorComponent 
+        currentAvailQuantity={currentAvailQuantity}
+        showQuantities={true}
+        handleQuantityChange={handleQuantityChange}
+      />);
+
+      it('should display 1 as default once Size is selected', () => {
+        expect(wrapper.find('option').get(0).children[0].data).toEqual('1');
+      });
+      it('should display 1 to N if there\'s fewer than 15 in stock', () => {
+        expect(wrapper.find('option')).toHaveLength(4);
+      });
+      it('should display 1 to 15 if there\'s at least 15 in stock', () => {
+        wrapper = render(<QuantitySelectorComponent 
+          currentAvailQuantity={500}
+          showQuantities={true}
+          handleQuantityChange={handleQuantityChange}
+        />);
+        expect(wrapper.find('option')).toHaveLength(15);
+      });
     });
-    it('should display 1 as default once Size is selected', () => {
-
-    });
-    // it('should display 1 to N if there\'s fewer than 15 in stock', () => {
-
-    // });
-    // it('should display 1 to 15 if there\'s at least 15 in stock', () => {
-
-    // });
   });
+
   describe('Add to Cart Button', () => {
     it('should display Add To Cart Button', () => {
 
