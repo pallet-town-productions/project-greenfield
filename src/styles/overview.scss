@@ -58,7 +58,7 @@
 }
 
 .nav-carousel-button {
-  z-index: 998;
+  z-index: 1;
   position: relative;
   pointer-events: initial;
   font-size: 400%;
@@ -142,7 +142,7 @@
   height: $overlayPercent;
   width: $overlayPercent;
   // margin-left: (100% - $overlayPercent)/2;
-  margin-right: (100% - $overlayPercent)/2;
+  // margin-right: (100% - $overlayPercent)/2;
   background-color: white;
   box-shadow: 0 0 2px 3px black;
   padding: 5px;
