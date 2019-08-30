@@ -25,18 +25,7 @@ export class RelatedCard extends Component {
 
   componentDidMount() {
     const { productId } = this.props;
-    fetch(`http://18.217.220.129/products/${productId}`)
-      .then((data) => data.json())
-      .then((productData) => this.setState({ productData }));
-    fetch(`http://18.217.220.129/products/${productId}/styles`)
-      .then((data) => data.json())
-      .then((productData) => productData.results.map((style) => style.photos))
-      .then((photos) => this.setState({ photos, loading: false }));
-    fetch(`http://18.217.220.129/reviews/${productId}/meta`)
-      .then((data) => data.json())
-      .then((reviewData) => Object.values(reviewData.ratings))
-      .then((ratings) => ratings.reduce((element, acc) => acc + element, 0) / ratings.length)
-      .then((reviewAvg) => this.setState({ reviewAvg: Math.round(reviewAvg * 10) / 10 }));
+    this.getCardData(productId);
   }
 
   componentDidUpdate(prevProps) {
@@ -45,6 +34,10 @@ export class RelatedCard extends Component {
     if (oldId === productId) {
       return;
     }
+    this.getCardData(productId);
+  }
+
+  getCardData(productId) {
     fetch(`http://18.217.220.129/products/${productId}`)
       .then((data) => data.json())
       .then((productData) => this.setState({ productData }));

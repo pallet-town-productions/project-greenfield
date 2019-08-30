@@ -49,12 +49,9 @@ export class Outfit extends Component {
   removeFromOutfit(id) {
     const { localStorage } = window;
     const { outfit } = this.state;
-    console.log(outfit, id)
     const updatedOutfit = outfit.filter((item) => item !== id);
-    console.log(updatedOutfit)
     localStorage.setItem('outfit', JSON.stringify(updatedOutfit));
     this.setState({ outfit: updatedOutfit });
-    console.log(this.state.outfit)
   }
 
   render() {
