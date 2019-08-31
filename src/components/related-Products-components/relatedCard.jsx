@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
 import ConnectedModalTable from './related-modal-table';
@@ -43,6 +44,7 @@ export class RelatedCard extends Component {
   }
 
   getCardData(productId) {
+    this.setState({ loading: true });
     fetch(`http://18.217.220.129/products/${productId}`)
       .then((data) => data.json())
       .then((productData) => this.setState({ productData }));
@@ -68,6 +70,7 @@ export class RelatedCard extends Component {
   render() {
     const { loading } = this.state;
     if (!loading) {
+      console.log('here')
       const { photos } = this.state;
       const { productData } = this.state;
       const { default_price: defaultPrice } = productData;
@@ -94,47 +97,49 @@ export class RelatedCard extends Component {
         </ConnectedRelatedModal>
       ) : null;
       return (
-        <div className="card-container">
-          {modal}
-          <div className="image-container">
-            <img src={photos[0][0].thumbnail_url} alt="default-style" />
-            {outfit
-            && (
-            <i
-              role="button"
-              className="material-icons"
-              id="remove-button"
-              onClick={(() => removeFromOutfit(productId))}
-              tabIndex={0}
-              onKeyPress={() => removeFromOutfit(productId)}
-            >
-              cancel
-            </i>
-            )}
-            {!outfit
-            && (
-            <i
-              className="material-icons"
-              id="compare-button"
-              tabIndex={0}
-              role="button"
-              onClick={() => this.handleShowModal(productId)}
-              onKeyPress={() => this.handleShowModal(productId)}
-            >
-              stars
-            </i>
-            )}
+        <Link to={`/${productId}`}>
+          <div className="card-container">
+            {modal}
+            <div className="image-container">
+              <img src={photos[0][0].thumbnail_url} alt="default-style" />
+              {outfit
+              && (
+              <i
+                role="button"
+                className="material-icons"
+                id="remove-button"
+                onClick={(() => removeFromOutfit(productId))}
+                tabIndex={0}
+                onKeyPress={() => removeFromOutfit(productId)}
+              >
+                cancel
+              </i>
+              )}
+              {!outfit
+              && (
+              <i
+                className="material-icons"
+                id="compare-button"
+                tabIndex={0}
+                role="button"
+                onClick={() => this.handleShowModal(productId)}
+                onKeyPress={() => this.handleShowModal(productId)}
+              >
+                stars
+              </i>
+              )}
+            </div>
+            <div className="card-info-container">
+              <p className="card-sub-text">{category}</p>
+              <p className="card-info">{name}</p>
+              <p className="card-sub-text">
+                $
+                {defaultPrice}
+              </p>
+              <StarRating starCount={reviewAvg || 0} />
+            </div>
           </div>
-          <div className="card-info-container">
-            <p className="card-sub-text">{category}</p>
-            <p className="card-info">{name}</p>
-            <p className="card-sub-text">
-              $
-              {defaultPrice}
-            </p>
-            <StarRating starCount={reviewAvg || 0} />
-          </div>
-        </div>
+        </Link>
       );
     }
     return (

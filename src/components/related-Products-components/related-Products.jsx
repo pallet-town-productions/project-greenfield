@@ -21,6 +21,17 @@ export class RelatedProducts extends Component {
       .then((relatedProducts) => dispatch(relatedAction(relatedProducts)));
   }
 
+  componentDidUpdate(prevProps) {
+    const { productId, dispatch } = this.props;
+    const { productId: oldId } = prevProps;
+    if (oldId === productId) {
+      return;
+    }
+    fetch(`http://18.217.220.129/products/${productId}/related`)
+      .then((data) => data.json())
+      .then((relatedProducts) => dispatch(relatedAction(relatedProducts)));
+  }
+
   render() {
     return (
       <div className="related-products-container">
