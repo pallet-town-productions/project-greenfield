@@ -2,12 +2,13 @@ import React from 'react';
 import PT from 'prop-types';
 
 const ImageThumbnail = function ({
-  photoIndex, url, handleClick, isSelected,
+  photoIndex, url, handleClick, isSelected, thisId,
 }) {
   return (
     <span
       onClick={() => handleClick(photoIndex)}
       role="presentation"
+      id={thisId}
     >
       <img
         className="thumbnail"

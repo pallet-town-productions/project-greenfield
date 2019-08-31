@@ -47,7 +47,8 @@ export const ImageListComponent = function ({
           const key = zeroPad(currentStyleIndex, 4) + zeroPad(imageIndex, 4);
           return (
             <ImageThumbnail
-              key={zeroPad(key)}
+              key={key}
+              thisId={key}
               photoIndex={imageIndex}
               url={imageList[imageIndex].thumbnail_url}
               handleClick={handleSwitchPhoto}

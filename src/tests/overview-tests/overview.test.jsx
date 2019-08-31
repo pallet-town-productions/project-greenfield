@@ -94,10 +94,15 @@ describe('Image Gallery', () => {
         mockStore.dispatch(changePhoto(0));
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
+
+        let lastPhotoIndex = mockStore.getState().style.results[0].photos.length - 1;
+        mockStore.dispatch(changePhoto(lastPhotoIndex));
+        wrapper.update();
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
       });
       it('should render two if at a middle image', () => {
-        mockStore.dispatch(changePhoto(1)); // dispatches an action
-        wrapper.update(); // force a re-render after an action's dispatched
+        mockStore.dispatch(changePhoto(1));
+        wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(2);
       });
       it('left button should move to previous image', () => {
@@ -132,6 +137,11 @@ describe('Image Gallery', () => {
       );
       imageListWrapper.find('#selected-image-thumbnail').simulate('click');
       expect(handleClick.calledTwice).toBeTruthy();
+    });
+    it('should switch photos once a thumbnail is clicked', () => {
+      expect(mockStore.getState().currentPhotoIndex).toEqual(1);
+      wrapper.find('#O000O004').simulate('click');
+      expect(mockStore.getState().currentPhotoIndex).toEqual(4);
     });
   });
   describe('Expanded View', () => {
