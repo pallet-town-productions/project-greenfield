@@ -109,19 +109,20 @@ const getReviewFormConfig = () => {
         selected: 'Temp1',
       },
     },
+    summary: {
+      label: 'Review Summary',
+      mandatory: false,
+      id: 'summary',
+      type: 'text',
+      value: '',
+      constraints: {
+        max: 50,
+        placeholder: 'Example: Best purchase ever!',
+      },
+    },
   };
 
   // const formConfig = [
-  //   {
-  //     label: 'Characteristics PlaceHolder',
-  //     mandatory: false,
-  //     id: 'characteristic placeholder',
-  //     type: 'radio',
-  //     constraints: {
-  //       options: ['Temp1', 'Temp2', 'Temp3'],
-  //       selected: 'Temp1',
-  //     },
-  //   },
   //   {
   //     label: 'Review Summary',
   //     mandatory: false,

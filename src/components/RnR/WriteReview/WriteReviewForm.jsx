@@ -31,7 +31,7 @@ class WriteReviewForm extends Component {
       });
     } else {
       this.setState({
-        [name]: value,
+        [[name].value]: value,
       });
     }
   }
@@ -50,7 +50,7 @@ class WriteReviewForm extends Component {
       rating,
       recommended,
       characteristic,
-      // summary,
+      summary,
       // body,
       // photos,
       // nickname,
@@ -65,9 +65,9 @@ class WriteReviewForm extends Component {
           <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
+          <TextInput config={summary} handleInputChange={this.handleInputChange} />
 
-          {/* <RadioGroupInput label="Characteristic" config={characteristics} id="characteristics" handleInputChange={this.handleInputChange} />
-          <TextInput label="Review Summary" id="summary" value={summary} handleInputChange={this.handleInputChange} />
+          {/*
           <br />
           <TextInput label="Review Body" id="body" value={body} handleInputChange={this.handleInputChange} />
           <br />
