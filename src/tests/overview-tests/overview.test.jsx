@@ -16,10 +16,9 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
-import NavCarouselButton from '../../components/overview-components/imageGallery/navCarouselButton';
-import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
-import { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
-import ExitButton from '../../components/overview-components/imageGallery/exitButton';
+// import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
+// import { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
+// import ExitButton from '../../components/overview-components/imageGallery/exitButton';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
@@ -36,6 +35,8 @@ import {
 // IMPORT style selector components
 import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
+// IMPORT actions
+import { changePhoto } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -72,8 +73,9 @@ describe('Overview', () => {
 
 describe('Image Gallery', () => {
   const handleClick = sinon.spy();
+  const mockStore = configureStore();
   const wrapper = mount(
-    <Provider store={configureStore()}>
+    <Provider store={mockStore}>
       <ImageGalleryComponent dispatchExpandedView={handleClick} />
     </Provider>,
   );
@@ -87,19 +89,26 @@ describe('Image Gallery', () => {
     });
     describe('Nav Carousel Buttons', () => {
       it('should render one if at the first OR last image', () => {
-        // //////////
-        // CODE
-        // //////////
+        mockStore.dispatch(changePhoto(0));
+        wrapper.update();
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
       });
       it('should render two if at a middle image', () => {
-        // //////////
-        // CODE
-        // //////////
+        mockStore.dispatch(changePhoto(1)); // dispatches an action
+        wrapper.update(); // force a re-render after an action's dispatched
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(2);
       });
-      it('should be clickable', () => {
-        // //////////
-        // CODE
-        // //////////
+      it('left button should move to previous image', () => {
+        const preTestIndex = mockStore.getState().currentPhotoIndex;
+        const navButton = wrapper.find('#navigate_before');
+        navButton.simulate('click');
+        expect(mockStore.getState().currentPhotoIndex).toEqual(preTestIndex - 1);
+      });
+      it('right button should move to next image', () => {
+        const preTestIndex = mockStore.getState().currentPhotoIndex;
+        const navButton = wrapper.find('#navigate_next');
+        navButton.simulate('click');
+        expect(mockStore.getState().currentPhotoIndex).toEqual(preTestIndex + 1);
       });
     });
   });
