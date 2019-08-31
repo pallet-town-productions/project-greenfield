@@ -57,6 +57,24 @@
   float: right;
 }
 
+.nav-carousel-button {
+  z-index: 1;
+  position: relative;
+  pointer-events: initial;
+  font-size: 400%;
+  background-color: rgba(230, 230, 230, 0.15);
+  top: 50%;
+  &:hover {
+    background-color: rgba(230, 230, 230, 0.45);
+  }
+  &#navigate_next {
+    float: right;
+  }
+  &#navigate_prev {
+    float: left;
+  }
+}
+
 // DESCRIBES IMAGE GALLERY IN DEFAULT VIEW
 #overview-grid-container {
   display: grid;
@@ -124,7 +142,7 @@
   height: $overlayPercent;
   width: $overlayPercent;
   // margin-left: (100% - $overlayPercent)/2;
-  margin-right: (100% - $overlayPercent)/2;
+  // margin-right: (100% - $overlayPercent)/2;
   background-color: white;
   box-shadow: 0 0 2px 3px black;
   padding: 5px;

@@ -25,7 +25,11 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const QuantitySelector = function ({ showQuantities, currentAvailQuantity, handleQuantityChange }) {
+export const QuantitySelectorComponent = function ({
+  showQuantities,
+  currentAvailQuantity,
+  handleQuantityChange,
+}) {
   const quantityList = range(1, Math.min(currentAvailQuantity, 15) + 1);
   const list = (showQuantities) ? quantityList : [BLANKQUANTITY];
   return (
@@ -49,10 +53,10 @@ const QuantitySelector = function ({ showQuantities, currentAvailQuantity, handl
   );
 };
 
-QuantitySelector.propTypes = {
+QuantitySelectorComponent.propTypes = {
   showQuantities: PT.bool.isRequired,
   currentAvailQuantity: PT.number.isRequired,
   handleQuantityChange: PT.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuantitySelector);
+export default connect(mapStateToProps, mapDispatchToProps)(QuantitySelectorComponent);

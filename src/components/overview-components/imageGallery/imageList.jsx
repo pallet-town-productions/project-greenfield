@@ -30,7 +30,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ImageList = function ({
+export const ImageListComponent = function ({
   currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto, isExpanded,
 }) {
   const display = (isExpanded) ? 'image-thumbnail-slide-expanded' : 'image-thumbnail-slide-default';
@@ -60,7 +60,7 @@ const ImageList = function ({
   );
 };
 
-ImageList.propTypes = {
+ImageListComponent.propTypes = {
   currentStyleIndex: PT.number.isRequired,
   currentPhotoIndex: PT.number.isRequired,
   imageList: PT.arrayOf(PT.shape({
@@ -71,4 +71,4 @@ ImageList.propTypes = {
   isExpanded: PT.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageListComponent);

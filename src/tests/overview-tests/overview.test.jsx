@@ -2,18 +2,29 @@
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import { zeroPad } from '../../util/util';
-// IMPORT initialData
+import sinon from 'sinon';
+import { Provider } from 'react-redux';
+import { zeroPad } from '../../util/util';
 // import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
+// IMPORT Provider and Store for deep mounts
+import configureStore from '../../store';
+// IMPORT initialData
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
 import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
-// import ImageGallery from '../../components/overview-components/imageGallery/imageGallery';
-// import ImageMain from '../../components/overview-components/imageGallery/imageMain';
+import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
+import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
+// import { ExpandedViewOverlayComponent } 
+//from '../../components/overview-components/imageGallery/expandedViewOverlay';
+// import { ZoomViewDisplayComponent } 
+//from '../../components/overview-components/imageGallery/zoomViewOverlay';
+// import ExitButton from '../../components/overview-components/imageGallery/exitButton';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
+import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
+import { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -26,13 +37,13 @@ import {
 // IMPORT style selector components
 import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
+// IMPORT actions
+import { changePhoto } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-
 // NOTES:
 // exists likes basic html, doesn't like React Components
-
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -63,18 +74,81 @@ describe('Overview', () => {
 });
 
 describe('Image Gallery', () => {
-  // let wrapper = shallow(
-  //   <Provider store={STORE}>
-  //     <ImageGallery />
-  //   </Provider>);
-  // it('should render Main Image', () => {
-  //   expect(wrapper.exists('div')).toBeTruthy();
-  // });
-  // describe('Main Image', () => {} )
-  // describe('Image Carousel', () => {} )
-  // describe('Image Thumbnail (not Style Thumbnail)', () => {} )
-  // describe('Expanded View', () => {} ) // including exit button
-  // describe('Zoom View' , () => {} )
+  const handleClick = sinon.spy();
+  const mockStore = configureStore();
+  const wrapper = mount(
+    <Provider store={mockStore}>
+      <ImageGalleryComponent dispatchExpandedView={handleClick} />
+    </Provider>,
+  );
+  it('should render Main Image', () => {
+    expect(wrapper.exists('#main-photo')).toBeTruthy();
+  });
+  describe('Main Image', () => {
+    it('should be clickable', () => {
+      wrapper.find('#main-photo').simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
+    });
+    describe('Nav Carousel Buttons', () => {
+      it('should render one if at the first OR last image', () => {
+        mockStore.dispatch(changePhoto(0));
+        wrapper.update();
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
+      });
+      it('should render two if at a middle image', () => {
+        mockStore.dispatch(changePhoto(1)); // dispatches an action
+        wrapper.update(); // force a re-render after an action's dispatched
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(2);
+      });
+      it('left button should move to previous image', () => {
+        const preTestIndex = mockStore.getState().currentPhotoIndex;
+        const navButton = wrapper.find('#navigate_before');
+        navButton.simulate('click');
+        expect(mockStore.getState().currentPhotoIndex).toEqual(preTestIndex - 1);
+      });
+      it('right button should move to next image', () => {
+        const preTestIndex = mockStore.getState().currentPhotoIndex;
+        const navButton = wrapper.find('#navigate_next');
+        navButton.simulate('click');
+        expect(mockStore.getState().currentPhotoIndex).toEqual(preTestIndex + 1);
+      });
+    });
+  });
+  describe('Image Carousel', () => {
+    it('should have thumbnails for all the photos of this style', () => {
+      expect(wrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
+    });
+    it('should pass a click handler down to the thumbnail', () => {
+      const imageListWrapper = mount(
+        <ImageListComponent
+          currentPhotoIndex={0}
+          currentStyleIndex={0}
+          isExpanded={false}
+          handleSwitchPhoto={handleClick}
+          imageList={[
+            { thumbnail_url: 'dummy', url: 'bigdummy' },
+          ]}
+        />,
+      );
+      imageListWrapper.find('#selected-image-thumbnail').simulate('click');
+      expect(handleClick.calledTwice).toBeTruthy();
+    });
+  });
+  describe('Expanded View', () => {
+    // //////////
+    // CODE
+    // //////////
+    describe('Exit Button', () => {
+      // //////////
+      // CODE
+      // //////////
+    });
+  });
+  describe('Zoom View', () => {
+    // //////////
+    // CODE
+    // //////////
+  });
 });
 
 describe('Add To Cart', () => {
@@ -126,25 +200,62 @@ describe('Add To Cart', () => {
     });
   });
   describe('Quantity Selector', () => {
-    it('should display Quantity Selector', () => {
+    const currentAvailQuantity = 4;
+    const handleQuantityChange = () => {};
 
+    describe('(Size not selected)', () => {
+      const wrapper = shallow(<QuantitySelectorComponent
+        currentAvailQuantity={currentAvailQuantity}
+        showQuantities={false}
+        handleQuantityChange={handleQuantityChange}
+      />);
+
+      it('should display Quantity Selector', () => {
+        expect(wrapper.find('select').length).toBeTruthy();
+      });
+      it('should display "-" if Size isn\'t selected', () => {
+        expect(wrapper.find('select').text()).toEqual('-');
+        expect(wrapper.find('option')).toHaveLength(1);
+      });
     });
-    it('should display "-" if Size isn\'t selected', () => {
 
+    describe('(Size selected)', () => {
+      let wrapper = render(<QuantitySelectorComponent
+        currentAvailQuantity={currentAvailQuantity}
+        showQuantities
+        handleQuantityChange={handleQuantityChange}
+      />);
+
+      it('should display 1 as default once Size is selected', () => {
+        expect(wrapper.find('option').get(0).children[0].data).toEqual('1');
+      });
+      it('should display 1 to N if there\'s fewer than 15 in stock', () => {
+        expect(wrapper.find('option')).toHaveLength(4);
+      });
+      it('should display 1 to 15 if there\'s at least 15 in stock', () => {
+        wrapper = render(<QuantitySelectorComponent
+          currentAvailQuantity={500}
+          showQuantities
+          handleQuantityChange={handleQuantityChange}
+        />);
+        expect(wrapper.find('option')).toHaveLength(15);
+      });
     });
-    it('should display 1 as default once Size is selected', () => {
-
-    });
-    // it('should display 1 to N if there\'s fewer than 15 in stock', () => {
-
-    // });
-    // it('should display 1 to 15 if there\'s at least 15 in stock', () => {
-
-    // });
   });
-  describe('Add to Cart Button', () => {
-    it('should display Add To Cart Button', () => {
 
+  describe('Add to Cart Button', () => {
+    const handleClick = sinon.spy();
+    let wrapper = shallow(<AddToCartButtonComponent
+      isOutOfStock={false}
+      handleClick={handleClick}
+    />);
+    it('should display Add To Cart Button', () => {
+      expect(wrapper.exists('.material-icons')).toBeTruthy();
+      expect(wrapper.exists('#add-to-cart-button')).toBeTruthy();
+    });
+    it('should be clickable', () => {
+      wrapper.find('#add-to-cart-button').simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
     });
     // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
 
@@ -152,9 +263,15 @@ describe('Add To Cart', () => {
     // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
 
     // });
-    // it('should not be clickable if Out Of Stock', () => {
-
-    // });
+    it('should not be clickable if Out Of Stock', () => {
+      wrapper = shallow(<AddToCartButtonComponent
+        isOutOfStock
+        handleClick={handleClick}
+      />);
+      expect(wrapper.exists('#add-to-cart-button-out-of-stock')).toBeTruthy();
+      wrapper.find('#add-to-cart-button-out-of-stock').simulate('click');
+      expect(handleClick.calledTwice).toBeFalsy();
+    });
   });
 });
 
@@ -192,7 +309,7 @@ describe('Product Information', () => {
       expect(reduceUrls.includes('twitter.com')).toBeTruthy();
       expect(reduceUrls.includes('pinterest.com')).toBeTruthy();
     });
-    // it('social media buttons should work', () => {
+    // it('social media buttons should be clickable', () => {
 
     // });
   });
@@ -244,21 +361,23 @@ describe('Product Information', () => {
 
 describe('Style Selector', () => {
   describe('Style Selector', () => {
-    const styleList = exampleStyleData.results;
-    const handleSwitchStyle = () => { }; // handle this
     const i = 0;
+    const styleList = exampleStyleData.results;
+    const handleClick = sinon.spy();
+
     const wrapper = mount(<StyleSelectorComponent
       styleList={styleList}
-      handleSwitchStyle={handleSwitchStyle}
       currentStyleIndex={i}
+      handleSwitchStyle={handleClick}
     />);
+
     it('should display the correct number of thumbnails in the selector', () => {
       expect(wrapper.find('img')).toHaveLength(styleList.length);
     });
-    // it('should switch styles upon click', () => {
-    //   wrapper.find(`"#${zeroPad(2, 6)}"`).simulate('click');
-    //   expect(1+1===2).toBeTruthy();
-    // });
+    it('should pass a working clickHandler down to StyleThumbnail', () => {
+      wrapper.find(`#${zeroPad(3, 6)}`).simulate('click');
+      expect(handleClick.calledOnce).toBeTruthy();
+    });
     it('should display currently-selected style name above thumbnails', () => {
       expect(wrapper.find('#style-name').text().includes(styleList[i].name)).toBeTruthy();
     });
@@ -266,21 +385,21 @@ describe('Style Selector', () => {
   describe('Style Thumbnail', () => {
     it('should display a checkbox if it\'s the selected style', () => {
       const wrapper = render(<StyleThumbnail
-        thisId={0}
+        thisId="#000001"
         style={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
-        handleClick={() => { }}
+        handleClick={() => {}}
       />);
       expect(wrapper.find('i')).toHaveLength(1);
     });
     it('should not display a checkbox if it\'s not the selected style', () => {
       const wrapper = shallow(<StyleThumbnail
-        thisId={0}
+        thisId="#000001"
         style={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
-        handleClick={() => { }}
+        handleClick={() => {}}
       />);
       expect(wrapper.find('i')).toHaveLength(0);
     });

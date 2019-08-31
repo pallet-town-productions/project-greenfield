@@ -2,6 +2,10 @@ const currentPhotoIndex = function (currentPhotoIdx = 0, action) {
   switch (action.type) {
     case 'CHANGE_PHOTO':
       return action.currentPhotoIndex;
+    case 'NEXT_PHOTO':
+      return currentPhotoIdx + 1;
+    case 'PREV_PHOTO':
+      return currentPhotoIdx - 1;
     default:
       return currentPhotoIdx;
   }

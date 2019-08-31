@@ -26,7 +26,7 @@ const mapDispatchToProps = function (dispatch) {
   };
 };
 
-const ZoomViewDisplay = function ({
+export const ZoomViewDisplayComponent = function ({
   showZoomView, currentBigPicture, handleHideZoomView, handleZoomPan,
 }) {
   const display = (showZoomView) ? 'show' : 'hide';
@@ -48,11 +48,11 @@ const ZoomViewDisplay = function ({
   );
 };
 
-ZoomViewDisplay.propTypes = {
+ZoomViewDisplayComponent.propTypes = {
   showZoomView: PT.bool.isRequired,
   currentBigPicture: PT.string.isRequired,
   handleHideZoomView: PT.func.isRequired,
   handleZoomPan: PT.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ZoomViewDisplay);
+export default connect(mapStateToProps, mapDispatchToProps)(ZoomViewDisplayComponent);
