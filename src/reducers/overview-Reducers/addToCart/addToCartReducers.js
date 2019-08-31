@@ -42,7 +42,7 @@ const currentCart = function (cart = [], action) {
     default:
       return cart;
   }
-}
+};
 
 export {
   currentSizeIndex,

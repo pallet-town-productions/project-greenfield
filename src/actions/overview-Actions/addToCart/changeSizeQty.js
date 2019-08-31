@@ -35,15 +35,15 @@ const togglePromptSelectSize = function (show) {
 
 const addToCart = function (addedObject) {
   // should be Object of type:
-    // productId: number
-    // styleId: number
-    // sizeId: number
-    // qty: number
+  // productId: number
+  // styleId: number
+  // sizeId: number
+  // qty: number
   return {
     type: 'ADD_TO_CART',
     added: addedObject,
-  }
-}
+  };
+};
 
 export {
   changeSize,

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { style, currentStyleIndex } from './overview-Reducers/styleSelector/styleSelectorReducers';
 import {
-  currentSizeIndex, currentQuantity, showQuantities, promptSelectSize, currentCart
+  currentSizeIndex, currentQuantity, showQuantities, promptSelectSize, currentCart,
 } from './overview-Reducers/addToCart/addToCartReducers';
 import { currentPhotoIndex, showExpandedView, showZoomView } from './overview-Reducers/imageGallery/imageGalleryReducers';
 import productData from './overview-Reducers/productInformation/productDataReducers';
