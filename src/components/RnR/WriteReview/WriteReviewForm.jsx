@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RadioGroupInput from './RadioGroupInput';
 import TextInput from './TextInput';
+import FileInput from './FileInput';
 import { getReviewFormConfig } from '../../../util/RnR-review-meta';
 
 class WriteReviewForm extends Component {
@@ -67,7 +68,7 @@ class WriteReviewForm extends Component {
           <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
           <TextInput config={summary} handleInputChange={this.handleInputChange} />
           <TextInput config={body} handleInputChange={this.handleInputChange} />
-          <TextInput config={photos} handleInputChange={this.handleInputChange} />
+          <FileInput config={photos} handleInputChange={this.handleInputChange} />
           <TextInput config={nickname} handleInputChange={this.handleInputChange} />
           <TextInput config={email} handleInputChange={this.handleInputChange} />
           <input type="submit" value="Submit" />
