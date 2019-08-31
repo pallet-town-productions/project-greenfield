@@ -24,7 +24,7 @@ export class Outfit extends Component {
   componentDidMount() {
     const { localStorage } = window;
     if (localStorage.length) {
-      const outfit = JSON.parse(localStorage.getItem('outfit'));
+      const outfit = JSON.parse(localStorage.getItem('outfit')) || [];
       this.setState({ outfit, hasOutfit: true });
     }
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
