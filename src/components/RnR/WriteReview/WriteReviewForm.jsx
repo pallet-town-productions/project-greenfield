@@ -43,7 +43,6 @@ class WriteReviewForm extends Component {
     const { target } = event;
     const { name, value, type } = target;
     if (type === 'radio') {
-      console.log(this.state[name], value);
       this.setState({
         [[name].selected]: value,
       });
