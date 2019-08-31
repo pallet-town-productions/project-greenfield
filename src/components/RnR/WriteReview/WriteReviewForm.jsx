@@ -7,9 +7,18 @@ class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ratingOptions: ['1', '2', '3', '4', '5'],
-      recommended: ['Yes', 'No'],
-      characteristics: ['Temp 1', 'Temp 2'],
+      ratings: {
+        options: ['1', '2', '3', '4', '5'],
+        selected: '1',
+      },
+      recommended: {
+        options: ['Yes', 'No'],
+        selected: 'Yes',
+      },
+      characteristics: {
+        options: ['Temp 1', 'Temp 2'],
+        selected: '',
+      },
       summary: '',
       body: '',
       photos: '',
@@ -32,11 +41,17 @@ class WriteReviewForm extends Component {
 
   handleInputChange(event) {
     const { target } = event;
-    const { name, value } = target;
-
-    this.setState({
-      [name]: value,
-    });
+    const { name, value, type } = target;
+    if (type === 'radio') {
+      console.log(this.state[name], value);
+      this.setState({
+        [[name].selected]: value,
+      });
+    } else {
+      this.setState({
+        [name]: value,
+      });
+    }
   }
 
   handleSubmit(event) {
@@ -50,7 +65,7 @@ class WriteReviewForm extends Component {
 
   render() {
     const {
-      ratingOptions,
+      ratings,
       recommended,
       characteristics,
       summary,
@@ -65,9 +80,9 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form>
-          <RadioGroupInput label="Rating" options={ratingOptions} />
-          <RadioGroupInput label="Recommended" options={recommended} />
-          <RadioGroupInput label="Characteristic" options={characteristics} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Rating" config={ratings} id="ratings" handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Recommended" config={recommended} id="recommended" handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Characteristic" config={characteristics} id="characteristics" handleInputChange={this.handleInputChange} />
           <TextInput label="Review Summary" id="summary" value={summary} handleInputChange={this.handleInputChange} />
           <br />
           <TextInput label="Review Body" id="body" value={body} handleInputChange={this.handleInputChange} />

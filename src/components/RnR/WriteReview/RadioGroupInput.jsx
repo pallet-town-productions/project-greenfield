@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 
 const RadioGroupInput = (props) => {
   const {
-    label, options, handleInputChange,
+    label, id, config, handleInputChange,
   } = props;
+  const { options, selected } = config;
   const buttons = options.map((option) => (
     <div key={option}>
-      <label htmlFor="option">
+      <label htmlFor={option}>
         {option}
         <input
           id={option}
-          name={option}
+          name={id}
           type="radio"
+          value={option}
           onChange={handleInputChange}
+          checked={option === selected}
         />
       </label>
     </div>
@@ -28,8 +31,12 @@ const RadioGroupInput = (props) => {
 
 RadioGroupInput.propTypes = {
   label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  config: PropTypes.shape({
+    options: PropTypes.array,
+    selected: PropTypes.string,
+  }).isRequired,
 };
 
 export default RadioGroupInput;
