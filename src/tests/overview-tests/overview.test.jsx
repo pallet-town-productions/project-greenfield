@@ -16,8 +16,10 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
-// import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
-// import { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
+// import { ExpandedViewOverlayComponent } 
+//from '../../components/overview-components/imageGallery/expandedViewOverlay';
+// import { ZoomViewDisplayComponent } 
+//from '../../components/overview-components/imageGallery/zoomViewOverlay';
 // import ExitButton from '../../components/overview-components/imageGallery/exitButton';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
