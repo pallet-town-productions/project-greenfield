@@ -34,9 +34,20 @@ const promptSelectSize = function (show = false, action) {
   }
 };
 
+const currentCart = function (cart = [], action) {
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      cart.push(action.added);
+      return cart.slice();
+    default:
+      return cart;
+  }
+}
+
 export {
   currentSizeIndex,
   currentQuantity,
   showQuantities,
   promptSelectSize,
+  currentCart,
 };
