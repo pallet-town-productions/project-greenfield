@@ -24,7 +24,6 @@
 
 img {
   max-width: 100%;
-  max-height: 70%;
 }
 
 .slick-prev:before,
@@ -87,5 +86,68 @@ img {
     font-size: 18px;
     padding-left: 10px;
   }
+
+  .image-container {
+    position: relative;
+    height: 70%
+  }
+
+  .image-container img {
+    height: 100%;
+    width: 100%
+  }
+
+  #compare-button {
+    position: absolute;
+    top: 1%;
+    left: 85%;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: $borderColor;
+  }
+
+  #remove-button {
+    position: absolute;
+    top: 1%;
+    left: 85%;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: $borderColor;
+  }
+
+  .related-modal-container {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .related-modal {
+    height: auto;
+    width: 500px;
+    background-color: $modalColor;
+  }
+
+#compare-table {
+    width: 100%;
+    border-color: $borderColor;
+    border-width: $borderThickness * 1.5;
+    border-style: solid;
+    text-align: center;
+  }
+
 
   

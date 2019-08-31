@@ -1,44 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { filterReviews } from '../../actions/RnR-Actions/RnR-action';
 
 const mapStateToProps = (state) => ({
   ...state,
 });
 
-export const StarBreakdown = (props) => {
-  const { allRatings, totalRatings } = props;
-  const sortedList = Object.keys(allRatings)
-    .sort((a, b) => b - a)
-    .map((rating) => (
-      <li
-        className="star-breakdown-item"
-        key={rating}
-      >
-        <div
-          className="star-breakdown-div"
-          onClick={() => {}}
-          onKeyPress={() => {}}
-          role="presentation"
+export class StarBreakdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filters: [],
+    };
+  }
+
+  componentDidUpdate(prevState) {
+    const { filters } = this.state;
+    const { dispatch } = this.props;
+    if (filters !== prevState.filters) {
+      dispatch(filterReviews(filters));
+    }
+  }
+
+  handleClick(rating) {
+    const { filters } = this.state;
+    if (!filters.includes(parseInt(rating, 10))) {
+      this.setState({ filters: filters.concat(parseInt(rating, 10)) });
+    } else {
+      this.setState({ filters: filters.filter((b) => b !== parseInt(rating, 10)) });
+    }
+  }
+
+  render() {
+    const { allRatings, totalRatings } = this.props;
+    const sortedList = Object.keys(allRatings)
+      .sort((a, b) => b - a)
+      .map((rating) => (
+        <li
+          className="star-breakdown-item"
+          key={rating}
         >
-          <span
-            className="star-breakdown-span"
+          <div
+            className="star-breakdown-div"
+            onClick={() => this.handleClick(rating)}
+            role="presentation"
           >
-            {rating}
+            <span
+              className="star-breakdown-span"
+            >
+              {rating}
             &nbsp;stars
-          </span>
-          <progress
-            className="star-breakdown-bar bar"
-            value={allRatings[rating]}
-            max={totalRatings}
-          />
-        </div>
-      </li>
-    ));
-  return (
-    <ul className="star-breakdown breakdown-list">{sortedList}</ul>
-  );
-};
+            </span>
+            <progress
+              className="star-breakdown-bar bar"
+              value={allRatings[rating]}
+              max={totalRatings}
+            />
+          </div>
+        </li>
+      ));
+    return (
+      <ul className="star-breakdown breakdown-list">{sortedList}</ul>
+    );
+  }
+}
 
 StarBreakdown.propTypes = {
   allRatings: PropTypes.shape({
@@ -49,6 +75,7 @@ StarBreakdown.propTypes = {
     5: PropTypes.number,
   }),
   totalRatings: PropTypes.number,
+  dispatch: PropTypes.func.isRequired,
 };
 
 StarBreakdown.defaultProps = {

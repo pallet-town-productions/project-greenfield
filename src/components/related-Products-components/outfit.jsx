@@ -27,6 +27,7 @@ export class Outfit extends Component {
       const outfit = JSON.parse(localStorage.getItem('outfit'));
       this.setState({ outfit, hasOutfit: true });
     }
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
   }
 
   addToOutfit() {
@@ -38,11 +39,19 @@ export class Outfit extends Component {
         return;
       }
       localStorage.setItem('outfit', JSON.stringify([...outfit, productId]));
-      this.setState({ outfit: [...outfit, productId] });
+      this.setState({ outfit: [productId, ...outfit] });
       return;
     }
     localStorage.setItem('outfit', JSON.stringify([productId]));
     this.setState({ outfit: [productId], hasOutfit: true });
+  }
+
+  removeFromOutfit(id) {
+    const { localStorage } = window;
+    const { outfit } = this.state;
+    const updatedOutfit = outfit.filter((item) => item !== id);
+    localStorage.setItem('outfit', JSON.stringify(updatedOutfit));
+    this.setState({ outfit: updatedOutfit });
   }
 
   render() {
@@ -79,7 +88,13 @@ export class Outfit extends Component {
             </div>
             {outfit.map(
               (id, index) => (
-                <ConnectedRelatedCard index={index + 1} key={id} productId={id} />
+                <ConnectedRelatedCard
+                  index={index + 1}
+                  key={id}
+                  productId={id}
+                  outfit
+                  removeFromOutfit={this.removeFromOutfit}
+                />
               ),
             )}
           </Slider>
