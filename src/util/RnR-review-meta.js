@@ -86,7 +86,6 @@ const getReviewFormConfig = () => {
       type: 'radio',
       constraints: {
         options: ['Poor', 'Fair', 'Average', 'Good', 'Great'],
-        selected: '',
       },
     },
     recommended: {
@@ -96,7 +95,6 @@ const getReviewFormConfig = () => {
       type: 'radio',
       constraints: {
         options: ['Yes', 'No'],
-        selected: 'Yes',
       },
     },
     characteristic: {
@@ -106,7 +104,6 @@ const getReviewFormConfig = () => {
       type: 'radio',
       constraints: {
         options: ['Temp1', 'Temp2', 'Temp3'],
-        selected: 'Temp1',
       },
     },
     summary: {

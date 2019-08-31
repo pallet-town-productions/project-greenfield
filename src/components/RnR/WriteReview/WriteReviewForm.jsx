@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RadioGroupInput from './RadioGroupInput';
 import TextInput from './TextInput';
 import FileInput from './FileInput';
+import TextAreaInput from './TextAreaInput';
 import { getReviewFormConfig } from '../../../util/RnR-review-meta';
 
 class WriteReviewForm extends Component {
@@ -25,22 +26,17 @@ class WriteReviewForm extends Component {
 
   handleInputChange(event) {
     const { target } = event;
-    const { name, value, type } = target;
-    if (type === 'radio') {
-      this.setState({
-        [[name].selected]: value,
-      });
-    } else {
-      this.setState({
-        [[name].value]: value,
-      });
-    }
+    const { name, value } = target;
+    this.setState({
+      [[name].value]: value,
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    const { hideModal } = this.props;
     // const formData = this.state;
-    this.hideModal();
+    hideModal();
     // check if data is valid
     // make a post with form data if everything all good
     // otherwise render some errors
@@ -62,12 +58,12 @@ class WriteReviewForm extends Component {
         role="presentation"
         onKeyDown={this.handleKeyPress}
       >
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
           <TextInput config={summary} handleInputChange={this.handleInputChange} />
-          <TextInput config={body} handleInputChange={this.handleInputChange} />
+          <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
           <FileInput config={photos} handleInputChange={this.handleInputChange} />
           <TextInput config={nickname} handleInputChange={this.handleInputChange} />
           <TextInput config={email} handleInputChange={this.handleInputChange} />

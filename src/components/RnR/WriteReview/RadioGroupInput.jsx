@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RadioGroupInput = ({ config, handleInputChange }) => {
   const { label, id, constraints } = config;
-  const { options, selected } = constraints;
+  const { options } = constraints;
   const buttons = options.map((option) => (
     <div key={option}>
       <label htmlFor={option}>
@@ -14,7 +14,6 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
           type="radio"
           value={option}
           onChange={handleInputChange}
-          checked={option === selected}
         />
       </label>
     </div>
@@ -34,7 +33,6 @@ RadioGroupInput.propTypes = {
     id: PropTypes.string.isRequired,
     constraints: PropTypes.shape({
       options: PropTypes.array,
-      selected: PropTypes.string,
     }),
   }).isRequired,
 };
