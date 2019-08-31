@@ -1,10 +1,14 @@
 /*
-  Utility functions to transform data from Review Meta Endpoint
-  GET /reviews/:product_id/meta
+  Utility functions to transform data for Review Endpoints
+  Review Meta: GET /reviews/:product_id/meta
+  Add Review: POST /reviews/:product_id
 
   Product Characteristic Functions:
   - setProductRatingValue
   - setProductSublables
+
+  Add/Write Review Functions:
+  - getReviewFormConfig
 
 */
 
@@ -73,7 +77,100 @@ const setProductSublables = (label = 'Default') => {
   };
 };
 
+const getReviewFormConfig = () => {
+
+  const formConfig = {
+    rating: {
+      label: 'Overall Rating',
+      mandatory: true,
+      id: 'overall',
+      type: 'radio',
+      constraints: {
+        options: ['Poor', 'Fair', 'Average', 'Good', 'Great'],
+        selected: '',
+      },
+    },
+    recommended: {
+      label: 'Do you recommend this product?',
+      mandatory: true,
+      id: 'recommended',
+      type: 'radio',
+      constraints: {
+        options: ['Yes', 'No'],
+        selected: 'Yes',
+      },
+    },
+  };
+
+  // const formConfig = [
+  //   {
+  //     label: 'Characteristics PlaceHolder',
+  //     mandatory: false,
+  //     id: 'characteristic placeholder',
+  //     type: 'radio',
+  //     constraints: {
+  //       options: ['Temp1', 'Temp2', 'Temp3'],
+  //       selected: 'Temp1',
+  //     },
+  //   },
+  //   {
+  //     label: 'Review Summary',
+  //     mandatory: false,
+  //     id: 'summary',
+  //     type: 'text',
+  //     constraints: {
+  //       max: 50,
+  //       placeholder: 'Example: Best purchase ever!',
+  //     },
+  //   },
+  //   {
+  //     label: 'Review Body',
+  //     mandatory: true,
+  //     id: 'body',
+  //     type: 'textarea',
+  //     inputConfig: {
+  //       min: 50,
+  //       max: 1000,
+  //       placeholder: 'Example: Best purchase ever!',
+  //     },
+  //   },
+  //   {
+  //     label: 'Upload your photos',
+  //     mandatory: false,
+  //     id: 'photos',
+  //     type: 'file',
+  //     constraints: {
+  //       max: 5,
+  //     },
+  //   },
+  //   {
+  //     label: 'What is your nickname',
+  //     mandatory: true,
+  //     id: 'nickname',
+  //     type: 'text',
+  //     constraints: {
+  //       max: 60,
+  //       placeholder: 'Example: jackson11',
+  //       sublabel: 'For privacy reasons, do not use your full name or email address',
+  //     },
+  //   },
+  //   {
+  //     label: 'Your email',
+  //     mandatory: true,
+  //     id: 'nickname',
+  //     type: 'email',
+  //     constraints: {
+  //       max: 60,
+  //       placeholder: 'Example: jackson11@email.com',
+  //       sublabel: 'For authenication reasons, you will not be emailed',
+  //     },
+  //   },
+  // ];
+  return formConfig;
+};
+
 export {
   setProductRatingValue,
   setProductSublables,
+  getReviewFormConfig,
 };

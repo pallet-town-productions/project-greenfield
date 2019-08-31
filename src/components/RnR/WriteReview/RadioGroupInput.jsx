@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RadioGroupInput = (props) => {
-  const {
-    label, id, config, handleInputChange,
-  } = props;
-  const { options, selected } = config;
+const RadioGroupInput = ({ config, handleInputChange }) => {
+  const { label, id, constraints } = config;
+  const { options, selected } = constraints;
   const buttons = options.map((option) => (
     <div key={option}>
       <label htmlFor={option}>
@@ -30,12 +28,14 @@ const RadioGroupInput = (props) => {
 };
 
 RadioGroupInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   config: PropTypes.shape({
-    options: PropTypes.array,
-    selected: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    constraints: PropTypes.shape({
+      options: PropTypes.array,
+      selected: PropTypes.string,
+    }),
   }).isRequired,
 };
 

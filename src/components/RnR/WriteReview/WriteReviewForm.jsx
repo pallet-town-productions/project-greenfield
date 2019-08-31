@@ -2,29 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RadioGroupInput from './RadioGroupInput';
 import TextInput from './TextInput';
+import { getReviewFormConfig } from '../../../util/RnR-review-meta';
 
 class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      ratings: {
-        options: ['1', '2', '3', '4', '5'],
-        selected: '1',
-      },
-      recommended: {
-        options: ['Yes', 'No'],
-        selected: 'Yes',
-      },
-      characteristics: {
-        options: ['Temp 1', 'Temp 2'],
-        selected: '',
-      },
-      summary: '',
-      body: '',
-      photos: '',
-      nickname: '',
-      email: '',
-    };
+    this.state = getReviewFormConfig();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,14 +47,14 @@ class WriteReviewForm extends Component {
 
   render() {
     const {
-      ratings,
+      rating,
       recommended,
-      characteristics,
-      summary,
-      body,
-      photos,
-      nickname,
-      email,
+      // characteristics,
+      // summary,
+      // body,
+      // photos,
+      // nickname,
+      // email,
     } = this.state;
     return (
       <div
@@ -79,9 +62,10 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form>
-          <RadioGroupInput label="Rating" config={ratings} id="ratings" handleInputChange={this.handleInputChange} />
-          <RadioGroupInput label="Recommended" config={recommended} id="recommended" handleInputChange={this.handleInputChange} />
-          <RadioGroupInput label="Characteristic" config={characteristics} id="characteristics" handleInputChange={this.handleInputChange} />
+          <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+
+          {/* <RadioGroupInput label="Characteristic" config={characteristics} id="characteristics" handleInputChange={this.handleInputChange} />
           <TextInput label="Review Summary" id="summary" value={summary} handleInputChange={this.handleInputChange} />
           <br />
           <TextInput label="Review Body" id="body" value={body} handleInputChange={this.handleInputChange} />
@@ -91,7 +75,7 @@ class WriteReviewForm extends Component {
           <TextInput label="Nickname" id="nickname" value={nickname} handleInputChange={this.handleInputChange} />
           <br />
           <TextInput label="Email" id="email" value={email} handleInputChange={this.handleInputChange} />
-          <br />
+          <br /> */}
           <input type="submit" value="Submit" />
         </form>
       </div>
