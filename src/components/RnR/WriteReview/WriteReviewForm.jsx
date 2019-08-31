@@ -10,8 +10,8 @@ class WriteReviewForm extends Component {
       ratingOptions: ['1', '2', '3', '4', '5'],
       recommended: ['Yes', 'No'],
       characteristics: ['Temp 1', 'Temp 2'],
-      reviewSummary: '',
-      reviewBody: '',
+      summary: '',
+      body: '',
       photos: '',
       nickname: '',
       email: '',
@@ -53,8 +53,8 @@ class WriteReviewForm extends Component {
       ratingOptions,
       recommended,
       characteristics,
-      reviewSummary,
-      reviewBody,
+      summary,
+      body,
       photos,
       nickname,
       email,
@@ -65,54 +65,19 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form>
-          <RadioGroupInput label="Rating" options={ratingOptions} handleInputChange={this.handleInputChange} />
-          <RadioGroupInput label="Recommended" options={recommended} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput label="Rating" options={ratingOptions} />
+          <RadioGroupInput label="Recommended" options={recommended} />
           <RadioGroupInput label="Characteristic" options={characteristics} handleInputChange={this.handleInputChange} />
-          <TextInput label="Review Summary" id="review-summary" value={reviewSummary} />
+          <TextInput label="Review Summary" id="summary" value={summary} handleInputChange={this.handleInputChange} />
           <br />
-          <label htmlFor="reviewBody">
-          reviewBody
-            <input
-              id="reviewBody"
-              name="reviewBody"
-              type="textarea"
-              value={reviewBody}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <TextInput label="Review Body" id="body" value={body} handleInputChange={this.handleInputChange} />
           <br />
-          <label htmlFor="photos">
-          Recommended
-            <input
-              id="photos"
-              name="photos"
-              type="text"
-              value={photos}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <TextInput label="Upload Photos" id="photos" value={photos} handleInputChange={this.handleInputChange} />
           <br />
-          <label htmlFor="nickname">
-          nickname
-            <input
-              id="nickname"
-              name="nickname"
-              type="text"
-              value={nickname}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <TextInput label="Nickname" id="nickname" value={nickname} handleInputChange={this.handleInputChange} />
           <br />
-          <label htmlFor="email">
-          email
-            <input
-              id="email"
-              name="email"
-              type="text"
-              value={email}
-              onChange={this.handleInputChange}
-            />
-          </label>
+          <TextInput label="Email" id="email" value={email} handleInputChange={this.handleInputChange} />
+          <br />
           <input type="submit" value="Submit" />
         </form>
       </div>
