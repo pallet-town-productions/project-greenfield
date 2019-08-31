@@ -5,7 +5,7 @@ const TextInput = ({ config, handleInputChange }) => {
   const {
     label, id, value, constraints,
   } = config;
-  const { placeholder } = constraints;
+  const { placeholder = '', sublabel = '' } = constraints;
   return (
     <div>
       <label htmlFor={id}>
@@ -19,9 +19,8 @@ const TextInput = ({ config, handleInputChange }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-
+      <div>{sublabel}</div>
     </div>
-
   );
 };
 
@@ -33,6 +32,7 @@ TextInput.propTypes = {
     value: '',
     constraints: PropTypes.shape({
       placeholder: PropTypes.string,
+      sublabel: PropTypes.string,
     }),
   }).isRequired,
 };

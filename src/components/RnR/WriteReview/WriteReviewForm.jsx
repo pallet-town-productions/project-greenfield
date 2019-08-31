@@ -51,10 +51,10 @@ class WriteReviewForm extends Component {
       recommended,
       characteristic,
       summary,
-      // body,
-      // photos,
-      // nickname,
-      // email,
+      body,
+      photos,
+      nickname,
+      email,
     } = this.state;
     return (
       <div
@@ -66,17 +66,10 @@ class WriteReviewForm extends Component {
           <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
           <TextInput config={summary} handleInputChange={this.handleInputChange} />
-
-          {/*
-          <br />
-          <TextInput label="Review Body" id="body" value={body} handleInputChange={this.handleInputChange} />
-          <br />
-          <TextInput label="Upload Photos" id="photos" value={photos} handleInputChange={this.handleInputChange} />
-          <br />
-          <TextInput label="Nickname" id="nickname" value={nickname} handleInputChange={this.handleInputChange} />
-          <br />
-          <TextInput label="Email" id="email" value={email} handleInputChange={this.handleInputChange} />
-          <br /> */}
+          <TextInput config={body} handleInputChange={this.handleInputChange} />
+          <TextInput config={photos} handleInputChange={this.handleInputChange} />
+          <TextInput config={nickname} handleInputChange={this.handleInputChange} />
+          <TextInput config={email} handleInputChange={this.handleInputChange} />
           <input type="submit" value="Submit" />
         </form>
       </div>

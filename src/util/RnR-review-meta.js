@@ -120,62 +120,50 @@ const getReviewFormConfig = () => {
         placeholder: 'Example: Best purchase ever!',
       },
     },
+    body: {
+      label: 'Review Body',
+      mandatory: true,
+      id: 'body',
+      type: 'textarea',
+      value: '',
+      constraints: {
+        min: 50,
+        max: 1000,
+        placeholder: 'Example: Best purchase ever!',
+      },
+    },
+    photos: {
+      label: 'Upload your photos',
+      mandatory: false,
+      id: 'photos',
+      type: 'file',
+      constraints: {
+        max: 5,
+      },
+    },
+    nickname: {
+      label: 'What is your nickname',
+      mandatory: true,
+      id: 'nickname',
+      type: 'text',
+      constraints: {
+        max: 60,
+        placeholder: 'Example: jackson11',
+        sublabel: 'For privacy reasons, do not use your full name or email address',
+      },
+    },
+    email: {
+      label: 'Your email',
+      mandatory: true,
+      id: 'nickname',
+      type: 'email',
+      constraints: {
+        max: 60,
+        placeholder: 'Example: jackson11@email.com',
+        sublabel: 'For authenication reasons, you will not be emailed',
+      },
+    },
   };
-
-  // const formConfig = [
-  //   {
-  //     label: 'Review Summary',
-  //     mandatory: false,
-  //     id: 'summary',
-  //     type: 'text',
-  //     constraints: {
-  //       max: 50,
-  //       placeholder: 'Example: Best purchase ever!',
-  //     },
-  //   },
-  //   {
-  //     label: 'Review Body',
-  //     mandatory: true,
-  //     id: 'body',
-  //     type: 'textarea',
-  //     inputConfig: {
-  //       min: 50,
-  //       max: 1000,
-  //       placeholder: 'Example: Best purchase ever!',
-  //     },
-  //   },
-  //   {
-  //     label: 'Upload your photos',
-  //     mandatory: false,
-  //     id: 'photos',
-  //     type: 'file',
-  //     constraints: {
-  //       max: 5,
-  //     },
-  //   },
-  //   {
-  //     label: 'What is your nickname',
-  //     mandatory: true,
-  //     id: 'nickname',
-  //     type: 'text',
-  //     constraints: {
-  //       max: 60,
-  //       placeholder: 'Example: jackson11',
-  //       sublabel: 'For privacy reasons, do not use your full name or email address',
-  //     },
-  //   },
-  //   {
-  //     label: 'Your email',
-  //     mandatory: true,
-  //     id: 'nickname',
-  //     type: 'email',
-  //     constraints: {
-  //       max: 60,
-  //       placeholder: 'Example: jackson11@email.com',
-  //       sublabel: 'For authenication reasons, you will not be emailed',
-  //     },
-  //   },
-  // ];
   return formConfig;
 };
 
