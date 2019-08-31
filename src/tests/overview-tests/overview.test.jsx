@@ -16,8 +16,8 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
-// import { ExpandedViewOverlayComponent } 
-//from '../../components/overview-components/imageGallery/expandedViewOverlay';
+import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
+import ExpandedViewOverlay from '../../components/overview-components/imageGallery/expandedViewOverlay';
 // import { ZoomViewDisplayComponent } 
 //from '../../components/overview-components/imageGallery/zoomViewOverlay';
 // import ExitButton from '../../components/overview-components/imageGallery/exitButton';
@@ -38,12 +38,13 @@ import {
 import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
 // IMPORT actions
-import { changePhoto } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 // NOTES:
-// exists likes basic html, doesn't like React Components
+  // exists likes basic html, doesn't like React Components
+  // find will always be truthy because it returns a collection-like object, so it'll even be truthy if its length is 0
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -139,19 +140,51 @@ describe('Image Gallery', () => {
       expect(handleClick.calledTwice).toBeTruthy();
     });
     it('should switch photos once a thumbnail is clicked', () => {
-      expect(mockStore.getState().currentPhotoIndex).toEqual(1);
+      mockStore.dispatch(changePhoto(0));
+      expect(mockStore.getState().currentPhotoIndex).toEqual(0);
       wrapper.find('#O000O004').simulate('click');
       expect(mockStore.getState().currentPhotoIndex).toEqual(4);
     });
   });
   describe('Expanded View', () => {
-    // //////////
-    // CODE
-    // //////////
+    const expandedViewWrapper = mount(
+      <Provider store={mockStore}>
+        <ExpandedViewOverlay />
+      </Provider>
+    );
+    it('should NOT render ExpandedView before dispatching the action toggleExpandedView', () => {
+      expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
+    });
+    it('should render ExpandedView upon dispatching the action toggleExpandedView (true)', () => {
+      mockStore.dispatch(toggleExpandedView(true));
+      expandedViewWrapper.update();
+      expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
+    });
+    it('should render imageMain', () => {
+      expect(expandedViewWrapper.exists('#expanded-main-photo')).toBeTruthy();
+    });
+    it('should render imageList with imageThumbnails', () => {
+      expect(expandedViewWrapper.exists('#image-thumbnail-slide-expanded')).toBeTruthy();
+      expect(expandedViewWrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
+    });
     describe('Exit Button', () => {
-      // //////////
-      // CODE
-      // //////////
+      it('should render Exit Button on Expanded View', () => {
+        expect(expandedViewWrapper.exists('.exit-button')).toBeTruthy();
+      });
+      it('should exit out of Expanded View when Exit Button is clicked', () => {
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
+        expandedViewWrapper.find('.exit-button').simulate('click');
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
+      });
+    it('should be clickable and toggle ZoomView when clicked', () => {
+      expect(mockStore.getState().showZoomView).toBeFalsy();
+      mockStore.dispatch(toggleExpandedView(true));
+      expandedViewWrapper.update();
+      expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+      expect(mockStore.getState().showZoomView).toBeTruthy();
+      mockStore.dispatch(toggleZoomView(false));
+      expect(mockStore.getState().showZoomView).toBeFalsy();
+    });
     });
   });
   describe('Zoom View', () => {
