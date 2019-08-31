@@ -17,7 +17,7 @@ export class Outfit extends Component {
     super(props);
     this.state = {
       hasOutfit: false,
-      outfit: null,
+      outfit: [],
     };
   }
 
