@@ -123,4 +123,31 @@ img {
     color: $borderColor;
   }
 
+  .related-modal-container {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .related-modal {
+    height: auto;
+    width: 500px;
+    background-color: $modalColor;
+  }
+
+#compare-table {
+    width: 100%;
+    border-color: $borderColor;
+    border-width: $borderThickness * 1.5;
+    border-style: solid;
+    text-align: center;
+  }
+
+
   
