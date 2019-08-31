@@ -16,11 +16,8 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
-import { ExpandedViewOverlayComponent } from '../../components/overview-components/imageGallery/expandedViewOverlay';
 import ExpandedViewOverlay from '../../components/overview-components/imageGallery/expandedViewOverlay';
-// import { ZoomViewDisplayComponent } 
-//from '../../components/overview-components/imageGallery/zoomViewOverlay';
-// import ExitButton from '../../components/overview-components/imageGallery/exitButton';
+import ZoomViewDisplay, { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
 // IMPORT add to cart components
 import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
@@ -43,8 +40,8 @@ import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/o
 Enzyme.configure({ adapter: new Adapter() });
 
 // NOTES:
-  // exists likes basic html, doesn't like React Components
-  // find will always be truthy because it returns a collection-like object, so it'll even be truthy if its length is 0
+// exists likes basic html, doesn't like React Components
+// find will always be truthy because it returns a collection-like object, so it'll even be truthy if its length is 0
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -75,6 +72,9 @@ describe('Overview', () => {
 });
 
 describe('Image Gallery', () => {
+  afterAll(() => {
+    wrapper.unmount();
+  });
   const handleClick = sinon.spy();
   const mockStore = configureStore();
   const wrapper = mount(
@@ -147,6 +147,9 @@ describe('Image Gallery', () => {
     });
   });
   describe('Expanded View', () => {
+    afterAll(() => {
+      expandedViewWrapper.unmount();
+    });
     const expandedViewWrapper = mount(
       <Provider store={mockStore}>
         <ExpandedViewOverlay />
@@ -176,21 +179,57 @@ describe('Image Gallery', () => {
         expandedViewWrapper.find('.exit-button').simulate('click');
         expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
       });
-    it('should be clickable and toggle ZoomView when clicked', () => {
-      expect(mockStore.getState().showZoomView).toBeFalsy();
-      mockStore.dispatch(toggleExpandedView(true));
-      expandedViewWrapper.update();
-      expandedViewWrapper.find('#expanded-main-photo').simulate('click');
-      expect(mockStore.getState().showZoomView).toBeTruthy();
-      mockStore.dispatch(toggleZoomView(false));
-      expect(mockStore.getState().showZoomView).toBeFalsy();
+      it('should be clickable and toggle ZoomView when clicked', () => {
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+        mockStore.dispatch(toggleExpandedView(true));
+        expandedViewWrapper.update();
+        expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+        expect(mockStore.getState().showZoomView).toBeTruthy();
+        mockStore.dispatch(toggleZoomView(false));
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+      });
     });
+    describe('Zoom View Toggling', () => {
+      afterAll(() => {
+        zoomViewWrapper.unmount();
+      });
+      const zoomViewWrapper = mount(
+        <Provider store={mockStore}>
+          <ZoomViewDisplay />
+        </Provider>
+      );
+      it('should not render zoom view upon first loading of page', () => {
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
+      it('should not render zoom view upon clicking on Main Image', () => {
+        wrapper.find('#main-photo').simulate('click');
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
+      it('should toggle zoom view on upon clicking on Expanded View Image', () => {
+        expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+        zoomViewWrapper.update();
+        expect(zoomViewWrapper.find('.show')).toHaveLength(1);
+      });
+      it('should toggle zoom view off upon clicking on the Zoom Image', () => {
+        zoomViewWrapper.find('#zoom-photo').simulate('click');
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
     });
-  });
-  describe('Zoom View', () => {
-    // //////////
-    // CODE
-    // //////////
+    describe('Zoom View Panning', () => {
+      let handleMove = sinon.spy();
+      const zoomViewShallowWrapper = shallow(
+        <ZoomViewDisplayComponent 
+          handleZoomPan={handleMove}
+          showZoomView={true}
+          currentBigPicture={'dummyUrl'}
+          handleHideZoomView={()=>{}}
+        />
+      );
+      it('should handle mouse movements when in Zoom View', () => {
+        zoomViewShallowWrapper.find('#zoom-view-mouse-move').simulate('mousemove');
+        expect(handleMove.called).toBeTruthy();
+      });
+    });
   });
 });
 
@@ -244,7 +283,7 @@ describe('Add To Cart', () => {
   });
   describe('Quantity Selector', () => {
     const currentAvailQuantity = 4;
-    const handleQuantityChange = () => {};
+    const handleQuantityChange = () => { };
 
     describe('(Size not selected)', () => {
       const wrapper = shallow(<QuantitySelectorComponent
@@ -432,7 +471,7 @@ describe('Style Selector', () => {
         style={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
-        handleClick={() => {}}
+        handleClick={() => { }}
       />);
       expect(wrapper.find('i')).toHaveLength(1);
     });
@@ -442,7 +481,7 @@ describe('Style Selector', () => {
         style={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
-        handleClick={() => {}}
+        handleClick={() => { }}
       />);
       expect(wrapper.find('i')).toHaveLength(0);
     });
