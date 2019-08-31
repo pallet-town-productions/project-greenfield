@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConnectedRatingBreakdown from './RnR_RatingBreakdown';
 import ConnectedProductBreakdown from './RnR_ProductBreakdown';
+import WriteReviewButton from './WriteReview/WriteReviewButton';
 import getMetaData from '../../actions/RnR-Actions/RnR-meta-action';
 import '../../styles/RnR-breakdown.scss';
 
@@ -24,6 +25,7 @@ export class BreakdownContainer extends Component {
       <div className="breakdown-container">
         <ConnectedRatingBreakdown />
         <ConnectedProductBreakdown />
+        <WriteReviewButton />
       </div>
     );
   }
