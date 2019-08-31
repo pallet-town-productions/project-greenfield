@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
@@ -40,7 +40,7 @@ RelatedModal.propTypes = {
 
 RelatedModal.defaultProps = {
   children: null,
-}
+};
 
 const connectedRelatedModal = connect(mapStateToProps, null)(RelatedModal);
 export default connectedRelatedModal;

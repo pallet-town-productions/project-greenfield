@@ -89,7 +89,6 @@ export class RelatedCard extends Component {
           >
             <div className="related-modal">
               <ConnectedModalTable compareData={productData} />
-              comparison info
             </div>
           </div>
         </ConnectedRelatedModal>

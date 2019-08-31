@@ -136,9 +136,18 @@ img {
   }
 
   .related-modal {
-    height: 400px;
+    height: auto;
     width: 500px;
     background-color: $modalColor;
   }
+
+#compare-table {
+    width: 100%;
+    border-color: $borderColor;
+    border-width: $borderThickness * 1.5;
+    border-style: solid;
+    text-align: center;
+  }
+
 
   

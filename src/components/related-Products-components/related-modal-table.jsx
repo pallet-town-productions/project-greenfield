@@ -15,25 +15,53 @@ export const ModalTable = (props) => {
   const { features: compareFeatures } = compareData;
   const { name: currentName } = productData;
   const { name: compareName } = compareData;
-  console.log(compareData, productData);
+  const sharedData = [];
+  currentFeatures.filter((current) => (
+    compareFeatures.filter((related) => (
+      current.feature === related.feature ? sharedData.push(related) : null
+    ))
+  ));
+  const filterdCurrentFeatures = currentFeatures.filter((current) => {
+    if (sharedData.filter((shared) => (
+      current.feature === shared.feature
+    )).length) {
+      return false;
+    }
+    return true;
+  });
+  const filterdCompareFeatures = compareFeatures.filter((compare) => {
+    if (sharedData.filter((shared) => (
+      compare.feature === shared.feature
+    )).length) {
+      return false;
+    }
+    return true;
+  });
 
   return (
-    <table>
+    <table id="compare-table">
       <tbody>
         <tr>
           <th>{currentName}</th>
           <th>Compared To</th>
           <th>{compareName}</th>
         </tr>
-        {currentFeatures.map((feature) => (
-          <tr>
+        {filterdCurrentFeatures.map((feature) => (
+          <tr key={feature.feature}>
             <td>{'\u2713'}</td>
             <td>{feature.value !== 'null' ? feature.value : feature.feature}</td>
             <td> </td>
           </tr>
         ))}
-        {compareFeatures.map((feature) => (
-          <tr>
+        {sharedData.map((feature) => (
+          <tr key={feature.feature}>
+            <td>{'\u2713'}</td>
+            <td>{feature.value !== 'null' ? feature.value : feature.feature}</td>
+            <td>{'\u2713'}</td>
+          </tr>
+        ))}
+        {filterdCompareFeatures.map((feature) => (
+          <tr key={feature.feature}>
             <td> </td>
             <td>{feature.value !== 'null' ? feature.value : feature.feature}</td>
             <td>{'\u2713'}</td>
