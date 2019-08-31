@@ -1,4 +1,4 @@
-const ZOOMRATIO = 2.5;
+// const ZOOMRATIO = 2.5;
 
 export default function (e, imageUrl) {
   e.preventDefault();
@@ -6,8 +6,8 @@ export default function (e, imageUrl) {
   // probably a lot faster to just set this as a state on style change
   const i = new Image();
   i.src = imageUrl;
-  const imgWidth = i.width * ZOOMRATIO;
-  const imgHeight = i.height * ZOOMRATIO;
+  // const imgWidth = i.width * ZOOMRATIO;
+  // const imgHeight = i.height * ZOOMRATIO;
 
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -28,7 +28,7 @@ export default function (e, imageUrl) {
   // zoom.style.backgroundSize = `${imgWidth-cursorX}px ${imgWidth-cursorY}px`;
   zoom.style.backgroundPosition = `${imgPctX}% ${imgPctY}%`;
 
-  console.log(`CursorXY: ${cursorX}, ${cursorY}`,
-    `WidthHeight: ${imgWidth}, ${imgHeight}`,
-    `ScreenXY: ${screenWidth}, ${screenHeight}`);
+  // console.log(`CursorXY: ${cursorX}, ${cursorY}`,
+  //   `WidthHeight: ${imgWidth}, ${imgHeight}`,
+  //   `ScreenXY: ${screenWidth}, ${screenHeight}`);
 }

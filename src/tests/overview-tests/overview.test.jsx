@@ -19,7 +19,7 @@ import { ImageListComponent } from '../../components/overview-components/imageGa
 import ExpandedViewOverlay from '../../components/overview-components/imageGallery/expandedViewOverlay';
 import ZoomViewDisplay, { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
 // IMPORT add to cart components
-import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
+import SizeSelector, { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
 import { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
 // IMPORT product info components
@@ -36,12 +36,14 @@ import { StyleSelectorComponent } from '../../components/overview-components/sty
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
 // IMPORT actions
 import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart/changeSizeQty';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 // NOTES:
 // exists likes basic html, doesn't like React Components
-// find will always be truthy because it returns a collection-like object, so it'll even be truthy if its length is 0
+// find will always be truthy because it returns a collection-like object,
+// so it'll even be truthy if its length is 0
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -72,9 +74,6 @@ describe('Overview', () => {
 });
 
 describe('Image Gallery', () => {
-  afterAll(() => {
-    wrapper.unmount();
-  });
   const handleClick = sinon.spy();
   const mockStore = configureStore();
   const wrapper = mount(
@@ -82,6 +81,9 @@ describe('Image Gallery', () => {
       <ImageGalleryComponent dispatchExpandedView={handleClick} />
     </Provider>,
   );
+  afterAll(() => {
+    wrapper.unmount();
+  });
   it('should render Main Image', () => {
     expect(wrapper.exists('#main-photo')).toBeTruthy();
   });
@@ -96,7 +98,7 @@ describe('Image Gallery', () => {
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
 
-        let lastPhotoIndex = mockStore.getState().style.results[0].photos.length - 1;
+        const lastPhotoIndex = mockStore.getState().style.results[0].photos.length - 1;
         mockStore.dispatch(changePhoto(lastPhotoIndex));
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
@@ -147,14 +149,14 @@ describe('Image Gallery', () => {
     });
   });
   describe('Expanded View', () => {
-    afterAll(() => {
-      expandedViewWrapper.unmount();
-    });
     const expandedViewWrapper = mount(
       <Provider store={mockStore}>
         <ExpandedViewOverlay />
-      </Provider>
+      </Provider>,
     );
+    afterAll(() => {
+      expandedViewWrapper.unmount();
+    });
     it('should NOT render ExpandedView before dispatching the action toggleExpandedView', () => {
       expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
     });
@@ -190,14 +192,14 @@ describe('Image Gallery', () => {
       });
     });
     describe('Zoom View Toggling', () => {
-      afterAll(() => {
-        zoomViewWrapper.unmount();
-      });
       const zoomViewWrapper = mount(
         <Provider store={mockStore}>
           <ZoomViewDisplay />
-        </Provider>
+        </Provider>,
       );
+      afterAll(() => {
+        zoomViewWrapper.unmount();
+      });
       it('should not render zoom view upon first loading of page', () => {
         expect(zoomViewWrapper.find('.show')).toHaveLength(0);
       });
@@ -216,14 +218,14 @@ describe('Image Gallery', () => {
       });
     });
     describe('Zoom View Panning', () => {
-      let handleMove = sinon.spy();
+      const handleMove = sinon.spy();
       const zoomViewShallowWrapper = shallow(
-        <ZoomViewDisplayComponent 
+        <ZoomViewDisplayComponent
           handleZoomPan={handleMove}
-          showZoomView={true}
-          currentBigPicture={'dummyUrl'}
-          handleHideZoomView={()=>{}}
-        />
+          showZoomView
+          currentBigPicture="dummyUrl"
+          handleHideZoomView={() => {}}
+        />,
       );
       it('should handle mouse movements when in Zoom View', () => {
         zoomViewShallowWrapper.find('#zoom-view-mouse-move').simulate('mousemove');
@@ -342,9 +344,18 @@ describe('Add To Cart', () => {
     // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
 
     // });
-    // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
-
-    // });
+    it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
+      const mockStore = configureStore();
+      const sizeSelectorWrapper = mount(
+        <Provider store={mockStore}>
+          <SizeSelector />
+        </Provider>,
+      );
+      expect(sizeSelectorWrapper.find('#select-size-prompt').text().includes('Select Size')).toBeFalsy();
+      mockStore.dispatch(togglePromptSelectSize(true));
+      expect(sizeSelectorWrapper.find('#select-size-prompt').text().includes('Select Size')).toBeTruthy();
+      sizeSelectorWrapper.unmount();
+    });
     it('should not be clickable if Out Of Stock', () => {
       wrapper = shallow(<AddToCartButtonComponent
         isOutOfStock

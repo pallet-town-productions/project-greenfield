@@ -25,6 +25,7 @@ ImageThumbnail.propTypes = {
   url: PT.string.isRequired,
   handleClick: PT.func.isRequired,
   isSelected: PT.bool.isRequired,
+  thisId: PT.string.isRequired,
 };
 
 export default ImageThumbnail;
