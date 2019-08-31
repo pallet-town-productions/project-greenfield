@@ -78,7 +78,6 @@ const setProductSublables = (label = 'Default') => {
 };
 
 const getReviewFormConfig = () => {
-
   const formConfig = {
     rating: {
       label: 'Overall Rating',
@@ -98,6 +97,16 @@ const getReviewFormConfig = () => {
       constraints: {
         options: ['Yes', 'No'],
         selected: 'Yes',
+      },
+    },
+    characteristic: {
+      label: 'Characteristics PlaceHolder',
+      mandatory: false,
+      id: 'characteristic placeholder',
+      type: 'radio',
+      constraints: {
+        options: ['Temp1', 'Temp2', 'Temp3'],
+        selected: 'Temp1',
       },
     },
   };

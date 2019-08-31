@@ -49,7 +49,7 @@ class WriteReviewForm extends Component {
     const {
       rating,
       recommended,
-      // characteristics,
+      characteristic,
       // summary,
       // body,
       // photos,
@@ -64,6 +64,7 @@ class WriteReviewForm extends Component {
         <form>
           <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
           <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+          <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
 
           {/* <RadioGroupInput label="Characteristic" config={characteristics} id="characteristics" handleInputChange={this.handleInputChange} />
           <TextInput label="Review Summary" id="summary" value={summary} handleInputChange={this.handleInputChange} />
