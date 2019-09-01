@@ -18,7 +18,9 @@ export class RelatedProducts extends Component {
     const { productId, dispatch } = this.props;
     fetch(`http://18.217.220.129/products/${productId}/related`)
       .then((data) => data.json())
-      .then((relatedProducts) => dispatch(relatedAction(relatedProducts)));
+      .then((relatedProducts) => (
+        dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
+      ));
   }
 
   componentDidUpdate(prevProps) {
@@ -29,7 +31,9 @@ export class RelatedProducts extends Component {
     }
     fetch(`http://18.217.220.129/products/${productId}/related`)
       .then((data) => data.json())
-      .then((relatedProducts) => dispatch(relatedAction(relatedProducts)));
+      .then((relatedProducts) => (
+        dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
+      ));
   }
 
   render() {

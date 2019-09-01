@@ -104,49 +104,49 @@ export class RelatedCard extends Component {
         </ConnectedRelatedModal>
       ) : null;
       return (
-        <Link to={`/${productId}`}>
-          <div className="card-container">
-            {modal}
-            <div className="image-container">
-              <img src={photos[0][0].thumbnail_url} alt="default-style" />
-              {outfit
-              && (
-              <i
-                role="button"
-                className="material-icons"
-                id="remove-button"
-                onClick={(() => removeFromOutfit(productId))}
-                tabIndex={0}
-                onKeyPress={() => removeFromOutfit(productId)}
-              >
-                cancel
-              </i>
-              )}
-              {!outfit
-              && (
-              <i
-                className="material-icons"
-                id="compare-button"
-                tabIndex={0}
-                role="button"
-                onClick={() => this.handleShowModal(productId)}
-                onKeyPress={() => this.handleShowModal(productId)}
-              >
-                stars
-              </i>
-              )}
-            </div>
-            <div className="card-info-container">
-              <p className="card-sub-text">{category}</p>
-              <p className="card-info">{name}</p>
-              <p className="card-sub-text">
-                $
-                {defaultPrice}
-              </p>
-              <StarRating starCount={reviewAvg || 0} />
-            </div>
+        <div className="card-container">
+          {modal}
+          <div className="image-container">
+            <img src={photos[0][0].thumbnail_url} alt="default-style" />
+            {outfit
+            && (
+            <i
+              role="button"
+              className="material-icons"
+              id="remove-button"
+              onClick={(() => removeFromOutfit(productId))}
+              tabIndex={0}
+              onKeyPress={() => removeFromOutfit(productId)}
+            >
+              cancel
+            </i>
+            )}
+            {!outfit
+            && (
+            <i
+              className="material-icons"
+              id="compare-button"
+              tabIndex={0}
+              role="button"
+              onClick={() => this.handleShowModal(productId)}
+              onKeyPress={() => this.handleShowModal(productId)}
+            >
+              stars
+            </i>
+            )}
           </div>
-        </Link>
+          <div className="card-info-container">
+            <p className="card-sub-text">{category}</p>
+            <Link to={`/${productId}`}>
+              <p className="card-info">{name}</p>
+            </Link>
+            <p className="card-sub-text">
+              $
+              {defaultPrice}
+            </p>
+            <StarRating starCount={reviewAvg || 0} />
+          </div>
+        </div>
       );
     }
     return (
