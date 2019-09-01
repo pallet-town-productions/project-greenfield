@@ -24,23 +24,31 @@ export class RelatedCard extends Component {
         category: null,
         showModal: false,
       },
+      isMounted: false,
     };
 
     this.handleShowModal = this.handleShowModal.bind(this);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    this.getCardData(productId);
+    this.setState({ isMounted: true }, () => {
+      const { productId } = this.props;
+      this.getCardData(productId);
+    });
   }
 
   componentDidUpdate(prevProps) {
+    const { isMounted } = this.state;
     const { productId } = this.props;
     const { productId: oldId } = prevProps;
-    if (oldId === productId) {
+    if (!isMounted || oldId === productId) {
       return;
     }
     this.getCardData(productId);
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
   }
 
   getCardData(productId) {
@@ -70,7 +78,6 @@ export class RelatedCard extends Component {
   render() {
     const { loading } = this.state;
     if (!loading) {
-      console.log('here')
       const { photos } = this.state;
       const { productData } = this.state;
       const { default_price: defaultPrice } = productData;

@@ -61,6 +61,7 @@ export class Outfit extends Component {
 
   render() {
     const { outfit } = this.state;
+    const filteredOutfit = outfit.filter((item) => item !== null);
     const { hasOutfit } = this.state;
     const { productData } = this.props;
     const { name } = productData;
@@ -91,7 +92,7 @@ export class Outfit extends Component {
                 alt="plus-icon"
               />
             </div>
-            {outfit.map(
+            {filteredOutfit.map(
               (id, index) => (
                 <ConnectedRelatedCard
                   index={index + 1}
