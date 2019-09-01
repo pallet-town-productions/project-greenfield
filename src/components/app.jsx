@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PT from 'prop-types';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
@@ -49,7 +50,6 @@ export class App extends Component {
     if (oldId === path || Number.isNaN(path)) {
       return;
     }
-    console.log(path)
     dispatch(setProductAction(path));
   }
 
@@ -69,6 +69,12 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  location: PT.shape({ pathname: PT.string }).isRequired,
+  dispatch: PT.func.isRequired,
+  productId: PT.number.isRequired,
+};
 
 const connectedApp = withRouter(connect(mapStateToProps, null)(App));
 export default connectedApp;
