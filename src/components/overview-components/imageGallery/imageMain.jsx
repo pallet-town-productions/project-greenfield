@@ -5,9 +5,8 @@ import NavCarouselButton from './navCarouselButton';
 
 const mapStateToProps = function (st) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
-  const { currentStyleIndex } = st;
   // currectly selected picture as an index of all picture FOR THIS STYLE
-  const { currentPhotoIndex } = st;
+  const { currentStyleIndex, currentPhotoIndex } = st;
   // url for the BIG FIRST IMAGE for currently selected style
   const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   const currentStyleName = st.styleData.results[currentStyleIndex].name;
@@ -22,6 +21,12 @@ const mapStateToProps = function (st) {
 export const ImageMainComponent = function ({
   currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
+  if (!currentBigPicture) { // if null bigPicture URL, make nothing clickable
+    handleClick = () => {};
+    currentBigPicture = `https://dummyimage.com/800x800/000/fff&text=No%20Photo%20Available`;
+    onHover = 'cursor-not-allowed';
+  }
+
   switch (thisId) {
     case 'zoom-photo': // if zoom view, return a div with id zoom-photo
       return (
