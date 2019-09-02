@@ -24,9 +24,9 @@ export const ProductBreakdown = ({ getMetaData }) => {
           <div>
             {label}
             <div>
-              <progress className="product-breakdown-bar bar" value={leftValue} max={1.5} />
-              <progress className="product-breakdown-bar bar" value={centerValue} max={3} />
-              <progress className="product-breakdown-bar bar" value={rightValue} max={5} />
+              <input className={`pb-range range ${leftValue ? 'range-show' : 'range-hide'}`} type="range" value={leftValue} max={1.5} disabled />
+              <input className={`pb-range range ${centerValue ? 'range-show' : 'range-hide'}`} type="range" value={centerValue} max={1.5} disabled />
+              <input className={`pb-range range ${rightValue ? 'range-show' : 'range-hide'}`} type="range" value={rightValue} max={5} disabled />
             </div>
             <p className="product-breakdown-bottom-label">
               <span>{leftSublabel}</span>
