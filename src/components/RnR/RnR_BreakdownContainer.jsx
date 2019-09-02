@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ConnectedRatingBreakdown from './RnR_RatingBreakdown';
 import ConnectedProductBreakdown from './RnR_ProductBreakdown';
 import WriteReviewButton from './WriteReview/WriteReviewButton';
-import getMetaData from '../../actions/RnR-Actions/RnR-meta-action';
+import { getMetaData } from '../../actions/RnR-Actions/RnR-meta-action';
 import '../../styles/RnR-breakdown.scss';
 
 const mapStateToProps = (state) => ({
