@@ -46,7 +46,7 @@ export class App extends Component {
     const { productId: oldId } = prevProps;
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
-    const path = parseInt(10, pathName.substr(1));
+    const path = parseInt(pathName.substr(1), 10);
     if (oldId === path || Number.isNaN(path)) {
       return;
     }
