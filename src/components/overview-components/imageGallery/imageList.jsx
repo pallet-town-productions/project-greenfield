@@ -12,13 +12,12 @@ import 'slick-carousel/slick/slick-theme.css';
 const mapStateToProps = function (st) {
   const { currentStyleIndex, currentPhotoIndex } = st;
   const imageList = st.styleData.results[currentStyleIndex].photos;
+  const styleName = st.styleData.results[currentStyleIndex].name;
   return {
-    // currently selected Style as an index of all styles FOR THIS PRODUCT
     currentStyleIndex,
-    // currently selected photo, to render thumbnail with highlight
     currentPhotoIndex,
-    // list of images for the currently selected Style
     imageList,
+    styleName,
   };
 };
 
@@ -31,7 +30,7 @@ const mapDispatchToProps = function (dispatch) {
 };
 
 export const ImageListComponent = function ({
-  currentStyleIndex, currentPhotoIndex, imageList, handleSwitchPhoto, isExpanded,
+  currentStyleIndex, currentPhotoIndex, imageList, styleName, handleSwitchPhoto, isExpanded,
 }) {
   const display = (isExpanded) ? 'image-thumbnail-slide-expanded' : 'image-thumbnail-slide-default';
   return (
@@ -51,6 +50,7 @@ export const ImageListComponent = function ({
               thisId={key}
               photoIndex={imageIndex}
               url={imageList[imageIndex].thumbnail_url}
+              styleName={styleName}
               handleClick={handleSwitchPhoto}
               isSelected={currentPhotoIndex === imageIndex}
             />

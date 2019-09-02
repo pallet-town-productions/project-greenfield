@@ -1,9 +1,12 @@
 import React from 'react';
 import PT from 'prop-types';
 
+
 const ImageThumbnail = function ({
-  photoIndex, url, handleClick, isSelected, thisId,
+  photoIndex, url, styleName, handleClick, isSelected, thisId,
 }) {
+  const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${styleName}`;
+  
   return (
     <span
       onClick={() => handleClick(photoIndex)}
@@ -13,8 +16,8 @@ const ImageThumbnail = function ({
       <img
         className="thumbnail"
         id={(isSelected) ? 'selected-image-thumbnail' : ''}
-        src={url}
-        alt={`DUMMY, show stylename, thumbnail #${photoIndex}`}
+        src={url || DUMMYTHUMBNAILURL}
+        alt={`${styleName}, thumbnail #${photoIndex}`}
       />
     </span>
   );
