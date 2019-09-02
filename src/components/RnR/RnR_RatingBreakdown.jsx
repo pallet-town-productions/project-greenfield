@@ -9,8 +9,8 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-export const RatingBreakdown = ({ getMetaData }) => {
-  const { ratings, recommended, dispatch } = getMetaData;
+export const RatingBreakdown = ({ getMetaData, dispatch }) => {
+  const { ratings, recommended } = getMetaData;
   const defaultRatings = {
     1: 0,
     2: 0,
@@ -58,8 +58,8 @@ RatingBreakdown.propTypes = {
     ratings: PropTypes.object,
     recommended: PropTypes.object,
     characteristics: PropTypes.object,
-    dispatch: PropTypes.func,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const ConnectedRatingBreakdown = connect(mapStateToProps, null)(RatingBreakdown);
