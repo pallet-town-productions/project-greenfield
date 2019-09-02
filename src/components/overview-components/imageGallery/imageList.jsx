@@ -68,6 +68,7 @@ ImageListComponent.propTypes = {
     thumbnail_url: PT.string.isRequired,
     url: PT.string.isRequired,
   })).isRequired,
+  styleName: PT.string.isRequired,
   handleSwitchPhoto: PT.func.isRequired,
   isExpanded: PT.bool.isRequired,
 };

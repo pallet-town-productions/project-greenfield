@@ -6,7 +6,7 @@ const ImageThumbnail = function ({
   photoIndex, url, styleName, handleClick, isSelected, thisId,
 }) {
   const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${styleName}`;
-  
+
   return (
     <span
       onClick={() => handleClick(photoIndex)}
@@ -26,6 +26,7 @@ const ImageThumbnail = function ({
 ImageThumbnail.propTypes = {
   photoIndex: PT.number.isRequired,
   url: PT.string.isRequired,
+  styleName: PT.string.isRequired,
   handleClick: PT.func.isRequired,
   isSelected: PT.bool.isRequired,
   thisId: PT.string.isRequired,

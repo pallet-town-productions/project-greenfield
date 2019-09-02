@@ -7,21 +7,6 @@ const setProductAction = function (productId) {
   };
 };
 
-const setProductDataActionKickoff = function (productId) {
-  return (dispatch) => {
-    getProductData(productId)
-    .then((response) => {
-      return response.json();
-    })
-    .then((responseJSON) => {
-      dispatch(setProductDataActionSuccess(responseJSON));
-    })
-    .catch((err) => {
-      dispatch(setProductDataActionFailure(err));
-    });
-  };
-};
-
 const setProductDataActionSuccess = function (productData) {
   return {
     type: 'SET_PRODUCT_DATA_SUCCESS',
@@ -36,20 +21,16 @@ const setProductDataActionFailure = function (err) {
   };
 };
 
-const setStyleDataActionKickoff = function (productId) {
+const setProductDataActionKickoff = function (productId) {
   return (dispatch) => {
-    getStyleData(productId)
-    .then((response) => {
-      return response.json();
-    })
-    .then((responseJSON) => {
-      if (responseJSON.product_id !== undefined) {
-        dispatch(setStyleDataActionSuccess(responseJSON));
-      }
-    })
-    .catch((err) => {
-      dispatch(setStyleDataActionFailure(err));
-    });
+    getProductData(productId)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        dispatch(setProductDataActionSuccess(responseJSON));
+      })
+      .catch((err) => {
+        dispatch(setProductDataActionFailure(err));
+      });
   };
 };
 
@@ -64,6 +45,21 @@ const setStyleDataActionFailure = function (err) {
   console.error(err);
   return {
     type: 'SET_STYLE_DATA_FAILURE',
+  };
+};
+
+const setStyleDataActionKickoff = function (productId) {
+  return (dispatch) => {
+    getStyleData(productId)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        if (responseJSON.product_id !== undefined) {
+          dispatch(setStyleDataActionSuccess(responseJSON));
+        }
+      })
+      .catch((err) => {
+        dispatch(setStyleDataActionFailure(err));
+      });
   };
 };
 

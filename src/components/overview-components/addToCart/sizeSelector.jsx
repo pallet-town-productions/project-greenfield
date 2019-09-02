@@ -6,8 +6,9 @@ import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
-  const sizeList = Object.keys(st.styleData.results[currentStyleIndex].skus);
-  const sizeSkus = Object.values(st.styleData.results[currentStyleIndex].skus).map((val) => (val || 999));
+  const currentStyleObj = st.styleData.results[currentStyleIndex];
+  const sizeList = Object.keys(currentStyleObj.skus);
+  const sizeSkus = Object.values(currentStyleObj.skus).map((val) => val || 999);
   const isOutOfStock = sizeList.length === 0;
   sizeList.unshift('Select Size');
   sizeSkus.unshift(-1);
