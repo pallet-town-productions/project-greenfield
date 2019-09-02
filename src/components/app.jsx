@@ -7,7 +7,7 @@ import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';
-import setProductAction from '../actions/setProductAction';
+import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
 
 const mapStateToProps = (state) => ({
@@ -51,6 +51,8 @@ export class App extends Component {
       return;
     }
     dispatch(setProductAction(path));
+    dispatch(setStyleDataActionKickoff(path));
+    dispatch(setProductDataActionKickoff(path)); // replace 2 with path
   }
 
   render() {

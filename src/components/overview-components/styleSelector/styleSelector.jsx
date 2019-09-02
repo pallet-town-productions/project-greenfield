@@ -5,9 +5,9 @@ import changeStyle from '../../../actions/overview-Actions/styleSelector/changeS
 import StyleThumbnail from './styleThumbnail';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (state) {
-  const styleList = state.style.results;
-  const { currentStyleIndex } = state;
+const mapStateToProps = function (st) {
+  const styleList = st.styleData.results;
+  const { currentStyleIndex } = st;
   return {
     styleList,
     currentStyleIndex,

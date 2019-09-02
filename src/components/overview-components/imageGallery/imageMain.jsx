@@ -3,14 +3,13 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import NavCarouselButton from './navCarouselButton';
 
-const mapStateToProps = function (state) {
+const mapStateToProps = function (st) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
-  const { currentStyleIndex } = state;
   // currectly selected picture as an index of all picture FOR THIS STYLE
-  const { currentPhotoIndex } = state;
+  const { currentStyleIndex, currentPhotoIndex } = st;
   // url for the BIG FIRST IMAGE for currently selected style
-  const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
-  const currentStyleName = state.style.results[currentStyleIndex].name;
+  const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
+  const currentStyleName = st.styleData.results[currentStyleIndex].name;
   return {
     currentStyleIndex,
     currentPhotoIndex,
@@ -22,6 +21,14 @@ const mapStateToProps = function (state) {
 export const ImageMainComponent = function ({
   currentBigPicture, currentStyleName, handleClick, onHover, thisId,
 }) {
+  /* eslint-disable no-param-reassign */
+  if (!currentBigPicture) { // if null bigPicture URL, make nothing clickable
+    handleClick = () => {};
+    currentBigPicture = 'https://dummyimage.com/800x800/000/fff&text=No%20Photo%20Available';
+    onHover = 'cursor-not-allowed';
+  }
+  /* eslint-enable no-param-reassign */
+
   switch (thisId) {
     case 'zoom-photo': // if zoom view, return a div with id zoom-photo
       return (

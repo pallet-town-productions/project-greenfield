@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (state) {
-  const { productData, currentStyleIndex, currentPhotoIndex } = state;
+const mapStateToProps = function (st) {
+  const { productData, currentStyleIndex, currentPhotoIndex } = st;
   const thisUrl = window.location.href;
-  const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
+  const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   return { productData, thisUrl, currentBigPicture };
 };
 

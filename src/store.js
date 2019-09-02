@@ -9,8 +9,8 @@ import exampleProductData from './exampleProductData';
 
 const initialData = {
   productData: exampleProductData,
-  style: exampleStyleData,
-  productId: 58,
+  styleData: exampleStyleData,
+  productId: 54,
 };
 
 export default function configureStore(initialState = initialData) {

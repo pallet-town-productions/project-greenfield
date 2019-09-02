@@ -3,16 +3,16 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 
-const mapStateToProps = function (state) {
-  const { currentStyleIndex, currentSizeIndex, currentQuantity } = state;
-  const thisStyleObj = state.style.results[currentStyleIndex];
-  const productId = state.productData.id;
+const mapStateToProps = function (st) {
+  const { currentStyleIndex, currentSizeIndex, currentQuantity } = st;
+  const thisStyleObj = st.styleData.results[currentStyleIndex];
+  const productId = st.productData.id;
   const styleId = thisStyleObj.style_id;
   const sizeId = Object.values(thisStyleObj.skus)[currentSizeIndex - 1] || -1;
   const qty = currentQuantity || 0;
   const salePrice = Number(thisStyleObj.sale_price);
   const originalPrice = Number(thisStyleObj.original_price);
-  const defaultPrice = Number(state.productData.default_price);
+  const defaultPrice = Number(st.productData.default_price);
   const unitPrice = salePrice || originalPrice || defaultPrice;
   const sizeList = Object.keys(thisStyleObj.skus);
   const isOutOfStock = sizeList.length === 0;

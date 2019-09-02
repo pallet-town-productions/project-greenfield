@@ -13,6 +13,8 @@ const CheckBox = function ({ isRendered }) {
 const StyleThumbnail = function ({
   thisId, style, styleIndex, currentStyleIndex, handleClick,
 }) {
+  const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${style.name}`;
+
   return (
     <div
       id={thisId}
@@ -21,7 +23,7 @@ const StyleThumbnail = function ({
     >
       <CheckBox isRendered={styleIndex === currentStyleIndex} />
       <img
-        src={style.photos[0].thumbnail_url}
+        src={style.photos[0].thumbnail_url || DUMMYTHUMBNAILURL}
         className="thumbnail style-thumbnail"
         alt={`Thumbnail for style ${style.name}`}
       />

@@ -8,9 +8,9 @@ import {
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import zoomPan from './handleZoomPan';
 
-const mapStateToProps = function (state) {
-  const { showZoomView, currentStyleIndex, currentPhotoIndex } = state;
-  const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
+const mapStateToProps = function (st) {
+  const { showZoomView, currentStyleIndex, currentPhotoIndex } = st;
+  const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   return { showZoomView, currentBigPicture };
 };
 
