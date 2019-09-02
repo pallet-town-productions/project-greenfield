@@ -6,7 +6,7 @@ import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (state) {
   const { productData, currentStyleIndex, currentPhotoIndex } = state;
-  const thisUrl = 'http://ww17.dummyurl.com/'; // THIS NEEDS TO BE UPDATED!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~
+  const thisUrl = window.location.href;
   const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
   return { productData, thisUrl, currentBigPicture };
 };
