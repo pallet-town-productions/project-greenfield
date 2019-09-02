@@ -149,6 +149,11 @@ $componentWidth: 250px;
 
 // Product Breakdown specific styles
 .product-breakdown {
+
+  .product-breakdown-item {
+    margin-top: $defaultMargin * 2;
+    margin-bottom: $defaultMargin * 2;
+  }
   .pb-details-container {
     display: flex;
     flex-direction: row;
@@ -158,7 +163,7 @@ $componentWidth: 250px;
       margin: 0px;
     }
     .pb-bottom-label {
-      margin-top: $defaultMargin;
+      margin-top: 0px;
       font-size: smaller;
     }
     .left {
