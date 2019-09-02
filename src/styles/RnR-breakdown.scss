@@ -2,6 +2,8 @@
 
 $progressValueColor: #2AEB5D;
 $progressBarColor: #cac6c6;
+$borderHide: 6px solid transparent;
+$borderShow:  6px solid black;
 $componentWidth: 250px;
 
 .breakdown-widget {
@@ -19,7 +21,7 @@ $componentWidth: 250px;
   margin: 0px;
 }
 
-// Bar styles for star breakdown and product breakdown
+// Bar and Range styles for star breakdown and product breakdown
 .bar {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -48,11 +50,54 @@ $componentWidth: 250px;
   background-color: $progressValueColor;
 }
 
-// Product Breakdown specific styles
 
+.range {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: $progressBarColor;
+  width: 30%;
+  height: 6px;
+}
+
+.range-show::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0; 
+  height: 0; 
+  border-left: $borderHide;
+  border-right: $borderHide;
+  border-top: $borderShow;
+  margin-top: -6px; /* Chrome needs specified margin, FireFox/IE has automatic margin */
+}
+
+.range-show::-moz-range-thumb, .range::-ms-thumb {
+  width: 0; 
+  height: 0; 
+  border-left: $borderHide;
+  border-right: $borderHide;
+  border-top: $borderShow;
+}
+
+.range-hide::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0; 
+  height: 0; 
+  border-left: $borderHide;
+  border-right: $borderHide;
+  border-top: $borderHide;
+}
+
+.range-hide::-moz-range-thumb, .range::-ms-thumb {
+  width: 0; 
+  height: 0; 
+  border-left: $borderHide;
+  border-right: $borderHide;
+  border-top: $borderHide;
+}
+
+// Product Breakdown specific styles
 .product-breakdown {
-  
-  .product-breakdown-bar {
+  .pb-range {
     margin-right: $defaultMargin;
   }
   .product-breakdown-bottom-label {
@@ -61,7 +106,6 @@ $componentWidth: 250px;
     width: 92%;
   }
 }
-
 
 // Rating Breakdown specific styles
 .rating-breakdown {
