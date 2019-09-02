@@ -30,7 +30,7 @@ export const RatingBreakdown = ({ getMetaData }) => {
     .map((starcount, index) => (starcount * (index + 1)))
     .reduce(sumReducer);
   const averageStars = totalRatings > 0 ? parseFloat((sumofRatings / totalRatings).toFixed(1)) : 0;
-  dispatch(averageStars);
+  dispatch(averageRating(averageStars));
 
   // Calculate Percent Recommended
   const allRecommendations = { ...defaultRecommended, ...recommended };
