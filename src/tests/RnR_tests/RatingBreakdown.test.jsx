@@ -40,7 +40,7 @@ const getMetaData = {
 function testRatingBreakdown(testRatings) {
   const props = {
   };
-  const enzymeWrapper = shallow(<RatingBreakdown getMetaData={testRatings} />);
+  const enzymeWrapper = shallow(<RatingBreakdown getMetaData={testRatings} dispatch={() => {}} />);
   return {
     props,
     enzymeWrapper,
@@ -72,6 +72,7 @@ function testStarBreakdown(testRatings, testCount) {
   const enzymeWrapper = shallow(<StarBreakdown
     allRatings={testRatings}
     totalRatings={testCount}
+    dispatch={() => {}}
   />);
   return {
     props,
