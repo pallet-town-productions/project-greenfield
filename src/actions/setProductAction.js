@@ -9,8 +9,6 @@ const setProductAction = function (productId) {
 
 const setProductDataActionKickoff = function (productId) {
   return (dispatch) => {
-    // dispatch(setProductDataActionStarted());
-
     getProductData(productId)
     .then((response) => {
       return response.json();
@@ -18,17 +16,11 @@ const setProductDataActionKickoff = function (productId) {
     .then((responseJSON) => {
       dispatch(setProductDataActionSuccess(responseJSON));
     })
-    // .catch((err) => {
-    //   dispatch(setProductDataActionFailure(err));
-    // });
+    .catch((err) => {
+      dispatch(setProductDataActionFailure(err));
+    });
   };
 };
-
-// const setProductDataActionStarted = function () {
-//   return {
-//     type: 'SET_PRODUCT_DATA_STARTED',
-//   };
-// };
 
 const setProductDataActionSuccess = function (productData) {
   return {
@@ -37,17 +29,15 @@ const setProductDataActionSuccess = function (productData) {
   };
 };
 
-// const setProductDataActionFailure = function (err) {
-//   console.error(err);
-//   return {
-//     type: 'SET_PRODUCT_DATA_FAILURE',
-//   };
-// };
+const setProductDataActionFailure = function (err) {
+  console.error(err);
+  return {
+    type: 'SET_PRODUCT_DATA_FAILURE',
+  };
+};
 
 const setStyleDataActionKickoff = function (productId) {
   return (dispatch) => {
-    // dispatch(setStyleDataActionStarted());
-
     getStyleData(productId)
     .then((response) => {
       return response.json();
@@ -57,17 +47,11 @@ const setStyleDataActionKickoff = function (productId) {
         dispatch(setStyleDataActionSuccess(responseJSON));
       }
     })
-    // .catch((err) => {
-    //   dispatch(setStyleDataActionFailure(err));
-    // });
+    .catch((err) => {
+      dispatch(setStyleDataActionFailure(err));
+    });
   };
 };
-
-// const setStyleDataActionStarted = function () {
-//   return {
-//     type: 'SET_STYLE_DATA_STARTED',
-//   };
-// };
 
 const setStyleDataActionSuccess = function (styleData) {
   return {
@@ -76,12 +60,12 @@ const setStyleDataActionSuccess = function (styleData) {
   };
 };
 
-// const setStyleDataActionFailure = function (err) {
-//   console.error(err);
-//   return {
-//     type: 'SET_STYLE_DATA_FAILURE',
-//   };
-// };
+const setStyleDataActionFailure = function (err) {
+  console.error(err);
+  return {
+    type: 'SET_STYLE_DATA_FAILURE',
+  };
+};
 
 export {
   setProductAction,
