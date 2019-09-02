@@ -9,9 +9,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import bunch of other child components
 
-const mapStateToProps = function (state) {
-  const { currentStyleIndex, currentPhotoIndex } = state;
-  const imageList = state.style.results[currentStyleIndex].photos;
+const mapStateToProps = function (st) {
+  const { currentStyleIndex, currentPhotoIndex } = st;
+  const imageList = st.styleData.results[currentStyleIndex].photos;
   return {
     // currently selected Style as an index of all styles FOR THIS PRODUCT
     currentStyleIndex,

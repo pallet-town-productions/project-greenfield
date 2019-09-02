@@ -2,9 +2,9 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 
-const mapStateToProps = function (state) {
-  const { currentPhotoIndex, currentStyleIndex } = state;
-  const imageListLength = state.style.results[currentStyleIndex].photos.length;
+const mapStateToProps = function (st) {
+  const { currentPhotoIndex, currentStyleIndex } = st;
+  const imageListLength = st.styleData.results[currentStyleIndex].photos.length;
   return {
     currentPhotoIndex,
     imageListLength,

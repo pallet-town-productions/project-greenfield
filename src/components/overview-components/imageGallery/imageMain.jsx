@@ -3,14 +3,14 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import NavCarouselButton from './navCarouselButton';
 
-const mapStateToProps = function (state) {
+const mapStateToProps = function (st) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
-  const { currentStyleIndex } = state;
+  const { currentStyleIndex } = st;
   // currectly selected picture as an index of all picture FOR THIS STYLE
-  const { currentPhotoIndex } = state;
+  const { currentPhotoIndex } = st;
   // url for the BIG FIRST IMAGE for currently selected style
-  const currentBigPicture = state.style.results[currentStyleIndex].photos[currentPhotoIndex].url;
-  const currentStyleName = state.style.results[currentStyleIndex].name;
+  const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
+  const currentStyleName = st.styleData.results[currentStyleIndex].name;
   return {
     currentStyleIndex,
     currentPhotoIndex,

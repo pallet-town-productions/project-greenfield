@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (state) {
-  const { currentSizeIndex, currentStyleIndex, promptSelectSize } = state;
-  const sizeList = Object.keys(state.style.results[currentStyleIndex].skus);
-  const sizeSkus = Object.values(state.style.results[currentStyleIndex].skus);
+const mapStateToProps = function (st) {
+  const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
+  const sizeList = Object.keys(st.styleData.results[currentStyleIndex].skus);
+  const sizeSkus = Object.values(st.styleData.results[currentStyleIndex].skus);
   const isOutOfStock = sizeList.length === 0;
   sizeList.unshift('Select Size');
   sizeSkus.unshift(-1);

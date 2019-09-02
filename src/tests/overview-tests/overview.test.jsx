@@ -98,7 +98,7 @@ describe('Image Gallery', () => {
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
 
-        const lastPhotoIndex = mockStore.getState().style.results[0].photos.length - 1;
+        const lastPhotoIndex = mockStore.getState().styleData.results[0].photos.length - 1;
         mockStore.dispatch(changePhoto(lastPhotoIndex));
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
@@ -413,7 +413,7 @@ describe('Product Information', () => {
       exampleStyle.results[0].sale_price = '0';
       const wrapper = shallow(<PriceComponent
         productData={exampleProductData}
-        style={exampleStyle}
+        styleData={exampleStyle}
         currentStyleIndex={0}
       />);
       expect(wrapper.find('span')).toHaveLength(1);
@@ -423,7 +423,7 @@ describe('Product Information', () => {
       exampleStyle.results[0].original_price = '2';
       const wrapper = shallow(<PriceComponent
         productData={exampleProductData}
-        style={exampleStyle}
+        styleData={exampleStyle}
         currentStyleIndex={0}
       />);
       expect(wrapper.find('span')).toHaveLength(1);
@@ -433,7 +433,7 @@ describe('Product Information', () => {
       exampleStyle.results[0].sale_price = '1';
       let wrapper = shallow(<PriceComponent
         productData={exampleProductData}
-        style={exampleStyle}
+        styleData={exampleStyle}
         currentStyleIndex={0}
       />);
       expect(wrapper.find('span')).toHaveLength(2);
@@ -443,7 +443,7 @@ describe('Product Information', () => {
       exampleStyle.results[0].original_price = '0';
       wrapper = shallow(<PriceComponent
         productData={exampleProductData}
-        style={exampleStyle}
+        styleData={exampleStyle}
         currentStyleIndex={0}
       />);
       expect(wrapper.find('span')).toHaveLength(2);

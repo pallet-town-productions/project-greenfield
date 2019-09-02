@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
 
 const mapStateToProps = function (state) {
-  const { productData, style, currentStyleIndex } = state;
-  return { productData, style, currentStyleIndex };
+  const { productData, styleData, currentStyleIndex } = state;
+  return { productData, styleData, currentStyleIndex };
 };
 
-export const PriceComponent = function ({ productData, style, currentStyleIndex }) {
-  const price = Number(style.results[currentStyleIndex].original_price)
+export const PriceComponent = function ({ productData, styleData, currentStyleIndex }) {
+  const price = Number(styleData.results[currentStyleIndex].original_price)
     || Number(productData.default_price);
-  const salePrice = Number(style.results[currentStyleIndex].sale_price); // default 0
+  const salePrice = Number(styleData.results[currentStyleIndex].sale_price); // default 0
 
   if (salePrice) {
     return (
@@ -32,7 +32,7 @@ PriceComponent.propTypes = {
   productData: PT.shape({
     default_price: PT.string.isRequired, // sketchy!!
   }).isRequired,
-  style: PT.shape({
+  styleData: PT.shape({
     results: PT.arrayOf(PT.shape({
       original_price: PT.string.isRequired, // sketchy!!
       sale_price: PT.string.isRequired, // sketchy!!

@@ -7,6 +7,4 @@ const currentStyleIndex = function (currentStyleIdx = 0, action) {
   }
 };
 
-export {
-  currentStyleIndex,
-};
+export default currentStyleIndex;

@@ -10,26 +10,26 @@ const productId = function (state = { productId: 1 }, action) {
   }
 };
 
-const productData = function (productData = exampleProductData, action) {
+const productData = function (products = exampleProductData, action) {
   switch (action.type) {
     case 'SET_PRODUCT_DATA':
       return action.productData;
     default:
-      return productData;
-  };
+      return products;
+  }
 };
 
-const style = function (styleData = exampleStyleData, action) {
+const styleData = function (styles = exampleStyleData, action) {
   switch (action.type) {
     case 'SET_STYLE_DATA':
       return action.styleData;
     default:
-      return styleData;
-  };
+      return styles;
+  }
 };
 
 export {
   productId,
   productData,
-  style,
+  styleData,
 };

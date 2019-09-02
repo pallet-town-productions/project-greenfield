@@ -1,7 +1,7 @@
 const setProductAction = function (productId) {
   return {
-    type: 'setProductId', 
-    productId, 
+    type: 'setProductId',
+    productId,
   };
 };
 
@@ -24,4 +24,3 @@ export {
   setProductDataAction,
   setStyleDataAction,
 };
-  

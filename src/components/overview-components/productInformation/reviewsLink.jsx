@@ -30,6 +30,7 @@ const ReviewsLinkComponent = function ({ updateReviews, averageRating }) {
 
 ReviewsLinkComponent.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,
+  averageRating: PT.number.isRequired,
 };
 
 export default connect(mapStateToProps, null)(ReviewsLinkComponent);

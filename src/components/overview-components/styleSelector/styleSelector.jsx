@@ -6,7 +6,7 @@ import StyleThumbnail from './styleThumbnail';
 import { zeroPad } from '../../../util/util';
 
 const mapStateToProps = function (state) {
-  const styleList = state.style.results;
+  const styleList = state.styleData.results;
   const { currentStyleIndex } = state;
   return {
     styleList,

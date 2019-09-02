@@ -9,8 +9,8 @@ import {
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ExitButton from './exitButton';
 
-const mapStateToProps = function (state) {
-  const { showExpandedView } = state;
+const mapStateToProps = function (st) {
+  const { showExpandedView } = st;
   return { showExpandedView };
 };
 
