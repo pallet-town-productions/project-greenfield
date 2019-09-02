@@ -5,14 +5,16 @@ import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Act
 
 const mapStateToProps = function (state) {
   const { currentStyleIndex, currentSizeIndex, currentQuantity } = state;
+  const thisStyleObj = state.style.results[currentStyleIndex];
   const productId = state.productData.id;
-  const styleId = state.style.results[currentStyleIndex].style_id;
-  const sizeId = Object.values(
-    state.style.results[currentStyleIndex].skus,
-  )[currentSizeIndex - 1]
-    || -1;
+  const styleId = thisStyleObj.style_id;
+  const sizeId = Object.values(thisStyleObj.skus)[currentSizeIndex - 1] || -1;
   const qty = currentQuantity || 0;
-  const sizeList = Object.keys(state.style.results[currentStyleIndex].skus);
+  const salePrice = Number(thisStyleObj.sale_price);
+  const originalPrice = Number(thisStyleObj.original_price);
+  const defaultPrice = Number(state.productData.default_price);
+  const unitPrice = salePrice || originalPrice || defaultPrice;
+  const sizeList = Object.keys(thisStyleObj.skus);
   const isOutOfStock = sizeList.length === 0;
   return {
     addInfo: {
@@ -20,6 +22,7 @@ const mapStateToProps = function (state) {
       styleId,
       sizeId,
       qty,
+      unitPrice,
     },
     isOutOfStock,
   };
@@ -32,6 +35,7 @@ const mapDispatchToProps = function (dispatch) {
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
+        console.log(addInfo);
         dispatch(addToCart(addInfo));
       }
     },
@@ -80,6 +84,7 @@ AddToCartButtonComponent.propTypes = {
     styleId: PT.number.isRequired,
     sizeId: PT.number.isRequired, // Value of -1 means size isn't selected
     qty: PT.number.isRequired,
+    unitPrice: PT.number.isRequired,
   }).isRequired,
 };
 

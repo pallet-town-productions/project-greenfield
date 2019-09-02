@@ -39,6 +39,7 @@ const addToCart = function (addedObject) {
   // styleId: number
   // sizeId: number
   // qty: number
+  // unitPrice: number
   return {
     type: 'ADD_TO_CART',
     added: addedObject,

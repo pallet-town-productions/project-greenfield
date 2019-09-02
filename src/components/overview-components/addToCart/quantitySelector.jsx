@@ -19,7 +19,7 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleQuantityChange: () => {
-      const selectedQuantity = document.getElementById('current-quantity').value;
+      const selectedQuantity = Number(document.getElementById('current-quantity').value);
       dispatch(changeQuantity(selectedQuantity));
     },
   };
