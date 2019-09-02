@@ -19,7 +19,7 @@ const productData = function (productData = exampleProductData, action) {
   };
 };
 
-const styleData = function (styleData = exampleStyleData, action) {
+const style = function (styleData = exampleStyleData, action) {
   switch (action.type) {
     case 'SET_STYLE_DATA':
       return action.styleData;
@@ -31,5 +31,5 @@ const styleData = function (styleData = exampleStyleData, action) {
 export {
   productId,
   productData,
-  styleData,
+  style,
 };
