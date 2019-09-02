@@ -7,7 +7,7 @@ import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';
-import setProductAction from '../actions/setProductAction';
+import { setProductAction } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
 
 const mapStateToProps = (state) => ({
@@ -58,7 +58,7 @@ export class App extends Component {
       <div id="main-container">
         <div id="component-container">
           <Overview />
-          <ConnectedRelatedProducts />
+          {/* <ConnectedRelatedProducts /> */}
           <QnA
             helpfulClickHandler={this.helpfulClickHandler}
             reportClickHandler={this.reportClickHandler}
