@@ -3,8 +3,8 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
 
-const mapStateToProps = function (state) {
-  const { productData, styleData, currentStyleIndex } = state;
+const mapStateToProps = function (st) {
+  const { productData, styleData, currentStyleIndex } = st;
   return { productData, styleData, currentStyleIndex };
 };
 

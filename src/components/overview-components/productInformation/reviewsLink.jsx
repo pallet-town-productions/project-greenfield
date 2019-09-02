@@ -3,8 +3,8 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import StarRating from '../../RnR/RnR_StarRating';
 
-const mapStateToProps = function (state) {
-  const { updateReviews, averageRating } = state;
+const mapStateToProps = function (st) {
+  const { updateReviews, averageRating } = st;
   return { updateReviews, averageRating };
 };
 
