@@ -16,13 +16,10 @@ import Overview from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';
-// import { ExpandedViewOverlayComponent } 
-//from '../../components/overview-components/imageGallery/expandedViewOverlay';
-// import { ZoomViewDisplayComponent } 
-//from '../../components/overview-components/imageGallery/zoomViewOverlay';
-// import ExitButton from '../../components/overview-components/imageGallery/exitButton';
+import ExpandedViewOverlay from '../../components/overview-components/imageGallery/expandedViewOverlay';
+import ZoomViewDisplay, { ZoomViewDisplayComponent } from '../../components/overview-components/imageGallery/zoomViewOverlay';
 // IMPORT add to cart components
-import { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
+import SizeSelector, { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
 import { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
 // IMPORT product info components
@@ -38,12 +35,15 @@ import {
 import { StyleSelectorComponent } from '../../components/overview-components/styleSelector/styleSelector';
 import StyleThumbnail from '../../components/overview-components/styleSelector/styleThumbnail';
 // IMPORT actions
-import { changePhoto } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart/changeSizeQty';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 // NOTES:
 // exists likes basic html, doesn't like React Components
+// find will always be truthy because it returns a collection-like object,
+// so it'll even be truthy if its length is 0
 
 describe('Overview', () => {
   const wrapper = shallow(<Overview />);
@@ -81,6 +81,9 @@ describe('Image Gallery', () => {
       <ImageGalleryComponent dispatchExpandedView={handleClick} />
     </Provider>,
   );
+  afterAll(() => {
+    wrapper.unmount();
+  });
   it('should render Main Image', () => {
     expect(wrapper.exists('#main-photo')).toBeTruthy();
   });
@@ -94,10 +97,15 @@ describe('Image Gallery', () => {
         mockStore.dispatch(changePhoto(0));
         wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
+
+        const lastPhotoIndex = mockStore.getState().style.results[0].photos.length - 1;
+        mockStore.dispatch(changePhoto(lastPhotoIndex));
+        wrapper.update();
+        expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(1);
       });
       it('should render two if at a middle image', () => {
-        mockStore.dispatch(changePhoto(1)); // dispatches an action
-        wrapper.update(); // force a re-render after an action's dispatched
+        mockStore.dispatch(changePhoto(1));
+        wrapper.update();
         expect(wrapper.find('.nav-carousel-button').find('.show')).toHaveLength(2);
       });
       it('left button should move to previous image', () => {
@@ -133,21 +141,97 @@ describe('Image Gallery', () => {
       imageListWrapper.find('#selected-image-thumbnail').simulate('click');
       expect(handleClick.calledTwice).toBeTruthy();
     });
-  });
-  describe('Expanded View', () => {
-    // //////////
-    // CODE
-    // //////////
-    describe('Exit Button', () => {
-      // //////////
-      // CODE
-      // //////////
+    it('should switch photos once a thumbnail is clicked', () => {
+      mockStore.dispatch(changePhoto(0));
+      expect(mockStore.getState().currentPhotoIndex).toEqual(0);
+      wrapper.find('#O000O004').simulate('click');
+      expect(mockStore.getState().currentPhotoIndex).toEqual(4);
     });
   });
-  describe('Zoom View', () => {
-    // //////////
-    // CODE
-    // //////////
+  describe('Expanded View', () => {
+    const expandedViewWrapper = mount(
+      <Provider store={mockStore}>
+        <ExpandedViewOverlay />
+      </Provider>,
+    );
+    afterAll(() => {
+      expandedViewWrapper.unmount();
+    });
+    it('should NOT render ExpandedView before dispatching the action toggleExpandedView', () => {
+      expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
+    });
+    it('should render ExpandedView upon dispatching the action toggleExpandedView (true)', () => {
+      mockStore.dispatch(toggleExpandedView(true));
+      expandedViewWrapper.update();
+      expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
+    });
+    it('should render imageMain', () => {
+      expect(expandedViewWrapper.exists('#expanded-main-photo')).toBeTruthy();
+    });
+    it('should render imageList with imageThumbnails', () => {
+      expect(expandedViewWrapper.exists('#image-thumbnail-slide-expanded')).toBeTruthy();
+      expect(expandedViewWrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
+    });
+    describe('Exit Button', () => {
+      it('should render Exit Button on Expanded View', () => {
+        expect(expandedViewWrapper.exists('.exit-button')).toBeTruthy();
+      });
+      it('should exit out of Expanded View when Exit Button is clicked', () => {
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
+        expandedViewWrapper.find('.exit-button').simulate('click');
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
+      });
+      it('should be clickable and toggle ZoomView when clicked', () => {
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+        mockStore.dispatch(toggleExpandedView(true));
+        expandedViewWrapper.update();
+        expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+        expect(mockStore.getState().showZoomView).toBeTruthy();
+        mockStore.dispatch(toggleZoomView(false));
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+      });
+    });
+    describe('Zoom View Toggling', () => {
+      const zoomViewWrapper = mount(
+        <Provider store={mockStore}>
+          <ZoomViewDisplay />
+        </Provider>,
+      );
+      afterAll(() => {
+        zoomViewWrapper.unmount();
+      });
+      it('should not render zoom view upon first loading of page', () => {
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
+      it('should not render zoom view upon clicking on Main Image', () => {
+        wrapper.find('#main-photo').simulate('click');
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
+      it('should toggle zoom view on upon clicking on Expanded View Image', () => {
+        expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+        zoomViewWrapper.update();
+        expect(zoomViewWrapper.find('.show')).toHaveLength(1);
+      });
+      it('should toggle zoom view off upon clicking on the Zoom Image', () => {
+        zoomViewWrapper.find('#zoom-photo').simulate('click');
+        expect(zoomViewWrapper.find('.show')).toHaveLength(0);
+      });
+    });
+    describe('Zoom View Panning', () => {
+      const handleMove = sinon.spy();
+      const zoomViewShallowWrapper = shallow(
+        <ZoomViewDisplayComponent
+          handleZoomPan={handleMove}
+          showZoomView
+          currentBigPicture="dummyUrl"
+          handleHideZoomView={() => {}}
+        />,
+      );
+      it('should handle mouse movements when in Zoom View', () => {
+        zoomViewShallowWrapper.find('#zoom-view-mouse-move').simulate('mousemove');
+        expect(handleMove.called).toBeTruthy();
+      });
+    });
   });
 });
 
@@ -201,7 +285,7 @@ describe('Add To Cart', () => {
   });
   describe('Quantity Selector', () => {
     const currentAvailQuantity = 4;
-    const handleQuantityChange = () => {};
+    const handleQuantityChange = () => { };
 
     describe('(Size not selected)', () => {
       const wrapper = shallow(<QuantitySelectorComponent
@@ -260,9 +344,18 @@ describe('Add To Cart', () => {
     // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
 
     // });
-    // it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
-
-    // });
+    it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
+      const mockStore = configureStore();
+      const sizeSelectorWrapper = mount(
+        <Provider store={mockStore}>
+          <SizeSelector />
+        </Provider>,
+      );
+      expect(sizeSelectorWrapper.find('#select-size-prompt').text().includes('Select Size')).toBeFalsy();
+      mockStore.dispatch(togglePromptSelectSize(true));
+      expect(sizeSelectorWrapper.find('#select-size-prompt').text().includes('Select Size')).toBeTruthy();
+      sizeSelectorWrapper.unmount();
+    });
     it('should not be clickable if Out Of Stock', () => {
       wrapper = shallow(<AddToCartButtonComponent
         isOutOfStock
@@ -385,21 +478,21 @@ describe('Style Selector', () => {
   describe('Style Thumbnail', () => {
     it('should display a checkbox if it\'s the selected style', () => {
       const wrapper = render(<StyleThumbnail
-        thisId="#000001"
+        thisId="#O00001"
         style={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
-        handleClick={() => {}}
+        handleClick={() => { }}
       />);
       expect(wrapper.find('i')).toHaveLength(1);
     });
     it('should not display a checkbox if it\'s not the selected style', () => {
       const wrapper = shallow(<StyleThumbnail
-        thisId="#000001"
+        thisId="#O00001"
         style={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
-        handleClick={() => {}}
+        handleClick={() => { }}
       />);
       expect(wrapper.find('i')).toHaveLength(0);
     });

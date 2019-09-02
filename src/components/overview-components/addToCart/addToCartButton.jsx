@@ -1,33 +1,48 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import { togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
+import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 
 const mapStateToProps = function (state) {
-  const { currentStyleIndex } = state;
-  const sizeList = Object.keys(state.style.results[currentStyleIndex].skus);
+  const { currentStyleIndex, currentSizeIndex, currentQuantity } = state;
+  const thisStyleObj = state.style.results[currentStyleIndex];
+  const productId = state.productData.id;
+  const styleId = thisStyleObj.style_id;
+  const sizeId = Object.values(thisStyleObj.skus)[currentSizeIndex - 1] || -1;
+  const qty = currentQuantity || 0;
+  const salePrice = Number(thisStyleObj.sale_price);
+  const originalPrice = Number(thisStyleObj.original_price);
+  const defaultPrice = Number(state.productData.default_price);
+  const unitPrice = salePrice || originalPrice || defaultPrice;
+  const sizeList = Object.keys(thisStyleObj.skus);
   const isOutOfStock = sizeList.length === 0;
   return {
+    addInfo: {
+      productId,
+      styleId,
+      sizeId,
+      qty,
+      unitPrice,
+    },
     isOutOfStock,
   };
 };
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleClick: () => {
+    handleClick: (addInfo) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
-        // /////////////////////////////////
-        // ADD THIS SKU AND QUANTITY TO CART!!!!
-        // /////////////////////////////////
+        console.log(addInfo);
+        dispatch(addToCart(addInfo));
       }
     },
   };
 };
 
-export const AddToCartButtonComponent = function ({ isOutOfStock, handleClick }) {
+export const AddToCartButtonComponent = function ({ addInfo, isOutOfStock, handleClick }) {
   if (isOutOfStock) {
     return (
       <div>
@@ -43,16 +58,17 @@ export const AddToCartButtonComponent = function ({ isOutOfStock, handleClick })
       </div>
     );
   }
+  const handleClickBound = () => { handleClick(addInfo); };
   return (
     <div>
       <div
         id="add-to-cart-button"
         className="cursor-pointer"
-        onClick={handleClick}
+        onClick={handleClickBound}
         role="presentation"
       >
         <i className="material-icons">
-          shopping_cart
+            shopping_cart
         </i>
         <span>  Add To Cart</span>
       </div>
@@ -63,6 +79,13 @@ export const AddToCartButtonComponent = function ({ isOutOfStock, handleClick })
 AddToCartButtonComponent.propTypes = {
   isOutOfStock: PT.bool.isRequired,
   handleClick: PT.func.isRequired,
+  addInfo: PT.shape({
+    productId: PT.number.isRequired,
+    styleId: PT.number.isRequired,
+    sizeId: PT.number.isRequired, // Value of -1 means size isn't selected
+    qty: PT.number.isRequired,
+    unitPrice: PT.number.isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddToCartButtonComponent);
