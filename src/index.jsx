@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import configureStore from './store';
 import ConnectedApp from './components/app';
@@ -8,7 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={configureStore()}>
-    <ConnectedApp />
+    <Router>
+      <ConnectedApp>
+        <Route path="/:product" component={ConnectedApp} />
+      </ConnectedApp>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );

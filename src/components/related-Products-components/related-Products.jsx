@@ -18,7 +18,22 @@ export class RelatedProducts extends Component {
     const { productId, dispatch } = this.props;
     fetch(`http://18.217.220.129/products/${productId}/related`)
       .then((data) => data.json())
-      .then((relatedProducts) => dispatch(relatedAction(relatedProducts)));
+      .then((relatedProducts) => (
+        dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
+      ));
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId, dispatch } = this.props;
+    const { productId: oldId } = prevProps;
+    if (oldId === productId) {
+      return;
+    }
+    fetch(`http://18.217.220.129/products/${productId}/related`)
+      .then((data) => data.json())
+      .then((relatedProducts) => (
+        dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
+      ));
   }
 
   render() {

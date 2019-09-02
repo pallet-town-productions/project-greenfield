@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
 import ConnectedModalTable from './related-modal-table';
@@ -23,26 +24,35 @@ export class RelatedCard extends Component {
         category: null,
         showModal: false,
       },
+      isMounted: false,
     };
 
     this.handleShowModal = this.handleShowModal.bind(this);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    this.getCardData(productId);
+    this.setState({ isMounted: true }, () => {
+      const { productId } = this.props;
+      this.getCardData(productId);
+    });
   }
 
   componentDidUpdate(prevProps) {
+    const { isMounted } = this.state;
     const { productId } = this.props;
     const { productId: oldId } = prevProps;
-    if (oldId === productId) {
+    if (!isMounted || oldId === productId) {
       return;
     }
     this.getCardData(productId);
   }
 
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
+  }
+
   getCardData(productId) {
+    this.setState({ loading: true });
     fetch(`http://18.217.220.129/products/${productId}`)
       .then((data) => data.json())
       .then((productData) => this.setState({ productData }));
@@ -127,7 +137,9 @@ export class RelatedCard extends Component {
           </div>
           <div className="card-info-container">
             <p className="card-sub-text">{category}</p>
-            <p className="card-info">{name}</p>
+            <Link to={`/${productId}`}>
+              <p className="card-info">{name}</p>
+            </Link>
             <p className="card-sub-text">
               $
               {defaultPrice}
