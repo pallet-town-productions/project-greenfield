@@ -5,7 +5,7 @@ import {
 } from './overview-Reducers/addToCart/addToCartReducers';
 import { currentPhotoIndex, showExpandedView, showZoomView } from './overview-Reducers/imageGallery/imageGalleryReducers';
 import productData from './overview-Reducers/productInformation/productDataReducers';
-import productId from './reducer-test';
+import productId from './setProductReducer';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 import { updateReviews, updateStarReviews, updateReviewNumber } from './RnR-Reducers/RnR-reducer';
 import getMetaData from './RnR-Reducers/RnR-meta-reducer';
