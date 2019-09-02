@@ -11,8 +11,9 @@ const productId = function (state = { productId: 1 }, action) {
 };
 
 const productData = function (products = exampleProductData, action) {
+  // console.log('PRODUCTDATA ORJECT', action.productData);
   switch (action.type) {
-    case 'SET_PRODUCT_DATA':
+    case 'SET_PRODUCT_DATA_SUCCESS':
       return action.productData;
     default:
       return products;
@@ -20,8 +21,9 @@ const productData = function (products = exampleProductData, action) {
 };
 
 const styleData = function (styles = exampleStyleData, action) {
+  // console.log('STYLEDATA OBJECT', action.styleData);
   switch (action.type) {
-    case 'SET_STYLE_DATA':
+    case 'SET_STYLE_DATA_SUCCESS':
       return action.styleData;
     default:
       return styles;
