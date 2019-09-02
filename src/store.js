@@ -9,7 +9,7 @@ import exampleProductData from './exampleProductData';
 
 const initialData = {
   productData: exampleProductData,
-  style: exampleStyleData,
+  styleData: exampleStyleData,
   productId: 54,
 };
 

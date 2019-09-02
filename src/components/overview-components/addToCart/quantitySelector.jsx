@@ -6,8 +6,8 @@ import { changeQuantity } from '../../../actions/overview-Actions/addToCart/chan
 
 const BLANKQUANTITY = '-';
 
-const mapStateToProps = function (state) {
-  const { currentSizeIndex, showQuantities } = state; // this is for detecting if Size is selected
+const mapStateToProps = function (st) {
+  const { currentSizeIndex, showQuantities } = st; // this is for detecting if Size is selected
   const currentAvailQuantity = 20; // dummy for future additional functionality
   return {
     currentSizeIndex,
