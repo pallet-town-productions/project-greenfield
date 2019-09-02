@@ -4,8 +4,8 @@ import {
   currentSizeIndex, currentQuantity, showQuantities, promptSelectSize, currentCart,
 } from './overview-Reducers/addToCart/addToCartReducers';
 import { currentPhotoIndex, showExpandedView, showZoomView } from './overview-Reducers/imageGallery/imageGalleryReducers';
-import productData from './overview-Reducers/productInformation/productDataReducers';
-import productId from './setProductReducer';
+// import productData from './overview-Reducers/productInformation/productDataReducers';
+import { productId, productData, styleData } from './setProductReducer';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 import { updateReviews, updateStarReviews, updateReviewNumber } from './RnR-Reducers/RnR-reducer';
 import { getMetaData, averageRating } from './RnR-Reducers/RnR-meta-reducer';
@@ -27,6 +27,7 @@ export default combineReducers({
   showExpandedView,
   showZoomView,
   productData,
+  styleData,
   showQuantities,
   promptSelectSize,
   currentCart,
