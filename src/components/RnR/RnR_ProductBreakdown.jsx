@@ -21,18 +21,26 @@ export const ProductBreakdown = ({ getMetaData }) => {
 
       return (
         <li key={label} className="product-breakdown-item">
-          <div>
-            {label}
-            <div>
+          {label}
+          <div className="pb-details-container">
+            <div className="pb-detail">
               <input className={`pb-range range ${leftValue ? 'range-show' : 'range-hide'}`} type="range" value={leftValue} max={1.5} disabled />
-              <input className={`pb-range range ${centerValue ? 'range-show' : 'range-hide'}`} type="range" value={centerValue} max={1.5} disabled />
-              <input className={`pb-range range ${rightValue ? 'range-show' : 'range-hide'}`} type="range" value={rightValue} max={5} disabled />
+              <p className="pb-bottom-label left">
+                <span>{leftSublabel}</span>
+              </p>
             </div>
-            <p className="product-breakdown-bottom-label">
-              <span>{leftSublabel}</span>
-              <span>{centerSublabel}</span>
-              <span>{rightSublabel}</span>
-            </p>
+            <div className="pb-detail">
+              <input className={`pb-range range ${centerValue ? 'range-show' : 'range-hide'}`} type="range" value={centerValue} max={1.5} disabled />
+              <p className="pb-bottom-label center">
+                <span>{centerSublabel}</span>
+              </p>
+            </div>
+            <div className="pb-detail">
+              <input className={`pb-range range ${rightValue ? 'range-show' : 'range-hide'}`} type="range" value={rightValue} max={5} disabled />
+              <p className="pb-bottom-label right">
+                <span>{rightSublabel}</span>
+              </p>
+            </div>
           </div>
         </li>
       );

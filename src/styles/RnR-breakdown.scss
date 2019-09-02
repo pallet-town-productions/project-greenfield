@@ -3,7 +3,8 @@
 $progressValueColor: #2AEB5D;
 $progressBarColor: #cac6c6;
 $borderHide: 6px solid transparent;
-$borderShow:  6px solid black;
+$borderShow:  10px solid black;
+$thumbsliderMargin: 1px;
 $componentWidth: 250px;
 
 .breakdown-widget {
@@ -17,7 +18,7 @@ $componentWidth: 250px;
 
 .breakdown-list {
   list-style-type: none;
-  padding: $defaultPadding;
+  padding: 0px;
   margin: 0px;
 }
 
@@ -50,7 +51,6 @@ $componentWidth: 250px;
   background-color: $progressValueColor;
 }
 
-
 .range {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -67,7 +67,7 @@ $componentWidth: 250px;
   border-left: $borderHide;
   border-right: $borderHide;
   border-top: $borderShow;
-  margin-top: -6px; /* Chrome needs specified margin, FireFox/IE has automatic margin */
+  margin-top: $thumbsliderMargin;
 }
 
 .range-show::-moz-range-thumb, .range::-ms-thumb {
@@ -76,6 +76,7 @@ $componentWidth: 250px;
   border-left: $borderHide;
   border-right: $borderHide;
   border-top: $borderShow;
+  margin-top: $thumbsliderMargin;
 }
 
 .range-hide::-webkit-slider-thumb {
@@ -95,21 +96,8 @@ $componentWidth: 250px;
   border-top: $borderHide;
 }
 
-// Product Breakdown specific styles
-.product-breakdown {
-  .pb-range {
-    margin-right: $defaultMargin;
-  }
-  .product-breakdown-bottom-label {
-    display: flex;
-    justify-content: space-between;
-    width: 92%;
-  }
-}
-
 // Rating Breakdown specific styles
 .rating-breakdown {
-
   .rating-average {
     display: flex;
     flex-direction: row;
@@ -126,7 +114,7 @@ $componentWidth: 250px;
   }
 
   .percent-recommended {
-    margin-bottom: 0px;
+    text-align: center;
   }
 
   .star-breakdown{
@@ -155,6 +143,32 @@ $componentWidth: 250px;
       .star-breakdown-div:hover {
         background-color: $tileColor;
       }
+    }
+  }
+}
+
+// Product Breakdown specific styles
+.product-breakdown {
+  .pb-details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .pb-range {
+      width: 80px;
+      margin: 0px;
+    }
+    .pb-bottom-label {
+      margin-top: $defaultMargin;
+      font-size: smaller;
+    }
+    .left {
+      text-align: left;
+    }
+    .center {
+      text-align: center;
+    }
+    .right {
+      text-align: right;
     }
   }
 }
