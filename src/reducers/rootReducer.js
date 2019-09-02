@@ -8,7 +8,7 @@ import productData from './overview-Reducers/productInformation/productDataReduc
 import productId from './setProductReducer';
 import relatedReducer from './related-Products-Reducers/related-products-reducer';
 import { updateReviews, updateStarReviews, updateReviewNumber } from './RnR-Reducers/RnR-reducer';
-import getMetaData from './RnR-Reducers/RnR-meta-reducer';
+import { getMetaData, averageRating } from './RnR-Reducers/RnR-meta-reducer';
 
 export default combineReducers({
   // eslint-disable-next-line max-len
@@ -18,6 +18,7 @@ export default combineReducers({
   updateStarReviews,
   updateReviewNumber,
   getMetaData,
+  averageRating,
   currentStyleIndex,
   style,
   currentSizeIndex,

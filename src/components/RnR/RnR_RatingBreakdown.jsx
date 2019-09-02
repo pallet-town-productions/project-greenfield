@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { averageRating } from '../../actions/RnR-Actions/RnR-meta-action';
 import StarRating from './RnR_StarRating';
 import ConnectedStarBreakdown from './RnR_StarBreakdown';
 
@@ -8,7 +9,7 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-export const RatingBreakdown = ({ getMetaData }) => {
+export const RatingBreakdown = ({ getMetaData, dispatch }) => {
   const { ratings, recommended } = getMetaData;
   const defaultRatings = {
     1: 0,
@@ -29,6 +30,7 @@ export const RatingBreakdown = ({ getMetaData }) => {
     .map((starcount, index) => (starcount * (index + 1)))
     .reduce(sumReducer);
   const averageStars = totalRatings > 0 ? parseFloat((sumofRatings / totalRatings).toFixed(1)) : 0;
+  dispatch(averageRating(averageStars));
 
   // Calculate Percent Recommended
   const allRecommendations = { ...defaultRecommended, ...recommended };
@@ -57,6 +59,7 @@ RatingBreakdown.propTypes = {
     recommended: PropTypes.object,
     characteristics: PropTypes.object,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const ConnectedRatingBreakdown = connect(mapStateToProps, null)(RatingBreakdown);

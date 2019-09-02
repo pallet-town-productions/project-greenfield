@@ -7,4 +7,13 @@ const getMetaData = (state = {}, action) => {
   }
 };
 
-export default getMetaData;
+const averageRating = (state = 0, action) => {
+  switch (action.type) {
+    case 'AVG_RATING':
+      return action.rating;
+    default:
+      return state;
+  }
+};
+
+export { getMetaData, averageRating };
