@@ -1,3 +1,5 @@
 const getMetaData = (data) => ({ type: 'GET_METADATA', data });
 
-export default getMetaData;
+const averageRating = (rating) => ({ type: 'AVG_RATING', rating });
+
+export { getMetaData, averageRating };
