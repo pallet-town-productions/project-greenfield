@@ -87,10 +87,9 @@ export class Outfit extends Component {
                 <p className="add-text">{name}</p>
                 <p className="add-text">To Your Outfit</p>
               </span>
-              <img
-                src="https://png2.cleanpng.com/sh/3af39c35f80007fc8fdf906c97f7050f/L0KzQYm3U8E2N6VsiZH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6TgBtfaQyi9twbj3mfLr3TfFzfF51hOd8LYPsd7A0VfFiaZU9UasANHPlR4a1U8U1OGM3SqQ6NUK0QYW9UMA6O2U8S5D5bne=/kisspng-computer-icons-plus-sign-clip-art-plus-sign-5aaad89954cb75.3540222215211460093473.png"
-                alt="plus-icon"
-              />
+              <i className="material-icons" id="add-icon">
+                add
+              </i>
             </div>
             {filteredOutfit.map(
               (id, index) => (

@@ -8,7 +8,6 @@
   border-width: $borderThickness;
   font-family: $font;
   border-style: solid;
-  margin: auto;
   margin-bottom: 10px;
   padding: $defaultPadding;
   display: flex;
@@ -20,6 +19,7 @@
   background-color: $tileColor;
   display: flex;
   flex-direction: column;
+  align-content: flex-end;
 }
 
 img {
@@ -68,8 +68,6 @@ img {
     font-family: $font;
     border-style: solid;
     margin-bottom: 10px;
-    margin-left: 55px;
-    margin-right: 55px;
     padding: $defaultPadding;
     display: flex;
     flex-direction: column;
@@ -107,7 +105,7 @@ img {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    color: $borderColor;
+    color: $modalColor;
   }
 
   #remove-button {
@@ -120,7 +118,7 @@ img {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    color: $borderColor;
+    color: $modalColor;
   }
 
   .related-modal-container {
@@ -138,7 +136,7 @@ img {
   .related-modal {
     height: auto;
     width: 500px;
-    background-color: $modalColor;
+    background-color: $backgroundColor;
   }
 
 #compare-table {
@@ -147,6 +145,11 @@ img {
     border-width: $borderThickness * 1.5;
     border-style: solid;
     text-align: center;
+  }
+
+  #add-icon {
+    margin-top: 7%;
+    font-size: 128px;
   }
 
 

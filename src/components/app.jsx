@@ -60,12 +60,14 @@ export class App extends Component {
       <div id="main-container">
         <div id="component-container">
           <Overview />
-          <ConnectedRelatedProducts />
-          <QnA
-            helpfulClickHandler={this.helpfulClickHandler}
-            reportClickHandler={this.reportClickHandler}
-          />
-          <RnR className="RnR-container" />
+          <div className="lower-container">
+            <ConnectedRelatedProducts />
+            <QnA
+              helpfulClickHandler={this.helpfulClickHandler}
+              reportClickHandler={this.reportClickHandler}
+            />
+            <RnR className="RnR-container" />
+          </div>
         </div>
       </div>
     );
