@@ -23,7 +23,7 @@ const ReviewsLinkComponent = function ({ updateReviews, averageRating }) {
   return (
     <span>
       <StarRating starCount={averageRating} />
-      <a href="#scrollRnR">{readReviewsString}</a>
+      <a id="reviewsLink" href="#scrollRnR">{readReviewsString}</a>
     </span>
   );
 };

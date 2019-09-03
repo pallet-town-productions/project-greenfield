@@ -1,6 +1,10 @@
 @import "variables";
 
 // DESCRIBES CURSOR UPON MOUSE HOVER
+body {
+  font-family: $font;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -188,6 +192,10 @@
 #style-name {
   text-transform: uppercase;
   font-size: 14px;
+}
+
+#reviewsLink {
+  padding-left: 1.5em;
 }
 
 // DESCRIBES PRICE AND SALES PRICE
