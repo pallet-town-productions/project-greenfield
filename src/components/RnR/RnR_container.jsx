@@ -1,6 +1,7 @@
 import React from 'react';
 import ConnectedBreakdownContainer from './RnR_BreakdownContainer';
 import Sort from './RnR_sort_list';
+import '../../styles/RnR-styles.scss';
 
 class RnR extends React.Component {
   constructor(props) {
@@ -12,9 +13,11 @@ class RnR extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="scrollRnR">Ratings and Reviews</h2>
-        <ConnectedBreakdownContainer />
-        <Sort />
+        <h4 id="scrollRnR">RATINGS AND REVIWS</h4>
+        <div className="RnR_container">
+          <ConnectedBreakdownContainer />
+          <Sort />
+        </div>
       </div>
     );
   }
