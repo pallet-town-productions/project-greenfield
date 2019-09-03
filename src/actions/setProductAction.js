@@ -30,6 +30,7 @@ const setProductDataActionKickoff = function (productId) {
       })
       .catch((err) => {
         dispatch(setProductDataActionFailure(err));
+        setProductDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
 };
