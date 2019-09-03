@@ -10,11 +10,7 @@ import exampleProductData from './exampleProductData';
 const initialData = {
   productData: exampleProductData,
   styleData: exampleStyleData,
-<<<<<<< HEAD
-  productId: 69,
-=======
   productId: 18,
->>>>>>> moved add review button. Still needs styling
 };
 
 export default function configureStore(initialState = initialData) {
