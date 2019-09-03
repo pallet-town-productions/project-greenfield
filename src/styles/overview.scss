@@ -59,6 +59,9 @@ body {
 
 .exit-button {
   float: right;
+  color: white;
+  padding-right: 1em;
+  padding-top: 2em;
 }
 
 .nav-carousel-button {
@@ -142,17 +145,19 @@ body {
 // DESCRIBES IMAGE GALLERY IN EXPANDED VIEW
 #image-gallery-overlay {
   z-index: 998;
-  position: absolute;
+  position: fixed;
   height: $overlayPercent;
   width: $overlayPercent;
   // margin-left: (100% - $overlayPercent)/2;
-  // margin-right: (100% - $overlayPercent)/2;
-  background-color: white;
+  bottom: (100% - $overlayPercent);
+  right: (100% - $overlayPercent);
+  background-color: $modalBackground;
   box-shadow: 0 0 2px 3px black;
   padding: 5px;
   #expanded-main-photo { // modify
     height: 85%; // modify
     display: block;
+    margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -162,9 +167,14 @@ body {
 }
 
 #zoom-view-mouse-move {
+  z-index: 99;
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  margin: 0 calc(50% - 50vw - #{$defaultPadding} - #{$defaultMargin});
+  right: (100% - $overlayPercent);
+  // margin-top: calc(- #{$defaultPadding} - #{$defaultMargin});
+  top: 0px;
+  background-color: $modalBackground;
 }
 
 #zoom-photo {
@@ -173,6 +183,7 @@ body {
   transform: scale(2.5);
   transform-origin: top left;
   right: calc((100%-#{$componentContainerWidth}) * 0.6);
+  top: calc((#{$defaultMargin} + #{$defaultPadding}) * 2);
   background-repeat: no-repeat;
   width: $zoomWindowWidth;
   height: $zoomWindowHeight;
