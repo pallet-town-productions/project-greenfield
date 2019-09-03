@@ -21,7 +21,7 @@ describe('List and sub components exist', () => {
   describe('RnR', () => {
     it('should have a header', () => {
       const { enzymeWrapper } = testRnR();
-      expect(enzymeWrapper.find('h4').text()).toBe('RATINGS AND REVIWS');
+      expect(enzymeWrapper.find('h4').text()).toBe('RATINGS AND REVIEWS');
     });
   });
 });
