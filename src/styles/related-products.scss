@@ -9,7 +9,6 @@
   font-family: $font;
   border-style: solid;
   margin-bottom: 10px;
-  padding: $defaultPadding;
   display: flex;
   flex-direction: column;
 }
@@ -46,6 +45,7 @@ img {
   flex-direction: column;
   justify-content: flex-end;
   margin-top: auto;
+  padding: $defaultPadding;
 }
 
 .card-sub-text {
@@ -68,10 +68,10 @@ img {
     font-family: $font;
     border-style: solid;
     margin-bottom: 10px;
-    padding: $defaultPadding;
     display: flex;
     flex-direction: column;
     text-align: center;
+    cursor: pointer;
   }
 
   .add-text {
@@ -104,8 +104,9 @@ img {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    color: $modalColor;
+    color: white;
+    background-color: black;
+    border-radius: 100%;
   }
 
   #remove-button {
@@ -117,12 +118,13 @@ img {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    color: $modalColor;
+    color: white;
+    background-color: black;
+    border-radius: 100%;
   }
 
   .related-modal-container {
-    background-color: rgba(0,0,0,0.5);
+    background-color: $modalBackground;
     position: fixed;
     height: 100%;
     width: 100%;
