@@ -115,7 +115,7 @@ body {
         text-align: center;
         grid-area: carousel;
         max-width: $mainPhotoDimension;
-        min-width: calc(#{$thumbnailDimension} * 9);
+        min-width: calc(#{$thumbnailDimension} * 8);
         margin: auto;
       }
     }
