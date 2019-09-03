@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { updateReviewNumber } from '../../actions/RnR-Actions/RnR-action';
 import Tile from './RnR_tile';
+import WriteReviewButton from './WriteReview/WriteReviewButton';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -53,6 +54,7 @@ class List extends Component {
           />
         ))}
         {button}
+        <WriteReviewButton />
       </div>
     );
   }
