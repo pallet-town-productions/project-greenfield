@@ -1,10 +1,10 @@
 $buttonColor: #CFFFEA;
-$tileColor: #BCE8C8;
-$backgroundColor: rgb(255, 255, 255);
-$widgetColor: #CBE8BC;
-$modalColor: #F0FFCF;
-$borderColor:	#808080;
-$font: arial;
+$tileColor: white;
+$backgroundColor:white;
+$widgetColor: white;
+$modalColor: #808080;
+$borderColor:	black;
+$font: helvetica;
 $buttonHeight: 30px;
 $borderThickness: 2px;
 $defaultPadding: 5px;
@@ -19,3 +19,4 @@ $zoomWindowWidth: 600px;
 $zoomWindowHeight: 350px;
 $addToCartWidth: 150px;
 $selectorFontSize: 1em;
+$modalBackground: rgba(0,0,0,0.9)
