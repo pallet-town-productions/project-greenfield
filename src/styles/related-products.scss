@@ -8,9 +8,7 @@
   border-width: $borderThickness;
   font-family: $font;
   border-style: solid;
-  margin: auto;
   margin-bottom: 10px;
-  padding: $defaultPadding;
   display: flex;
   flex-direction: column;
 }
@@ -20,6 +18,7 @@
   background-color: $tileColor;
   display: flex;
   flex-direction: column;
+  align-content: flex-end;
 }
 
 img {
@@ -46,6 +45,7 @@ img {
   flex-direction: column;
   justify-content: flex-end;
   margin-top: auto;
+  padding: $defaultPadding;
 }
 
 .card-sub-text {
@@ -68,12 +68,10 @@ img {
     font-family: $font;
     border-style: solid;
     margin-bottom: 10px;
-    margin-left: 55px;
-    margin-right: 55px;
-    padding: $defaultPadding;
     display: flex;
     flex-direction: column;
     text-align: center;
+    cursor: pointer;
   }
 
   .add-text {
@@ -106,8 +104,9 @@ img {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    color: $borderColor;
+    color: white;
+    background-color: black;
+    border-radius: 100%;
   }
 
   #remove-button {
@@ -119,12 +118,13 @@ img {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    color: $borderColor;
+    color: white;
+    background-color: black;
+    border-radius: 100%;
   }
 
   .related-modal-container {
-    background-color: rgba(0,0,0,0.5);
+    background-color: $modalBackground;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -138,7 +138,7 @@ img {
   .related-modal {
     height: auto;
     width: 500px;
-    background-color: $modalColor;
+    background-color: $backgroundColor;
   }
 
 #compare-table {
@@ -147,6 +147,11 @@ img {
     border-width: $borderThickness * 1.5;
     border-style: solid;
     text-align: center;
+  }
+
+  #add-icon {
+    margin-top: 7%;
+    font-size: 128px;
   }
 
 
