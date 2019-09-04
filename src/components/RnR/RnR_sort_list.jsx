@@ -70,7 +70,7 @@ class Sort extends Component {
 
 Sort.propTypes = {
   productId: PT.number.isRequired,
-  updateReviewNumber: PT.string.isRequired,
+  updateReviewNumber: PT.oneOfType([PT.number, PT.string]).isRequired,
   dispatch: PT.func.isRequired,
 };
 
