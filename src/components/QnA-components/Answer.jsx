@@ -63,7 +63,8 @@ class Answer extends React.Component {
             ))}
             <p style={{
               marginTop: '7px',
-              fontSize: '14px',
+              fontSize: '12px',
+              marginLeft: '4px',
               marginBottom: 0,
               color: 'gray',
             }}
@@ -74,15 +75,16 @@ class Answer extends React.Component {
               {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}
               {`, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
               &nbsp;&nbsp;&nbsp;&nbsp;
-              | &nbsp;&nbsp;&nbsp; Helpful?
-              <button className="questionsHelpfulBtn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
+              | &nbsp;&nbsp;&nbsp; Helpful? &nbsp;
+              <span role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Yes</u>
-              </button>
+              </span>
+              &nbsp;
               {`(${answer.helpfulness})`}
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-              <button className="questionsReportBtn questions-clear-btn" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
+              <span role="presentation" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Report</u>
-              </button>
+              </span>
             </p>
             {data.answers[Object.keys(data.answers)[displayCount - 1]] === answer
               && displayCount < Object.keys(data.answers).length

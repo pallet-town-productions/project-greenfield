@@ -26,8 +26,9 @@ class AddAnswer extends React.Component {
     const { show } = this.state;
     const { data, productName, counter } = this.props;
     return (
-      <button
-        className="questions-clear-btn"
+      <span
+        className="qna-report-btn"
+        role="presentation"
         type="button"
         onClick={() => this.showModal(true)}
       >
@@ -36,13 +37,15 @@ class AddAnswer extends React.Component {
           <form
             autoComplete="off"
             className="form-style-7"
-            onSubmit={() => {
+            onSubmit={(e) => {
+              e.preventDefault();
               const modalData = {
                 body: document.getElementsByClassName('qna-modal-a-body')[counter - 1].value,
                 name: document.getElementsByClassName('qna-modal-a-name')[counter - 1].value,
                 email: document.getElementsByClassName('qna-modal-a-email')[counter - 1].value,
                 photos: document.getElementsByClassName('qna-modal-a-pic')[counter - 1].value.split(' '),
               };
+
 
               fetch(`http://54.213.200.113:3000/qa/${data.question_id}/answers`, {
                 method: 'POST',
@@ -54,6 +57,7 @@ class AddAnswer extends React.Component {
                 .then((result) => {
                   if (result.ok) {
                     alert('Thanks for answering!');
+                    this.hideModal(false);
                   } else {
                     alert('Something went horribly wrong, we\'re so sorry!');
                   }
@@ -110,7 +114,7 @@ class AddAnswer extends React.Component {
             </ul>
           </form>
         </Modal>
-      </button>
+      </span>
     );
   }
 }
