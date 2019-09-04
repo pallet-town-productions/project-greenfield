@@ -1,28 +1,28 @@
-const zeroPad = function (num, places) {
+function zeroPad(num, places) {
   const zero = places - num.toString().length;
   return `O${Array(+(zero > 0 && zero)).join('0')}${num}`;
-};
+}
 
-const getData = function (endpoint) {
+function getData(endpoint) {
   return fetch(`http://54.213.200.113:3000${endpoint}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-};
+}
 
-const getProductData = function (productId = 1) {
+function getProductData(productId = 1) {
   // returns the fetch's returned promise
   return getData(`/products/${productId}`);
-};
+}
 
-const getStyleData = function (productId = 1) {
+function getStyleData(productId = 1) {
   // returns the fetch's returned promise
   return getData(`/products/${productId}/styles`);
-};
+}
 
-const getProductId = function (endpoint) {
+function getProductId(endpoint) {
   // this is written to extract the first instance of /number/ and return the number
   // takes an endpoint as an argument
   // returns product ID
@@ -32,7 +32,7 @@ const getProductId = function (endpoint) {
   } catch (err) {
     return 1;
   }
-};
+}
 
 export {
   zeroPad,

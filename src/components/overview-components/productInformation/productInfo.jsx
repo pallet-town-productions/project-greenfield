@@ -4,39 +4,39 @@ import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { productData, currentStyleIndex, currentPhotoIndex } = st;
   const thisUrl = window.location.href;
   const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   return { productData, thisUrl, currentBigPicture };
-};
+}
 
-export const ExpandedProductNameComponent = function ({ productData }) {
+export function ExpandedProductNameComponent({ productData }) {
   return (
     <div id="product-name">
       {productData.name}
     </div>
   );
-};
+}
 
-export const CategoryNameComponent = function ({ productData }) {
+export function CategoryNameComponent({ productData }) {
   return (
     <div id="category-name">
       {productData.category}
     </div>
   );
-};
+}
 
-export const ProductDescriptionComponent = function ({ productData }) {
+export function ProductDescriptionComponent({ productData }) {
   return (
     <div>
       <strong id="slogan">{productData.slogan}</strong>
       <div id="productdescription">{productData.description}</div>
     </div>
   );
-};
+}
 
-export const FeatureListComponent = function ({ productData }) {
+export function FeatureListComponent({ productData }) {
   const featureList = productData.features;
   const productId = productData.id;
   return (
@@ -50,9 +50,9 @@ export const FeatureListComponent = function ({ productData }) {
       }
     </ul>
   );
-};
+}
 
-export const SocialMediaButtonsComponent = function ({ thisUrl, productData, currentBigPicture }) {
+export function SocialMediaButtonsComponent({ thisUrl, productData, currentBigPicture }) {
   const productName = productData.name;
   return (
     <div>
@@ -76,7 +76,7 @@ export const SocialMediaButtonsComponent = function ({ thisUrl, productData, cur
       </a>
     </div>
   );
-};
+}
 
 const PRODUCTDATAPROPTYPES = {
   productData: PT.shape({

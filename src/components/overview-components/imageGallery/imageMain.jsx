@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import NavCarouselButton from './navCarouselButton';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   // currently selected Style as an index of all styles FOR THIS PRODUCT
   // currectly selected picture as an index of all picture FOR THIS STYLE
   const { currentStyleIndex, currentPhotoIndex } = st;
@@ -18,9 +18,9 @@ const mapStateToProps = function (st) {
     currentBigPicture,
     currentStyleName,
   };
-};
+}
 
-export const ImageMainComponent = function ({
+export function ImageMainComponent({
   currentBigPicture,
   currentProductName,
   currentStyleName,
@@ -79,7 +79,7 @@ export const ImageMainComponent = function ({
         </div>
       );
   }
-};
+}
 
 ImageMainComponent.propTypes = {
   currentBigPicture: PT.string.isRequired,

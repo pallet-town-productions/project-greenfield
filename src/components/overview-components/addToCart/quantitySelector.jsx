@@ -6,7 +6,7 @@ import { changeQuantity } from '../../../actions/overview-Actions/addToCart/chan
 
 const BLANKQUANTITY = '-';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { currentSizeIndex, showQuantities } = st; // this is for detecting if Size is selected
   const currentAvailQuantity = 20; // dummy for future additional functionality
   return {
@@ -14,18 +14,18 @@ const mapStateToProps = function (st) {
     currentAvailQuantity,
     showQuantities,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleQuantityChange: () => {
       const selectedQuantity = Number(document.getElementById('current-quantity').value);
       dispatch(changeQuantity(selectedQuantity));
     },
   };
-};
+}
 
-export const QuantitySelectorComponent = function ({
+export function QuantitySelectorComponent({
   showQuantities,
   currentAvailQuantity,
   handleQuantityChange,
@@ -51,7 +51,7 @@ export const QuantitySelectorComponent = function ({
       </select>
     </div>
   );
-};
+}
 
 QuantitySelectorComponent.propTypes = {
   showQuantities: PT.bool.isRequired,

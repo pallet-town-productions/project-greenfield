@@ -5,24 +5,24 @@ import changeStyle from '../../../actions/overview-Actions/styleSelector/changeS
 import StyleThumbnail from './styleThumbnail';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const styleList = st.styleData.results;
   const { currentStyleIndex } = st;
   return {
     styleList,
     currentStyleIndex,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleSwitchStyle: (styleIndex) => {
       dispatch(changeStyle(styleIndex));
     },
   };
-};
+}
 
-export const StyleSelectorComponent = function ({
+export function StyleSelectorComponent({
   styleList,
   handleSwitchStyle,
   currentStyleIndex,
@@ -49,7 +49,7 @@ export const StyleSelectorComponent = function ({
       </div>
     </div>
   );
-};
+}
 
 StyleSelectorComponent.propTypes = {
   styleList: PT.arrayOf(PT.object).isRequired,

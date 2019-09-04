@@ -2,40 +2,40 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { currentPhotoIndex, currentStyleIndex } = st;
   const imageListLength = st.styleData.results[currentStyleIndex].photos.length;
   return {
     currentPhotoIndex,
     imageListLength,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleClick: (action) => {
       dispatch({ type: action });
     },
   };
-};
+}
 
-const showButton = function (isNext, currentPhotoIndex, imageListLength) {
+function showButton(isNext, currentPhotoIndex, imageListLength) {
   // last one, and isNext: don't show; first one and !isNext... don't show
   if (isNext && currentPhotoIndex === imageListLength - 1) {
     return false;
   } if (!isNext && currentPhotoIndex === 0) {
     return false;
   } return true;
-};
+}
 
-const NavCarouselButtonComponent = function ({
+function NavCarouselButtonComponent({
   isNext, handleClick, currentPhotoIndex, imageListLength,
 }) {
   const action = (isNext) ? 'NEXT_PHOTO' : 'PREV_PHOTO';
-  const thisHandleClick = function (e) {
+  function thisHandleClick(e) {
     e.stopPropagation(); // prevents image behind arrow to be clicked
     handleClick(action);
-  };
+  }
   const button = (isNext) ? 'navigate_next' : 'navigate_before';
   const show = (showButton(isNext, currentPhotoIndex, imageListLength)) ? 'show' : 'hide';
 
@@ -49,7 +49,7 @@ const NavCarouselButtonComponent = function ({
       </i>
     </span>
   );
-};
+}
 
 NavCarouselButtonComponent.propTypes = {
   isNext: PT.bool.isRequired,

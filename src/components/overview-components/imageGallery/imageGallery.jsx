@@ -6,15 +6,15 @@ import ImageMain from './imageMain';
 import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 // import bunch of other child components
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatchExpandedView: () => {
       dispatch(toggleExpandedView(true));
     },
   };
-};
+}
 
-export const ImageGalleryComponent = function ({ dispatchExpandedView }) {
+export function ImageGalleryComponent({ dispatchExpandedView }) {
   return (
     <section id="image-gallery-grid-default">
       <ImageMain
@@ -25,7 +25,7 @@ export const ImageGalleryComponent = function ({ dispatchExpandedView }) {
       <ImageList isExpanded={false} />
     </section>
   );
-};
+}
 
 ImageGalleryComponent.propTypes = {
   dispatchExpandedView: PT.func.isRequired,

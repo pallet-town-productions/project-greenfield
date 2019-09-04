@@ -1,4 +1,4 @@
-const currentPhotoIndex = function (currentPhotoIdx = 0, action) {
+function currentPhotoIndex(currentPhotoIdx = 0, action) {
   switch (action.type) {
     case 'CHANGE_PHOTO':
       return action.currentPhotoIndex;
@@ -9,25 +9,25 @@ const currentPhotoIndex = function (currentPhotoIdx = 0, action) {
     default:
       return currentPhotoIdx;
   }
-};
+}
 
-const showExpandedView = function (showExpanded = false, action) {
+function showExpandedView(showExpanded = false, action) {
   switch (action.type) {
     case 'TOGGLE_EXPANDED_VIEW':
       return action.showExpandedView;
     default:
       return showExpanded;
   }
-};
+}
 
-const showZoomView = function (showZoom = false, action) {
+function showZoomView(showZoom = false, action) {
   switch (action.type) {
     case 'TOGGLE_ZOOM_VIEW':
       return action.showZoomView;
     default:
       return showZoom;
   }
-};
+}
 
 
 export {

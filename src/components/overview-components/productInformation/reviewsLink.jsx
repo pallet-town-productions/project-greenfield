@@ -3,12 +3,12 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import StarRating from '../../RnR/RnR_StarRating';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { updateReviews, averageRating } = st;
   return { updateReviews, averageRating };
-};
+}
 
-const ReviewsLinkComponent = function ({ updateReviews, averageRating }) {
+function ReviewsLinkComponent({ updateReviews, averageRating }) {
   const readReviewsString = (function (numReviews) {
     switch (numReviews) {
       case 0:
@@ -26,7 +26,7 @@ const ReviewsLinkComponent = function ({ updateReviews, averageRating }) {
       <a id="reviewsLink" href="#scrollRnR">{readReviewsString}</a>
     </span>
   );
-};
+}
 
 ReviewsLinkComponent.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,

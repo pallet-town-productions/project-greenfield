@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { currentStyleIndex, currentSizeIndex, currentQuantity } = st;
   const thisStyleObj = st.styleData.results[currentStyleIndex];
   const productId = st.productData.id;
@@ -26,9 +26,9 @@ const mapStateToProps = function (st) {
     },
     isOutOfStock,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleClick: (addInfo) => {
       const selectedSize = Number(document.getElementById('current-size').value);
@@ -40,9 +40,9 @@ const mapDispatchToProps = function (dispatch) {
       }
     },
   };
-};
+}
 
-export const AddToCartButtonComponent = function ({ addInfo, isOutOfStock, handleClick }) {
+export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick }) {
   if (isOutOfStock) {
     return (
       <div>
@@ -74,7 +74,7 @@ export const AddToCartButtonComponent = function ({ addInfo, isOutOfStock, handl
       </div>
     </div>
   );
-};
+}
 
 AddToCartButtonComponent.propTypes = {
   isOutOfStock: PT.bool.isRequired,
