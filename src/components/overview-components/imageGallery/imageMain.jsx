@@ -10,7 +10,9 @@ const mapStateToProps = function (st) {
   // url for the BIG FIRST IMAGE for currently selected style
   const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   const currentStyleName = st.styleData.results[currentStyleIndex].name;
+  const currentProductName = st.productData.name;
   return {
+    currentProductName,
     currentStyleIndex,
     currentPhotoIndex,
     currentBigPicture,
@@ -19,7 +21,13 @@ const mapStateToProps = function (st) {
 };
 
 export const ImageMainComponent = function ({
-  currentBigPicture, currentStyleName, handleClick, onHover, thisId,
+  currentBigPicture, 
+  currentProductName, 
+  currentStyleName, 
+  handleClick, 
+  handleExit, 
+  onHover, 
+  thisId,
 }) {
   /* eslint-disable no-param-reassign */
   if (!currentBigPicture) { // if null bigPicture URL, make nothing clickable
@@ -43,14 +51,15 @@ export const ImageMainComponent = function ({
     case 'expanded-main-photo':
       return ( // if expanded view, return imageList separately from this image
         <span
-          onClick={handleClick}
+          onClick={handleExit}
           role="presentation"
-          className={onHover}
         >
           <img
+            className={onHover}
+            onClick={handleClick}
             id={thisId}
             src={currentBigPicture}
-            alt={`DUMMY, put in product name, ${currentStyleName}`}
+            alt={`${currentProductName}, ${currentStyleName}`}
           />
         </span>
       );
@@ -72,6 +81,7 @@ export const ImageMainComponent = function ({
 
 ImageMainComponent.propTypes = {
   currentBigPicture: PT.string.isRequired,
+  currentProductName: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
   handleClick: PT.func.isRequired,
   onHover: PT.string.isRequired, // this is a class name that CSS uses

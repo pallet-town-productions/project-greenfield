@@ -7,7 +7,6 @@ import {
   toggleExpandedView,
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
-import ExitButton from './exitButton';
 
 const mapStateToProps = function (st) {
   const { showExpandedView } = st;
@@ -34,8 +33,8 @@ export const ExpandedViewOverlayComponent = function ({
   const display = (showExpandedView) ? 'show' : 'hide';
   return (
     <div className={display} id="image-gallery-overlay">
-      <ExitButton handleExit={handleHideExpandedView} />
       <ImageMain
+        handleExit={handleHideExpandedView}
         handleClick={handleShowZoomView}
         onHover="cursor-crosshair"
         thisId="expanded-main-photo"
