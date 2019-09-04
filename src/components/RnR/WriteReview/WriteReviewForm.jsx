@@ -4,7 +4,7 @@ import RadioGroupInput from './RadioGroupInput';
 import SingleInput from './SingleInput';
 // import FileInput from './FileInput';
 import TextAreaInput from './TextAreaInput';
-import { getReviewFormConfig } from '../../../util/RnR-review-meta';
+import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
 class WriteReviewForm extends Component {
@@ -29,23 +29,15 @@ class WriteReviewForm extends Component {
     const { target } = event;
     const { name, value } = target;
     const temp = { value };
-    // console.log(temp);
-    // this.setState({
-    //   [[name].value]: value,
-    // });
     this.setState((previousState) => {
-      // console.log(previousState);
       const newState = { ...temp, ...previousState[name] };
-      // console.log(newState);
-      // console.log(temp);
-      // const newState = { ...temp, ...previousState };
       return { [name]: newState };
     });
   }
 
   handleSubmit(event) {
     const { hideModal } = this.props;
-    const formData = this.state;
+    const formData = getFilteredFormData(this.state);
     console.log(formData);
     event.preventDefault();
     hideModal();

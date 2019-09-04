@@ -162,8 +162,19 @@ const getReviewFormConfig = () => {
   return formConfig;
 };
 
+const getFilteredFormData = (formData) => {
+  const filteredData = Object.keys(formData)
+    .map((input) => {
+      const value = formData[input].value !== undefined ? formData[input].value : '';
+      return { [input]: value };
+    });
+
+  return filteredData;
+};
+
 export {
   setProductRatingValue,
   setProductSublables,
   getReviewFormConfig,
+  getFilteredFormData,
 };
