@@ -48,7 +48,7 @@ class WriteReviewForm extends Component {
       recommended,
       summary,
       body,
-      nickname,
+      name,
       email,
     } = this.state;
     return (
@@ -65,7 +65,7 @@ class WriteReviewForm extends Component {
             <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
             <SingleInput config={summary} handleInputChange={this.handleInputChange} />
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
-            <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
+            <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
             <li><input type="submit" value="Submit" /></li>
           </ul>

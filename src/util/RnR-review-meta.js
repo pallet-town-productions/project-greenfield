@@ -136,10 +136,10 @@ const getReviewFormConfig = () => {
         max: 5,
       },
     },
-    nickname: {
+    name: {
       label: 'What is your nickname',
       mandatory: true,
-      id: 'nickname',
+      id: 'name',
       type: 'text',
       constraints: {
         max: 60,
