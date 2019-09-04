@@ -5,13 +5,17 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
   const { label, id, constraints } = config;
   const { options } = constraints;
   const buttons = options.map((option) => (
-    <div key={option}>
+    <div
+      key={option}
+      className="radio-group"
+    >
       <label htmlFor={option}>
         {option}
         <input
           id={option}
           name={id}
           type="radio"
+          required
           value={option}
           onChange={handleInputChange}
         />
