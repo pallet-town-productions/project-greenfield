@@ -3,10 +3,6 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { RelatedCard } from '../../components/related-Products-components/relatedCard';
 
-jest.mock('../../util/api.js', () => ({
-  apiUrl: 'http://12.345.678.9101:3000',
-}));
-
 Enzyme.configure({ adapter: new Adapter() });
 
 function setup() {
