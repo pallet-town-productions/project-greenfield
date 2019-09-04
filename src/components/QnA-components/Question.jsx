@@ -31,7 +31,6 @@ class Question extends React.Component {
       helpfulClickHandler,
     } = this.props;
 
-    console.log(counter);
     return (
       <div className="questions-qna-container">
         <div className="question-q-container">

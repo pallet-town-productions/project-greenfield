@@ -47,7 +47,7 @@ class QnA extends React.Component {
   componentDidMount() {
     const { productId } = this.state;
     // grabs initial set of questions
-    fetch(`http://18.217.220.129/qa/${productId}/`)
+    fetch(`http://54.213.200.113:3000/qa/${productId}/`)
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;

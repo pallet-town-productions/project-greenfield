@@ -53,7 +53,7 @@ class AddQuestion extends React.Component {
                 email: document.getElementById('qna-modal-q-email').value,
               };
 
-              fetch(`http://18.217.220.129/qa/${productId}`, {
+              fetch(`http://54.213.200.113:3000/qa/${productId}`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {

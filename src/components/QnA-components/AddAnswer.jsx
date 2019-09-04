@@ -44,7 +44,7 @@ class AddAnswer extends React.Component {
                 photos: document.getElementsByClassName('qna-modal-a-pic')[counter - 1].value.split(' '),
               };
 
-              fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+              fetch(`http://54.213.200.113:3000/qa/${data.question_id}/answers`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {
