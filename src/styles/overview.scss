@@ -193,7 +193,7 @@ body {
   transform: scale(2.5);
   transform-origin: top left;
   right: calc((100%-#{$componentContainerWidth}) * 0.6);
-  top: calc((#{$defaultMargin} + #{$defaultPadding}) * 2);
+  top: 6%;
   background-repeat: no-repeat;
   width: $zoomWindowWidth;
   height: $zoomWindowHeight;
