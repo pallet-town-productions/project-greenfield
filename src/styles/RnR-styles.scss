@@ -41,6 +41,14 @@
     width: 80%;
     max-width: 700px;
   }
+
+.list {
+    width: 100%;
+}
+
+.photos {
+    display: flex;
+}
   
 .container {
     width: 134px; 
@@ -57,6 +65,7 @@
 }
 
 .tile {
+    width: 100%;
     padding: 10px;
     margin: 5px;
     .show {
@@ -85,12 +94,13 @@
         white-space: nowrap;
         overflow-x: auto;
         font-size: 12px;
+        color: grey;
         .lower {
             display: inline-block;
             margin-left: 10px;
         }
         .helpfulness {
-            margin-left: 1px;
+            margin-left: 5px;
         }
         .test {
             text-decoration: underline;
@@ -107,8 +117,10 @@
         margin: 1px;
         .response-text {
             font-size: 13px;
+            margin-left: 15px;
         }
         .response-text-header {
+            margin-left: 15px;
             font-size: 13px;
             font-weight: bold;
         }
