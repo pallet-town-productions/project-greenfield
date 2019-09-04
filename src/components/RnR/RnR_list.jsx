@@ -46,7 +46,7 @@ class List extends Component {
     }
 
     return (
-      <div>
+      <div className="list">
         {reviewsToRender.slice(0, currentView).map((review) => (
           <Tile
             review={review}

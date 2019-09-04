@@ -13,7 +13,7 @@ class RnR extends React.Component {
   render() {
     return (
       <div>
-        <h4 id="scrollRnR">RATINGS AND REVIWS</h4>
+        <h4 id="scrollRnR">RATINGS AND REVIEWS</h4>
         <div className="RnR_container">
           <ConnectedBreakdownContainer />
           <Sort />

@@ -46,7 +46,7 @@ class Sort extends Component {
           return (a.date < b.date) ? 1 : -1;
         });
       })
-      .then((info) => { dispatch(updateReviewsToRender(info)); });
+      .then((info) => { console.log(info); dispatch(updateReviewsToRender(info)); });
   }
 
   render() {
