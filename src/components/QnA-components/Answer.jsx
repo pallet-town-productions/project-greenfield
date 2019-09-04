@@ -17,6 +17,7 @@ class Answer extends React.Component {
 
     this.state = {
       displayCount: 2,
+      clicked: false,
     };
 
     this.increaseDisplayCount = () => {
@@ -32,7 +33,10 @@ class Answer extends React.Component {
       reportClickHandler,
     } = this.props;
 
-    const { displayCount } = this.state;
+    const {
+      displayCount,
+      clicked
+    } = this.state;
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return (
@@ -82,9 +86,13 @@ class Answer extends React.Component {
                 role="presentation"
                 type="submit"
                 onClick={() => {
-                  helpfulClickHandler('qa', answer.id, 'answer');
-                  const currentCount = document.getElementById(`A${answer.id}`).innerHTML;
-                  document.getElementById(`A${answer.id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
+                  if (!clicked) {
+                    this.setState({ clicked: true }, () => {
+                      helpfulClickHandler('qa', answer.id, 'answer');
+                      const currentCount = document.getElementById(`A${answer.id}`).innerHTML;
+                      document.getElementById(`A${answer.id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
+                    });
+                  }
                 }}
               >
                 <u style={{ color: 'gray' }}>Yes</u>
