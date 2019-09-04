@@ -10,7 +10,6 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
       className="radio-button"
     >
       <label htmlFor={option}>
-        {option}
         <input
           id={option}
           name={id}
@@ -19,13 +18,16 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
           value={option}
           onChange={handleInputChange}
         />
+        {option}
       </label>
     </div>
   ));
   return (
-    <li className="radio-group">
+    <li>
       {label}
-      {buttons}
+      <div className="radio-group">
+        {buttons}
+      </div>
     </li>
   );
 };
