@@ -74,7 +74,7 @@ describe('Overview', () => {
 
 describe('Image Gallery', () => {
   const handleClick = sinon.spy();
-  const mockStore = configureStore();
+  const mockStore = configureStore(true);
   const wrapper = mount(
     <Provider store={mockStore}>
       <ImageGalleryComponent dispatchExpandedView={handleClick} />
@@ -341,7 +341,7 @@ describe('Add To Cart', () => {
 
     // });
     it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
-      const mockStore = configureStore();
+      const mockStore = configureStore(true);
       const sizeSelectorWrapper = mount(
         <Provider store={mockStore}>
           <SizeSelector />

@@ -1,3 +1,5 @@
+const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
+
 function zeroPad(num, places) {
   const zero = places - num.toString().length;
   return `O${Array(+(zero > 0 && zero)).join('0')}${num}`;
@@ -35,6 +37,7 @@ function getProductId(endpoint) {
 }
 
 export {
+  SPLASHPAGEID,
   zeroPad,
   getProductData,
   getStyleData,
