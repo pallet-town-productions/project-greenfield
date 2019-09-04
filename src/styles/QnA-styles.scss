@@ -8,7 +8,6 @@
 
 
 #qna-container {
-  font-family: 'arabic-font-2013bold';
   display: block;
   width: 100%;
   height: 80%;
@@ -19,11 +18,10 @@
   height: 60px;
   width: 100%;
   background-color: white;
-  border: 1px solid black;
 }
 
 #qna-searchbar {
-  margin-top: 10px;
+  height: 60px;
   outline: none;
 }
 
@@ -42,7 +40,11 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  border: none;
+  border: 1px solid black;
+}
+
+.qna-answer-container {
+  width: 70%;
 }
 
 .questionsModalAnswer {
@@ -72,6 +74,7 @@
 
 .qna-thumbnail {
   width: 120px;
+  margin: 0;
 }
 
 .question-q-container {
@@ -108,7 +111,7 @@
 .qna-load-more-q {
   display: inline-block;
   height: 60px;
-  width: 275px;
+  width: 325px;
   margin-top: 20px;
   margin-right: 20px;
   border: 1px solid black;
@@ -117,7 +120,7 @@
 .qna-add-q-btn {
   display: inline-block;
   height: 60px;
-  width: 175px;
+  width: 200px;
   margin-top: 20px;
   border: 1px solid black;
 }
@@ -137,9 +140,9 @@
 }
 
 #qna-searchbar::-webkit-input-placeholder {
-  font-family: 'arabic-font-2013bold';
+  font-family: 'helvetica';
   font-size: 18px;
-  color: #524242;
+  font-weight: bold;
 }
 
 #qna-searchbar:focus::-webkit-input-placeholder {
@@ -147,12 +150,12 @@
 }
 
 
-#qna-modal-a-body {
-  height: 250px;
+.qna-modal-a-body {
+  height: 100px !important;
 }
 
 #qna-modal-q-body {
-  height: 150px;
+  height: 100px !important;
 }
 
 .form-style-7{

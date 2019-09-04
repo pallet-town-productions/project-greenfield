@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Modal from './Modal';
 
 class AddAnswer extends React.Component {
-  constructor(props, { data, productName }) {
-    super(props, { data, productName });
+  constructor(props, { data, productName, counter }) {
+    super(props, { data, productName, counter });
 
     this.state = {
       show: false,
@@ -24,7 +24,7 @@ class AddAnswer extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { data, productName } = this.props;
+    const { data, productName, counter } = this.props;
     return (
       <button
         className="questions-clear-btn"
@@ -38,13 +38,13 @@ class AddAnswer extends React.Component {
             className="form-style-7"
             onSubmit={() => {
               const modalData = {
-                body: document.getElementById('qna-modal-a-body').value,
-                name: document.getElementById('qna-modal-a-name').value,
-                email: document.getElementById('qna-modal-a-email').value,
-                photos: document.getElementById('qna-modal-a-pic').value.split(' '),
+                body: document.getElementsByClassName('qna-modal-a-body')[counter - 1].value,
+                name: document.getElementsByClassName('qna-modal-a-name')[counter - 1].value,
+                email: document.getElementsByClassName('qna-modal-a-email')[counter - 1].value,
+                photos: document.getElementsByClassName('qna-modal-a-pic')[counter - 1].value.split(' '),
               };
 
-              fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+              fetch(`http://54.213.200.113:3000/qa/${data.question_id}/answers`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {
@@ -71,7 +71,7 @@ class AddAnswer extends React.Component {
                   type="text"
                   name="name"
                   maxLength="60"
-                  id="qna-modal-a-name"
+                  className="qna-modal-a-name"
                 />
                 <span>Enter your nickname here</span>
               </li>
@@ -81,7 +81,7 @@ class AddAnswer extends React.Component {
                   type="email"
                   name="email"
                   maxLength="60"
-                  id="qna-modal-a-email"
+                  className="qna-modal-a-email"
                 />
                 <span>Enter a valid email address</span>
               </li>
@@ -91,7 +91,7 @@ class AddAnswer extends React.Component {
                   type="url"
                   name="url"
                   maxLength="240"
-                  id="qna-modal-a-pic"
+                  className="qna-modal-a-pic"
                 />
                 <span>Valid link to your picture/s (eg: http://www.google.com)</span>
               </li>
@@ -100,7 +100,7 @@ class AddAnswer extends React.Component {
                 <textarea
                   name="bio"
                   maxLength="1000"
-                  id="qna-modal-a-body"
+                  className="qna-modal-a-body"
                 />
                 <span>{`Your answer to: ${data.question_body}`}</span>
               </li>
@@ -121,6 +121,7 @@ AddAnswer.propTypes = {
     question_id: PropTypes.number.isRequired,
   }),
   productName: PropTypes.string.isRequired,
+  counter: PropTypes.number.isRequired,
 };
 
 AddAnswer.defaultProps = {

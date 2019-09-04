@@ -36,14 +36,24 @@ class Answer extends React.Component {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return (
-      <div key={`da${data.answers}`}>
+      <div key={`da${data.answers}`} className="qna-answer-container">
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
           <span key={`sa${answer.id}`} className="questionsAnswerTools">
-            <p style={{ fontSize: '22px', color: '#3B3B3B', margin: 0 }}>
-              {Object.values(data.answers)[0] === answer ? `A: ${answer.body}`
+            <p style={{ fontSize: '22px', marginTop: '15px', marginBottom: '7px' }}>
+              {Object.values(data.answers)[0] === answer ? (
+                <span>
+                  <b style={{ marginRight: '1px' }}>
+                    A:
+                    &nbsp;
+                  </b>
+                  <span className="qna-answer-body">
+                    {answer.body}
+                  </span>
+                </span>
+              )
                 : (
                   <span>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {answer.body}
                   </span>
                 )}
@@ -54,13 +64,16 @@ class Answer extends React.Component {
             <p style={{
               marginTop: '7px',
               fontSize: '14px',
+              marginBottom: 0,
               color: 'gray',
-              fontFamily: 'Arial',
             }}
             >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {`by ${answer.answerer_name}, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
-              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              by
+              {' '}
+              {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}
+              {`, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
+              &nbsp;&nbsp;&nbsp;&nbsp;
               | &nbsp;&nbsp;&nbsp; Helpful?
               <button className="questionsHelpfulBtn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Yes</u>
@@ -74,15 +87,19 @@ class Answer extends React.Component {
             {data.answers[Object.keys(data.answers)[displayCount - 1]] === answer
               && displayCount < Object.keys(data.answers).length
               ? (
-                <span
-                  role="presentation"
-                  onKeyPress={this.increaseDisplayCount}
-                  onClick={this.increaseDisplayCount}
-                  className="questions-clear-btn"
-                  style={{ fontFamily: 'arabic-font-2013bold' }}
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOAD MORE ANSWERS
-                </span>
+                <div style={{ marginTop: '25px', marginLeft: '1px' }}>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span
+                    role="presentation"
+                    onKeyPress={this.increaseDisplayCount}
+                    onClick={this.increaseDisplayCount}
+                    className="questions-clear-btn"
+                  >
+                    <b>
+                      LOAD MORE ANSWERS
+                    </b>
+                  </span>
+                </div>
               )
               : ''}
           </span>

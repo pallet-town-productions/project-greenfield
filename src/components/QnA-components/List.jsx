@@ -29,8 +29,9 @@ class List extends React.Component {
 
     return (
       <div>
-        {questions.map((question) => (
+        {questions.map((question, counter) => (
           <Question
+            counter={counter + 1}
             key={`Q${question.question_id}`}
             helpfulClickHandler={helpfulClickHandler}
             productName={productName}

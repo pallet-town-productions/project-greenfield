@@ -31,7 +31,15 @@ class AddQuestion extends React.Component {
         className="qna-add-q-btn"
         onClick={() => this.showModal(true)}
       >
-        <p style={{ lineHeight: '20px', textAlign: 'center', fontSize: '18px' }}>
+        <p style={
+          {
+            lineHeight: '26px',
+            textAlign: 'center',
+            fontSize: '18px',
+            fontWeight: 'bold',
+          }
+        }
+        >
           ADD A QUESTION
         </p>
         <Modal show={show}>
@@ -45,7 +53,7 @@ class AddQuestion extends React.Component {
                 email: document.getElementById('qna-modal-q-email').value,
               };
 
-              fetch(`http://18.217.220.129/qa/${productId}`, {
+              fetch(`http://54.213.200.113:3000/qa/${productId}`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {
