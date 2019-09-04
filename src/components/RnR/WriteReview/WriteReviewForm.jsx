@@ -28,14 +28,25 @@ class WriteReviewForm extends Component {
   handleInputChange(event) {
     const { target } = event;
     const { name, value } = target;
-    this.setState({
-      [[name].value]: value,
+    const temp = { value };
+    // console.log(temp);
+    // this.setState({
+    //   [[name].value]: value,
+    // });
+    this.setState((previousState) => {
+      // console.log(previousState);
+      const newState = { ...temp, ...previousState[name] };
+      // console.log(newState);
+      // console.log(temp);
+      // const newState = { ...temp, ...previousState };
+      return { [name]: newState };
     });
   }
 
   handleSubmit(event) {
     const { hideModal } = this.props;
-    // const formData = this.state;
+    const formData = this.state;
+    console.log(formData);
     event.preventDefault();
     hideModal();
     // make a post with form data if everything all good
