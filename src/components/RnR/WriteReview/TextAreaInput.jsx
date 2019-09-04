@@ -12,9 +12,11 @@ const TextInput = ({ config, handleInputChange }) => {
         {label}
       </label>
       <textarea
+        className="qna-modal-a-body"
         id={id}
         name={id}
-        rows={5}
+        minLength={50}
+        maxLength={1000}
         onChange={handleInputChange}
         placeholder={placeholder}
       />

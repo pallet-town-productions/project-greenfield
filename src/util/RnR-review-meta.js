@@ -150,7 +150,7 @@ const getReviewFormConfig = () => {
     email: {
       label: 'Your email',
       mandatory: true,
-      id: 'nickname',
+      id: 'email',
       type: 'email',
       constraints: {
         max: 60,
