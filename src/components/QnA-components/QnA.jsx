@@ -45,15 +45,33 @@ class QnA extends React.Component {
   }
 
   componentDidMount() {
-    const { productId } = this.state;
+    const { productData } = this.props;
+    const { id } = productData;
     // grabs initial set of questions
-    fetch(`http://54.213.200.113:3000/qa/${productId}/`)
+    fetch(`http://54.213.200.113:3000/qa/${id}/`)
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
         currentState.questions = result.results;
         this.setState(currentState);
       });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productData } = this.props;
+    const { productId } = productData.id;
+
+    if (productData.id !== prevProps.productData.id) {
+      fetch(`http://54.213.200.113:3000/qa/${productData.id}`)
+        .then((data) => data.json())
+        .then((result) => {
+          const currentState = this.state;
+          currentState.questions = result.results;
+          currentState.productName = productData.name;
+          currentState.productId = productId;
+          this.setState(currentState);
+        });
+    }
   }
 
   render() {

@@ -65,9 +65,9 @@ class AddAnswer extends React.Component {
             }}
           >
             <h1>Submit your Answer</h1>
-            <h1>
+            <h2>
               {`${productName}: ${data.question_body}`}
-            </h1>
+            </h2>
             <ul>
               <li>
                 <label htmlFor="name">Name</label>

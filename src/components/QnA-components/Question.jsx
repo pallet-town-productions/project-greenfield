@@ -47,7 +47,7 @@ class Question extends React.Component {
             </p>
           </div>
           <span className="questions-q-tools">
-            <p
+            <span
               style={{
                 fontSize: '12px',
                 color: 'gray',
@@ -71,7 +71,7 @@ class Question extends React.Component {
                 productName={productName}
                 counter={counter}
               />
-            </p>
+            </span>
           </span>
         </div>
         <div>
