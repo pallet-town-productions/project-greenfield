@@ -35,11 +35,12 @@ class Question extends React.Component {
             <p style={{
               fontSize: '22px',
               color: '#3B3B3B',
-              letterSpacing: '0.5px',
               marginBottom: '0',
+              fontWeight: 'bold',
             }}
             >
-              {`Q: ${data.question_body}`}
+              Q: &nbsp;
+              {`${data.question_body}`}
             </p>
           </div>
           <span className="questions-q-tools">
@@ -47,7 +48,6 @@ class Question extends React.Component {
               style={{
                 fontSize: '14px',
                 color: 'gray',
-                fontFamily: 'Arial',
                 margin: 0,
               }}
               id={`Q${data.question_id}`}

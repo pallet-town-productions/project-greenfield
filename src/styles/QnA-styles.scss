@@ -8,7 +8,6 @@
 
 
 #qna-container {
-  font-family: 'arabic-font-2013bold';
   display: block;
   width: 100%;
   height: 80%;
@@ -19,7 +18,6 @@
   height: 60px;
   width: 100%;
   background-color: white;
-  border: 1px solid black;
 }
 
 #qna-searchbar {
@@ -42,7 +40,15 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  border: none;
+  border: 1px solid black;
+}
+
+.qna-answer-container {
+  width: 70%;
+}
+
+.qna-answer-body {
+  
 }
 
 .questionsModalAnswer {
@@ -72,6 +78,7 @@
 
 .qna-thumbnail {
   width: 120px;
+  margin: 0;
 }
 
 .question-q-container {
