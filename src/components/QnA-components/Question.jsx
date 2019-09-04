@@ -49,22 +49,23 @@ class Question extends React.Component {
           <span className="questions-q-tools">
             <p
               style={{
-                fontSize: '14px',
+                fontSize: '12px',
                 color: 'gray',
                 margin: 0,
               }}
               id={`Q${data.question_id}`}
             >
-              Helpful?
-              <button className="questions-helpful-btn questions-clear-btn" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
+              Helpful? &nbsp;
+              <span className="qna-helpful-btn" role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
                 <u style={{ fontSize: '13px', color: 'gray' }}>
                   Yes
                 </u>
-              </button>
+              </span>
+              &nbsp;
               {`(${data.question_helpfulness})`}
               &nbsp;&nbsp;&nbsp;
                 |
-              &nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;
               <AddAnswer
                 data={data}
                 productName={productName}

@@ -91,7 +91,6 @@
   margin-top: 1em;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
 }
 
 .questions-clear-btn {
@@ -136,6 +135,14 @@
 }
 
 .qna-add-q-btn:hover {
+  cursor: pointer;
+}
+
+.qna-helpful-btn:hover {
+  cursor: pointer;
+}
+
+.qna-report-btn:hover {
   cursor: pointer;
 }
 
