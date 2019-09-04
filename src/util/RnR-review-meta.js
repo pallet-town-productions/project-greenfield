@@ -111,7 +111,6 @@ const getReviewFormConfig = () => {
       mandatory: false,
       id: 'summary',
       type: 'text',
-      value: '',
       constraints: {
         max: 50,
         placeholder: 'Example: Best purchase ever!',
@@ -122,7 +121,6 @@ const getReviewFormConfig = () => {
       mandatory: true,
       id: 'body',
       type: 'textarea',
-      value: '',
       constraints: {
         min: 50,
         max: 1000,
@@ -152,7 +150,7 @@ const getReviewFormConfig = () => {
     email: {
       label: 'Your email',
       mandatory: true,
-      id: 'nickname',
+      id: 'email',
       type: 'email',
       constraints: {
         max: 60,

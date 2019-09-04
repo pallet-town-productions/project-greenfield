@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RadioGroupInput from './RadioGroupInput';
-import TextInput from './TextInput';
-import FileInput from './FileInput';
+import SingleInput from './SingleInput';
+// import FileInput from './FileInput';
 import TextAreaInput from './TextAreaInput';
 import { getReviewFormConfig } from '../../../util/RnR-review-meta';
+import '../../../styles/RnR-breakdown.scss';
 
 class WriteReviewForm extends Component {
   constructor(props) {
@@ -33,11 +34,10 @@ class WriteReviewForm extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     const { hideModal } = this.props;
     // const formData = this.state;
+    event.preventDefault();
     hideModal();
-    // check if data is valid
     // make a post with form data if everything all good
     // otherwise render some errors
   }
@@ -46,10 +46,8 @@ class WriteReviewForm extends Component {
     const {
       rating,
       recommended,
-      characteristic,
       summary,
       body,
-      photos,
       nickname,
       email,
     } = this.state;
@@ -58,16 +56,19 @@ class WriteReviewForm extends Component {
         role="presentation"
         onKeyDown={this.handleKeyPress}
       >
-        <form onSubmit={this.handleSubmit}>
-          <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
-          <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
-          <RadioGroupInput config={characteristic} handleInputChange={this.handleInputChange} />
-          <TextInput config={summary} handleInputChange={this.handleInputChange} />
-          <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
-          <FileInput config={photos} handleInputChange={this.handleInputChange} />
-          <TextInput config={nickname} handleInputChange={this.handleInputChange} />
-          <TextInput config={email} handleInputChange={this.handleInputChange} />
-          <input type="submit" value="Submit" />
+        <form
+          className="form-style-7"
+          onSubmit={this.handleSubmit}
+        >
+          <ul>
+            <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
+            <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+            <SingleInput config={summary} handleInputChange={this.handleInputChange} />
+            <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
+            <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
+            <SingleInput config={email} handleInputChange={this.handleInputChange} />
+            <li><input type="submit" value="Submit" /></li>
+          </ul>
         </form>
       </div>
     );

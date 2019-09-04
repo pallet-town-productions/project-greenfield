@@ -177,3 +177,9 @@ $componentWidth: 250px;
     }
   }
 }
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -1,35 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ config, handleInputChange }) => {
+const SingleInput = ({ config, handleInputChange }) => {
   const {
-    label, id, value, constraints,
+    label, id, constraints, type,
   } = config;
   const { placeholder = '', sublabel = '' } = constraints;
   return (
-    <div>
+    <li>
       <label htmlFor={id}>
         {label}
       </label>
       <input
         id={id}
         name={id}
-        type="text"
-        value={value}
+        type={type}
+        required
+        maxLength="60"
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <div>{sublabel}</div>
-    </div>
+      <span>{sublabel}</span>
+    </li>
   );
 };
 
-TextInput.propTypes = {
+SingleInput.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   config: PropTypes.shape({
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    value: '',
+    type: PropTypes.string.isRequired,
     constraints: PropTypes.shape({
       placeholder: PropTypes.string,
       sublabel: PropTypes.string,
@@ -37,4 +38,4 @@ TextInput.propTypes = {
   }).isRequired,
 };
 
-export default TextInput;
+export default SingleInput;

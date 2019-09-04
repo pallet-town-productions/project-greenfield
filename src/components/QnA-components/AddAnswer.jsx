@@ -38,14 +38,13 @@ class AddAnswer extends React.Component {
             autoComplete="off"
             className="form-style-7"
             onSubmit={(e) => {
-              e.preventDefault();
               const modalData = {
                 body: document.getElementsByClassName('qna-modal-a-body')[counter - 1].value,
                 name: document.getElementsByClassName('qna-modal-a-name')[counter - 1].value,
                 email: document.getElementsByClassName('qna-modal-a-email')[counter - 1].value,
                 photos: document.getElementsByClassName('qna-modal-a-pic')[counter - 1].value.split(' '),
               };
-
+              e.preventDefault();
 
               fetch(`http://54.213.200.113:3000/qa/${data.question_id}/answers`, {
                 method: 'POST',
