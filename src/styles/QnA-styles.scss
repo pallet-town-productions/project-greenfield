@@ -47,10 +47,6 @@
   width: 70%;
 }
 
-.qna-answer-body {
-  
-}
-
 .questionsModalAnswer {
   width: 400px;
   height: 100px;
@@ -144,9 +140,9 @@
 }
 
 #qna-searchbar::-webkit-input-placeholder {
-  font-family: 'arabic-font-2013bold';
+  font-family: 'helveticca';
   font-size: 18px;
-  color: #524242;
+  font-weight: bold;
 }
 
 #qna-searchbar:focus::-webkit-input-placeholder {
@@ -154,12 +150,12 @@
 }
 
 
-#qna-modal-a-body {
-  height: 250px;
+.qna-modal-a-body {
+  height: 100px !important;
 }
 
 #qna-modal-q-body {
-  height: 150px;
+  height: 100px !important;
 }
 
 .form-style-7{

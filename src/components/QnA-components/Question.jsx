@@ -8,12 +8,14 @@ import Answer from './Answer';
 class Question extends React.Component {
   constructor(props, {
     data,
+    counter,
     helpfulClickHandler,
     reportClickHandler,
     productName,
   }) {
     super(props, {
       data,
+      counter,
       helpfulClickHandler,
       reportClickHandler,
       productName,
@@ -23,11 +25,13 @@ class Question extends React.Component {
   render() {
     const {
       data,
+      counter,
       productName,
       reportClickHandler,
       helpfulClickHandler,
     } = this.props;
 
+    console.log(counter);
     return (
       <div className="questions-qna-container">
         <div className="question-q-container">
@@ -62,7 +66,11 @@ class Question extends React.Component {
               &nbsp;&nbsp;&nbsp;
                 |
               &nbsp;&nbsp;
-              <AddAnswer data={data} productName={productName} />
+              <AddAnswer
+                data={data}
+                productName={productName}
+                counter={counter}
+              />
             </p>
           </span>
         </div>
@@ -85,6 +93,7 @@ Question.propTypes = {
     question_helpfulness: PropTypes.number.isRequired,
     answers: PropTypes.shape({}).isRequired,
   }).isRequired,
+  counter: PropTypes.number.isRequired,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,

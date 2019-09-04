@@ -47,7 +47,7 @@ class Answer extends React.Component {
                     &nbsp;
                   </b>
                   <span className="qna-answer-body">
-                    {answer.body} 
+                    {answer.body}
                   </span>
                 </span>
               )

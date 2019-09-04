@@ -44,7 +44,7 @@ class QnA extends React.Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     const { productId } = this.state;
     // grabs initial set of questions
     fetch(`http://18.217.220.129/qa/${productId}/`)
@@ -90,9 +90,17 @@ class QnA extends React.Component {
               className="qna-load-more-q"
               onClick={this.increaseDisplayCount}
             >
-              <p style={{ lineHeight: '20px', textAlign: 'center', fontSize: '18px' }}>
+              <b style={
+                  {
+                    lineHeight: '26px',
+                    textAlign: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                  }
+                }
+              >
                 MORE ANSWERED QUESTIONS
-              </p>
+              </b>
             </span>
           ) }
         <AddQuestion
