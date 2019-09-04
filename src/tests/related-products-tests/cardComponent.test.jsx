@@ -23,7 +23,6 @@ describe('components', () => {
   describe('Related products', () => {
     it('should render self and subcomponents', () => {
       const { enzymeWrapper } = setup();
-      jest.mock('../../util/api.js');
       expect(enzymeWrapper.exists('.card-container')).toBe(true);
     });
   });
