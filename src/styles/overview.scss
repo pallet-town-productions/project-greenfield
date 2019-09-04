@@ -156,6 +156,9 @@ body {
   background-color: $modalBackground;
   box-shadow: 0 0 2px 3px black;
   padding: 5px;
+  .slick-arrow:before {
+    color: white;
+  }
   #expanded-main-photo { // modify
     height: 85%; // modify
     display: block;
@@ -165,6 +168,11 @@ body {
   }
   #image-thumbnail-slide-expanded {
     display: block;
+    text-align: center;
+    grid-area: carousel;
+    max-width: $mainPhotoDimension;
+    min-width: calc(#{$thumbnailDimension} * 8);
+    margin: auto;
   }
 }
 
