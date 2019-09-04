@@ -19,7 +19,6 @@ function setup() {
 }
 
 describe('components', () => {
-  jest.mock('../../util/api.js')
   describe('Related products', () => {
     it('should render self and subcomponents', () => {
       const { enzymeWrapper } = setup();
