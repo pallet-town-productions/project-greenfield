@@ -12,6 +12,8 @@ import ConnectedRelatedProducts from './related-Products-components/related-Prod
 import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
 
+const FRONTPAGEPRODUCTID = 5; // default product for when the page doesn't have a num endpoint
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -48,9 +50,11 @@ export class App extends Component {
     const { productId: oldId } = prevProps;
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
-    const path = parseInt(pathName.substr(1), 10);
-    if (oldId === path || Number.isNaN(path)) {
+    let path = parseInt(pathName.substr(1), 10);
+    if (oldId === path) {
       return;
+    } else if (Number.isNaN(path)) {
+      path = FRONTPAGEPRODUCTID;
     }
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
@@ -58,8 +62,9 @@ export class App extends Component {
   }
 
   render() {
-    const { productData: { id } } = this.props;
-    if (id === SPLASHPAGEID) {
+    // eslint-disable-next-line camelcase
+    const { productData: { id }, styleData: { product_id } } = this.props;
+    if (id === SPLASHPAGEID || Number(product_id) === SPLASHPAGEID) {
       return <Splash productId={SPLASHPAGEID + 1} />; // assign it to NOT SPLASHPAGEID
     }
     return (
@@ -85,6 +90,8 @@ App.propTypes = {
   dispatch: PT.func.isRequired,
   productId: PT.number.isRequired,
   productData: PT.shape({ id: PT.number }).isRequired,
+  product_id: PT.string.isRequired,
+  styleData: PT.shape({ product_id: PT.string }).isRequired,
 };
 
 const connectedApp = withRouter(connect(mapStateToProps, null)(App));
