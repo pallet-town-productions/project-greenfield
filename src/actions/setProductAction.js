@@ -14,13 +14,6 @@ function setProductDataActionSuccess(productData) {
   };
 }
 
-function setProductDataActionFailure(err) {
-  console.error(err);
-  return {
-    type: 'SET_PRODUCT_DATA_FAILURE',
-  };
-}
-
 function setProductDataActionKickoff(productId) {
   return (dispatch) => {
     getProductData(productId)
@@ -28,8 +21,7 @@ function setProductDataActionKickoff(productId) {
       .then((responseJSON) => {
         dispatch(setProductDataActionSuccess(responseJSON));
       })
-      .catch((err) => {
-        dispatch(setProductDataActionFailure(err)); // delete this
+      .catch(() => { // this is the error handling block for failed get requests
         setProductDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
@@ -42,13 +34,6 @@ function setStyleDataActionSuccess(styleData) {
   };
 }
 
-function setStyleDataActionFailure(err) {
-  console.error(err);
-  return {
-    type: 'SET_STYLE_DATA_FAILURE',
-  };
-}
-
 function setStyleDataActionKickoff(productId) {
   return (dispatch) => {
     getStyleData(productId)
@@ -58,8 +43,7 @@ function setStyleDataActionKickoff(productId) {
           dispatch(setStyleDataActionSuccess(responseJSON));
         }
       })
-      .catch((err) => {
-        dispatch(setStyleDataActionFailure(err)); // delete this
+      .catch(() => { // this is the error handling block for failed get requests
         setStyleDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
