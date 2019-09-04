@@ -5,7 +5,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import { zeroPad } from '../../util/util';
-// import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 // IMPORT Provider and Store for deep mounts
 import configureStore from '../../store';
 // IMPORT initialData
