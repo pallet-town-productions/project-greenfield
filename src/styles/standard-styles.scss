@@ -2,10 +2,13 @@
 
 button {
   height: $buttonHeight;
-  background-color: $buttonColor;
+  background-color: lightgray;
   font-family: $font;
-  border-width: $borderThickness;
+  border: 2px solid black;
   cursor: pointer;
+  font-size: 18px;
+  padding: 20px;
+  margin: 10px;
 }
 
 body {
