@@ -5,10 +5,10 @@ const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 function zeroPad(num, places) {
   const zero = places - num.toString().length;
   return `O${Array(+(zero > 0 && zero)).join('0')}${num}`;
-};
+}
 
 function getData(endpoint) {
-  return fetch(`http://54.213.200.113:3000${endpoint}`, {
+  return fetch(`${apiUrl}${endpoint}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
