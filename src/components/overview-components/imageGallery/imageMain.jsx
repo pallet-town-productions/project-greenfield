@@ -21,12 +21,12 @@ const mapStateToProps = function (st) {
 };
 
 export const ImageMainComponent = function ({
-  currentBigPicture, 
-  currentProductName, 
-  currentStyleName, 
-  handleClick, 
-  handleExit, 
-  onHover, 
+  currentBigPicture,
+  currentProductName,
+  currentStyleName,
+  handleClick,
+  handleExit,
+  onHover,
   thisId,
 }) {
   /* eslint-disable no-param-reassign */
@@ -51,6 +51,7 @@ export const ImageMainComponent = function ({
     case 'expanded-main-photo':
       return ( // if expanded view, return imageList separately from this image
         <span
+          id="expanded-view-background"
           onClick={handleExit}
           role="presentation"
         >
@@ -83,6 +84,7 @@ ImageMainComponent.propTypes = {
   currentBigPicture: PT.string.isRequired,
   currentProductName: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
+  handleExit: PT.func.isRequired,
   handleClick: PT.func.isRequired,
   onHover: PT.string.isRequired, // this is a class name that CSS uses
   thisId: PT.string.isRequired, // this is an ID name that CSS uses

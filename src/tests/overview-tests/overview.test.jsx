@@ -172,6 +172,22 @@ describe('Image Gallery', () => {
       expect(expandedViewWrapper.exists('#image-thumbnail-slide-expanded')).toBeTruthy();
       expect(expandedViewWrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
     });
+    describe('Exiting Expanded View', () => {
+      it('should exit out of Expanded View when background outside of image is clicked', () => {
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
+        expandedViewWrapper.find('#image-gallery-overlay').find('#expanded-view-background').simulate('click');
+        expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
+      });
+      it('should be clickable and toggle ZoomView when clicked', () => {
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+        mockStore.dispatch(toggleExpandedView(true));
+        expandedViewWrapper.update();
+        expandedViewWrapper.find('#expanded-main-photo').simulate('click');
+        expect(mockStore.getState().showZoomView).toBeTruthy();
+        mockStore.dispatch(toggleZoomView(false));
+        expect(mockStore.getState().showZoomView).toBeFalsy();
+      });
+    });
     describe('Zoom View Toggling', () => {
       const zoomViewWrapper = mount(
         <Provider store={mockStore}>
