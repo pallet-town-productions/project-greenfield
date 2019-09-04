@@ -68,8 +68,8 @@ class WriteReviewForm extends Component {
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
             <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
+            <li><input type="submit" value="Submit" /></li>
           </ul>
-          <input type="submit" value="Submit" />
         </form>
       </div>
     );
