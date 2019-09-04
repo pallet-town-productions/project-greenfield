@@ -12,6 +12,8 @@ import ConnectedRelatedProducts from './related-Products-components/related-Prod
 import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
 
+const FRONTPAGEPRODUCTID = 5;
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -48,9 +50,11 @@ export class App extends Component {
     const { productId: oldId } = prevProps;
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
-    const path = parseInt(pathName.substr(1), 10);
-    if (oldId === path || Number.isNaN(path)) {
+    let path = parseInt(pathName.substr(1), 10);
+    if (oldId === path) {
       return;
+    } else if (Number.isNaN(path)) {
+      path = FRONTPAGEPRODUCTID; // default product for when the page doesn't have a numerical endpoint
     }
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
@@ -87,7 +91,7 @@ App.propTypes = {
   productId: PT.number.isRequired,
   productData: PT.shape({ id: PT.number }).isRequired,
   product_id: PT.string.isRequired,
-  styleData: PT.shape({ product_id: PT.number }).isRequired,
+  styleData: PT.shape({ product_id: PT.string }).isRequired,
 };
 
 const connectedApp = withRouter(connect(mapStateToProps, null)(App));
