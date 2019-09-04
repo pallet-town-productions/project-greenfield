@@ -1,9 +1,8 @@
+jest.mock('../../util/api.js');
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { RelatedCard } from '../../components/related-Products-components/relatedCard';
-
-jest.mock('../../util/api.js');
 
 Enzyme.configure({ adapter: new Adapter() });
 

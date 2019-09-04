@@ -1,4 +1,5 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
+jest.mock('../../util/api.js');
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -38,7 +39,7 @@ import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/o
 import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart/changeSizeQty';
 
 Enzyme.configure({ adapter: new Adapter() });
-jest.mock('../../util/api.js');
+
 
 // NOTES:
 // exists likes basic html, doesn't like React Components
