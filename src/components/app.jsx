@@ -47,20 +47,16 @@ export class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { productId: oldId } = prevProps;
+    const { productId: oldId } = prevProps;
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
-    let path = parseInt(pathName.substr(1), 10);
+    let path = parseInt(pathName.substr(1), 10) || FRONTPAGEPRODUCTID;
     if (oldId === path || Number.isNaN(path)) {
       return;
     }
-    // } else if (Number.isNaN(path)) {
-    //   oldId = FRONTPAGEPRODUCTID;
-    //   path = FRONTPAGEPRODUCTID;
-    // }
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
-    dispatch(setProductDataActionKickoff(path)); // replace 2 with path
+    dispatch(setProductDataActionKickoff(path));
   }
 
   render() {
