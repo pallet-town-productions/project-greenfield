@@ -49,7 +49,7 @@ function DropDown({
     >
       {sizeList.map((size, index) => (
         <option
-          key={zeroPad(sizeSkus[index], 3)}
+          key={zeroPad(index, 3) + zeroPad(sizeSkus[index], 3)}
           sku={sizeSkus[index]}
           value={index}
         >
