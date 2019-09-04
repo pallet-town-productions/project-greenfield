@@ -47,18 +47,14 @@ class Answer extends React.Component {
                     &nbsp;
                   </b>
                   <span className="qna-answer-body">
-                    <text>
-                      {answer.body}
-                    </text>
+                    {answer.body} 
                   </span>
                 </span>
               )
                 : (
                   <span>
-                    <p>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      {answer.body}
-                    </p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {answer.body}
                   </span>
                 )}
             </p>
@@ -72,7 +68,7 @@ class Answer extends React.Component {
               color: 'gray',
             }}
             >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               by
               {' '}
               {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}
@@ -91,14 +87,19 @@ class Answer extends React.Component {
             {data.answers[Object.keys(data.answers)[displayCount - 1]] === answer
               && displayCount < Object.keys(data.answers).length
               ? (
-                <span
-                  role="presentation"
-                  onKeyPress={this.increaseDisplayCount}
-                  onClick={this.increaseDisplayCount}
-                  className="questions-clear-btn"
-                >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOAD MORE ANSWERS
-                </span>
+                <div style={{ marginTop: '25px', marginLeft: '1px' }}>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span
+                    role="presentation"
+                    onKeyPress={this.increaseDisplayCount}
+                    onClick={this.increaseDisplayCount}
+                    className="questions-clear-btn"
+                  >
+                    <b>
+                      LOAD MORE ANSWERS
+                    </b>
+                  </span>
+                </div>
               )
               : ''}
           </span>

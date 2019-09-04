@@ -15,7 +15,7 @@ class QnA extends React.Component {
   constructor(props, { helpfulClickHandler, reportClickHandler }) {
     super(props, { helpfulClickHandler, reportClickHandler });
     this.state = {
-      productId: props.productId,
+      productId: props.productData.id,
       filteredQuestions: [],
       questions: [],
       search: '',
@@ -44,7 +44,7 @@ class QnA extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     const { productId } = this.state;
     // grabs initial set of questions
     fetch(`http://18.217.220.129/qa/${productId}/`)
@@ -68,9 +68,9 @@ class QnA extends React.Component {
     const { helpfulClickHandler, reportClickHandler } = this.props;
     return (
       <div id="qna-container">
-        <h3 style={{ color: '#525252' }}>
+        <h4 style={{ marginTop: '50px' }}>
           QUESTIONS & ANSWERS
-        </h3>
+        </h4>
         <Search searchFilter={this.searchFilter} />
         <List
           questions={
@@ -105,16 +105,12 @@ class QnA extends React.Component {
 }
 
 QnA.propTypes = {
-  productId: PropTypes.number,
   helpfulClickHandler: PropTypes.func.isRequired,
   reportClickHandler: PropTypes.func.isRequired,
   productData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-};
-
-QnA.defaultProps = {
-  productId: 1,
 };
 
 const connectedQnA = connect(mapStateToProps, null)(QnA);
