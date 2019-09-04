@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/header.scss';
 
-const Header = function () {
+function Header() {
   return (
     <header>
       <span id="header-logo">LOGO HERE</span>
@@ -9,6 +9,6 @@ const Header = function () {
       <span id="header-search">SEARCH HERE</span>
     </header>
   );
-};
+}
 
 export default Header;

@@ -8,13 +8,13 @@ import {
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import zoomPan from './handleZoomPan';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { showZoomView, currentStyleIndex, currentPhotoIndex } = st;
   const currentBigPicture = st.styleData.results[currentStyleIndex].photos[currentPhotoIndex].url;
   return { showZoomView, currentBigPicture };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleHideZoomView: () => {
       dispatch(toggleExpandedView(true));
@@ -24,9 +24,9 @@ const mapDispatchToProps = function (dispatch) {
       zoomPan(e, imageUrl);
     },
   };
-};
+}
 
-export const ZoomViewDisplayComponent = function ({
+export function ZoomViewDisplayComponent({
   showZoomView, currentBigPicture, handleHideZoomView, handleZoomPan,
 }) {
   const display = (showZoomView) ? 'show' : 'hide';
@@ -46,7 +46,7 @@ export const ZoomViewDisplayComponent = function ({
       </div>
     </div>
   );
-};
+}
 
 ZoomViewDisplayComponent.propTypes = {
   showZoomView: PT.bool.isRequired,

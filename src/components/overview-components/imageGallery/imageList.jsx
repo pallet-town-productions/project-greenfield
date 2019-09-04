@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // import bunch of other child components
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { currentStyleIndex, currentPhotoIndex } = st;
   const imageList = st.styleData.results[currentStyleIndex].photos;
   const styleName = st.styleData.results[currentStyleIndex].name;
@@ -19,17 +19,17 @@ const mapStateToProps = function (st) {
     imageList,
     styleName,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleSwitchPhoto: (photoIndex) => {
       dispatch(changePhoto(photoIndex));
     },
   };
-};
+}
 
-export const ImageListComponent = function ({
+export function ImageListComponent({
   currentStyleIndex, currentPhotoIndex, imageList, styleName, handleSwitchPhoto, isExpanded,
 }) {
   const display = (isExpanded) ? 'image-thumbnail-slide-expanded' : 'image-thumbnail-slide-default';
@@ -59,7 +59,7 @@ export const ImageListComponent = function ({
       </Slider>
     </ul>
   );
-};
+}
 
 ImageListComponent.propTypes = {
   currentStyleIndex: PT.number.isRequired,

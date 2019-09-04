@@ -3,12 +3,12 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { productData, styleData, currentStyleIndex } = st;
   return { productData, styleData, currentStyleIndex };
-};
+}
 
-export const PriceComponent = function ({ productData, styleData, currentStyleIndex }) {
+export function PriceComponent({ productData, styleData, currentStyleIndex }) {
   const price = Number(styleData.results[currentStyleIndex].original_price)
     || Number(productData.default_price);
   const salePrice = Number(styleData.results[currentStyleIndex].sale_price); // default 0
@@ -26,7 +26,7 @@ export const PriceComponent = function ({ productData, styleData, currentStyleIn
       <span className="price">{`$${price}`}</span>
     </div>
   );
-};
+}
 
 PriceComponent.propTypes = {
   productData: PT.shape({

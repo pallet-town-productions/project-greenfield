@@ -8,12 +8,12 @@ import {
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { showExpandedView } = st;
   return { showExpandedView };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleHideExpandedView: () => {
       dispatch(toggleExpandedView(false));
@@ -23,9 +23,9 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(toggleExpandedView(false));
     },
   };
-};
+}
 
-export const ExpandedViewOverlayComponent = function ({
+export function ExpandedViewOverlayComponent({
   showExpandedView,
   handleHideExpandedView,
   handleShowZoomView,
@@ -42,7 +42,7 @@ export const ExpandedViewOverlayComponent = function ({
       <ImageList isExpanded />
     </div>
   );
-};
+}
 
 ExpandedViewOverlayComponent.propTypes = {
   showExpandedView: PT.bool.isRequired,

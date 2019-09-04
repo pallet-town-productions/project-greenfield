@@ -1,27 +1,27 @@
 import { getProductData, getStyleData } from '../util/util';
 
-const setProductAction = function (productId) {
+function setProductAction(productId) {
   return {
     type: 'setProductId',
     productId,
   };
-};
+}
 
-const setProductDataActionSuccess = function (productData) {
+function setProductDataActionSuccess(productData) {
   return {
     type: 'SET_PRODUCT_DATA_SUCCESS',
     productData,
   };
-};
+}
 
-const setProductDataActionFailure = function (err) {
+function setProductDataActionFailure(err) {
   console.error(err);
   return {
     type: 'SET_PRODUCT_DATA_FAILURE',
   };
-};
+}
 
-const setProductDataActionKickoff = function (productId) {
+function setProductDataActionKickoff(productId) {
   return (dispatch) => {
     getProductData(productId)
       .then((response) => response.json())
@@ -33,23 +33,23 @@ const setProductDataActionKickoff = function (productId) {
         setProductDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
-};
+}
 
-const setStyleDataActionSuccess = function (styleData) {
+function setStyleDataActionSuccess(styleData) {
   return {
     type: 'SET_STYLE_DATA_SUCCESS',
     styleData,
   };
-};
+}
 
-const setStyleDataActionFailure = function (err) {
+function setStyleDataActionFailure(err) {
   console.error(err);
   return {
     type: 'SET_STYLE_DATA_FAILURE',
   };
-};
+}
 
-const setStyleDataActionKickoff = function (productId) {
+function setStyleDataActionKickoff(productId) {
   return (dispatch) => {
     getStyleData(productId)
       .then((response) => response.json())
@@ -63,7 +63,7 @@ const setStyleDataActionKickoff = function (productId) {
         setStyleDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
-};
+}
 
 export {
   setProductAction,

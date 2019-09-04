@@ -16,7 +16,7 @@ import ReviewsLink from './productInformation/reviewsLink';
 // import style sheets
 import '../../styles/overview.scss';
 
-const Overview = function () {
+function Overview() {
   return (
     <div>
       <ZoomViewOverlay />
@@ -51,6 +51,6 @@ const Overview = function () {
       </main>
     </div>
   );
-};
+}
 
 export default Overview;

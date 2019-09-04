@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { zeroPad } from '../../../util/util';
 
-const mapStateToProps = function (st) {
+function mapStateToProps(st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
   const currentStyleObj = st.styleData.results[currentStyleIndex];
   const sizeList = Object.keys(currentStyleObj.skus);
@@ -15,9 +15,9 @@ const mapStateToProps = function (st) {
   return {
     currentSizeIndex, sizeList, sizeSkus, promptSelectSize, isOutOfStock,
   };
-};
+}
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleChangeSize: () => {
       const selectedSize = Number(document.getElementById('current-size').value);
@@ -30,9 +30,9 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(changeSize(selectedSize));
     },
   };
-};
+}
 
-const DropDown = function ({
+function DropDown({
   sizeList, sizeSkus, handleChangeSize, isOutOfStock,
 }) {
   if (isOutOfStock) {
@@ -58,17 +58,17 @@ const DropDown = function ({
       ))}
     </select>
   );
-};
+}
 
-const PromptSizeText = function ({ promptSelectSize }) {
+function PromptSizeText({ promptSelectSize }) {
   return (
     <div id="select-size-prompt">
       {(promptSelectSize) ? 'Please Select Size' : <br />}
     </div>
   );
-};
+}
 
-export const SizeSelectorComponent = function ({
+export function SizeSelectorComponent({
   sizeList, sizeSkus, promptSelectSize, isOutOfStock, handleChangeSize,
 }) {
   return (
@@ -82,7 +82,7 @@ export const SizeSelectorComponent = function ({
       />
     </div>
   );
-};
+}
 
 DropDown.propTypes = {
   sizeList: PT.arrayOf(PT.string.isRequired).isRequired,

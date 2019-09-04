@@ -1,16 +1,16 @@
 import React from 'react';
 import PT from 'prop-types';
 
-const CheckBox = function ({ isRendered }) {
+function CheckBox({ isRendered }) {
   if (isRendered) {
     return (
       <i className="material-icons" id="check-icon">check_box</i>
     );
   }
   return null;
-};
+}
 
-const StyleThumbnail = function ({
+function StyleThumbnail({
   thisId, style, styleIndex, currentStyleIndex, handleClick,
 }) {
   const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${style.name}`;
@@ -29,7 +29,7 @@ const StyleThumbnail = function ({
       />
     </div>
   );
-};
+}
 
 CheckBox.propTypes = {
   isRendered: PT.bool.isRequired,

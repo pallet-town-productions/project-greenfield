@@ -2,7 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 
 
-const ImageThumbnail = function ({
+function ImageThumbnail({
   photoIndex, url, styleName, handleClick, isSelected, thisId,
 }) {
   const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${styleName}`;
@@ -21,7 +21,7 @@ const ImageThumbnail = function ({
       />
     </span>
   );
-};
+}
 
 ImageThumbnail.propTypes = {
   photoIndex: PT.number.isRequired,
