@@ -54,6 +54,7 @@ class LowerBar extends React.Component {
           ({review.helpfulness})
         </div>
         <div className="lower test report" onClick={this.report.bind(this)} onKeyDown={this.report.bind(this)} tabIndex={0} role="link">Report</div>
+        <hr />
       </div>
     );
   }
