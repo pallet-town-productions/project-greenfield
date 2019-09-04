@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import apiUrl from '../../util/api';
 import ConnectedCarousel from './carousel';
 import ConnectedOutfit from './outfit';
 import relatedAction from '../../actions/related-Products-Actions/related-products-action';
@@ -29,7 +30,8 @@ export class RelatedProducts extends Component {
     if (oldId === productId) {
       return;
     }
-    fetch(`http://18.217.220.129/products/${productId}/related`)
+    const url = apiUrl;
+    fetch(`${url}/products/${productId}/related`)
       .then((data) => data.json())
       .then((relatedProducts) => (
         dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
