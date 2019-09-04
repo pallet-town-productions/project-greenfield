@@ -88,10 +88,10 @@ const getReviewFormConfig = () => {
         options: [1, 2, 3, 4, 5],
       },
     },
-    recommended: {
+    recommend: {
       label: 'Do you recommend this product?',
       mandatory: true,
-      id: 'recommended',
+      id: 'recommend',
       type: 'radio',
       constraints: {
         options: ['Yes', 'No'],

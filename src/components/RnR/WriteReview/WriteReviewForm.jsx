@@ -7,8 +7,6 @@ import TextAreaInput from './TextAreaInput';
 import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
-const url = 'http://54.213.200.113:3000/reviews/4';
-
 class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +39,7 @@ class WriteReviewForm extends Component {
     const { hideModal } = this.props;
     const formData = getFilteredFormData(this.state);
     event.preventDefault();
-    fetch(url, {
+    fetch('fake.com', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -62,7 +60,7 @@ class WriteReviewForm extends Component {
   render() {
     const {
       rating,
-      recommended,
+      recommend,
       summary,
       body,
       name,
@@ -79,7 +77,7 @@ class WriteReviewForm extends Component {
         >
           <ul>
             <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
-            <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+            <RadioGroupInput config={recommend} handleInputChange={this.handleInputChange} />
             <SingleInput config={summary} handleInputChange={this.handleInputChange} />
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
             <SingleInput config={name} handleInputChange={this.handleInputChange} />
