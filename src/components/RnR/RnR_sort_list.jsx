@@ -46,7 +46,7 @@ class Sort extends Component {
           return (a.date < b.date) ? 1 : -1;
         });
       })
-      .then((info) => { console.log(info); dispatch(updateReviewsToRender(info)); });
+      .then((info) => { dispatch(updateReviewsToRender(info)); });
   }
 
   render() {
@@ -70,7 +70,7 @@ class Sort extends Component {
 
 Sort.propTypes = {
   productId: PT.number.isRequired,
-  updateReviewNumber: PT.string.isRequired,
+  updateReviewNumber: PT.oneOfType([PT.number, PT.string]).isRequired,
   dispatch: PT.func.isRequired,
 };
 
