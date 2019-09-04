@@ -9,16 +9,17 @@ function mapStateToProps(st) {
 }
 
 function ReviewsLinkComponent({ updateReviews, averageRating }) {
-  const readReviewsString = (function (numReviews) {
-    switch (numReviews) {
-      case 0:
-        return '';
-      case 1:
-        return `Read ${numReviews} review`;
-      default:
-        return `Read all ${numReviews} reviews`;
-    }
-  }(updateReviews.length));
+  let readReviewsString;
+  switch (updateReviews.length) {
+    case 0:
+      readReviewsString = '';
+      break;
+    case 1:
+      readReviewsString = `Read ${updateReviews.length} review`;
+      break;
+    default:
+      readReviewsString = `Read all ${updateReviews.length} reviews`;
+  }
 
   return (
     <span>
