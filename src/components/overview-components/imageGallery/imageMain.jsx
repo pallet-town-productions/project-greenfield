@@ -58,6 +58,7 @@ export const ImageMainComponent = function ({
           <img
             className={onHover}
             onClick={handleClick}
+            role="presentation"
             id={thisId}
             src={currentBigPicture}
             alt={`${currentProductName}, ${currentStyleName}`}
