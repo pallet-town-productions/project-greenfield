@@ -76,13 +76,13 @@ class Answer extends React.Component {
               {`, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
               &nbsp;&nbsp;&nbsp;&nbsp;
               | &nbsp;&nbsp;&nbsp; Helpful? &nbsp;
-              <span role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
+              <span className="qna-helpful-btn" role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Yes</u>
               </span>
               &nbsp;
               {`(${answer.helpfulness})`}
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-              <span role="presentation" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
+              <span className="qna-report-btn" role="presentation" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Report</u>
               </span>
             </p>
