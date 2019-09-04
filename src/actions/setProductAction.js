@@ -29,7 +29,7 @@ const setProductDataActionKickoff = function (productId) {
         dispatch(setProductDataActionSuccess(responseJSON));
       })
       .catch((err) => {
-        dispatch(setProductDataActionFailure(err));
+        dispatch(setProductDataActionFailure(err)); // delete this
         setProductDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
@@ -59,7 +59,7 @@ const setStyleDataActionKickoff = function (productId) {
         }
       })
       .catch((err) => {
-        dispatch(setStyleDataActionFailure(err));
+        dispatch(setStyleDataActionFailure(err)); // delete this
         setStyleDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
