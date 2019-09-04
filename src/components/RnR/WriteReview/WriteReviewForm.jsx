@@ -38,7 +38,6 @@ class WriteReviewForm extends Component {
     // const formData = this.state;
     event.preventDefault();
     hideModal();
-
     // make a post with form data if everything all good
     // otherwise render some errors
   }
