@@ -24,10 +24,13 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
   ));
   return (
     <li>
-      {label}
+      <label htmlFor={id}>
+        {label}
+      </label>
       <div className="radio-group">
         {buttons}
       </div>
+      <span>{}</span>
     </li>
   );
 };
