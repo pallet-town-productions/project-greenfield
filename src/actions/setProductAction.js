@@ -60,6 +60,7 @@ const setStyleDataActionKickoff = function (productId) {
       })
       .catch((err) => {
         dispatch(setStyleDataActionFailure(err));
+        setStyleDataActionKickoff(productId); // if get request fails, try again (recursively)
       });
   };
 };
