@@ -90,7 +90,7 @@ class QnA extends React.Component {
               className="qna-load-more-q"
               onClick={this.increaseDisplayCount}
             >
-              <b style={
+              <p style={
                   {
                     lineHeight: '26px',
                     textAlign: 'center',
@@ -100,7 +100,7 @@ class QnA extends React.Component {
                 }
               >
                 MORE ANSWERED QUESTIONS
-              </b>
+              </p>
             </span>
           ) }
         <AddQuestion

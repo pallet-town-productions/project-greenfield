@@ -21,7 +21,7 @@
 }
 
 #qna-searchbar {
-  margin-top: 10px;
+  height: 60px;
   outline: none;
 }
 
@@ -111,7 +111,7 @@
 .qna-load-more-q {
   display: inline-block;
   height: 60px;
-  width: 275px;
+  width: 325px;
   margin-top: 20px;
   margin-right: 20px;
   border: 1px solid black;
@@ -120,7 +120,7 @@
 .qna-add-q-btn {
   display: inline-block;
   height: 60px;
-  width: 175px;
+  width: 200px;
   margin-top: 20px;
   border: 1px solid black;
 }
@@ -140,7 +140,7 @@
 }
 
 #qna-searchbar::-webkit-input-placeholder {
-  font-family: 'helveticca';
+  font-family: 'helvetica';
   font-size: 18px;
   font-weight: bold;
 }
