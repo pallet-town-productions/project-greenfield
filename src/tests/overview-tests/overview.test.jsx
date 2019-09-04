@@ -5,7 +5,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import { zeroPad } from '../../util/util';
-// import { exportAllDeclaration, isTSAnyKeyword } from '@babel/types';
 // IMPORT Provider and Store for deep mounts
 import configureStore from '../../store';
 // IMPORT initialData
@@ -172,13 +171,10 @@ describe('Image Gallery', () => {
       expect(expandedViewWrapper.exists('#image-thumbnail-slide-expanded')).toBeTruthy();
       expect(expandedViewWrapper.find('.thumbnail')).toHaveLength(exampleStyleData.results[0].photos.length);
     });
-    describe('Exit Button', () => {
-      it('should render Exit Button on Expanded View', () => {
-        expect(expandedViewWrapper.exists('.exit-button')).toBeTruthy();
-      });
-      it('should exit out of Expanded View when Exit Button is clicked', () => {
+    describe('Exiting Expanded View', () => {
+      it('should exit out of Expanded View when background outside of image is clicked', () => {
         expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(1);
-        expandedViewWrapper.find('.exit-button').simulate('click');
+        expandedViewWrapper.find('#image-gallery-overlay').find('#expanded-view-background').simulate('click');
         expect(expandedViewWrapper.find('#image-gallery-overlay').find('.show')).toHaveLength(0);
       });
       it('should be clickable and toggle ZoomView when clicked', () => {

@@ -57,13 +57,6 @@ body {
   margin: 5px 10px;
 }
 
-.exit-button {
-  float: right;
-  color: white;
-  padding-right: 1em;
-  padding-top: 2em;
-}
-
 .nav-carousel-button {
   z-index: 1;
   position: relative;
@@ -150,12 +143,15 @@ body {
   position: fixed;
   height: $overlayPercent;
   width: $overlayPercent;
-  // margin-left: (100% - $overlayPercent)/2;
   bottom: (100% - $overlayPercent);
   right: (100% - $overlayPercent);
   background-color: $modalBackground;
   box-shadow: 0 0 2px 3px black;
+  text-align: center;
   padding: 5px;
+  .slick-arrow:before {
+    color: white;
+  }
   #expanded-main-photo { // modify
     height: 85%; // modify
     display: block;
@@ -164,7 +160,11 @@ body {
     margin-right: auto;
   }
   #image-thumbnail-slide-expanded {
-    display: block;
+    display: inline-block;
+    grid-area: carousel;
+    max-width: $mainPhotoDimension;
+    min-width: calc(#{$thumbnailDimension} * 8);
+    margin: auto;
   }
 }
 
@@ -185,7 +185,7 @@ body {
   transform: scale(2.5);
   transform-origin: top left;
   right: calc((100%-#{$componentContainerWidth}) * 0.6);
-  top: calc((#{$defaultMargin} + #{$defaultPadding}) * 2);
+  top: 3%;
   background-repeat: no-repeat;
   width: $zoomWindowWidth;
   height: $zoomWindowHeight;
