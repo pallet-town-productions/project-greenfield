@@ -46,12 +46,14 @@ class AddQuestion extends React.Component {
           <form
             autoComplete="off"
             className="form-style-7"
-            onSubmit={() => {
+            onSubmit={(e) => {
               const modalData = {
                 body: document.getElementById('qna-modal-q-body').value,
                 name: document.getElementById('qna-modal-q-name').value,
                 email: document.getElementById('qna-modal-q-email').value,
               };
+
+              e.preventDefault();
 
               fetch(`http://54.213.200.113:3000/qa/${productId}`, {
                 method: 'POST',
@@ -63,6 +65,7 @@ class AddQuestion extends React.Component {
                 .then((result) => {
                   if (result.ok) {
                     alert('Thanks for sending in your question!');
+                    this.hideModal(false);
                   } else {
                     alert('ErRor! erRoR! Please contact the digital overlords of this site.');
                   }
