@@ -12,7 +12,7 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-jest.mock('../../util/api');
+jest.mock('../../util/api.js');
 
 // const mapStateToProps = (state) => ({
 //   ...state,
