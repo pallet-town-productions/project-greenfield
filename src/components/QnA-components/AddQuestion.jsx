@@ -55,7 +55,7 @@ class AddQuestion extends React.Component {
 
               e.preventDefault();
 
-              fetch(`http://54.213.200.113:3000/qa/${productId}`, {
+              fetch(`http://18.217.220.129/qa/${productId}`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {
