@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow, render, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 // import RnR from '../../components/RnR/RnR_container';
 import Tile from '../../components/RnR/RnR_tile';
@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 // Tests for tile
 
 describe('tile', () => {
-  const wrapper = shallow(<Tile review={exampleReviewData.results[0]} />);
+  const wrapper = mount(<Tile review={exampleReviewData.results[0]} />);
   it('should have an outer div', () => {
     expect(wrapper.exists('.tile')).toBeTruthy();
   });
@@ -33,6 +33,8 @@ describe('tile', () => {
     const response = wrapper.find('.response-text');
     expect(response.exists()).toBe(false);
   });
+  it('should have three photos', () => {
+    const photos = wrapper.find('.thumbnail');
+    expect(photos).toHaveLength(3);
+  });
 });
-
-// expect(wrapper.find('.other-class').isEmpty()).to.equal(true);
