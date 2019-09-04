@@ -12,7 +12,7 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-jest.mock('../../util/api.js', () => ({
+jest.mock('../../util/api', () => ({
   apiUrl: 'http://12.345.678.9101:3000',
 }));
 
