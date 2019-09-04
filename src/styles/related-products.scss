@@ -55,10 +55,6 @@ img {
   font-family: $font;
 }
 
-.slick-list> div {
-  margin-left: 0px;
-  }
-
   .add-to-outfit {
     height: 300px;
     width: 200px !important;
@@ -153,6 +149,11 @@ img {
     margin-top: 7%;
     font-size: 128px;
   }
+
+  a {
+    color: $modalColor;
+  }
+
 
 
   
