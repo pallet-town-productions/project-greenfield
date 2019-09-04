@@ -1,3 +1,5 @@
+import api from '../config/config';
+
 const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
 
 function zeroPad(num, places) {
@@ -6,7 +8,7 @@ function zeroPad(num, places) {
 }
 
 function getData(endpoint) {
-  return fetch(`http://54.213.200.113:3000${endpoint}`, {
+  return fetch(`http://${api}${endpoint}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import AddQuestion from './AddQuestion';
 import List from './List';
 import Search from './Search';
+import api from '../../config/config';
 import '../../styles/QnA-styles.scss';
 
 const mapStateToProps = (state) => ({
@@ -48,7 +49,7 @@ class QnA extends React.Component {
     const { productData } = this.props;
     const { id } = productData;
     // grabs initial set of questions
-    fetch(`http://54.213.200.113:3000/qa/${id}?count=10`)
+    fetch(`http://${api}/qa/${id}?count=10`)
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
@@ -62,7 +63,7 @@ class QnA extends React.Component {
     const { productId } = productData.id;
 
     if (productData.id !== prevProps.productData.id) {
-      fetch(`http://54.213.200.113:3000/qa/${productData.id}?count=10`)
+      fetch(`http://${api}/qa/${productData.id}?count=10`)
         .then((data) => data.json())
         .then((result) => {
           const currentState = this.state;

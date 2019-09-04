@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
+import api from '../../config/config';
 
 class AddAnswer extends React.Component {
   constructor(props, { data, productName, counter }) {
@@ -46,7 +47,7 @@ class AddAnswer extends React.Component {
               };
               e.preventDefault();
 
-              fetch(`http://54.213.200.113:3000/qa/${data.question_id}/answers`, {
+              fetch(`http://${api}/qa/${data.question_id}/answers`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {

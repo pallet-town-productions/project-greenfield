@@ -8,6 +8,7 @@ import Splash from './splash';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
+import api from '../config/config';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';
 import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
@@ -23,11 +24,11 @@ export class App extends Component {
 
     this.helpfulClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://54.213.200.113:3000/${component}/helpful/${id}`, {
+        fetch(`http://${api}/${component}/helpful/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://54.213.200.113:3000/${component}/${type}/${id}/helpful`, {
+        fetch(`http://${api}/${component}/${type}/${id}/helpful`, {
           method: 'PUT',
         });
       }
@@ -35,11 +36,11 @@ export class App extends Component {
 
     this.reportClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://54.213.200.113:3000/${component}/report/${id}`, {
+        fetch(`http://${api}/${component}/report/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://54.213.200.113:3000/${component}/${type}/${id}/report`, {
+        fetch(`http://${api}/${component}/${type}/${id}/report`, {
           method: 'PUT',
         });
       }
