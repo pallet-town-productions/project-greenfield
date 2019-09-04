@@ -94,12 +94,13 @@
         white-space: nowrap;
         overflow-x: auto;
         font-size: 12px;
+        color: grey;
         .lower {
             display: inline-block;
             margin-left: 10px;
         }
         .helpfulness {
-            margin-left: 1px;
+            margin-left: 5px;
         }
         .test {
             text-decoration: underline;
