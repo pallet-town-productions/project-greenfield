@@ -3,7 +3,6 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { recordClickData } from '../../util/util';
-import apiUrl from '../../util/api';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
 import ConnectedModalTable from './related-modal-table';
@@ -12,11 +11,7 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// jest.mock('../../util/api.js');
-
-// const mapStateToProps = (state) => ({
-//   ...state,
-// });
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
 export class RelatedCard extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +51,6 @@ export class RelatedCard extends Component {
   }
 
   getCardData(productId) {
-    const url = apiUrl;
     this.setState({ loading: true });
     fetch(`${url}/products/${productId}`)
       .then((data) => data.json())

@@ -7,6 +7,8 @@ import configureStore from './store';
 import ConnectedApp from './components/app';
 import * as serviceWorker from './serviceWorker';
 
+require('dotenv').config();
+
 ReactDOM.render(
   <Provider store={configureStore()}>
     <Router>

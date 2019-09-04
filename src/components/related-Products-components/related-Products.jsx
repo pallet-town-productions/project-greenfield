@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import apiUrl from '../../util/api';
 import ConnectedCarousel from './carousel';
 import ConnectedOutfit from './outfit';
 import relatedAction from '../../actions/related-Products-Actions/related-products-action';
@@ -10,6 +9,9 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -17,7 +19,7 @@ const mapStateToProps = (state) => ({
 export class RelatedProducts extends Component {
   componentDidMount() {
     const { productId, dispatch } = this.props;
-    fetch(`http://18.217.220.129/products/${productId}/related`)
+    fetch(`${url}/products/${productId}/related`)
       .then((data) => data.json())
       .then((relatedProducts) => (
         dispatch(relatedAction(relatedProducts.filter((id) => id !== 11)))
@@ -30,7 +32,6 @@ export class RelatedProducts extends Component {
     if (oldId === productId) {
       return;
     }
-    const url = apiUrl;
     fetch(`${url}/products/${productId}/related`)
       .then((data) => data.json())
       .then((relatedProducts) => (
