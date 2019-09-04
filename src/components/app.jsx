@@ -54,7 +54,7 @@ export class App extends Component {
     if (oldId === path) {
       return;
     } else if (Number.isNaN(path)) {
-      path = FRONTPAGEPRODUCTID; // default product for when the page doesn't have a numerical endpoint
+      path = FRONTPAGEPRODUCTID; // default product for when the page doesn't have a num endpoint
     }
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
