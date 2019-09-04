@@ -20,7 +20,7 @@ const Tile = (props) => {
     <PhotoThumbnails photo={photo} />
   ));
 
-  if (review.response !== 'null') {
+  if (review.response !== 'null' && review.response !== '') {
     response = (
       <div className="response">
         <p className="response-text-header">Response</p>

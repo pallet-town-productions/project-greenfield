@@ -41,6 +41,14 @@
     width: 80%;
     max-width: 700px;
   }
+
+.list {
+    width: 100%;
+}
+
+.photos {
+    display: flex;
+}
   
 .container {
     width: 134px; 
@@ -57,6 +65,7 @@
 }
 
 .tile {
+    width: 100%;
     padding: 10px;
     margin: 5px;
     .show {
