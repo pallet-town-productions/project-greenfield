@@ -10,7 +10,6 @@ function setup() {
   const props = {
     productId: 1,
   };
-  jest.mock('../../util/api', () => 'http://12.345.678.9101:3000');
   const enzymeWrapper = shallow(<RelatedCard productId={1} />);
 
   return {
@@ -20,6 +19,7 @@ function setup() {
 }
 
 describe('components', () => {
+  jest.mock('../../util/api.js', () => 'http://12.345.678.9101:3000');
   describe('Related products', () => {
     it('should render self and subcomponents', () => {
       const { enzymeWrapper } = setup();
