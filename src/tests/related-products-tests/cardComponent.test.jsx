@@ -19,11 +19,11 @@ function setup() {
 }
 
 describe('components', () => {
-  jest.mock('../../util/api.js', () => 'http://12.345.678.9101:3000');
+  jest.mock('../../util/api.js')
   describe('Related products', () => {
     it('should render self and subcomponents', () => {
       const { enzymeWrapper } = setup();
-
+      jest.mock('../../util/api.js');
       expect(enzymeWrapper.exists('.card-container')).toBe(true);
     });
   });
