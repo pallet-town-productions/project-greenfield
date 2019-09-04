@@ -38,7 +38,7 @@ class WriteReviewForm extends Component {
     // const formData = this.state;
     event.preventDefault();
     hideModal();
-    // check if data is valid
+
     // make a post with form data if everything all good
     // otherwise render some errors
   }
@@ -47,10 +47,8 @@ class WriteReviewForm extends Component {
     const {
       rating,
       recommended,
-      // characteristic,
       summary,
       body,
-      // photos,
       nickname,
       email,
     } = this.state;
@@ -63,12 +61,14 @@ class WriteReviewForm extends Component {
           className="form-style-7"
           onSubmit={this.handleSubmit}
         >
-          <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
-          <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
-          <SingleInput config={summary} handleInputChange={this.handleInputChange} />
-          <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
-          <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
-          <SingleInput config={email} handleInputChange={this.handleInputChange} />
+          <ul>
+            <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
+            <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+            <SingleInput config={summary} handleInputChange={this.handleInputChange} />
+            <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
+            <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
+            <SingleInput config={email} handleInputChange={this.handleInputChange} />
+          </ul>
           <input type="submit" value="Submit" />
         </form>
       </div>

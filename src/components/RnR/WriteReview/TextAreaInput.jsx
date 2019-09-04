@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 const TextInput = ({ config, handleInputChange }) => {
   const {
-    label, id, value, constraints,
+    label, id, constraints,
   } = config;
   const { placeholder = '', sublabel = '' } = constraints;
   return (
-    <div>
+    <li>
       <label htmlFor={id}>
         {label}
       </label>
@@ -15,12 +15,11 @@ const TextInput = ({ config, handleInputChange }) => {
         id={id}
         name={id}
         rows={5}
-        value={value}
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <div>{sublabel}</div>
-    </div>
+      <span>{sublabel}</span>
+    </li>
   );
 };
 
@@ -29,7 +28,6 @@ TextInput.propTypes = {
   config: PropTypes.shape({
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    value: '',
     constraints: PropTypes.shape({
       placeholder: PropTypes.string,
       sublabel: PropTypes.string,
