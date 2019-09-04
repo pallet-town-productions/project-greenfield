@@ -58,6 +58,7 @@ export class App extends Component {
   }
 
   render() {
+    // eslint-disable-next-line camelcase
     const { productData: { id }, styleData: { product_id } } = this.props;
     if (id === SPLASHPAGEID || Number(product_id) === SPLASHPAGEID) {
       return <Splash productId={SPLASHPAGEID + 1} />; // assign it to NOT SPLASHPAGEID
@@ -85,6 +86,8 @@ App.propTypes = {
   dispatch: PT.func.isRequired,
   productId: PT.number.isRequired,
   productData: PT.shape({ id: PT.number }).isRequired,
+  product_id: PT.string.isRequired,
+  styleData: PT.shape({ product_id: PT.number }).isRequired,
 };
 
 const connectedApp = withRouter(connect(mapStateToProps, null)(App));
