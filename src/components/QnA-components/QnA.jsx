@@ -48,7 +48,7 @@ class QnA extends React.Component {
     const { productData } = this.props;
     const { id } = productData;
     // grabs initial set of questions
-    fetch(`http://54.213.200.113:3000/qa/${id}?count=10`)
+    fetch(`http://18.217.220.129/qa/${id}?count=10`)
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
@@ -62,7 +62,7 @@ class QnA extends React.Component {
     const { productId } = productData.id;
 
     if (productData.id !== prevProps.productData.id) {
-      fetch(`http://54.213.200.113:3000/qa/${productData.id}?count=10`)
+      fetch(`http://18.217.220.129/qa/${productData.id}?count=10`)
         .then((data) => data.json())
         .then((result) => {
           const currentState = this.state;

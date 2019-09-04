@@ -56,13 +56,26 @@ class Question extends React.Component {
               id={`Q${data.question_id}`}
             >
               Helpful? &nbsp;
-              <span className="qna-helpful-btn" role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', data.question_id, 'question')}>
+              <span
+                className="qna-helpful-btn"
+                role="presentation"
+                type="submit"
+                onClick={() => {
+                  helpfulClickHandler('qa', data.question_id, 'question');
+                  const currentCount = document.getElementById(`QH${data.question_id}`).innerHTML;
+                  document.getElementById(`QH${data.question_id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
+                }}
+              >
                 <u style={{ fontSize: '13px', color: 'gray' }}>
                   Yes
                 </u>
               </span>
               &nbsp;
-              {`(${data.question_helpfulness})`}
+              <b style={{ fontWeight: 'normal' }} id={`QH${data.question_id}`}>
+                (
+                {data.question_helpfulness}
+                )
+              </b>
               &nbsp;&nbsp;&nbsp;
                 |
               &nbsp;&nbsp;&nbsp;

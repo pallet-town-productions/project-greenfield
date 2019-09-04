@@ -61,13 +61,14 @@ class Answer extends React.Component {
             {answer.photos.length === 0 ? '' : answer.photos.map((photo) => (
               <PictureModal key={`pa${answer.id + Math.random()}`} photo={photo} answer={answer} />
             ))}
-            <p style={{
-              marginTop: '7px',
-              fontSize: '12px',
-              marginLeft: '4px',
-              marginBottom: 0,
-              color: 'gray',
-            }}
+            <p
+              style={{
+                marginTop: '7px',
+                fontSize: '12px',
+                marginLeft: '4px',
+                marginBottom: 0,
+                color: 'gray',
+              }}
             >
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               by
@@ -76,11 +77,27 @@ class Answer extends React.Component {
               {`, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
               &nbsp;&nbsp;&nbsp;&nbsp;
               | &nbsp;&nbsp;&nbsp; Helpful? &nbsp;
-              <span className="qna-helpful-btn" role="presentation" type="submit" onClick={() => helpfulClickHandler('qa', answer.id, 'answer')}>
+              <span
+                className="qna-helpful-btn"
+                role="presentation"
+                type="submit"
+                onClick={() => {
+                  helpfulClickHandler('qa', answer.id, 'answer');
+                  const currentCount = document.getElementById(`A${answer.id}`).innerHTML;
+                  document.getElementById(`A${answer.id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
+                }}
+              >
                 <u style={{ color: 'gray' }}>Yes</u>
               </span>
               &nbsp;
-              {`(${answer.helpfulness})`}
+              <b
+                style={{ fontWeight: 'normal' }}
+                id={`A${answer.id}`}
+              >
+                (
+                {answer.helpfulness}
+                )
+              </b>
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
               <span className="qna-report-btn" role="presentation" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
                 <u style={{ color: 'gray' }}>Report</u>
