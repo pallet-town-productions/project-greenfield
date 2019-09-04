@@ -38,6 +38,7 @@ import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/o
 import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart/changeSizeQty';
 
 Enzyme.configure({ adapter: new Adapter() });
+jest.mock('../../util/api.js');
 
 // NOTES:
 // exists likes basic html, doesn't like React Components
