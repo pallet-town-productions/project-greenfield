@@ -82,10 +82,10 @@ const getReviewFormConfig = () => {
     rating: {
       label: 'Overall Rating',
       mandatory: true,
-      id: 'overall',
+      id: 'rating',
       type: 'radio',
       constraints: {
-        options: ['Poor', 'Fair', 'Average', 'Good', 'Great'],
+        options: [1, 2, 3, 4, 5],
       },
     },
     recommended: {

@@ -7,6 +7,8 @@ import TextAreaInput from './TextAreaInput';
 import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
+const url = 'http://54.213.200.113:3000/reviews/4';
+
 class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
@@ -38,11 +40,23 @@ class WriteReviewForm extends Component {
   handleSubmit(event) {
     const { hideModal } = this.props;
     const formData = getFilteredFormData(this.state);
-    console.log(formData);
     event.preventDefault();
-    hideModal();
-    // make a post with form data if everything all good
-    // otherwise render some errors
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('got it');
+          hideModal();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
