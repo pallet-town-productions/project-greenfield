@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { RelatedProducts } from '../../components/related-Products-components/related-Products';
 
 Enzyme.configure({ adapter: new Adapter() });
+jest.mock('../../util/api.js');
 
 function setup() {
   const props = {
