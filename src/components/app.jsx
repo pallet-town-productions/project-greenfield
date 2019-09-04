@@ -58,8 +58,8 @@ export class App extends Component {
   }
 
   render() {
-    const { productData: { id } } = this.props;
-    if (id === SPLASHPAGEID) {
+    const { productData: { id }, styleData: { product_id } } = this.props;
+    if (id === SPLASHPAGEID || Number(product_id) === SPLASHPAGEID) {
       return <Splash productId={SPLASHPAGEID + 1} />; // assign it to NOT SPLASHPAGEID
     }
     return (
