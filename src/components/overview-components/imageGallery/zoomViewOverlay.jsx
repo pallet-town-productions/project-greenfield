@@ -38,6 +38,7 @@ export function ZoomViewDisplayComponent({
         onMouseMove={handleZoomPanBound}
         id="zoom-view-mouse-move"
         onClick={handleHideZoomView}
+        role="presentation"
       >
         <ImageMain
           thisId="zoom-photo"

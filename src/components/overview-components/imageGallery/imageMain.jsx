@@ -85,14 +85,16 @@ ImageMainComponent.propTypes = {
   currentBigPicture: PT.string.isRequired,
   currentProductName: PT.string.isRequired,
   currentStyleName: PT.string.isRequired,
-  onHover: PT.string.isRequired, // this is a class name that CSS uses
+  handleClick: PT.func,
+  handleExit: PT.func,
+  onHover: PT.string, // this is a class name that CSS uses
   thisId: PT.string.isRequired, // this is an ID name that CSS uses
 };
 
 ImageMainComponent.defaultProps = {
   handleExit: () => {},
   handleClick: () => {},
-  onHover: "",
-}
+  onHover: '',
+};
 
 export default connect(mapStateToProps, null)(ImageMainComponent);
