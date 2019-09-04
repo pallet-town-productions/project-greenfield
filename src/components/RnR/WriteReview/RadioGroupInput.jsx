@@ -7,7 +7,7 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
   const buttons = options.map((option) => (
     <div
       key={option}
-      className="radio-group"
+      className="radio-button"
     >
       <label htmlFor={option}>
         {option}
@@ -23,10 +23,10 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
     </div>
   ));
   return (
-    <div className="RadioGroup">
+    <li className="radio-group">
       {label}
       {buttons}
-    </div>
+    </li>
   );
 };
 

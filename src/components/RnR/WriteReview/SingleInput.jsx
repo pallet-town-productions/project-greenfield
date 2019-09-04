@@ -7,7 +7,7 @@ const SingleInput = ({ config, handleInputChange }) => {
   } = config;
   const { placeholder = '', sublabel = '' } = constraints;
   return (
-    <div>
+    <li>
       <label htmlFor={id}>
         {label}
       </label>
@@ -20,8 +20,8 @@ const SingleInput = ({ config, handleInputChange }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <div>{sublabel}</div>
-    </div>
+      <span>{sublabel}</span>
+    </li>
   );
 };
 
