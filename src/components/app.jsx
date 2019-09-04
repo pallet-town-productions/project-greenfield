@@ -47,15 +47,17 @@ export class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { productId: oldId } = prevProps;
+    let { productId: oldId } = prevProps;
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
     let path = parseInt(pathName.substr(1), 10);
-    if (oldId === path) {
+    if (oldId === path || Number.isNaN(path)) {
       return;
-    } else if (Number.isNaN(path)) {
-      path = FRONTPAGEPRODUCTID;
     }
+    // } else if (Number.isNaN(path)) {
+    //   oldId = FRONTPAGEPRODUCTID;
+    //   path = FRONTPAGEPRODUCTID;
+    // }
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
     dispatch(setProductDataActionKickoff(path)); // replace 2 with path
