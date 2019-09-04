@@ -1,5 +1,4 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
-jest.mock('../../util/api.js');
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

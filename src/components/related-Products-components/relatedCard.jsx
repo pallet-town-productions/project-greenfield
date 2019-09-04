@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { recordClickData } from '../../util/util';
-import apiUrl from '../../util/api.js';
+import apiUrl from '../../util/api';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
 import ConnectedModalTable from './related-modal-table';
@@ -12,7 +12,7 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-//jest.mock('../../util/api.js');
+// jest.mock('../../util/api.js');
 
 // const mapStateToProps = (state) => ({
 //   ...state,
