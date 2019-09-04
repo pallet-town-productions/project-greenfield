@@ -74,3 +74,12 @@ body {
   flex-direction: column;
   margin: auto;
 }
+
+#splash-page {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  height: 100vh;
+  width: 100vw;
+  font-size: 1.3em;
+}

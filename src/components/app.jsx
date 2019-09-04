@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
+import { SPLASHPAGEID } from '../util/util';
+import Splash from './splash';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
@@ -56,6 +58,10 @@ export class App extends Component {
   }
 
   render() {
+    const { productData: { id } } = this.props;
+    if (id === SPLASHPAGEID) {
+      return <Splash productId={SPLASHPAGEID + 1} />; // assign it to NOT SPLASHPAGEID
+    }
     return (
       <div id="main-container">
         <div id="component-container">
@@ -78,6 +84,7 @@ App.propTypes = {
   location: PT.shape({ pathname: PT.string }).isRequired,
   dispatch: PT.func.isRequired,
   productId: PT.number.isRequired,
+  productData: PT.shape({ id: PT.number }).isRequired,
 };
 
 const connectedApp = withRouter(connect(mapStateToProps, null)(App));
