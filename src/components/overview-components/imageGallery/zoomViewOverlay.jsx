@@ -34,13 +34,13 @@ export function ZoomViewDisplayComponent({
   return (
     <div>
       <div
-        className={display}
+        className={`${display} cursor-zoomout`}
         onMouseMove={handleZoomPanBound}
         id="zoom-view-mouse-move"
+        onClick={handleHideZoomView}
+        role="presentation"
       >
         <ImageMain
-          handleClick={handleHideZoomView}
-          onHover="cursor-zoomout"
           thisId="zoom-photo"
         />
       </div>
