@@ -72,7 +72,7 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form
-          className="form-style-7"
+          className="form"
           onSubmit={this.handleSubmit}
         >
           <ul>
