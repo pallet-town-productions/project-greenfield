@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Modal from './Modal';
 import { recordClickData } from '../../util/util';
 
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 class AddQuestion extends React.Component {
   constructor(props, { productName, productId }) {
     super(props, { productName, productId });
@@ -59,7 +61,7 @@ class AddQuestion extends React.Component {
 
               e.preventDefault();
 
-              fetch(`http://${process.env.REACT_APP_APIURL}/qa/${productId}`, {
+              fetch(`${url}/qa/${productId}`, {
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {

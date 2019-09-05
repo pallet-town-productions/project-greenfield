@@ -12,6 +12,8 @@ import ConnectedRelatedProducts from './related-Products-components/related-Prod
 import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
 
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -21,11 +23,11 @@ export class App extends Component {
 
     this.helpfulClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/helpful/${id}`, {
+        fetch(`${url}/${component}/helpful/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/${type}/${id}/helpful`, {
+        fetch(`${url}/${component}/${type}/${id}/helpful`, {
           method: 'PUT',
         });
       }
@@ -33,11 +35,11 @@ export class App extends Component {
 
     this.reportClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/report/${id}`, {
+        fetch(`${url}/${component}/report/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/${type}/${id}/report`, {
+        fetch(`${url}/${component}/${type}/${id}/report`, {
           method: 'PUT',
         });
       }

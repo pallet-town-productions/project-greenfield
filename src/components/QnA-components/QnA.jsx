@@ -8,6 +8,8 @@ import Search from './Search';
 import '../../styles/QnA-styles.scss';
 import { recordClickData } from '../../util/util';
 
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -49,7 +51,7 @@ class QnA extends React.Component {
     const { productData } = this.props;
     const { id } = productData;
     // grabs initial set of questions
-    fetch(`http://${process.env.REACT_APP_APIURL}/qa/${id}?count=10`)
+    fetch(`${url}/qa/${id}?count=10`)
       .then((data) => data.json())
       .then((result) => {
         const currentState = this.state;
@@ -63,7 +65,7 @@ class QnA extends React.Component {
     const { productId } = productData.id;
 
     if (productData.id !== prevProps.productData.id) {
-      fetch(`http://${process.env.REACT_APP_APIURL}/qa/${productData.id}?count=10`)
+      fetch(`${url}/qa/${productData.id}?count=10`)
         .then((data) => data.json())
         .then((result) => {
           const currentState = this.state;
