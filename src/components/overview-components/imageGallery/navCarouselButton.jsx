@@ -1,8 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentPhotoIndex, currentStyleIndex } = st;
@@ -17,7 +16,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleClick: (e, action) => {
       dispatch({ type: action });
-      recordClickData(e.target, OWNER);
+      recordClickData(e.target, OVERVIEWOWNER);
     },
   };
 }

@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ImageThumbnail from './imageThumbnail';
-import { zeroPad, recordClickData } from '../../../util/util';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentPhotoIndex } = st;
@@ -25,7 +24,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleSwitchPhoto: (e, photoIndex) => {
       dispatch(changePhoto(photoIndex));
-      recordClickData(e.currentTarget, OWNER);
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }

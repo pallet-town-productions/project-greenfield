@@ -2,8 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentSizeIndex, currentQuantity } = st;
@@ -39,7 +38,7 @@ function mapDispatchToProps(dispatch) {
       } else {
         console.log(addInfo);
         dispatch(addToCart(addInfo));
-        recordClickData(e.currentTarget, OWNER);
+        recordClickData(e.currentTarget, OVERVIEWOWNER);
       }
     },
   };
@@ -66,7 +65,7 @@ export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick })
       <div
         id="add-to-cart-button"
         className="cursor-pointer"
-        onClick={(e)=>{
+        onClick={(e) => {
           handleClick(e, addInfo);
         }}
         role="presentation"

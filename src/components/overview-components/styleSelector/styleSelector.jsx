@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import StyleThumbnail from './styleThumbnail';
-import { zeroPad, recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const styleList = st.styleData.results;
@@ -24,7 +23,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(changePhoto(0));
       }
       dispatch(changeStyle(styleIndex));
-      recordClickData(e.currentTarget, OWNER);
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }

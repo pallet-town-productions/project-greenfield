@@ -3,8 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { range } from 'underscore';
 import { changeQuantity } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 const BLANKQUANTITY = '-';
 
@@ -23,7 +22,7 @@ function mapDispatchToProps(dispatch) {
     handleQuantityChange: (e) => {
       const selectedQuantity = Number(document.getElementById('current-quantity').value);
       dispatch(changeQuantity(selectedQuantity));
-      recordClickData(e.currentTarget, OWNER);
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }

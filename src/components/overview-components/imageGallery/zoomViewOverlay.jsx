@@ -7,8 +7,7 @@ import {
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import zoomPan from './handleZoomPan';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { showZoomView, currentStyleIndex, currentPhotoIndex } = st;
@@ -18,10 +17,10 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleHideZoomView: (e) => {
+    handleHideZoomView: () => {
       dispatch(toggleExpandedView(true));
       dispatch(toggleZoomView(false));
-      recordClickData({id: "zoom-view-hide"}, OWNER);
+      recordClickData({ id: 'zoom-view-hide' }, OVERVIEWOWNER);
     },
     handleZoomPan: (e, imageUrl) => {
       zoomPan(e, imageUrl);

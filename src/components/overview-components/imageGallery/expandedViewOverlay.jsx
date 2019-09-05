@@ -7,8 +7,7 @@ import {
   toggleExpandedView,
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { showExpandedView } = st;
@@ -19,13 +18,13 @@ function mapDispatchToProps(dispatch) {
   return {
     handleHideExpandedView: () => {
       dispatch(toggleExpandedView(false));
-      recordClickData({id: "expanded-view-hide"}, OWNER);
+      recordClickData({ id: 'expanded-view-hide' }, OVERVIEWOWNER);
     },
     handleShowZoomView: (e) => {
       e.stopPropagation();
       dispatch(toggleZoomView(true));
       dispatch(toggleExpandedView(false));
-      recordClickData({id: "zoom-view-show"}, OWNER);
+      recordClickData({ id: 'zoom-view-show' }, OVERVIEWOWNER);
     },
   };
 }

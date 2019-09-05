@@ -2,8 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import '../../../styles/overview.scss';
-import { zeroPad, recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { productData, currentStyleIndex, currentPhotoIndex } = st;
@@ -57,27 +56,27 @@ export function SocialMediaButtonsComponent({ thisUrl, productData, currentBigPi
   const productName = productData.name;
   return (
     <div>
-      <a 
+      <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${thisUrl}&t=${productName}`}
-        onClick={(e) => {recordClickData({id: "facebook-share"}, OWNER)}}
+        onClick={() => { recordClickData({ id: 'facebook-share' }, OVERVIEWOWNER); }}
       >
         <img
           src="https://img.icons8.com/color/48/000000/facebook.png"
           alt="Share On Facebook"
         />
       </a>
-      <a 
+      <a
         href={`https://twitter.com/intent/tweet?url=${thisUrl}&text=${productName}`}
-        onClick={(e) => {recordClickData({id: "twitter-share"}, OWNER)}}
+        onClick={() => { recordClickData({ id: 'twitter-share' }, OVERVIEWOWNER); }}
       >
         <img
           src="https://img.icons8.com/color/48/000000/twitter.png"
           alt="Share On Twitter"
         />
       </a>
-      <a 
+      <a
         href={`http://pinterest.com/pin/create/button/?url=${thisUrl}&media=${currentBigPicture}&description=${productName}`}
-        onClick={(e) => {recordClickData({id: "pinterest-share"}, OWNER)}}
+        onClick={() => { recordClickData({ id: 'pinterest-share' }, OVERVIEWOWNER); }}
       >
         <img
           src="https://img.icons8.com/color/48/000000/pinterest--v1.png"

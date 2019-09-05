@@ -1,5 +1,6 @@
 const FRONTPAGEPRODUCTID = 5; // default product for when the page doesn't have a num endpoint
 const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
+const OVERVIEWOWNER = 'overview';
 const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
 function zeroPad(num, places) {
@@ -62,6 +63,7 @@ const recordClickData = (target, owner) => {
 export {
   FRONTPAGEPRODUCTID,
   SPLASHPAGEID,
+  OVERVIEWOWNER,
   zeroPad,
   getProductData,
   getStyleData,

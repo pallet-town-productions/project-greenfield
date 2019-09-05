@@ -9,7 +9,7 @@ function ImageThumbnail({
   return (
     <span
       onClick={(e) => {
-        handleClick(e, photoIndex);  
+        handleClick(e, photoIndex);
       }}
       role="presentation"
       id={thisId}

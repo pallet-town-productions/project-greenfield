@@ -2,8 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
-import { zeroPad, recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
@@ -29,7 +28,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(togglePromptSelectSize(false)); // hide prompt to select size
       }
       dispatch(changeSize(selectedSize));
-      recordClickData(e.currentTarget, OWNER); 
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }

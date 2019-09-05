@@ -16,8 +16,6 @@ import ReviewsLink from './productInformation/reviewsLink';
 // import style sheets
 import '../../styles/overview.scss';
 
-const OWNER = "overview";
-
 function Overview() {
   return (
     <div>
@@ -55,7 +53,4 @@ function Overview() {
   );
 }
 
-export { 
-  Overview,
-  OWNER,
-};
+export default Overview;

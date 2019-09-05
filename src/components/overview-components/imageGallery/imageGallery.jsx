@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import ImageList from './imageList';
 import ImageMain from './imageMain';
 import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
-import { recordClickData } from '../../../util/util';
-import { OWNER } from '../overview';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatchExpandedView: () => {
       dispatch(toggleExpandedView(true));
-      recordClickData({id: "expanded-view-show"}, OWNER);
+      recordClickData({ id: 'expanded-view-show' }, OVERVIEWOWNER);
     },
   };
 }
