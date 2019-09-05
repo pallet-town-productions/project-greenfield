@@ -89,7 +89,7 @@ class WriteReviewForm extends Component {
             <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
           </ul>
-          <input type="submit" value="Submit" />
+          <input className="submit" type="submit" value="Submit" />
         </form>
       </div>
     );

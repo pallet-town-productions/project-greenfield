@@ -182,18 +182,20 @@ $componentWidth: 250px;
   // height: 500px;
   display: flex;
   width: 400px;
+  justify-content: center;
   background-color: $backgroundColor;
 
   .form {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    font-size: 10px;
-    ul {
-      list-style-type: none;
-      .form-list-item {
-        padding: $defaultPadding;
-      }
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    .form-list {
+
+    }
+    .form-list-item {
+      padding: $defaultPadding;
     }
     .form-single-input {
       width: 100%
@@ -209,7 +211,21 @@ $componentWidth: 250px;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-    }    
+    }   
+    
+    .submit {
+      background-color: lightgray;
+      font-family: $font;
+      border: 2px solid black;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      margin: 10px;
+      width: 150px;
+      height: 50px;
+      padding: 0;
+      line-height: 50px;
+    }
   }
 }
 
