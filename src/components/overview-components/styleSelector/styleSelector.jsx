@@ -44,7 +44,7 @@ export function StyleSelectorComponent({
           styleList.map((styleObj, index) => (
             <StyleThumbnail
               key={styleList[index].style_id}
-              thisId={zeroPad(styleList[index].style_id, 6)}
+              thisId={`style-thumbnail-${zeroPad(styleList[index].style_id, 6)}`}
               styleIndex={index}
               styleObj={styleObj}
               handleClick={handleSwitchStyle}
