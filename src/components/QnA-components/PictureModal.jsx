@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { recordClickData } from '../../util/util';
 
 class PictureModal extends React.Component {
   constructor(props, { photo, answer }) {
@@ -27,8 +28,12 @@ class PictureModal extends React.Component {
       <div className="qna-pmodal-container">
         <span
           role="button"
+          id={`qna-photo${photo}`}
           className="qna-span-thumbnail"
-          onClick={this.showModal}
+          onClick={() => {
+            this.showModal(true);
+            recordClickData(document.getElementById(`qna-photo${photo}`), 'qna');
+          }}
           tabIndex={0}
           onKeyPress={this.showModal}
         >

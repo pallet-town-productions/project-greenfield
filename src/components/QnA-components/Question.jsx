@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AddAnswer from './AddAnswer';
 import Answer from './Answer';
+import { recordClickData } from '../../util/util';
 
 
 class Question extends React.Component {
@@ -67,10 +68,12 @@ class Question extends React.Component {
               <span
                 className="qna-helpful-btn"
                 role="presentation"
+                id={`qna-helpful-btn-q${data.question_id}`}
                 type="submit"
                 onClick={() => {
                   if (!clicked) {
                     this.setState({ clicked: true }, () => {
+                      recordClickData(document.getElementById(`qna-helpful-btn-q${data.question_id}`), 'qna');
                       helpfulClickHandler('qa', data.question_id, 'question');
                       const currentCount = document.getElementById(`QH${data.question_id}`).innerHTML;
                       document.getElementById(`QH${data.question_id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
