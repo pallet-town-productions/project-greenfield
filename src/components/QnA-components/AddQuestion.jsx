@@ -33,7 +33,10 @@ class AddQuestion extends React.Component {
         role="presentation"
         className="qna-add-q-btn"
         id={`qna-add-qm${productId}`}
-        onClick={() => this.showModal(true)}
+        onClick={() => {
+          document.getElementById('sort-selector').style.cssText = 'display: none';
+          this.showModal(true);
+        }}
       >
         <p style={
           {
@@ -71,6 +74,7 @@ class AddQuestion extends React.Component {
                 .then((result) => {
                   if (result.ok) {
                     alert('Thanks for sending in your question!');
+                    document.getElementById('sort-selector').style.cssText = 'display: ""';
                     this.hideModal(false);
                   } else {
                     alert('ErRor! erRoR! Please contact the digital overlords of this site.');
