@@ -103,7 +103,7 @@ class AddQuestion extends React.Component {
                   maxLength="60"
                   id="qna-modal-q-name"
                 />
-                <span>Enter your nickname here</span>
+                <span id="qna-modal-q-name-span">Enter your nickname here</span>
               </li>
               <li>
                 <label htmlFor="email">Email</label>
@@ -113,7 +113,7 @@ class AddQuestion extends React.Component {
                   maxLength="60"
                   id="qna-modal-q-email"
                 />
-                <span>Enter a valid email address</span>
+                <span id="qna-modal-q-email-span">Enter a valid email address</span>
               </li>
               <li>
                 <label htmlFor="bio">Your Question</label>
@@ -122,7 +122,7 @@ class AddQuestion extends React.Component {
                   maxLength="1000"
                   id="qna-modal-q-body"
                 />
-                <span>{`What question do you have about ${productName}?`}</span>
+                <span id="qna-modal-q-body-span">{`What question do you have about ${productName}?`}</span>
               </li>
               <li>
                 <input type="submit" value="Send This" />
