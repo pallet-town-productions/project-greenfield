@@ -61,9 +61,11 @@ export class RelatedCard extends Component {
       .then((photos) => this.setState({ photos, loading: false }));
     fetch(`${url}/reviews/${productId}/meta`)
       .then((data) => data.json())
-      .then((reviewData) => Object.values(reviewData.ratings))
-      .then((ratings) => ratings.reduce((element, acc) => acc + element, 0) / ratings.length)
-      .then((reviewAvg) => this.setState({ reviewAvg: Math.round(reviewAvg * 10) / 10 }));
+      .then((reviewData) => Object.entries(reviewData.ratings))
+      .then((ratings) => ratings.reduce((acc, element) => (
+        [acc[0] + (element[0] * element[1]), acc[1] + element[1]]), [0, 0]))
+      .then((reviewAvg) => (
+        this.setState({ reviewAvg: Math.round((reviewAvg[0] / reviewAvg[1]) * 10) / 10 })));
   }
 
   handleShowModal(e) {
