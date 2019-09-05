@@ -51,7 +51,7 @@ export class App extends Component {
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
     const path = parseInt(pathName.substr(1), 10) || FRONTPAGEPRODUCTID;
-    if (oldId === path || Number.isNaN(path)) {
+    if (oldId === path) {
       return;
     }
     dispatch(setProductAction(path));
