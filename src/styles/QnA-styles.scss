@@ -295,3 +295,26 @@
   transition: visibility 0s 2s, opacity 1s linear;
 }
 
+.qna-modal-a-email:focus ~ .qna-modal-a-email-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
+.qna-modal-a-name:focus ~ .qna-modal-a-name-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
+.qna-modal-a-pic:focus ~ .qna-modal-a-pic-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
+.qna-modal-a-body:focus ~ .qna-modal-a-body-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}

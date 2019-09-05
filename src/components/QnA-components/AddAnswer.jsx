@@ -96,7 +96,7 @@ class AddAnswer extends React.Component {
                   maxLength="60"
                   className="qna-modal-a-name"
                 />
-                <span>Enter your nickname here</span>
+                <span className="qna-modal-a-name-span">Enter your nickname here</span>
               </li>
               <li>
                 <label htmlFor="email">Email</label>
@@ -106,7 +106,7 @@ class AddAnswer extends React.Component {
                   maxLength="60"
                   className="qna-modal-a-email"
                 />
-                <span>Enter a valid email address</span>
+                <span className="qna-modal-a-email-span">Enter a valid email address</span>
               </li>
               <li>
                 <label htmlFor="url">Picture</label>
@@ -116,7 +116,7 @@ class AddAnswer extends React.Component {
                   maxLength="240"
                   className="qna-modal-a-pic"
                 />
-                <span>Valid link to your picture/s (eg: http://www.google.com)</span>
+                <span className="qna-modal-a-pic-span">Valid link to your picture/s (eg: http://www.google.com)</span>
               </li>
               <li>
                 <label htmlFor="bio">Your Answer</label>
@@ -125,7 +125,7 @@ class AddAnswer extends React.Component {
                   maxLength="1000"
                   className="qna-modal-a-body"
                 />
-                <span>{`Your answer to: ${data.question_body}`}</span>
+                <span className="qna-modal-a-body-span">{`Your answer to: ${data.question_body}`}</span>
               </li>
               <li>
                 <input type="submit" value="Send This" />
