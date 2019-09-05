@@ -41,6 +41,7 @@ class List extends Component {
     const { currentView } = this.state;
     const { updateStarReviews } = this.props;
     const { dispatch } = this.props;
+    const { productData } = this.props;
     let button;
     let reviewsToRender = updateReviews;
 
@@ -65,7 +66,7 @@ class List extends Component {
           />
         ))}
         {button}
-        <WriteReviewButton />
+        <WriteReviewButton productData={productData} />
       </div>
     );
   }

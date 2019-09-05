@@ -38,10 +38,11 @@ class WriteReviewForm extends Component {
   }
 
   handleSubmit(event) {
-    const { hideModal } = this.props;
+    const { hideModal, productData } = this.props;
+    const { id } = productData;
     const formData = getFilteredFormData(this.state);
     event.preventDefault();
-    fetch(`${apiUrl}/reviews/7`, {
+    fetch(`${apiUrl}/reviews/${id}`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -67,6 +68,8 @@ class WriteReviewForm extends Component {
       name,
       email,
     } = this.state;
+    const { productData } = this.props;
+    const productName = productData.name;
     return (
       <div
         role="presentation"
@@ -76,6 +79,7 @@ class WriteReviewForm extends Component {
           className="form"
           onSubmit={this.handleSubmit}
         >
+          <h3>{productName}</h3>
           <ul>
             <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
             <RadioGroupInput config={recommend} handleInputChange={this.handleInputChange} />
@@ -93,6 +97,10 @@ class WriteReviewForm extends Component {
 
 WriteReviewForm.propTypes = {
   hideModal: PropTypes.func.isRequired,
+  productData: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default WriteReviewForm;
