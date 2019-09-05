@@ -11,21 +11,21 @@ function CheckBox({ isRendered }) {
 }
 
 function StyleThumbnail({
-  thisId, style, styleIndex, currentStyleIndex, currentPhotoIndex, handleClick,
+  thisId, styleObj, styleIndex, currentStyleIndex, currentPhotoIndex, handleClick,
 }) {
-  const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${style.name}`;
+  const DUMMYTHUMBNAILURL = `https://dummyimage.com/100x100/000000/fff.jpg&text=${styleObj.name}`;
 
   return (
     <div
       id={thisId}
-      onClick={() => handleClick(style, styleIndex, currentPhotoIndex)}
+      onClick={() => handleClick(styleObj, styleIndex, currentPhotoIndex)}
       role="presentation"
     >
       <CheckBox isRendered={styleIndex === currentStyleIndex} />
       <img
-        src={style.photos[0].thumbnail_url || DUMMYTHUMBNAILURL}
+        src={styleObj.photos[0].thumbnail_url || DUMMYTHUMBNAILURL}
         className="thumbnail style-thumbnail"
-        alt={`Thumbnail for style ${style.name}`}
+        alt={`Thumbnail for style ${styleObj.name}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ CheckBox.propTypes = {
 
 StyleThumbnail.propTypes = {
   thisId: PT.string.isRequired,
-  style: PT.shape({
+  styleObj: PT.shape({
     photos: PT.array,
     name: PT.string.isRequired,
   }).isRequired,

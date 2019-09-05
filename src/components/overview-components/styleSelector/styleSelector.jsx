@@ -46,7 +46,7 @@ export function StyleSelectorComponent({
               key={styleList[index].style_id}
               thisId={zeroPad(styleList[index].style_id, 6)}
               styleIndex={index}
-              style={styleObj}
+              styleObj={styleObj}
               handleClick={handleSwitchStyle}
               currentStyleIndex={currentStyleIndex}
               currentPhotoIndex={currentPhotoIndex}
