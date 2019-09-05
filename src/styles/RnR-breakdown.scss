@@ -3,8 +3,8 @@
 $progressValueColor: #2AEB5D;
 $progressBarColor: #cac6c6;
 $borderHide: 6px solid transparent;
-$borderShow:  10px solid black;
-$thumbsliderMargin: 1px;
+$borderShow:  8px solid black;
+$thumbsliderMargin: 2px;
 $componentWidth: 250px;
 
 .breakdown-widget {
@@ -114,7 +114,7 @@ $componentWidth: 250px;
   }
 
   .percent-recommended {
-    text-align: center;
+    text-align: left;
   }
 
   .star-breakdown{

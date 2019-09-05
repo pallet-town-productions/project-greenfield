@@ -21,8 +21,18 @@ describe('RnR - Star Rating', () => {
     expect((enzymeWrapper.find('i').length)).toBe(5);
   });
 
-  it('should have 5 i elements representing stars for decimal number ratings', () => {
+  it('should have 5 i elements representing stars for decimal number ratings that round up', () => {
     const { enzymeWrapper } = testStarRating(4.5);
+    expect((enzymeWrapper.find('i').length)).toBe(5);
+  });
+
+  it('should have 5 i elements representing stars for decimal ratings that round down', () => {
+    const { enzymeWrapper } = testStarRating(4.4);
+    expect((enzymeWrapper.find('i').length)).toBe(5);
+  });
+
+  it('should have 5 i elements representing stars for decimal ratings that round up', () => {
+    const { enzymeWrapper } = testStarRating(2.6);
     expect((enzymeWrapper.find('i').length)).toBe(5);
   });
 
