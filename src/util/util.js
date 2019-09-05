@@ -1,3 +1,4 @@
+const FRONTPAGEPRODUCTID = 5; // default product for when the page doesn't have a num endpoint
 const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
 const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
@@ -16,12 +17,12 @@ function getData(endpoint) {
   });
 }
 
-function getProductData(productId = 1) {
+function getProductData(productId = FRONTPAGEPRODUCTID) {
   // returns the fetch's returned promise
   return getData(`/products/${productId}`);
 }
 
-function getStyleData(productId = 1) {
+function getStyleData(productId = FRONTPAGEPRODUCTID) {
   // returns the fetch's returned promise
   return getData(`/products/${productId}/styles`);
 }
@@ -34,7 +35,7 @@ function getProductId(endpoint) {
     const match = endpoint.match(/\/\d{1,}\//)[0];
     return Number(match.substring(1, match.length - 1));
   } catch (err) {
-    return 1;
+    return FRONTPAGEPRODUCTID;
   }
 }
 
@@ -60,6 +61,7 @@ const recordClickData = (target, owner) => {
 };
 
 export {
+  FRONTPAGEPRODUCTID,
   SPLASHPAGEID,
   zeroPad,
   getProductData,
