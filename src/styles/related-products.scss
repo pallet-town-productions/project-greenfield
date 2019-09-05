@@ -30,14 +30,21 @@ img {
   color: black;
 }
 
+.slick-list {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
 .related-title {
   display: flex;
   justify-content: center;
+  font-family: $font;
 }
 
 .card-info {
   padding: 0px;
   margin: 0px;
+  font-family: $font;
 }
 
 .card-info-container {
@@ -95,8 +102,6 @@ img {
     position: absolute;
     top: 1%;
     left: 85%;
-    // transform: translate(-50%, -50%);
-    // -ms-transform: translate(-50%, -50%);
     font-size: 24px;
     border: none;
     cursor: pointer;
@@ -109,8 +114,6 @@ img {
     position: absolute;
     top: 1%;
     left: 85%;
-    // transform: translate(-50%, -50%);
-    // -ms-transform: translate(-50%, -50%);
     font-size: 24px;
     border: none;
     cursor: pointer;
@@ -143,6 +146,7 @@ img {
     border-width: $borderThickness * 1.5;
     border-style: solid;
     text-align: center;
+    font-family: $font;
   }
 
   #add-icon {
@@ -153,3 +157,8 @@ img {
   a {
     color: $modalColor;
   }
+
+  
+
+
+  

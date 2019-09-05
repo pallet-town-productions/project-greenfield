@@ -1,6 +1,8 @@
 import api from '../config/config';
 
 const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 
 function zeroPad(num, places) {
   const zero = places - num.toString().length;
@@ -8,7 +10,7 @@ function zeroPad(num, places) {
 }
 
 function getData(endpoint) {
-  return fetch(`http://${api}${endpoint}`, {
+  return fetch(`${apiUrl}${endpoint}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -38,10 +40,32 @@ function getProductId(endpoint) {
   }
 }
 
+const recordClickData = (target, owner) => {
+  const now = Date.now().toString();
+  const data = {
+    element: target.id,
+    widget: owner,
+    time: now,
+  };
+  const parsedData = JSON.stringify(data);
+
+  const url = `${apiUrl}/interactions`;
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: parsedData,
+  }).then((resposne) => console.log(resposne))
+    .catch((e) => console.log(e));
+};
+
 export {
   SPLASHPAGEID,
   zeroPad,
   getProductData,
   getStyleData,
   getProductId,
+  recordClickData,
 };

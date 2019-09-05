@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { recordClickData } from '../../util/util';
 import StarRating from '../RnR/RnR_StarRating';
 import ConnectedRelatedModal from './related-modal';
 import ConnectedModalTable from './related-modal-table';
@@ -10,9 +11,7 @@ import '../../styles/related-products.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// const mapStateToProps = (state) => ({
-//   ...state,
-// });
+const url = process.env.REACT_APP_APIURL || '123.456.789.1011';
 export class RelatedCard extends Component {
   constructor(props) {
     super(props);
@@ -53,21 +52,22 @@ export class RelatedCard extends Component {
 
   getCardData(productId) {
     this.setState({ loading: true });
-    fetch(`http://18.217.220.129/products/${productId}`)
+    fetch(`${url}/products/${productId}`)
       .then((data) => data.json())
       .then((productData) => this.setState({ productData }));
-    fetch(`http://18.217.220.129/products/${productId}/styles`)
+    fetch(`${url}/products/${productId}/styles`)
       .then((data) => data.json())
       .then((productData) => productData.results.map((style) => style.photos))
       .then((photos) => this.setState({ photos, loading: false }));
-    fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+    fetch(`${url}/reviews/${productId}/meta`)
       .then((data) => data.json())
       .then((reviewData) => Object.values(reviewData.ratings))
       .then((ratings) => ratings.reduce((element, acc) => acc + element, 0) / ratings.length)
       .then((reviewAvg) => this.setState({ reviewAvg: Math.round(reviewAvg * 10) / 10 }));
   }
 
-  handleShowModal() {
+  handleShowModal(e) {
+    recordClickData(e.target, 'relatedProducts');
     this.setState({ showModal: true });
   }
 
@@ -128,7 +128,7 @@ export class RelatedCard extends Component {
               id="compare-button"
               tabIndex={0}
               role="button"
-              onClick={() => this.handleShowModal(productId)}
+              onClick={(e) => this.handleShowModal(e)}
               onKeyPress={() => this.handleShowModal(productId)}
             >
               stars
