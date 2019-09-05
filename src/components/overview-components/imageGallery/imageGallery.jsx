@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import ImageList from './imageList';
 import ImageMain from './imageMain';
 import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
-// import bunch of other child components
+import { recordClickData } from '../../../util/util';
+
+const OWNER = 'Bailey';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -18,7 +20,10 @@ export function ImageGalleryComponent({ dispatchExpandedView }) {
   return (
     <section id="image-gallery-grid-default">
       <ImageMain
-        handleClick={dispatchExpandedView}
+        handleClick={() => {
+          dispatchExpandedView();
+          recordClickData({id: "expanded-view-show"}, OWNER);
+        }}
         onHover="cursor-zoomin"
         thisId="main-photo"
       />

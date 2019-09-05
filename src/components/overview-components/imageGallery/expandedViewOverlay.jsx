@@ -38,7 +38,7 @@ export function ExpandedViewOverlayComponent({
     <div className={display} id="image-gallery-overlay">
       <ImageMain
         handleExit={handleHideExpandedView}
-        handleClick={(e) => {
+        handleClick={() => {
           handleShowZoomView();
           recordClickData({id: "zoom-view-show"}, OWNER);
         }}
