@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
-import { FRONTPAGEPRODUCTID, SPLASHPAGEID, recordClickData } from '../util/util';
+import {
+  FRONTPAGEPRODUCTID, SPLASHPAGEID, recordClickData, generateUserSession,
+} from '../util/util';
 import Splash from './splash';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
@@ -51,7 +53,10 @@ export class App extends Component {
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
     const path = parseInt(pathName.substr(1), 10) || FRONTPAGEPRODUCTID;
-    if (oldId === path) {
+    if (oldId === path) { // don't update
+      if (!window.localStorage.getItem('user_session')) { // if user session doesn't exist yet
+        window.localStorage.setItem('user_session', generateUserSession());
+      }
       return;
     }
     recordClickData({ id: 'link' }, 'relatedProducts');
