@@ -29,7 +29,14 @@ class WriteReviewButton extends Component {
     const modal = showModal ? (
       <ConnectedRelatedModal>
         <div
+          role="presentation"
           className="related-modal-container"
+          id="rnr-modal-container"
+          onClick={(e) => {
+            if (e.target.id === 'rnr-modal-container') {
+              this.hideModal();
+            }
+          }}
         >
           <WriteReviewForm productData={productData} hideModal={this.hideModal} />
         </div>
