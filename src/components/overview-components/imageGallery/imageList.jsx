@@ -7,7 +7,6 @@ import ImageThumbnail from './imageThumbnail';
 import { zeroPad } from '../../../util/util';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import bunch of other child components
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentPhotoIndex } = st;
@@ -47,7 +46,7 @@ export function ImageListComponent({
           return (
             <ImageThumbnail
               key={key}
-              thisId={key}
+              thisId={`thumbnail-${key}`}
               photoIndex={imageIndex}
               url={imageList[imageIndex].thumbnail_url}
               styleName={styleName}

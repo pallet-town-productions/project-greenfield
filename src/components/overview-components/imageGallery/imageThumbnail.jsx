@@ -1,6 +1,8 @@
 import React from 'react';
 import PT from 'prop-types';
+import { recordClickData } from '../../../util/util';
 
+const OWNER = 'Bailey';
 
 function ImageThumbnail({
   photoIndex, url, styleName, handleClick, isSelected, thisId,
@@ -9,7 +11,10 @@ function ImageThumbnail({
 
   return (
     <span
-      onClick={() => handleClick(photoIndex)}
+      onClick={(e) => {
+        handleClick(photoIndex);
+        recordClickData(e.currentTarget, OWNER);
+      }}
       role="presentation"
       id={thisId}
     >
