@@ -29,6 +29,10 @@ describe('tile', () => {
     const recommend = wrapper.find('.recommend');
     expect(recommend.text().includes('I recommend this product')).toBe(true);
   });
+  it('should have a body containing correct info', () => {
+    const body = wrapper.find('.tile-body');
+    expect(body.text().includes('Fuga accusamus est')).toBe(true);
+  })
   it('should have an empty response category', () => {
     const response = wrapper.find('.response-text');
     expect(response.exists()).toBe(false);
@@ -36,5 +40,9 @@ describe('tile', () => {
   it('should have three photos', () => {
     const photos = wrapper.find('.thumbnail');
     expect(photos).toHaveLength(3);
+  });
+  it('should display the helpfulness count', () => {
+    const helpfulness = wrapper.find('.helpfulness');
+    expect(helpfulness.text()).toBe('(29)');
   });
 });
