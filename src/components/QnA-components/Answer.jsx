@@ -44,7 +44,7 @@ class Answer extends React.Component {
       <div key={`da${data.answers}`} className="qna-answer-container">
         {Object.values(data.answers).slice(0, displayCount).map((answer) => (
           <span key={`sa${answer.id}`} className="questionsAnswerTools">
-            <p style={{ fontSize: '22px', marginTop: '15px', marginBottom: '7px' }}>
+            <p style={{ fontSize: '18px', marginTop: '15px', marginBottom: '7px' }}>
               {Object.values(data.answers)[0] === answer ? (
                 <span>
                   <b style={{ marginRight: '1px' }}>
@@ -70,15 +70,15 @@ class Answer extends React.Component {
               style={{
                 marginTop: '7px',
                 fontSize: '12px',
-                marginLeft: '4px',
+                marginLeft: '3px',
                 marginBottom: 0,
                 color: 'gray',
               }}
             >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               by
               {' '}
-              {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}
+              {answer.answerer_name === 'Seller' ? <b style={{ color: 'black' }}>Seller</b> : answer.answerer_name}
               {`, ${new Date(answer.date).toLocaleDateString('en-us', options)}`}
               &nbsp;&nbsp;&nbsp;&nbsp;
               | &nbsp;&nbsp;&nbsp; Helpful? &nbsp;
