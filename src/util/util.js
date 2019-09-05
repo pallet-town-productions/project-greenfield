@@ -57,7 +57,7 @@ const recordClickData = (target, owner) => {
       'Content-Type': 'application/json',
     },
     body: parsedData,
-  }).then((response) => console.log(response))
+  })
     .catch((e) => console.log(e));
 };
 
