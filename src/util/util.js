@@ -46,7 +46,6 @@ const recordClickData = (target, owner) => {
     widget: owner,
     time: now,
   };
-  console.log(data)
   const parsedData = JSON.stringify(data);
 
   const url = `${apiUrl}/interactions`;
