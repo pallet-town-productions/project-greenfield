@@ -8,8 +8,7 @@ import {
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import zoomPan from './handleZoomPan';
 import { recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { showZoomView, currentStyleIndex, currentPhotoIndex } = st;

@@ -5,8 +5,7 @@ import ImageList from './imageList';
 import ImageMain from './imageMain';
 import { toggleExpandedView } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import { recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapDispatchToProps(dispatch) {
   return {

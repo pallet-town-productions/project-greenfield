@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { range } from 'underscore';
 import { changeQuantity } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { recordClickData } from '../../../util/util';
+import { OWNER } from '../overview';
 
-const OWNER = 'Bailey';
 const BLANKQUANTITY = '-';
 
 function mapStateToProps(st) {

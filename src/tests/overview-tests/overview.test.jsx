@@ -11,7 +11,7 @@ import configureStore from '../../store';
 import exampleStyleData from '../../exampleStyleData';
 import exampleProductData from '../../exampleProductData';
 // IMPORT components
-import Overview from '../../components/overview-components/overview';
+import { Overview } from '../../components/overview-components/overview';
 // IMPORT image gallery components
 import { ImageGalleryComponent } from '../../components/overview-components/imageGallery/imageGallery';
 import { ImageListComponent } from '../../components/overview-components/imageGallery/imageList';

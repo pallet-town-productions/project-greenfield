@@ -7,8 +7,7 @@ import ImageThumbnail from './imageThumbnail';
 import { zeroPad, recordClickData } from '../../../util/util';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentPhotoIndex } = st;

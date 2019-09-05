@@ -5,8 +5,7 @@ import changeStyle from '../../../actions/overview-Actions/styleSelector/changeS
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import StyleThumbnail from './styleThumbnail';
 import { zeroPad, recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const styleList = st.styleData.results;

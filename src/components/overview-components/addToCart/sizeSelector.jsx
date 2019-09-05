@@ -3,8 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { zeroPad, recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;

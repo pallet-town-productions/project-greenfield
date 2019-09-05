@@ -2,8 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { currentPhotoIndex, currentStyleIndex } = st;

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
 import { FRONTPAGEPRODUCTID, SPLASHPAGEID } from '../util/util';
 import Splash from './splash';
-import Overview from './overview-components/overview';
+import { Overview } from './overview-components/overview';
 import QnA from './QnA-components/QnA';
 import RnR from './RnR/RnR_container';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';

@@ -8,8 +8,7 @@ import {
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import { recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
+import { OWNER } from '../overview';
 
 function mapStateToProps(st) {
   const { showExpandedView } = st;
