@@ -34,7 +34,7 @@ export class Outfit extends Component {
   addToOutfit(e) {
     const { localStorage } = window;
     const { productId } = this.props;
-    const { outfit } = this.state;
+    const outfit = this.state.outfit || [];
     recordClickData(e.target, 'relatedProducts');
     if (outfit.length) {
       if (outfit.includes(productId)) {
@@ -51,7 +51,7 @@ export class Outfit extends Component {
   removeFromOutfit(e, id) {
     recordClickData(e.target, 'relatedProducts');
     const { localStorage } = window;
-    const { outfit } = this.state;
+    const outfit = this.state.outfit || [];
     const updatedOutfit = outfit.filter((item) => item !== id);
     if (updatedOutfit.length) {
       localStorage.setItem('outfit', JSON.stringify(updatedOutfit));
@@ -63,7 +63,7 @@ export class Outfit extends Component {
   }
 
   render() {
-    const { outfit } = this.state;
+    const outfit = this.state.outfit || [];
     const filteredOutfit = outfit.filter((item) => item !== null);
     const { hasOutfit } = this.state;
     const { productData } = this.props;
