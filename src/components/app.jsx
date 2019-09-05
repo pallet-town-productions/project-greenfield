@@ -23,11 +23,11 @@ export class App extends Component {
 
     this.helpfulClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://54.213.200.113:3000/${component}/helpful/${id}`, {
+        fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://54.213.200.113:3000/${component}/${type}/${id}/helpful`, {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
           method: 'PUT',
         });
       }
@@ -35,11 +35,11 @@ export class App extends Component {
 
     this.reportClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://54.213.200.113:3000/${component}/report/${id}`, {
+        fetch(`http://18.217.220.129/${component}/report/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://54.213.200.113:3000/${component}/${type}/${id}/report`, {
+        fetch(`http://18.217.220.129/${component}/${type}/${id}/report`, {
           method: 'PUT',
         });
       }

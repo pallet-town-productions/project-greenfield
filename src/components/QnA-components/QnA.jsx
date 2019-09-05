@@ -6,6 +6,7 @@ import AddQuestion from './AddQuestion';
 import List from './List';
 import Search from './Search';
 import '../../styles/QnA-styles.scss';
+import { recordClickData } from '../../util/util';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -105,8 +106,12 @@ class QnA extends React.Component {
           : (
             <span
               role="presentation"
+              id="qna-load-more-questions"
               className="qna-load-more-q"
-              onClick={this.increaseDisplayCount}
+              onClick={() => {
+                recordClickData(document.getElementById('qna-load-more-questions'), 'qna');
+                this.increaseDisplayCount();
+              }}
             >
               <p style={
                   {

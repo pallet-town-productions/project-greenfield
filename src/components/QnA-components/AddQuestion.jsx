@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
+import { recordClickData } from '../../util/util';
 
 class AddQuestion extends React.Component {
   constructor(props, { productName, productId }) {
@@ -29,6 +30,7 @@ class AddQuestion extends React.Component {
       <span
         role="presentation"
         className="qna-add-q-btn"
+        id={`qna-add-qm${productId}`}
         onClick={() => this.showModal(true)}
       >
         <p style={
@@ -47,6 +49,8 @@ class AddQuestion extends React.Component {
             autoComplete="off"
             className="form-style-7"
             onSubmit={(e) => {
+              recordClickData(document.getElementById(`qna-add-qm${productId}`), 'qna');
+
               const modalData = {
                 body: document.getElementById('qna-modal-q-body').value,
                 name: document.getElementById('qna-modal-q-name').value,
