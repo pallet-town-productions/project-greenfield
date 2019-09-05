@@ -1,6 +1,9 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import { recordClickData } from '../../../util/util';
+
+const OWNER = 'Bailey';
 
 function mapStateToProps(st) {
   const { currentPhotoIndex, currentStyleIndex } = st;
@@ -35,6 +38,7 @@ function NavCarouselButtonComponent({
   function thisHandleClick(e) {
     e.stopPropagation(); // prevents image behind arrow to be clicked
     handleClick(action);
+    recordClickData(e.target, OWNER);
   }
   const button = (isNext) ? 'navigate_next' : 'navigate_before';
   const show = (showButton(isNext, currentPhotoIndex, imageListLength)) ? 'show' : 'hide';
