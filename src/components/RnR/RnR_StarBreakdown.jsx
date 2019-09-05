@@ -18,9 +18,17 @@ export class StarBreakdown extends React.Component {
   componentDidUpdate(prevState) {
     const { filters } = this.state;
     const { dispatch } = this.props;
+    const { productData } = this.props;
     if (filters !== prevState.filters) {
       dispatch(filterReviews(filters));
     }
+    if (prevState.productData.id !== productData.id) {
+      this.resetFilters();
+    }
+  }
+
+  resetFilters() {
+    this.setState({ filters: [] });
   }
 
   handleClick(rating) {
@@ -75,6 +83,7 @@ StarBreakdown.propTypes = {
     5: PropTypes.number,
   }),
   totalRatings: PropTypes.number,
+  productData: PropTypes.shape({ id: PropTypes.number }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
