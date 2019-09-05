@@ -165,10 +165,21 @@ const getReviewFormConfig = () => {
 const getFilteredFormData = (formData) => {
   const filteredData = Object.keys(formData)
     .map((input) => {
-      const value = formData[input].value !== undefined ? formData[input].value : '';
+      let value = formData[input].value !== undefined ? formData[input].value : '';
+      if (input === 'recommend') {
+        if (value === 'Yes') {
+          value = true;
+        } else {
+          value = false;
+        }
+      }
+      if (input === 'rating') {
+        value = Number(value);
+      }
       return { [input]: value };
     });
-
+  filteredData.photos = [];
+  filteredData.characteristics = {};
   return filteredData;
 };
 
