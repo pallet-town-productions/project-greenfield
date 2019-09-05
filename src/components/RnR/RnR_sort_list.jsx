@@ -6,6 +6,8 @@ import { updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
+const apiurl = process.env.REACT_APP_APIURL || '123.456.789.1011'
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -24,7 +26,7 @@ class Sort extends Component {
   getAllReviews() {
     const currentView = document.getElementById('sort-selector').value;
     const { productId, dispatch } = this.props;
-    fetch(`http://18.217.220.129/reviews/${productId}/list`)
+    fetch(`${apiurl}/reviews/${productId}/list`)
       .then((response) => {
         if (response.status !== 200) { console.log('problem'); }
         return response.json();
