@@ -191,8 +191,8 @@ $componentWidth: 250px;
     justify-content: center;
     align-items: center;
     font-size: small;
-    .form-list {
-
+    .form-label {
+      padding-bottom: $defaultPadding;
     }
     .form-list-item {
       padding: $defaultPadding;
@@ -201,6 +201,8 @@ $componentWidth: 250px;
       width: 100%
     }
     .form-sublable {
+      padding-top: 5px;
+      font-size: smaller;
       color: lightgrey;
     }
     .text-area {

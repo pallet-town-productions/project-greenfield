@@ -8,7 +8,7 @@ const SingleInput = ({ config, handleInputChange }) => {
   const { placeholder = '', sublabel = '' } = constraints;
   return (
     <li className="form-list-item">
-      <div>
+      <div className="form-label">
         <label htmlFor={id}>
           {label}
         </label>

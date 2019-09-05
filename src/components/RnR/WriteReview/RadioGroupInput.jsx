@@ -24,9 +24,11 @@ const RadioGroupInput = ({ config, handleInputChange }) => {
   ));
   return (
     <li className="form-list-item">
-      <label htmlFor={id}>
-        {label}
-      </label>
+      <div className="form-label">
+        <label htmlFor={id}>
+          {label}
+        </label>
+      </div>
       <div className="radio-group">
         {buttons}
       </div>
