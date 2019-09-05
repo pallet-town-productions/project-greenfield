@@ -89,7 +89,8 @@ class WriteReviewForm extends Component {
             <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
           </ul>
-          <input className="submit" type="submit" value="Submit" />
+          <div>* indicates a required field.</div>
+          <input className="submit-form-btn" type="submit" value="Submit" />
         </form>
       </div>
     );

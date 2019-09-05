@@ -1,6 +1,6 @@
 @import "variables";
 
-button {
+button, .submit-form-btn {
   height: $buttonHeight;
   background-color: lightgray;
   font-family: $font;
