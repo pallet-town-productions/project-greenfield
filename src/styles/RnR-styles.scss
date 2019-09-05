@@ -5,6 +5,7 @@
 }
 
 .tile-container {
+    width: 100%;
     padding: 5px;
     margin: 5px;
 }
@@ -51,7 +52,8 @@
 }
   
 .container {
-    width: 134px; 
+    width: 134px;
+    margin-top: 10px;
     .thumbnail {
         border: 1px solid #ddd;
         border-radius: 1px;
