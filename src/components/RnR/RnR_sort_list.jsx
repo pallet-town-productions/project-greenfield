@@ -6,7 +6,7 @@ import { updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
-const apiurl = process.env.REACT_APP_APIURL || '123.456.789.1011'
+const apiurl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -21,6 +21,13 @@ class Sort extends Component {
 
   componentDidMount() {
     this.getAllReviews();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productData } = this.props;
+    if (prevProps.productData.id !== productData.id) {
+      this.getAllReviews();
+    }
   }
 
   getAllReviews() {
@@ -73,6 +80,7 @@ class Sort extends Component {
 Sort.propTypes = {
   productId: PT.number.isRequired,
   updateReviewNumber: PT.oneOfType([PT.number, PT.string]).isRequired,
+  productData: PT.shape({ id: PT.number }).isRequired,
   dispatch: PT.func.isRequired,
 };
 

@@ -88,7 +88,6 @@ App.propTypes = {
   dispatch: PT.func.isRequired,
   productId: PT.number.isRequired,
   productData: PT.shape({ id: PT.number }).isRequired,
-  product_id: PT.string.isRequired,
   styleData: PT.shape({ product_id: PT.string }).isRequired,
 };
 
