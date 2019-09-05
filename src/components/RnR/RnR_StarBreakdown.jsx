@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterReviews } from '../../actions/RnR-Actions/RnR-action';
+import { recordClickData } from '../../util/util';
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -31,13 +32,14 @@ export class StarBreakdown extends React.Component {
     this.setState({ filters: [] });
   }
 
-  handleClick(rating) {
+  handleClick(rating, e) {
     const { filters } = this.state;
     if (!filters.includes(parseInt(rating, 10))) {
       this.setState({ filters: filters.concat(parseInt(rating, 10)) });
     } else {
       this.setState({ filters: filters.filter((b) => b !== parseInt(rating, 10)) });
     }
+    recordClickData(e.target, 'star_breakdown');
   }
 
   render() {
@@ -51,7 +53,7 @@ export class StarBreakdown extends React.Component {
         >
           <div
             className="star-breakdown-div"
-            onClick={() => this.handleClick(rating)}
+            onClick={(e) => this.handleClick(rating, e)}
             role="presentation"
           >
             <span

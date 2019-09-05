@@ -29,7 +29,7 @@ class List extends Component {
     this.setState({ currentView: 2 });
   }
 
-  showMore() {
+  showMore(e) {
     const { currentView } = this.state;
     const { updateReviews } = this.props;
     if (currentView <= updateReviews.length) {
