@@ -74,6 +74,7 @@ export class Outfit extends Component {
             speed={500}
             slidesToShow={3.5}
             slidesToScroll={1}
+            className="carousel"
           >
             <div
               className="add-to-outfit"

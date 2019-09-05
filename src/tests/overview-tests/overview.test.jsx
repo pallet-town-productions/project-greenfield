@@ -39,6 +39,7 @@ import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart
 
 Enzyme.configure({ adapter: new Adapter() });
 
+
 // NOTES:
 // exists likes basic html, doesn't like React Components
 // find will always be truthy because it returns a collection-like object,
