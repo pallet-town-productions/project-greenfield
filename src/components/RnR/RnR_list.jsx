@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { updateReviewNumber } from '../../actions/RnR-Actions/RnR-action';
+import { recordClickData } from '../../util/util';
 import Tile from './RnR_tile';
 import WriteReviewButton from './WriteReview/WriteReviewButton';
 
@@ -34,6 +35,7 @@ class List extends Component {
     if (currentView <= updateReviews.length) {
       this.setState(() => ({ currentView: currentView + 2 }));
     }
+    recordClickData(e.target, 'sort_list');
   }
 
   render() {
