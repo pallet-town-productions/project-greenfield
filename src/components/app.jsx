@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
+import { recordClickData } from '../util/util';
 import { SPLASHPAGEID } from '../util/util';
 import Splash from './splash';
 import Overview from './overview-components/overview';
@@ -23,11 +24,11 @@ export class App extends Component {
 
     this.helpfulClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://18.217.220.129/${component}/helpful/${id}`, {
+        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/helpful/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://18.217.220.129/${component}/${type}/${id}/helpful`, {
+        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/${type}/${id}/helpful`, {
           method: 'PUT',
         });
       }
@@ -35,11 +36,11 @@ export class App extends Component {
 
     this.reportClickHandler = (component, id, type) => {
       if (component === 'reviews') {
-        fetch(`http://18.217.220.129/${component}/report/${id}`, {
+        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/report/${id}`, {
           method: 'PUT',
         });
       } else {
-        fetch(`http://18.217.220.129/${component}/${type}/${id}/report`, {
+        fetch(`http://${process.env.REACT_APP_APIURL}/${component}/${type}/${id}/report`, {
           method: 'PUT',
         });
       }
@@ -51,9 +52,11 @@ export class App extends Component {
     const { location, dispatch } = this.props;
     const { pathname: pathName } = location;
     const path = parseInt(pathName.substr(1), 10) || FRONTPAGEPRODUCTID;
-    if (oldId === path || Number.isNaN(path)) {
+    if (oldId === path) {
       return;
     }
+    recordClickData({ id: 'link' }, 'relatedProducts');
+    window.scrollTo(0, 0);
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
     dispatch(setProductDataActionKickoff(path));

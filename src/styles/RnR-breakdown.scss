@@ -183,3 +183,10 @@ $componentWidth: 250px;
   flex-direction: row;
   justify-content: space-around;
 }
+
+.form {
+  font-size: 10px;
+  ul {
+    list-style-type: none;
+  }
+}

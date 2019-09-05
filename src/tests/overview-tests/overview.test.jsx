@@ -476,7 +476,7 @@ describe('Style Selector', () => {
     it('should display a checkbox if it\'s the selected style', () => {
       const wrapper = render(<StyleThumbnail
         thisId="#O00001"
-        style={exampleStyleData.results[0]}
+        styleObj={exampleStyleData.results[0]}
         styleIndex={1}
         currentStyleIndex={1}
         handleClick={() => { }}
@@ -486,7 +486,7 @@ describe('Style Selector', () => {
     it('should not display a checkbox if it\'s not the selected style', () => {
       const wrapper = shallow(<StyleThumbnail
         thisId="#O00001"
-        style={exampleStyleData.results[0]}
+        styleObj={exampleStyleData.results[0]}
         styleIndex={2}
         currentStyleIndex={1}
         handleClick={() => { }}

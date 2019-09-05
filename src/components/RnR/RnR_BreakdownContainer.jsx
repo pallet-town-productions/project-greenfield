@@ -6,6 +6,8 @@ import ConnectedProductBreakdown from './RnR_ProductBreakdown';
 import { getMetaData } from '../../actions/RnR-Actions/RnR-meta-action';
 import '../../styles/RnR-breakdown.scss';
 
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 const mapStateToProps = (state) => ({
   ...state,
 });
@@ -13,7 +15,7 @@ const mapStateToProps = (state) => ({
 export class BreakdownContainer extends Component {
   componentDidMount() {
     const { productId, dispatch } = this.props;
-    fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+    fetch(`${apiUrl}/reviews/${productId}/meta`)
       .then((response) => response.json())
       .then((data) => dispatch(getMetaData(data)))
       .catch(() => dispatch(getMetaData({}))); // place holder error handling
