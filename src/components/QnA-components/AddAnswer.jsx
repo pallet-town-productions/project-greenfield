@@ -34,9 +34,20 @@ class AddAnswer extends React.Component {
         className="qna-report-btn"
         role="presentation"
         type="button"
-        onClick={() => {
+        onKeyDown={(e) => {
+          if (e.keyCode === 27) {
+            document.getElementById('sort-selector').style.cssText = 'display: ""';
+            this.hideModal(false);
+          }
+        }}
+        onClick={(e) => {
           document.getElementById('sort-selector').style.cssText = 'display: none';
-          this.showModal(true);
+          if (show && e.target.id === 'qna-modal-section') {
+            document.getElementById('sort-selector').style.cssText = 'display: ""';
+            this.hideModal(false);
+          } else {
+            this.showModal(true);
+          }
         }}
       >
         <u style={{ fontSize: '12px', color: 'gray' }}>Add Answer</u>
