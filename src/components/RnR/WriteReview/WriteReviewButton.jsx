@@ -42,12 +42,12 @@ class WriteReviewButton extends Component {
           id="add-review-button"
           onClick={
             (event) => {
-              // recordClickData(event.target, 'RatingsAndReviews');
+              recordClickData(event.target, 'RatingsAndReviews');
               this.showModal(showModal);
             }
           }
         >
-          <span>Add Review</span>
+          <span id="add-review-span">Add Review</span>
         </button>
         <div>
           {modal}

@@ -4,6 +4,7 @@ import RadioGroupInput from './RadioGroupInput';
 import SingleInput from './SingleInput';
 // import FileInput from './FileInput';
 import TextAreaInput from './TextAreaInput';
+import { recordClickData } from '../../../util/util';
 import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
@@ -40,6 +41,7 @@ class WriteReviewForm extends Component {
   handleSubmit(event) {
     const { hideModal, productData } = this.props;
     const { id } = productData;
+    const { target } = event;
     const formData = getFilteredFormData(this.state);
     event.preventDefault();
     fetch(`${apiUrl}/reviews/${id}`, {
@@ -51,6 +53,7 @@ class WriteReviewForm extends Component {
     })
       .then((response) => {
         console.log(response);
+        recordClickData(target, 'RatingsAndReviews');
         hideModal();
       })
       .catch((err) => {
@@ -77,6 +80,7 @@ class WriteReviewForm extends Component {
         className="modal-container"
       >
         <form
+          id="add-review-form"
           className="form"
           onSubmit={this.handleSubmit}
         >
@@ -90,7 +94,7 @@ class WriteReviewForm extends Component {
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
           </ul>
           <div>* indicates a required field.</div>
-          <input className="submit-form-btn" type="submit" value="Submit" />
+          <input id="submit-review-btn" className="submit-form-btn" type="submit" value="Submit" />
         </form>
       </div>
     );
