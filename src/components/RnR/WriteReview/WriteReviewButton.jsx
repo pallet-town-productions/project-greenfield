@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../QnA-components/Modal';
+import ConnectedRelatedModal from '../../related-Products-components/related-modal';
 import WriteReviewForm from './WriteReviewForm';
 import { recordClickData } from '../../../util/util';
 
@@ -26,22 +26,33 @@ class WriteReviewButton extends Component {
   render() {
     const { showModal } = this.state;
     const { productData } = this.props;
-    return (
-      <button
-        type="button"
-        id="add-review-button"
-        onClick={
-          (event) => {
-            recordClickData(event.target, 'RatingsAndReviews');
-            this.showModal(showModal);
-          }
-        }
-      >
-        <span>Add Review</span>
-        <Modal show={showModal}>
+    const modal = showModal ? (
+      <ConnectedRelatedModal>
+        <div
+          className="related-modal-container"
+        >
           <WriteReviewForm productData={productData} hideModal={this.hideModal} />
-        </Modal>
-      </button>
+        </div>
+      </ConnectedRelatedModal>
+    ) : null;
+    return (
+      <div>
+        <button
+          type="button"
+          id="add-review-button"
+          onClick={
+            (event) => {
+              // recordClickData(event.target, 'RatingsAndReviews');
+              this.showModal(showModal);
+            }
+          }
+        >
+          <span>Add Review</span>
+        </button>
+        <div>
+          {modal}
+        </div>
+      </div>
     );
   }
 }

@@ -74,21 +74,22 @@ class WriteReviewForm extends Component {
       <div
         role="presentation"
         onKeyDown={this.handleKeyPress}
+        className="modal-container"
       >
         <form
           className="form"
           onSubmit={this.handleSubmit}
         >
           <h3>{productName}</h3>
-          <ul>
+          <ul className="form-list">
             <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
             <RadioGroupInput config={recommend} handleInputChange={this.handleInputChange} />
             <SingleInput config={summary} handleInputChange={this.handleInputChange} />
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
             <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
-            <li><input type="submit" value="Submit" /></li>
           </ul>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );
