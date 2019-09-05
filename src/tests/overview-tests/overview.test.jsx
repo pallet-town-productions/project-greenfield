@@ -144,7 +144,7 @@ describe('Image Gallery', () => {
     it('should switch photos once a thumbnail is clicked', () => {
       mockStore.dispatch(changePhoto(0));
       expect(mockStore.getState().currentPhotoIndex).toEqual(0);
-      wrapper.find('#O000O004').simulate('click');
+      wrapper.find('#thumbnail-O000O004').simulate('click');
       expect(mockStore.getState().currentPhotoIndex).toEqual(4);
     });
   });
@@ -465,7 +465,7 @@ describe('Style Selector', () => {
       expect(wrapper.find('img')).toHaveLength(styleList.length);
     });
     it('should pass a working clickHandler down to StyleThumbnail', () => {
-      wrapper.find(`#${zeroPad(3, 6)}`).simulate('click');
+      wrapper.find(`#style-thumbnail-${zeroPad(3, 6)}`).simulate('click');
       expect(handleClick.calledOnce).toBeTruthy();
     });
     it('should display currently-selected style name above thumbnails', () => {

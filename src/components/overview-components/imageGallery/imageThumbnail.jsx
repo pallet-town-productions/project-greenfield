@@ -1,7 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
 
-
 function ImageThumbnail({
   photoIndex, url, styleName, handleClick, isSelected, thisId,
 }) {
@@ -9,7 +8,9 @@ function ImageThumbnail({
 
   return (
     <span
-      onClick={() => handleClick(photoIndex)}
+      onClick={(e) => {
+        handleClick(e, photoIndex);
+      }}
       role="presentation"
       id={thisId}
     >

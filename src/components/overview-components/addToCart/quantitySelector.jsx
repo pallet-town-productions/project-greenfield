@@ -3,6 +3,7 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { range } from 'underscore';
 import { changeQuantity } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 const BLANKQUANTITY = '-';
 
@@ -18,9 +19,10 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleQuantityChange: () => {
+    handleQuantityChange: (e) => {
       const selectedQuantity = Number(document.getElementById('current-quantity').value);
       dispatch(changeQuantity(selectedQuantity));
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }
@@ -35,9 +37,7 @@ export function QuantitySelectorComponent({
   return (
     <div id="quantity-selector" className="dropdown-selector">
       <select
-        onChange={() => {
-          handleQuantityChange();
-        }}
+        onChange={handleQuantityChange}
         id="current-quantity"
       >
         {list.map((qty) => (

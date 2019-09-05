@@ -2,6 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentSizeIndex, currentQuantity } = st;
@@ -30,13 +31,14 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (addInfo) => {
+    handleClick: (e, addInfo) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
         console.log(addInfo);
         dispatch(addToCart(addInfo));
+        recordClickData(e.currentTarget, OVERVIEWOWNER);
       }
     },
   };
@@ -58,13 +60,14 @@ export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick })
       </div>
     );
   }
-  const handleClickBound = () => { handleClick(addInfo); };
   return (
     <div>
       <div
         id="add-to-cart-button"
         className="cursor-pointer"
-        onClick={handleClickBound}
+        onClick={(e) => {
+          handleClick(e, addInfo);
+        }}
         role="presentation"
       >
         <i className="material-icons">

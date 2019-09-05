@@ -1,6 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentPhotoIndex, currentStyleIndex } = st;
@@ -13,8 +14,9 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (action) => {
+    handleClick: (e, action) => {
       dispatch({ type: action });
+      recordClickData(e.target, OVERVIEWOWNER);
     },
   };
 }
@@ -34,7 +36,7 @@ function NavCarouselButtonComponent({
   const action = (isNext) ? 'NEXT_PHOTO' : 'PREV_PHOTO';
   function thisHandleClick(e) {
     e.stopPropagation(); // prevents image behind arrow to be clicked
-    handleClick(action);
+    handleClick(e, action);
   }
   const button = (isNext) ? 'navigate_next' : 'navigate_before';
   const show = (showButton(isNext, currentPhotoIndex, imageListLength)) ? 'show' : 'hide';

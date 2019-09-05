@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import StyleThumbnail from './styleThumbnail';
-import { zeroPad } from '../../../util/util';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const styleList = st.styleData.results;
@@ -18,11 +18,12 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleSwitchStyle: (styleList, styleIndex, currentPhotoIndex) => {
+    handleSwitchStyle: (e, styleList, styleIndex, currentPhotoIndex) => {
       if (styleList.photos.length <= currentPhotoIndex) {
         dispatch(changePhoto(0));
       }
       dispatch(changeStyle(styleIndex));
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }
@@ -44,7 +45,7 @@ export function StyleSelectorComponent({
           styleList.map((styleObj, index) => (
             <StyleThumbnail
               key={styleList[index].style_id}
-              thisId={zeroPad(styleList[index].style_id, 6)}
+              thisId={`style-thumbnail-${zeroPad(styleList[index].style_id, 6)}`}
               styleIndex={index}
               styleObj={styleObj}
               handleClick={handleSwitchStyle}

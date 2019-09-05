@@ -2,6 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import StarRating from '../../RnR/RnR_StarRating';
+import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { updateReviews, averageRating } = st;
@@ -24,7 +25,15 @@ function ReviewsLinkComponent({ updateReviews, averageRating }) {
   return (
     <span>
       <StarRating starCount={averageRating} />
-      <a id="reviewsLink" href="#scrollRnR">{readReviewsString}</a>
+      <a
+        id="reviewsLink"
+        href="#scrollRnR"
+        onClick={(e) => {
+          recordClickData(e.currentTarget, OVERVIEWOWNER);
+        }}
+      >
+        {readReviewsString}
+      </a>
     </span>
   );
 }

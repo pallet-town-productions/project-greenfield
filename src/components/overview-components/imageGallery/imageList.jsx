@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import ImageThumbnail from './imageThumbnail';
-import { zeroPad } from '../../../util/util';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-// import bunch of other child components
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentPhotoIndex } = st;
@@ -23,8 +22,9 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleSwitchPhoto: (photoIndex) => {
+    handleSwitchPhoto: (e, photoIndex) => {
       dispatch(changePhoto(photoIndex));
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }
@@ -47,7 +47,7 @@ export function ImageListComponent({
           return (
             <ImageThumbnail
               key={key}
-              thisId={key}
+              thisId={`thumbnail-${key}`}
               photoIndex={imageIndex}
               url={imageList[imageIndex].thumbnail_url}
               styleName={styleName}

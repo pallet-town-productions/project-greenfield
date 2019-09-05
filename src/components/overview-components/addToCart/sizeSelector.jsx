@@ -2,7 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
-import { zeroPad } from '../../../util/util';
+import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
@@ -19,7 +19,7 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleChangeSize: () => {
+    handleChangeSize: (e) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) {
         dispatch(toggleShowQuantities(false));
@@ -28,6 +28,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(togglePromptSelectSize(false)); // hide prompt to select size
       }
       dispatch(changeSize(selectedSize));
+      recordClickData(e.currentTarget, OVERVIEWOWNER);
     },
   };
 }
@@ -44,7 +45,7 @@ function DropDown({
   }
   return (
     <select
-      onChange={() => { handleChangeSize(); }}
+      onChange={handleChangeSize}
       id="current-size"
     >
       {sizeList.map((size, index) => (

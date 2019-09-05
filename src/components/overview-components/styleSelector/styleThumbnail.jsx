@@ -18,7 +18,9 @@ function StyleThumbnail({
   return (
     <div
       id={thisId}
-      onClick={() => handleClick(styleObj, styleIndex, currentPhotoIndex)}
+      onClick={(e) => {
+        handleClick(e, styleObj, styleIndex, currentPhotoIndex);
+      }}
       role="presentation"
     >
       <CheckBox isRendered={styleIndex === currentStyleIndex} />
