@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import changeStyle from '../../../actions/overview-Actions/styleSelector/changeStyle';
 import { changePhoto } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import StyleThumbnail from './styleThumbnail';
-import { zeroPad } from '../../../util/util';
+import { zeroPad, recordClickData } from '../../../util/util';
+
+const OWNER = 'Bailey';
 
 function mapStateToProps(st) {
   const styleList = st.styleData.results;
@@ -18,11 +20,12 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleSwitchStyle: (styleList, styleIndex, currentPhotoIndex) => {
+    handleSwitchStyle: (e, styleList, styleIndex, currentPhotoIndex) => {
       if (styleList.photos.length <= currentPhotoIndex) {
         dispatch(changePhoto(0));
       }
       dispatch(changeStyle(styleIndex));
+      recordClickData(e.currentTarget, OWNER);
     },
   };
 }

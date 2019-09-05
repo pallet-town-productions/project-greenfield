@@ -21,7 +21,7 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleChangeSize: () => {
+    handleChangeSize: (e) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) {
         dispatch(toggleShowQuantities(false));
@@ -30,6 +30,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(togglePromptSelectSize(false)); // hide prompt to select size
       }
       dispatch(changeSize(selectedSize));
+      recordClickData(e.currentTarget, OWNER); 
     },
   };
 }
@@ -46,10 +47,7 @@ function DropDown({
   }
   return (
     <select
-      onChange={(e) => { 
-        handleChangeSize();
-        recordClickData(e.currentTarget, OWNER); 
-      }}
+      onChange={handleChangeSize}
       id="current-size"
     >
       {sizeList.map((size, index) => (

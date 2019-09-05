@@ -20,9 +20,10 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleQuantityChange: () => {
+    handleQuantityChange: (e) => {
       const selectedQuantity = Number(document.getElementById('current-quantity').value);
       dispatch(changeQuantity(selectedQuantity));
+      recordClickData(e.currentTarget, OWNER);
     },
   };
 }
@@ -37,10 +38,7 @@ export function QuantitySelectorComponent({
   return (
     <div id="quantity-selector" className="dropdown-selector">
       <select
-        onChange={(e) => {
-          handleQuantityChange();
-          recordClickData(e.currentTarget, OWNER);
-        }}
+        onChange={handleQuantityChange}
         id="current-quantity"
       >
         {list.map((qty) => (

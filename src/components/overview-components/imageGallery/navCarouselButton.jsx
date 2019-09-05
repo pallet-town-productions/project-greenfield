@@ -16,8 +16,9 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (action) => {
+    handleClick: (e, action) => {
       dispatch({ type: action });
+      recordClickData(e.target, OWNER);
     },
   };
 }
@@ -37,8 +38,7 @@ function NavCarouselButtonComponent({
   const action = (isNext) ? 'NEXT_PHOTO' : 'PREV_PHOTO';
   function thisHandleClick(e) {
     e.stopPropagation(); // prevents image behind arrow to be clicked
-    handleClick(action);
-    recordClickData(e.target, OWNER);
+    handleClick(e, action);
   }
   const button = (isNext) ? 'navigate_next' : 'navigate_before';
   const show = (showButton(isNext, currentPhotoIndex, imageListLength)) ? 'show' : 'hide';

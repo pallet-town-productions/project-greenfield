@@ -1,8 +1,5 @@
 import React from 'react';
 import PT from 'prop-types';
-import { recordClickData } from '../../../util/util';
-
-const OWNER = 'Bailey';
 
 function CheckBox({ isRendered }) {
   if (isRendered) {
@@ -22,8 +19,7 @@ function StyleThumbnail({
     <div
       id={thisId}
       onClick={(e) => {
-        handleClick(styleObj, styleIndex, currentPhotoIndex);
-        recordClickData(e.currentTarget, OWNER);
+        handleClick(e, styleObj, styleIndex, currentPhotoIndex);
       }}
       role="presentation"
     >

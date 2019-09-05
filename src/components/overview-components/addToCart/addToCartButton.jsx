@@ -33,14 +33,14 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (addInfo) => {
+    handleClick: (e, addInfo) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
         console.log(addInfo);
         dispatch(addToCart(addInfo));
-        // recordClickData();
+        recordClickData(e.currentTarget, OWNER);
       }
     },
   };
@@ -68,8 +68,7 @@ export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick })
         id="add-to-cart-button"
         className="cursor-pointer"
         onClick={(e)=>{
-          recordClickData(e.currentTarget, OWNER);
-          handleClick(addInfo);
+          handleClick(e, addInfo);
         }}
         role="presentation"
       >
