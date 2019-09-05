@@ -31,6 +31,7 @@ class PictureModal extends React.Component {
           id={`qna-photo${photo}`}
           className="qna-span-thumbnail"
           onClick={() => {
+            document.getElementById('sort-selector').style.cssText = 'display: none';
             this.showModal(true);
             recordClickData(document.getElementById(`qna-photo${photo}`), 'qna');
           }}
@@ -52,6 +53,7 @@ class PictureModal extends React.Component {
           onKeyPress={() => this.hideModal(false)}
           onClick={(e) => {
             e.stopPropagation();
+            document.getElementById('sort-selector').style.cssText = 'display: ""';
             this.hideModal(false);
           }}
         >

@@ -35,6 +35,7 @@ class AddAnswer extends React.Component {
         role="presentation"
         type="button"
         onClick={() => {
+          document.getElementById('sort-selector').style.cssText = 'display: none';
           this.showModal(true);
         }}
       >
@@ -51,6 +52,7 @@ class AddAnswer extends React.Component {
                 photos: document.getElementsByClassName('qna-modal-a-pic')[counter - 1].value.split(' '),
               };
               e.preventDefault();
+              recordClickData(document.getElementById(`qna-add-q${data.question_id}`), 'qna');
 
               fetch(`${url}/qa/${data.question_id}/answers`, {
                 method: 'POST',
@@ -62,7 +64,7 @@ class AddAnswer extends React.Component {
                 .then((result) => {
                   if (result.ok) {
                     alert('Thanks for answering!');
-                    recordClickData(document.getElementById(`qna-add-q${data.question_id}`), 'qna');
+                    document.getElementById('sort-selector').style.cssText = 'display: ""';
                     this.hideModal(false);
                   } else {
                     alert('Something went horribly wrong, we\'re so sorry!');
