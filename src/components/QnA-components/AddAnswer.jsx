@@ -47,7 +47,11 @@ class AddAnswer extends React.Component {
               };
               e.preventDefault();
 
+<<<<<<< HEAD
               fetch(`http://${api}/qa/${data.question_id}/answers`, {
+=======
+              fetch(`http://18.217.220.129/qa/${data.question_id}/answers`, {
+>>>>>>> 4fde01445e82cd522528709dae971f328158b053
                 method: 'POST',
                 body: JSON.stringify(modalData),
                 headers: {

@@ -71,7 +71,7 @@ export class App extends Component {
         <div id="component-container">
           <Overview />
           <div className="lower-container">
-            <ConnectedRelatedProducts />
+            {/* <ConnectedRelatedProducts /> */}
             <QnA
               helpfulClickHandler={this.helpfulClickHandler}
               reportClickHandler={this.reportClickHandler}
