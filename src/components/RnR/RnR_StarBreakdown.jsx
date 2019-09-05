@@ -57,6 +57,7 @@ export class StarBreakdown extends React.Component {
             role="presentation"
           >
             <span
+              id="star_filter"
               className="star-breakdown-span"
             >
               {rating}
