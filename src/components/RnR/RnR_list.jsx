@@ -17,6 +17,19 @@ class List extends Component {
     };
   }
 
+  componentDidUpdate(prevState) {
+    const { filters } = this.state;
+    const { dispatch } = this.props;
+    const { productData } = this.props;
+    if (prevState.productData.id !== productData.id) {
+      this.resetView();
+    }
+  }
+
+  resetView() {
+    this.setState({ currentView: 2 });
+  }
+
   showMore() {
     const { currentView } = this.state;
     const { updateReviews } = this.props;
