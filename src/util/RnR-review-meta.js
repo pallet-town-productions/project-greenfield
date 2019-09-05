@@ -82,22 +82,22 @@ const getReviewFormConfig = () => {
     rating: {
       label: 'Overall Rating',
       mandatory: true,
-      id: 'overall',
+      id: 'rating',
       type: 'radio',
       constraints: {
-        options: ['Poor', 'Fair', 'Average', 'Good', 'Great'],
+        options: [1, 2, 3, 4, 5],
       },
     },
-    recommended: {
+    recommend: {
       label: 'Do you recommend this product?',
       mandatory: true,
-      id: 'recommended',
+      id: 'recommend',
       type: 'radio',
       constraints: {
         options: ['Yes', 'No'],
       },
     },
-    characteristic: {
+    characteristics: {
       label: 'Characteristics PlaceHolder',
       mandatory: false,
       id: 'characteristic placeholder',
@@ -136,10 +136,10 @@ const getReviewFormConfig = () => {
         max: 5,
       },
     },
-    nickname: {
+    name: {
       label: 'What is your nickname',
       mandatory: true,
-      id: 'nickname',
+      id: 'name',
       type: 'text',
       constraints: {
         max: 60,
@@ -162,8 +162,32 @@ const getReviewFormConfig = () => {
   return formConfig;
 };
 
+const getFilteredFormData = (formData) => {
+  const objReducer = (accumulator, currentValue) => ({ ...accumulator, ...currentValue });
+  const filteredData = Object.keys(formData)
+    .map((input) => {
+      let value = formData[input].value !== undefined ? formData[input].value : '';
+      if (input === 'recommend') {
+        if (value === 'Yes') {
+          value = 0;
+        } else {
+          value = 1;
+        }
+      }
+      if (input === 'rating') {
+        value = Number(value);
+      }
+      return { [input]: value };
+    })
+    .reduce(objReducer, {});
+  filteredData.photos = [];
+  filteredData.characteristics = {};
+  return { ...filteredData };
+};
+
 export {
   setProductRatingValue,
   setProductSublables,
   getReviewFormConfig,
+  getFilteredFormData,
 };

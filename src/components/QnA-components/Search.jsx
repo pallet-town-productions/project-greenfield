@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { recordClickData } from '../../util/util';
 
 const Search = ({ searchFilter }) => (
   <div id="search-bar-container">
@@ -11,6 +12,7 @@ const Search = ({ searchFilter }) => (
         className="search-input-field"
         type="text"
         placeholder="HAVE A QUESTION? FIND AN ANSWER..."
+        onClick={() => recordClickData(document.getElementById('qna-searchbar'), 'qna')}
         onChange={searchFilter}
       />
     </div>

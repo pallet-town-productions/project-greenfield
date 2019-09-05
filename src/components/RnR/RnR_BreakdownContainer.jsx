@@ -6,14 +6,29 @@ import ConnectedProductBreakdown from './RnR_ProductBreakdown';
 import { getMetaData } from '../../actions/RnR-Actions/RnR-meta-action';
 import '../../styles/RnR-breakdown.scss';
 
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 const mapStateToProps = (state) => ({
   ...state,
 });
 
 export class BreakdownContainer extends Component {
   componentDidMount() {
-    const { productId, dispatch } = this.props;
-    fetch(`http://18.217.220.129/reviews/${productId}/meta`)
+    this.fetchMetaData();
+  }
+
+  componentDidUpdate(previousProps) {
+    const { productData } = this.props;
+    const { id } = productData;
+    if (previousProps.productData.id !== id) {
+      this.fetchMetaData();
+    }
+  }
+
+  fetchMetaData() {
+    const { productData, dispatch } = this.props;
+    const { id } = productData;
+    fetch(`${apiUrl}/reviews/${id}/meta`)
       .then((response) => response.json())
       .then((data) => dispatch(getMetaData(data)))
       .catch(() => dispatch(getMetaData({}))); // place holder error handling
@@ -30,7 +45,10 @@ export class BreakdownContainer extends Component {
 }
 
 BreakdownContainer.propTypes = {
-  productId: PropTypes.number.isRequired,
+  productData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

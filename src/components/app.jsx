@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
-import { FRONTPAGEPRODUCTID, SPLASHPAGEID } from '../util/util';
+import { FRONTPAGEPRODUCTID, SPLASHPAGEID, recordClickData } from '../util/util';
 import Splash from './splash';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
@@ -52,6 +52,8 @@ export class App extends Component {
     if (oldId === path) {
       return;
     }
+    recordClickData({ id: 'link' }, 'relatedProducts');
+    window.scrollTo(0, 0);
     dispatch(setProductAction(path));
     dispatch(setStyleDataActionKickoff(path));
     dispatch(setProductDataActionKickoff(path));

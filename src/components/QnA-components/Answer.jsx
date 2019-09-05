@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PictureModal from './PictureModal';
+import { recordClickData } from '../../util/util';
 
 class Answer extends React.Component {
   constructor(props, {
@@ -83,11 +84,13 @@ class Answer extends React.Component {
               | &nbsp;&nbsp;&nbsp; Helpful? &nbsp;
               <span
                 className="qna-helpful-btn"
+                id={`qna-helpful-btn${answer.id}`}
                 role="presentation"
                 type="submit"
                 onClick={() => {
                   if (!clicked) {
                     this.setState({ clicked: true }, () => {
+                      recordClickData(document.getElementById(`qna-helpful-btn${answer.id}`), 'qna');
                       helpfulClickHandler('qa', answer.id, 'answer');
                       const currentCount = document.getElementById(`A${answer.id}`).innerHTML;
                       document.getElementById(`A${answer.id}`).innerHTML = `(${Number(currentCount.slice(1, currentCount.length - 1)) + 1})`;
@@ -107,7 +110,16 @@ class Answer extends React.Component {
                 )
               </b>
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-              <span className="qna-report-btn" role="presentation" type="submit" onClick={() => reportClickHandler('qa', answer.id, 'answer')}>
+              <span
+                className="qna-report-btn"
+                id={`qna-report-btn${answer.id}`}
+                role="presentation"
+                type="submit"
+                onClick={(e) => {
+                  recordClickData(e.target, 'qna');
+                  reportClickHandler('qa', answer.id, 'answer');
+                }}
+              >
                 <u style={{ color: 'gray' }}>Report</u>
               </span>
             </p>
@@ -118,8 +130,12 @@ class Answer extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <span
                     role="presentation"
+                    id={`qna-load-more-a${answer.id}`}
                     onKeyPress={this.increaseDisplayCount}
-                    onClick={this.increaseDisplayCount}
+                    onClick={() => {
+                      recordClickData(document.getElementById(`qna-load-more-a${answer.id}`), 'qna');
+                      this.increaseDisplayCount();
+                    }}
                     className="questions-clear-btn"
                   >
                     <b>

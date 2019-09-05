@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
+import { recordClickData } from '../../util/util';
 
 class AddAnswer extends React.Component {
   constructor(props, { data, productName, counter }) {
@@ -27,10 +28,13 @@ class AddAnswer extends React.Component {
     const { data, productName, counter } = this.props;
     return (
       <span
+        id={`qna-add-q${data.question_id}`}
         className="qna-report-btn"
         role="presentation"
         type="button"
-        onClick={() => this.showModal(true)}
+        onClick={() => {
+          this.showModal(true);
+        }}
       >
         <u style={{ fontSize: '12px', color: 'gray' }}>Add Answer</u>
         <Modal show={show}>
@@ -56,6 +60,7 @@ class AddAnswer extends React.Component {
                 .then((result) => {
                   if (result.ok) {
                     alert('Thanks for answering!');
+                    recordClickData(document.getElementById(`qna-add-q${data.question_id}`), 'qna');
                     this.hideModal(false);
                   } else {
                     alert('Something went horribly wrong, we\'re so sorry!');
