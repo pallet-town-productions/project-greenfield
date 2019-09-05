@@ -107,14 +107,15 @@ export class RelatedCard extends Component {
         <div className="card-container">
           {modal}
           <div className="image-container">
-            <img src={photos[0][0].thumbnail_url} alt="default-style" />
+            {photos[0][0].thumbnail_url && <img src={photos[0][0].thumbnail_url} alt="default-style" />}
+            {!photos[0][0].thumbnail_url && <p id="no-image-related">no images for this product</p>}
             {outfit
             && (
             <i
               role="button"
               className="material-icons"
               id="remove-button"
-              onClick={(() => removeFromOutfit(productId))}
+              onClick={((e) => removeFromOutfit(e, productId))}
               tabIndex={0}
               onKeyPress={() => removeFromOutfit(productId)}
             >

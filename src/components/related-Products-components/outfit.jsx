@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
+import { recordClickData } from '../../util/util';
 import '../../styles/related-products.scss';
 import '../../styles/standard-styles.scss';
 import 'slick-carousel/slick/slick.css';
@@ -30,10 +31,11 @@ export class Outfit extends Component {
     }
   }
 
-  addToOutfit() {
+  addToOutfit(e) {
     const { localStorage } = window;
     const { productId } = this.props;
     const { outfit } = this.state;
+    recordClickData(e.target, 'relatedProducts');
     if (outfit.length) {
       if (outfit.includes(productId)) {
         return;
@@ -46,7 +48,8 @@ export class Outfit extends Component {
     this.setState({ outfit: [productId], hasOutfit: true });
   }
 
-  removeFromOutfit(id) {
+  removeFromOutfit(e, id) {
+    recordClickData(e.target, 'relatedProducts');
     const { localStorage } = window;
     const { outfit } = this.state;
     const updatedOutfit = outfit.filter((item) => item !== id);
@@ -78,7 +81,7 @@ export class Outfit extends Component {
           >
             <div
               className="add-to-outfit"
-              onClick={() => this.addToOutfit()}
+              onClick={(e) => this.addToOutfit(e)}
               role="button"
               tabIndex={0}
               onKeyPress={() => this.addToOutfit()}
