@@ -11,8 +11,9 @@ const StarRating = ({ starCount = 0 }) => {
 
   if (starCount >= 0 && starCount <= 5) {
     const fullStarCount = Math.floor(starCount);
-    const emptyStarCount = 5 - Math.round(starCount);
     const renderPartialStar = !Number.isInteger(starCount);
+    const remainingStars = 5 - fullStarCount - Number(renderPartialStar);
+    const emptyStarCount = remainingStars > 0 && remainingStars <= 5 ? remainingStars : 0;
     buildIcons(fullStarCount, 'star', stars);
     if (renderPartialStar) {
       buildIcons(1, 'star_half', stars);
