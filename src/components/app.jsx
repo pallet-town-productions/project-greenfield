@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PT from 'prop-types';
-import { recordClickData } from '../util/util';
-import { SPLASHPAGEID } from '../util/util';
+import { FRONTPAGEPRODUCTID, SPLASHPAGEID, recordClickData } from '../util/util';
 import Splash from './splash';
 import Overview from './overview-components/overview';
 import QnA from './QnA-components/QnA';
@@ -12,8 +11,6 @@ import RnR from './RnR/RnR_container';
 import ConnectedRelatedProducts from './related-Products-components/related-Products';
 import { setProductAction, setProductDataActionKickoff, setStyleDataActionKickoff } from '../actions/setProductAction';
 import '../styles/standard-styles.scss';
-
-const FRONTPAGEPRODUCTID = 5; // default product for when the page doesn't have a num endpoint
 
 const mapStateToProps = (state) => ({
   ...state,
