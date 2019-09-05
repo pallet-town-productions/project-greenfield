@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../QnA-components/Modal';
 import WriteReviewForm from './WriteReviewForm';
+import { recordClickData } from '../../../util/util';
 
 class WriteReviewButton extends Component {
   constructor(props) {
@@ -28,7 +29,13 @@ class WriteReviewButton extends Component {
     return (
       <button
         type="button"
-        onClick={() => this.showModal(showModal)}
+        id="add-review-button"
+        onClick={
+          (event) => {
+            recordClickData(event.target, 'RatingsAndReviews');
+            this.showModal(showModal);
+          }
+        }
       >
         <span>Add Review</span>
         <Modal show={showModal}>
