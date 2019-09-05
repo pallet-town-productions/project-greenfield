@@ -7,6 +7,9 @@ import {
   toggleExpandedView,
   toggleZoomView,
 } from '../../../actions/overview-Actions/imageGallery/imageGalleryActions';
+import { recordClickData } from '../../../util/util';
+
+const OWNER = 'Bailey';
 
 function mapStateToProps(st) {
   const { showExpandedView } = st;
@@ -35,7 +38,10 @@ export function ExpandedViewOverlayComponent({
     <div className={display} id="image-gallery-overlay">
       <ImageMain
         handleExit={handleHideExpandedView}
-        handleClick={handleShowZoomView}
+        handleClick={(e) => {
+          handleShowZoomView();
+          recordClickData({id: "zoom-view-show"}, OWNER);
+        }}
         onHover="cursor-crosshair"
         thisId="expanded-main-photo"
       />
