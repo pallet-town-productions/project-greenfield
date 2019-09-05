@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from '../../QnA-components/Modal';
 import WriteReviewForm from './WriteReviewForm';
 
@@ -23,6 +24,7 @@ class WriteReviewButton extends Component {
 
   render() {
     const { showModal } = this.state;
+    const { productData } = this.props;
     return (
       <button
         type="button"
@@ -30,11 +32,18 @@ class WriteReviewButton extends Component {
       >
         <span>Add Review</span>
         <Modal show={showModal}>
-          <WriteReviewForm hideModal={this.hideModal} />
+          <WriteReviewForm productData={productData} hideModal={this.hideModal} />
         </Modal>
       </button>
     );
   }
 }
+
+WriteReviewButton.propTypes = {
+  productData: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+};
 
 export default WriteReviewButton;
