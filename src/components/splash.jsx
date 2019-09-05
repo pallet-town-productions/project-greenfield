@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import PT from 'prop-types';
 import { setProductAction } from '../actions/setProductAction';
+import { FRONTPAGEPRODUCTID } from '../util/util';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -12,19 +13,21 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function Splash({ productId, updateProductId }) {
+function Splash({ productId, updateProductId, location }) {
   updateProductId(productId);
+  const { pathname: pathName } = location;
   return (
     <div id="splash-page">
       LOADING...
-      <Redirect to="5" />
+      {pathName === '/' && <Redirect to={FRONTPAGEPRODUCTID.toString()} />}
     </div>
   );
 }
 
 Splash.propTypes = {
+  location: PT.shape({ pathname: PT.string }).isRequired,
   productId: PT.number.isRequired,
   updateProductId: PT.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Splash);
+export default withRouter(connect(null, mapDispatchToProps)(Splash));
