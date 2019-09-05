@@ -50,7 +50,7 @@ class QnA extends React.Component {
   componentDidMount() {
     const { productData } = this.props;
     const { id } = productData;
-    // grabs initial set of questions
+
     fetch(`${url}/qa/${id}?count=1000`)
       .then((data) => data.json())
       .then((result) => {
