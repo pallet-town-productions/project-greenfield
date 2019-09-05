@@ -17,7 +17,7 @@ const Tile = (props) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   const photos = review.photos.map((photo) => (
-    <PhotoThumbnails photo={photo} />
+    <PhotoThumbnails photo={photo} key={photo.id} />
   ));
 
   if (review.response !== 'null' && review.response !== '' && review.response !== null) {
