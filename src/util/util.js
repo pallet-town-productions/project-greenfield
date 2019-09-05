@@ -1,6 +1,7 @@
 const SPLASHPAGEID = -999; // is reserved to be a trigger for a splash page
 const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
+
 function zeroPad(num, places) {
   const zero = places - num.toString().length;
   return `O${Array(+(zero > 0 && zero)).join('0')}${num}`;
