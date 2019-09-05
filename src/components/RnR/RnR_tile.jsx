@@ -32,7 +32,7 @@ const Tile = (props) => {
   }
 
   let recommend;
-  if (review.recommend) {
+  if (!review.recommend) {
     recommend = <p>&#10004; I recommend this product</p>;
   }
 
