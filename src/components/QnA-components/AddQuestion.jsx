@@ -39,9 +39,9 @@ class AddQuestion extends React.Component {
             this.hideModal(false);
           }
         }}
-        onClick={() => {
+        onClick={(e) => {
           document.getElementById('sort-selector').style.cssText = 'display: none';
-          if (show) {
+          if (show && e.target.id === 'qna-modal-section') {
             document.getElementById('sort-selector').style.cssText = 'display: ""';
             this.hideModal(false);
           } else {

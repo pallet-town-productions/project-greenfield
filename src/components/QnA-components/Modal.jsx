@@ -6,7 +6,7 @@ const Modal = ({ show, children }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
-    <div className={showHideClassName}>
+    <div className={showHideClassName} id="qna-modal-section">
       <section className="modal-main qna-modal-section">
         {children}
       </section>
