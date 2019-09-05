@@ -14,8 +14,21 @@ const mapStateToProps = (state) => ({
 
 export class BreakdownContainer extends Component {
   componentDidMount() {
-    const { productId, dispatch } = this.props;
-    fetch(`${apiUrl}/reviews/${productId}/meta`)
+    this.fetchMetaData();
+  }
+
+  componentDidUpdate(previousProps) {
+    const { productData } = this.props;
+    const { id } = productData;
+    if (previousProps.productData.id !== id) {
+      this.fetchMetaData();
+    }
+  }
+
+  fetchMetaData() {
+    const { productData, dispatch } = this.props;
+    const { id } = productData;
+    fetch(`${apiUrl}/reviews/${id}/meta`)
       .then((response) => response.json())
       .then((data) => dispatch(getMetaData(data)))
       .catch(() => dispatch(getMetaData({}))); // place holder error handling
@@ -32,7 +45,10 @@ export class BreakdownContainer extends Component {
 }
 
 BreakdownContainer.propTypes = {
-  productId: PropTypes.number.isRequired,
+  productData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
