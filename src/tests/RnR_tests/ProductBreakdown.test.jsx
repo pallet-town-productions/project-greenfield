@@ -16,8 +16,48 @@ function testProductBreakdown() {
   };
 }
 
+
 describe('RnR - Product Breakdown', () => {
   describe('Util Functions', () => {
+    // describe('getFilteredFormData', () => {
+    //   test('should filter data', () => {
+    //     const formData = {
+    //       rating: {
+    //         value: '4',
+    //       },
+    //       summary: {
+    //         value: 'Test summary',
+    //       },
+    //       recommend: {
+    //         value: 'No',
+    //       },
+    //       body: {
+    //         value: 'Test body',
+    //       },
+    //       name: {
+    //         value: 'test_name',
+    //       },
+    //       email: {
+    //         value: 'fake@email.com',
+    //       },
+    //       // photos: [],
+    //       // characteristics: {},
+    //     };
+    //     const expectedFormData = {
+    //       rating: 4,
+    //       summary: 'Test summary',
+    //       recommend: false,
+    //       body: 'Test body',
+    //       name: 'test_name',
+    //       email: 'fake@email.com',
+    //       // photos: [],
+    //       // characteristics: {},
+    //     };
+    //     const filteredFormData = getFilteredFormData(formData);
+    //     expect(filteredFormData).toEqual(expect.objectContaining(expectedFormData));
+    //   });
+    // });
+
     describe('setProductRatingValue', () => {
       test('should have default value of 0 for left, center, and right if no value passed', () => {
         const ratingValues = setProductRatingValue();

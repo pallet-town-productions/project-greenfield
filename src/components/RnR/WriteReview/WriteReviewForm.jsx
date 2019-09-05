@@ -4,7 +4,7 @@ import RadioGroupInput from './RadioGroupInput';
 import SingleInput from './SingleInput';
 // import FileInput from './FileInput';
 import TextAreaInput from './TextAreaInput';
-import { getReviewFormConfig } from '../../../util/RnR-review-meta';
+import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
 class WriteReviewForm extends Component {
@@ -28,27 +28,42 @@ class WriteReviewForm extends Component {
   handleInputChange(event) {
     const { target } = event;
     const { name, value } = target;
-    this.setState({
-      [[name].value]: value,
+    const temp = { value };
+    this.setState((previousState) => {
+      const newState = { ...temp, ...previousState[name] };
+      return { [name]: newState };
     });
   }
 
   handleSubmit(event) {
     const { hideModal } = this.props;
-    // const formData = this.state;
+    const formData = getFilteredFormData(this.state);
     event.preventDefault();
-    hideModal();
-    // make a post with form data if everything all good
-    // otherwise render some errors
+    fetch('fake.com', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('got it');
+          hideModal();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
     const {
       rating,
-      recommended,
+      recommend,
       summary,
       body,
-      nickname,
+      name,
       email,
     } = this.state;
     return (
@@ -57,15 +72,15 @@ class WriteReviewForm extends Component {
         onKeyDown={this.handleKeyPress}
       >
         <form
-          className="form-style-7"
+          className="form"
           onSubmit={this.handleSubmit}
         >
           <ul>
             <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
-            <RadioGroupInput config={recommended} handleInputChange={this.handleInputChange} />
+            <RadioGroupInput config={recommend} handleInputChange={this.handleInputChange} />
             <SingleInput config={summary} handleInputChange={this.handleInputChange} />
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
-            <SingleInput config={nickname} handleInputChange={this.handleInputChange} />
+            <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
             <li><input type="submit" value="Submit" /></li>
           </ul>

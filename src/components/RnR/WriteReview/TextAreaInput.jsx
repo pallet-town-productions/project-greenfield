@@ -15,7 +15,7 @@ const TextInput = ({ config, handleInputChange }) => {
         className="qna-modal-a-body"
         id={id}
         name={id}
-        minLength={50}
+        minLength={0}
         maxLength={1000}
         onChange={handleInputChange}
         placeholder={placeholder}
