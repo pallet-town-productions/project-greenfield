@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { updateReviewNumber } from '../../actions/RnR-Actions/RnR-action';
+import { recordClickData } from '../../util/util';
 import Tile from './RnR_tile';
 import WriteReviewButton from './WriteReview/WriteReviewButton';
 
@@ -28,12 +29,13 @@ class List extends Component {
     this.setState({ currentView: 2 });
   }
 
-  showMore() {
+  showMore(e) {
     const { currentView } = this.state;
     const { updateReviews } = this.props;
     if (currentView <= updateReviews.length) {
       this.setState(() => ({ currentView: currentView + 2 }));
     }
+    recordClickData(e.target, 'sort_list');
   }
 
   render() {
@@ -52,7 +54,7 @@ class List extends Component {
     dispatch(updateReviewNumber(reviewsToRender.length));
 
     if (updateReviews.length > currentView) {
-      button = <button type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
+      button = <button id="show-more-reviews" type="button" onClick={this.showMore.bind(this)}>More Reviews</button>;
     } else {
       button = <div />;
     }

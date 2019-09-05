@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PT from 'prop-types';
 import List from './RnR_list';
 import { updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
+import { recordClickData } from '../../util/util';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
@@ -58,6 +59,11 @@ class Sort extends Component {
       .then((info) => { dispatch(updateReviewsToRender(info)); });
   }
 
+  handleClick(e) {
+    recordClickData(e.target, 'sort_list');
+    this.getAllReviews();
+  }
+
   render() {
     const { updateReviewNumber } = this.props;
     const upperStr = `${updateReviewNumber} reviews, sorted by `;
@@ -65,7 +71,7 @@ class Sort extends Component {
       <div className="tile-container">
         <form className="sort-list">
           {upperStr}
-          <select id="sort-selector" className="selector" onChange={this.getAllReviews.bind(this)}>
+          <select id="sort-selector" className="selector" onChange={this.handleClick.bind(this)}>
             <option value="relevance">Relevance</option>
             <option value="date">Date</option>
             <option value="helpfulness">Helpfulness</option>

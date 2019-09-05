@@ -1,5 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
+import { recordClickData } from '../../util/util';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
@@ -11,10 +12,12 @@ class PhotoThumbnails extends React.Component {
     };
   }
 
-  isModalOpen() {
+  isModalOpen(e) {
+    console.log(e.target);
     this.setState((prevState) => ({
       isOpen: !prevState.isOpen,
     }));
+    recordClickData(e.target, 'review_photo');
   }
 
   render() {
@@ -22,23 +25,25 @@ class PhotoThumbnails extends React.Component {
     const { photo } = this.props;
     return (
       <div
+        id="photo-container"
         className="container"
         onClick={this.isModalOpen.bind(this)}
         onKeyDown={this.isModalOpen.bind(this)}
-        role="link"
+        role="button"
         tabIndex={0}
       >
         <img
+          id="photo-thumbnail"
           className="thumbnail"
           src={photo.url}
           alt=""
         />
         {isOpen ? (
-          <div className="RnR-modal">
+          <div id="photo-modal" className="RnR-modal">
             <span className="close">&times;</span>
-            <img className="modal-content" src={photo.url} alt="" />
+            <img id="modal-content" className="modal-content" src={photo.url} alt="" />
           </div>
-        ) : <div />}
+        ) : <div id="modal-off" />}
       </div>
     );
   }
