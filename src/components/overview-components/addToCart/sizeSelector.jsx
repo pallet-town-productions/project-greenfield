@@ -2,7 +2,9 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import { changeSize, toggleShowQuantities, togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
-import { zeroPad } from '../../../util/util';
+import { zeroPad, recordClickData } from '../../../util/util';
+
+const OWNER = 'Bailey';
 
 function mapStateToProps(st) {
   const { currentSizeIndex, currentStyleIndex, promptSelectSize } = st;
@@ -44,7 +46,10 @@ function DropDown({
   }
   return (
     <select
-      onChange={() => { handleChangeSize(); }}
+      onChange={(e) => { 
+        handleChangeSize();
+        recordClickData(e.currentTarget, OWNER); 
+      }}
       id="current-size"
     >
       {sizeList.map((size, index) => (
