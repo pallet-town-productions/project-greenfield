@@ -7,6 +7,8 @@ import TextAreaInput from './TextAreaInput';
 import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
+
 class WriteReviewForm extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class WriteReviewForm extends Component {
     const { name, value } = target;
     const temp = { value };
     this.setState((previousState) => {
-      const newState = { ...temp, ...previousState[name] };
+      const newState = { ...previousState[name], ...temp };
       return { [name]: newState };
     });
   }
@@ -39,7 +41,7 @@ class WriteReviewForm extends Component {
     const { hideModal } = this.props;
     const formData = getFilteredFormData(this.state);
     event.preventDefault();
-    fetch('fake.com', {
+    fetch(`${apiUrl}/reviews/7`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -47,13 +49,12 @@ class WriteReviewForm extends Component {
       },
     })
       .then((response) => {
-        if (response.ok) {
-          console.log('got it');
-          hideModal();
-        }
+        console.log(response);
+        hideModal();
       })
       .catch((err) => {
         console.log(err);
+        hideModal();
       });
   }
 

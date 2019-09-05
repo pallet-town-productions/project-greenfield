@@ -97,7 +97,7 @@ const getReviewFormConfig = () => {
         options: ['Yes', 'No'],
       },
     },
-    characteristic: {
+    characteristics: {
       label: 'Characteristics PlaceHolder',
       mandatory: false,
       id: 'characteristic placeholder',
@@ -163,24 +163,26 @@ const getReviewFormConfig = () => {
 };
 
 const getFilteredFormData = (formData) => {
+  const objReducer = (accumulator, currentValue) => ({ ...accumulator, ...currentValue });
   const filteredData = Object.keys(formData)
     .map((input) => {
       let value = formData[input].value !== undefined ? formData[input].value : '';
       if (input === 'recommend') {
         if (value === 'Yes') {
-          value = true;
+          value = 0;
         } else {
-          value = false;
+          value = 1;
         }
       }
       if (input === 'rating') {
         value = Number(value);
       }
       return { [input]: value };
-    });
+    })
+    .reduce(objReducer, {});
   filteredData.photos = [];
   filteredData.characteristics = {};
-  return filteredData;
+  return { ...filteredData };
 };
 
 export {
