@@ -33,9 +33,20 @@ class AddQuestion extends React.Component {
         role="presentation"
         className="qna-add-q-btn"
         id={`qna-add-qm${productId}`}
+        onKeyDown={(e) => {
+          if (e.keyCode === 27) {
+            document.getElementById('sort-selector').style.cssText = 'display: ""';
+            this.hideModal(false);
+          }
+        }}
         onClick={() => {
           document.getElementById('sort-selector').style.cssText = 'display: none';
-          this.showModal(true);
+          if (show) {
+            document.getElementById('sort-selector').style.cssText = 'display: ""';
+            this.hideModal(false);
+          } else {
+            this.showModal(true);
+          }
         }}
       >
         <p style={
