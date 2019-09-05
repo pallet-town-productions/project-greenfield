@@ -50,7 +50,13 @@ class PictureModal extends React.Component {
           className={showHideClassName}
           role="button"
           tabIndex={0}
-          onKeyPress={() => this.hideModal(false)}
+          onKeyDown={(e) => {
+            if (e.keyCode === 27) {
+              e.stopPropagation();
+              document.getElementById('sort-selector').style.cssText = 'display: ""';
+              this.hideModal(false);
+            }
+          }}
           onClick={(e) => {
             e.stopPropagation();
             document.getElementById('sort-selector').style.cssText = 'display: ""';
