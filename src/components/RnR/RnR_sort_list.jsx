@@ -6,7 +6,7 @@ import { updateReviewsToRender } from '../../actions/RnR-Actions/RnR-action';
 import '../../styles/standard-styles.scss';
 import '../../styles/RnR-styles.scss';
 
-const apiurl = process.env.REACT_APP_APIURL || '123.456.789.1011'
+const apiurl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
 const mapStateToProps = (state) => ({
   ...state,

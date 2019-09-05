@@ -18,8 +18,6 @@ class List extends Component {
   }
 
   componentDidUpdate(prevState) {
-    const { filters } = this.state;
-    const { dispatch } = this.props;
     const { productData } = this.props;
     if (prevState.productData.id !== productData.id) {
       this.resetView();
@@ -76,6 +74,7 @@ class List extends Component {
 List.propTypes = {
   updateReviews: PT.arrayOf(PT.object).isRequired,
   updateStarReviews: PT.arrayOf(PT.number).isRequired,
+  productData: PT.shape({ id: PT.number }).isRequired,
   dispatch: PT.func.isRequired,
 };
 const connectList = connect(mapStateToProps, null)(List);
