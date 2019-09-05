@@ -33,7 +33,7 @@ const Tile = (props) => {
 
   let recommend;
   if (review.recommend) {
-    recommend = <p className="recommend">&#10004; I recommend this product</p>;
+    recommend = <p>&#10004; I recommend this product</p>;
   }
 
   return (
@@ -41,7 +41,7 @@ const Tile = (props) => {
       <div className="top-row">
         <StarRating className="star-rating" starCount={review.rating} />
         <p className="user">{new Date(review.date).toLocaleDateString('en-US', options)}</p>
-        <p className="user">{review.reviewer_name},</p>
+        <p className="username">{review.reviewer_name},</p>
       </div>
       <p className="summary">{summary}</p>
       <div className="body"><TileBody body={body} /></div>
