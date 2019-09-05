@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, render, mount, configure } from 'enzyme';
+import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 // import RnR from '../../components/RnR/RnR_container';
 import Tile from '../../components/RnR/RnR_tile';
@@ -32,7 +32,7 @@ describe('tile', () => {
   it('should have a body containing correct info', () => {
     const body = wrapper.find('.tile-body');
     expect(body.text().includes('Fuga accusamus est')).toBe(true);
-  })
+  });
   it('should have an empty response category', () => {
     const response = wrapper.find('.response-text');
     expect(response.exists()).toBe(false);
