@@ -1,11 +1,14 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import { togglePromptSelectSize, addToCart } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
+import { togglePromptSelectSize } from '../../../actions/overview-Actions/addToCart/changeSizeQty';
 import { recordClickData, OVERVIEWOWNER } from '../../../util/util';
+
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
 function mapStateToProps(st) {
   const { currentStyleIndex, currentSizeIndex, currentQuantity } = st;
+  const userSession = Number(window.localStorage.getItem('user_session'));
   const thisStyleObj = st.styleData.results[currentStyleIndex];
   const productId = st.productData.id;
   const styleId = thisStyleObj.style_id;
@@ -19,11 +22,16 @@ function mapStateToProps(st) {
   const isOutOfStock = sizeList.length === 0;
   return {
     addInfo: {
+      userSession,
       productId,
       styleId,
       sizeId,
       qty,
       unitPrice,
+    },
+    postData: {
+      user_session: userSession,
+      product_id: productId,
     },
     isOutOfStock,
   };
@@ -31,20 +39,31 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (e, addInfo) => {
+    handleClick: (e, addInfo, postData) => {
       const selectedSize = Number(document.getElementById('current-size').value);
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
-        console.log(addInfo);
-        dispatch(addToCart(addInfo));
         recordClickData(e.currentTarget, OVERVIEWOWNER);
+        // post data to /cart/ API
+        fetch(`${apiUrl}/cart/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        })
+          .then(() => {
+            console.log(addInfo);
+          });
       }
     },
   };
 }
 
-export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick }) {
+export function AddToCartButtonComponent({
+  addInfo, postData, isOutOfStock, handleClick,
+}) {
   if (isOutOfStock) {
     return (
       <div>
@@ -66,7 +85,7 @@ export function AddToCartButtonComponent({ addInfo, isOutOfStock, handleClick })
         id="add-to-cart-button"
         className="cursor-pointer"
         onClick={(e) => {
-          handleClick(e, addInfo);
+          handleClick(e, addInfo, postData);
         }}
         role="presentation"
       >
@@ -88,6 +107,10 @@ AddToCartButtonComponent.propTypes = {
     sizeId: PT.number.isRequired, // Value of -1 means size isn't selected
     qty: PT.number.isRequired,
     unitPrice: PT.number.isRequired,
+  }).isRequired,
+  postData: PT.shape({
+    user_session: PT.number.isRequired,
+    product_id: PT.number.isRequired,
   }).isRequired,
 };
 

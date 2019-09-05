@@ -61,6 +61,11 @@ const recordClickData = (target, owner) => {
     .catch((e) => console.log(e));
 };
 
+function generateUserSession() {
+  // generates a UUID
+  return Math.floor((new Date().getTime()) / 10000);
+}
+
 export {
   FRONTPAGEPRODUCTID,
   SPLASHPAGEID,
@@ -70,4 +75,5 @@ export {
   getStyleData,
   getProductId,
   recordClickData,
+  generateUserSession,
 };
