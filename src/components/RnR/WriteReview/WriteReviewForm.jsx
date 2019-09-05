@@ -4,6 +4,7 @@ import RadioGroupInput from './RadioGroupInput';
 import SingleInput from './SingleInput';
 // import FileInput from './FileInput';
 import TextAreaInput from './TextAreaInput';
+import { recordClickData } from '../../../util/util';
 import { getReviewFormConfig, getFilteredFormData } from '../../../util/RnR-review-meta';
 import '../../../styles/RnR-breakdown.scss';
 
@@ -40,6 +41,7 @@ class WriteReviewForm extends Component {
   handleSubmit(event) {
     const { hideModal, productData } = this.props;
     const { id } = productData;
+    const { target } = event;
     const formData = getFilteredFormData(this.state);
     event.preventDefault();
     fetch(`${apiUrl}/reviews/${id}`, {
@@ -51,6 +53,7 @@ class WriteReviewForm extends Component {
     })
       .then((response) => {
         console.log(response);
+        recordClickData(target, 'RatingsAndReviews');
         hideModal();
       })
       .catch((err) => {
@@ -74,21 +77,24 @@ class WriteReviewForm extends Component {
       <div
         role="presentation"
         onKeyDown={this.handleKeyPress}
+        className="modal-container"
       >
         <form
+          id="add-review-form"
           className="form"
           onSubmit={this.handleSubmit}
         >
           <h3>{productName}</h3>
-          <ul>
+          <ul className="form-list">
             <RadioGroupInput config={rating} handleInputChange={this.handleInputChange} />
             <RadioGroupInput config={recommend} handleInputChange={this.handleInputChange} />
             <SingleInput config={summary} handleInputChange={this.handleInputChange} />
             <TextAreaInput config={body} handleInputChange={this.handleInputChange} />
             <SingleInput config={name} handleInputChange={this.handleInputChange} />
             <SingleInput config={email} handleInputChange={this.handleInputChange} />
-            <li><input type="submit" value="Submit" /></li>
           </ul>
+          <div>* indicates a required field.</div>
+          <input id="submit-review-btn" className="submit-form-btn" type="submit" value="Submit" />
         </form>
       </div>
     );

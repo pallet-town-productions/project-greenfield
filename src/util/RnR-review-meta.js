@@ -80,7 +80,7 @@ const setProductSublables = (label = 'Default') => {
 const getReviewFormConfig = () => {
   const formConfig = {
     rating: {
-      label: 'Overall Rating',
+      label: 'Overall Rating:*',
       mandatory: true,
       id: 'rating',
       type: 'radio',
@@ -89,7 +89,7 @@ const getReviewFormConfig = () => {
       },
     },
     recommend: {
-      label: 'Do you recommend this product?',
+      label: 'Do you recommend this product?*',
       mandatory: true,
       id: 'recommend',
       type: 'radio',
@@ -107,7 +107,7 @@ const getReviewFormConfig = () => {
       },
     },
     summary: {
-      label: 'Review Summary',
+      label: 'Review Summary:*',
       mandatory: false,
       id: 'summary',
       type: 'text',
@@ -117,7 +117,7 @@ const getReviewFormConfig = () => {
       },
     },
     body: {
-      label: 'Review Body',
+      label: 'Review Body:*',
       mandatory: true,
       id: 'body',
       type: 'textarea',
@@ -137,25 +137,25 @@ const getReviewFormConfig = () => {
       },
     },
     name: {
-      label: 'What is your nickname',
+      label: 'What is your nickname?*',
       mandatory: true,
       id: 'name',
       type: 'text',
       constraints: {
         max: 60,
         placeholder: 'Example: jackson11',
-        sublabel: 'For privacy reasons, do not use your full name or email address',
+        sublabel: 'For privacy reasons, do not use your full name or email address.',
       },
     },
     email: {
-      label: 'Your email',
+      label: 'Your email:*',
       mandatory: true,
       id: 'email',
       type: 'email',
       constraints: {
         max: 60,
         placeholder: 'Example: jackson11@email.com',
-        sublabel: 'For authenication reasons, you will not be emailed',
+        sublabel: 'For authentication reasons, you will not be emailed.',
       },
     },
   };
