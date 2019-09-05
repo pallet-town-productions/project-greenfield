@@ -43,7 +43,7 @@ class WriteReviewButton extends Component {
       </ConnectedRelatedModal>
     ) : null;
     return (
-      <div>
+      <>
         <button
           type="button"
           id="add-review-button"
@@ -59,7 +59,7 @@ class WriteReviewButton extends Component {
         <div>
           {modal}
         </div>
-      </div>
+      </>
     );
   }
 }
