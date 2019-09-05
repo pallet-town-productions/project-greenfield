@@ -276,3 +276,22 @@
 	background: #6B9FFF;
 	color:#fff;
 }
+
+#qna-modal-q-body:focus ~ #qna-modal-q-body-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
+#qna-modal-q-name:focus ~ #qna-modal-q-name-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
+#qna-modal-q-email:focus ~ #qna-modal-q-email-span{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 1s linear;
+}
+
