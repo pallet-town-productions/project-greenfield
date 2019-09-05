@@ -12,6 +12,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchExpandedView: () => {
       dispatch(toggleExpandedView(true));
+      recordClickData({id: "expanded-view-show"}, OWNER);
     },
   };
 }
@@ -20,10 +21,7 @@ export function ImageGalleryComponent({ dispatchExpandedView }) {
   return (
     <section id="image-gallery-grid-default">
       <ImageMain
-        handleClick={() => {
-          dispatchExpandedView();
-          recordClickData({id: "expanded-view-show"}, OWNER);
-        }}
+        handleClick={dispatchExpandedView}
         onHover="cursor-zoomin"
         thisId="main-photo"
       />
