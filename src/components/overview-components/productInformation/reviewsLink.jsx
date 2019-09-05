@@ -2,7 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
 import StarRating from '../../RnR/RnR_StarRating';
-import { recordClickData, printArgs } from '../../../util/util';
+import { recordClickData } from '../../../util/util';
 
 const OWNER = 'Bailey';
 
@@ -31,7 +31,7 @@ function ReviewsLinkComponent({ updateReviews, averageRating }) {
         id="reviewsLink"
         href="#scrollRnR"
         onClick={(e) => {
-          printArgs(e.currentTarget, OWNER);
+          recordClickData(e.currentTarget, OWNER);
         }}
       >
         {readReviewsString}

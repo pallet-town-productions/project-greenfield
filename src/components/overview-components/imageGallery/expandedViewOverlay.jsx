@@ -20,10 +20,13 @@ function mapDispatchToProps(dispatch) {
   return {
     handleHideExpandedView: () => {
       dispatch(toggleExpandedView(false));
+      recordClickData({id: "expanded-view-hide"}, OWNER);
     },
-    handleShowZoomView: () => {
+    handleShowZoomView: (e) => {
+      e.stopPropagation();
       dispatch(toggleZoomView(true));
       dispatch(toggleExpandedView(false));
+      recordClickData({id: "zoom-view-show"}, OWNER);
     },
   };
 }
@@ -38,10 +41,7 @@ export function ExpandedViewOverlayComponent({
     <div className={display} id="image-gallery-overlay">
       <ImageMain
         handleExit={handleHideExpandedView}
-        handleClick={() => {
-          handleShowZoomView();
-          recordClickData({id: "zoom-view-show"}, OWNER);
-        }}
+        handleClick={handleShowZoomView}
         onHover="cursor-crosshair"
         thisId="expanded-main-photo"
       />
