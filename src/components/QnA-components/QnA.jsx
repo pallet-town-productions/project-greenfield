@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import AddQuestion from './AddQuestion';
 import List from './List';
 import Search from './Search';
-import api from '../../config/config';
 import '../../styles/QnA-styles.scss';
 
 const mapStateToProps = (state) => ({

@@ -35,7 +35,7 @@ class Answer extends React.Component {
 
     const {
       displayCount,
-      clicked
+      clicked,
     } = this.state;
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 

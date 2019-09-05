@@ -4,7 +4,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
-import api from '../../config/config';
 
 class AddAnswer extends React.Component {
   constructor(props, { data, productName, counter }) {
