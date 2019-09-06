@@ -19,8 +19,8 @@ import '../../styles/overview.scss';
 function Overview() {
   return (
     <div>
-      <ZoomViewOverlay />
       <main id="overview-grid-container">
+        <ZoomViewOverlay />
         <ExpandedViewOverlay />
         <header id="main-header-section">
           <Header />

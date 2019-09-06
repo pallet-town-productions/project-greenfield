@@ -1,7 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import '../../../styles/overview.scss';
 import { zeroPad, recordClickData, OVERVIEWOWNER } from '../../../util/util';
 
 function mapStateToProps(st) {

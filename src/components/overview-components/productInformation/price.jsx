@@ -1,7 +1,6 @@
 import React from 'react';
 import PT from 'prop-types';
 import { connect } from 'react-redux';
-import '../../../styles/overview.scss';
 
 function mapStateToProps(st) {
   const { productData, styleData, currentStyleIndex } = st;

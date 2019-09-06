@@ -183,7 +183,8 @@ body {
   position: fixed;
   transform: scale(2.5);
   transform-origin: top left;
-  right: calc((100%-#{$componentContainerWidth}) * 0.6);
+  // right: calc((100%-#{$componentContainerWidth}) * 0.6); // dev build
+  right: calc((200%-#{$componentContainerWidth}) * 0.5); // production build
   top: 3%;
   background-repeat: no-repeat;
   width: $zoomWindowWidth;
