@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import ConnectList from '../../components/RnR/RnR_list';
 import RnR from '../../components/RnR/RnR_container';
+import LowerBar from '../../components/RnR/RnR_tile_lower_bar';
 import Tile from '../../components/RnR/RnR_tile';
 import exampleReviewData from '../../exampleReviewData';
 import configureStore from '../../store';
@@ -83,5 +84,14 @@ describe('RnR Container', () => {
   it('should have a container with the stuff in it', () => {
     expect(wrapper.exists('.RnR_container')).toBeTruthy();
   });
-  
+});
+
+describe('lower bar', () => {
+  const wrapper = shallow(<LowerBar review={exampleReviewData.results[0]} />);
+  it('should have a container', () => {
+    expect(wrapper.exists('.lower-row')).toBeTruthy();
+  });
+  it('should contain another container below', () => {
+    expect(wrapper.exists('.lower')).toBeTruthy();
+  });
 });
