@@ -31,7 +31,7 @@ class AddAnswer extends React.Component {
     return (
       <span
         id={`qna-add-q${data.question_id}`}
-        className="qna-report-btn"
+        className="qna-report-btn qna-add-answer-span"
         role="presentation"
         type="button"
         onKeyDown={(e) => {
