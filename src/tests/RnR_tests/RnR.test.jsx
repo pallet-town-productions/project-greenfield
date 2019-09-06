@@ -1,9 +1,12 @@
 import React from 'react';
 import { mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// import RnR from '../../components/RnR/RnR_container';
+import { Provider } from 'react-redux';
+import ConnectList from '../../components/RnR/RnR_list';
 import Tile from '../../components/RnR/RnR_tile';
 import exampleReviewData from '../../exampleReviewData';
+import configureStore from '../../store';
+
 
 configure({ adapter: new Adapter() });
 
@@ -28,7 +31,7 @@ describe('tile', () => {
   it('should recommend a product sometimes', () => {
     const recommend = wrapper.find('.recommend');
     expect(recommend.text().includes('I recommend this product')).toBe(true);
-  }); // still not working great
+  });
   it('should have a body containing correct info', () => {
     const body = wrapper.find('.tile-body');
     expect(body.text().includes('Fuga accusamus est')).toBe(true);
@@ -44,5 +47,17 @@ describe('tile', () => {
   it('should display the helpfulness count', () => {
     const helpfulness = wrapper.find('.helpfulness');
     expect(helpfulness.text()).toBe('(29)');
+  });
+});
+
+describe('list', () => {
+  const mockStore = configureStore(true);
+  const wrapper = mount(
+    <Provider store={mockStore}>
+      <ConnectList />
+    </Provider>,
+  );
+  it('list should exist when given data', () => {
+    expect(wrapper.exists('.list')).toBeTruthy();
   });
 });
