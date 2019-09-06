@@ -45,7 +45,7 @@ class Question extends React.Component {
         <div className="question-q-container">
           <div className="question-q-text-container">
             <p style={{
-              fontSize: '22px',
+              fontSize: '18px',
               color: '#3B3B3B',
               marginBottom: '0',
               fontWeight: 'bold',

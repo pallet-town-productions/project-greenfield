@@ -38,7 +38,7 @@ class PictureModal extends React.Component {
           tabIndex={0}
           onKeyPress={this.showModal}
         >
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <img
             key={`ia${answer.id}`}
             alt={`Uploaded by: ${answer.answerer_name}`}

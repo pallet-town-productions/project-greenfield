@@ -7,11 +7,14 @@ const SingleInput = ({ config, handleInputChange }) => {
   } = config;
   const { placeholder = '', sublabel = '' } = constraints;
   return (
-    <li>
-      <label htmlFor={id}>
-        {label}
-      </label>
+    <li className="form-list-item">
+      <div className="form-label">
+        <label htmlFor={id}>
+          {label}
+        </label>
+      </div>
       <input
+        className="form-single-input"
         id={id}
         name={id}
         type={type}
@@ -20,7 +23,7 @@ const SingleInput = ({ config, handleInputChange }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <span>{sublabel}</span>
+      <div className="form-sublable">{sublabel}</div>
     </li>
   );
 };

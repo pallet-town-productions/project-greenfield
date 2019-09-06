@@ -7,12 +7,14 @@ const TextInput = ({ config, handleInputChange }) => {
   } = config;
   const { placeholder = '', sublabel = '' } = constraints;
   return (
-    <li>
-      <label htmlFor={id}>
-        {label}
-      </label>
+    <li className="form-list-item">
+      <div className="form-label">
+        <label htmlFor={id}>
+          {label}
+        </label>
+      </div>
       <textarea
-        className="qna-modal-a-body"
+        className="text-area"
         id={id}
         name={id}
         minLength={0}
@@ -20,7 +22,7 @@ const TextInput = ({ config, handleInputChange }) => {
         onChange={handleInputChange}
         placeholder={placeholder}
       />
-      <span>{sublabel}</span>
+      <div className="form-sublable">{sublabel}</div>
     </li>
   );
 };
