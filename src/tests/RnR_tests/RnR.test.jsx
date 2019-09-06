@@ -1,17 +1,14 @@
 import React from 'react';
-import { mount, configure } from 'enzyme';
+import { mount, configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import ConnectList from '../../components/RnR/RnR_list';
+import RnR from '../../components/RnR/RnR_container';
 import Tile from '../../components/RnR/RnR_tile';
 import exampleReviewData from '../../exampleReviewData';
 import configureStore from '../../store';
-import { updateReviews } from '../../reducers/RnR-Reducers/RnR-reducer';
-
 
 configure({ adapter: new Adapter() });
-
-// Tests for tile
 
 describe('tile', () => {
   const wrapper = mount(<Tile review={exampleReviewData.results[0]} />);
@@ -68,4 +65,23 @@ describe('list', () => {
     wrapper.find('#show-more-reviews').simulate('click');
     expect(wrapper.find('.tile')).toHaveLength(4);
   });
+  it('should show five tiles upon another click', () => {
+    wrapper.find('#show-more-reviews').simulate('click');
+    expect(wrapper.find('.tile')).toHaveLength(5);
+  });
+  it('should not show the more reviews button after five reviews', () => {
+    expect(wrapper.exists('#show-more-reviews')).toBeFalsy();
+  });
+});
+
+describe('RnR Container', () => {
+  const wrapper = shallow(<RnR />);
+  it('should have a header with correct text', () => {
+    const header = wrapper.find('h4');
+    expect(header.text().includes('RATINGS AND REVIEWS')).toBe(true);
+  });
+  it('should have a container with the stuff in it', () => {
+    expect(wrapper.exists('.RnR_container')).toBeTruthy();
+  });
+  
 });
