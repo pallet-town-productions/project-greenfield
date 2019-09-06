@@ -5,6 +5,7 @@ import rootReducer from './reducers/rootReducer';
 import { SPLASHPAGEID } from './util/util';
 import exampleStyleData from './exampleStyleData';
 import exampleProductData from './exampleProductData';
+import exampleReviewData from './exampleReviewData';
 
 const initialData = {
   productData: { id: SPLASHPAGEID },
@@ -17,6 +18,7 @@ const initialData = {
 
 const initialTestingData = {
   // camo onesie for testing
+  updateReviews: exampleReviewData.results,
   productData: exampleProductData,
   styleData: exampleStyleData,
   productId: 1,

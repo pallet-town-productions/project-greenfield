@@ -90,5 +90,5 @@ Sort.propTypes = {
   dispatch: PT.func.isRequired,
 };
 
-const connectSort = connect(mapStateToProps, null)(Sort);
-export default connectSort;
+const ConnectSort = connect(mapStateToProps, null)(Sort);
+export default ConnectSort;
