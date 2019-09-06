@@ -25,10 +25,10 @@ describe('tile', () => {
   it('should have a star rating', () => {
     expect(wrapper.exists('.star-rating')).toBeTruthy();
   });
-  // it('should recommend a product sometimes', () => {
-  //   const recommend = wrapper.find('.recommend');
-  //   expect(recommend.text().includes('I recommend this product')).toBe(true);
-  // }); // still not working great
+  it('should recommend a product sometimes', () => {
+    const recommend = wrapper.find('.recommend');
+    expect(recommend.text().includes('I recommend this product')).toBe(true);
+  }); // still not working great
   it('should have a body containing correct info', () => {
     const body = wrapper.find('.tile-body');
     expect(body.text().includes('Fuga accusamus est')).toBe(true);

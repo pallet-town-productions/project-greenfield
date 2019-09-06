@@ -13,7 +13,6 @@ class PhotoThumbnails extends React.Component {
   }
 
   isModalOpen(e) {
-    console.log(e.target);
     this.setState((prevState) => ({
       isOpen: !prevState.isOpen,
     }));
