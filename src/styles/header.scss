@@ -5,11 +5,14 @@ header {
   overflow: hidden;
   margin: $defaultMargin;
   padding: $defaultPadding;
-  background-color: $modalColor;
+  background-color: rgb(240, 240, 240);
 
   #cart-link {
     float: right;
     margin-right: 25px;
+    i {
+      font-size: 2em;
+    }
   }
 
   #header-search {

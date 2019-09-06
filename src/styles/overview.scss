@@ -55,6 +55,7 @@ body {
 
 .price { // modify
   margin: 5px 10px;
+  font-size: 1.2em;
 }
 
 .nav-carousel-button {
@@ -75,15 +76,20 @@ body {
   }
 }
 
+.social-media-buttons {
+  transform: scale(0.6);
+}
+
+
 // DESCRIBES IMAGE GALLERY IN DEFAULT VIEW
 #overview-grid-container {
   display: grid;
   grid-template-areas: 
-    'heading heading heading heading heading'
-    'main-image main-image main-image info info'
-    'main-image main-image main-image style-selector style-selector'
-    'main-image main-image main-image cart cart'
-    'description description description features features';
+  'heading heading heading heading heading'
+  'main-image main-image main-image info info'
+  'main-image main-image main-image style-selector style-selector'
+  'main-image main-image main-image cart cart'
+  'description description description features features';
   grid-gap: 10px; //modify
   padding: 10px; //modify
   header {
@@ -94,8 +100,8 @@ body {
     #image-gallery-grid-default {
       display: grid;
       grid-template-areas: 
-        'main'
-        'carousel';
+      'main'
+      'carousel';
       grid-template-rows: $mainPhotoDimension $thumbnailDimension*1.5;
       #main-photo { // modify
         grid-area: main;
@@ -127,13 +133,6 @@ body {
   }
   #features-section {
     grid-area: features;
-  }
-  section {
-    // background-color: white;
-    // display: inline-block;
-    // text-align: center;
-    // padding: 20px 0;
-    // font-size: 30px;
   }
 }
 
@@ -192,19 +191,42 @@ body {
   box-shadow: 0 0 2px 5px black;
 }
 
+#sub-header-section {
+  text-align: center;
+  font-size: 1.05em;
+  font-style: italic;
+}
+
 // DESCRIBES PRODUCT INFORMATION TEXT
 #product-name {
+  padding: 0px 2.5px 0.6em;
   font-size: 42px;
 }
 
 #category-name {
+  padding: 1em 5px;
   text-transform: uppercase;
   font-size: 20px;
 }
 
 #style-name {
+  padding: 0px 3px 0.8em;
   text-transform: uppercase;
   font-size: 14px;
+}
+
+#productdescription {
+  font-size: $descriptionFontSize;
+}
+
+#slogan {
+  font-size: $descriptionFontSize * 1.05;
+  padding-bottom: $descriptionFontSize / 1.05;
+}
+
+#feature-list {
+  font-size: $descriptionFontSize;
+  padding-top: 1.2em;
 }
 
 #reviewsLink {

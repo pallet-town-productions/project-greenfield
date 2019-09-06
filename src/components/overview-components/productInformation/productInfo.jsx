@@ -30,7 +30,7 @@ export function CategoryNameComponent({ productData }) {
 export function ProductDescriptionComponent({ productData }) {
   return (
     <div>
-      <strong id="slogan">{productData.slogan}</strong>
+      <div id="slogan"><strong>{productData.slogan}</strong></div>
       <div id="productdescription">{productData.description}</div>
     </div>
   );
@@ -40,7 +40,7 @@ export function FeatureListComponent({ productData }) {
   const featureList = productData.features;
   const productId = productData.id;
   return (
-    <ul>
+    <ul id="feature-list">
       {
         featureList.map((feature, index) => (
           <li key={zeroPad(productId, 7) + zeroPad(index, 2)}>
@@ -61,6 +61,7 @@ export function SocialMediaButtonsComponent({ thisUrl, productData, currentBigPi
         onClick={() => { recordClickData({ id: 'facebook-share' }, OVERVIEWOWNER); }}
       >
         <img
+          className="social-media-buttons"
           src="https://img.icons8.com/color/48/000000/facebook.png"
           alt="Share On Facebook"
         />
@@ -70,6 +71,7 @@ export function SocialMediaButtonsComponent({ thisUrl, productData, currentBigPi
         onClick={() => { recordClickData({ id: 'twitter-share' }, OVERVIEWOWNER); }}
       >
         <img
+          className="social-media-buttons"
           src="https://img.icons8.com/color/48/000000/twitter.png"
           alt="Share On Twitter"
         />
@@ -79,6 +81,7 @@ export function SocialMediaButtonsComponent({ thisUrl, productData, currentBigPi
         onClick={() => { recordClickData({ id: 'pinterest-share' }, OVERVIEWOWNER); }}
       >
         <img
+          className="social-media-buttons"
           src="https://img.icons8.com/color/48/000000/pinterest--v1.png"
           alt="Share On Pinterest"
         />
