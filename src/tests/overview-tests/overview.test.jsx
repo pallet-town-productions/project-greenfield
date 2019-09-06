@@ -40,7 +40,7 @@ import { doesNotReject } from 'assert';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
+const apiUrl = process.env.REACT_APP_APIURL || 'http://18.217.220.129:3000';
 
 
 // NOTES:
