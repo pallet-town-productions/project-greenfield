@@ -80,5 +80,5 @@ List.propTypes = {
   productData: PT.shape({ id: PT.number }).isRequired,
   dispatch: PT.func.isRequired,
 };
-const connectList = connect(mapStateToProps, null)(List);
-export default connectList;
+const ConnectList = connect(mapStateToProps, null)(List);
+export default ConnectList;

@@ -6,6 +6,7 @@ import ConnectList from '../../components/RnR/RnR_list';
 import Tile from '../../components/RnR/RnR_tile';
 import exampleReviewData from '../../exampleReviewData';
 import configureStore from '../../store';
+import { updateReviews } from '../../reducers/RnR-Reducers/RnR-reducer';
 
 
 configure({ adapter: new Adapter() });
@@ -59,5 +60,12 @@ describe('list', () => {
   );
   it('list should exist when given data', () => {
     expect(wrapper.exists('.list')).toBeTruthy();
+  });
+  it('should render two tiles initially', () => {
+    expect(wrapper.find('.tile')).toHaveLength(2);
+  });
+  it('should show four tiles upon click', () => {
+    wrapper.find('#show-more-reviews').simulate('click');
+    expect(wrapper.find('.tile')).toHaveLength(4);
   });
 });
