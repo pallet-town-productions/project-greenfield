@@ -39,8 +39,8 @@ function mapStateToProps(st) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (e, addInfo, postData) => {
-      const selectedSize = Number(document.getElementById('current-size').value);
+    handleClick: (e, addInfo, postData, isTesting = false) => {
+      const selectedSize = (isTesting) ? 1 : Number(document.getElementById('current-size').value);
       if (selectedSize === 0) { // size not selected yet
         dispatch(togglePromptSelectSize(true));
       } else {
@@ -53,16 +53,16 @@ function mapDispatchToProps(dispatch) {
           },
           body: JSON.stringify(postData),
         })
-          .then(() => {
-            console.log(addInfo);
-          });
+        .then(() => {
+          console.log(addInfo);
+        });
       }
     },
   };
 }
 
 export function AddToCartButtonComponent({
-  addInfo, postData, isOutOfStock, handleClick,
+  addInfo, postData, isOutOfStock, handleClick, isTesting = false
 }) {
   if (isOutOfStock) {
     return (
@@ -85,7 +85,7 @@ export function AddToCartButtonComponent({
         id="add-to-cart-button"
         className="cursor-pointer"
         onClick={(e) => {
-          handleClick(e, addInfo, postData);
+          handleClick(e, addInfo, postData, isTesting);
         }}
         role="presentation"
       >

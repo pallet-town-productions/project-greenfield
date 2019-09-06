@@ -20,7 +20,7 @@ import ZoomViewDisplay, { ZoomViewDisplayComponent } from '../../components/over
 // IMPORT add to cart components
 import SizeSelector, { SizeSelectorComponent } from '../../components/overview-components/addToCart/sizeSelector';
 import { QuantitySelectorComponent } from '../../components/overview-components/addToCart/quantitySelector';
-import { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
+import AddToCartButton, { AddToCartButtonComponent } from '../../components/overview-components/addToCart/addToCartButton';
 // IMPORT product info components
 import { PriceComponent } from '../../components/overview-components/productInformation/price';
 import {
@@ -36,8 +36,11 @@ import StyleThumbnail from '../../components/overview-components/styleSelector/s
 // IMPORT actions
 import { changePhoto, toggleExpandedView, toggleZoomView } from '../../actions/overview-Actions/imageGallery/imageGalleryActions';
 import { togglePromptSelectSize } from '../../actions/overview-Actions/addToCart/changeSizeQty';
+import { doesNotReject } from 'assert';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+const apiUrl = process.env.REACT_APP_APIURL || '123.456.789.1011';
 
 
 // NOTES:
@@ -325,22 +328,39 @@ describe('Add To Cart', () => {
   });
 
   describe('Add to Cart Button', () => {
+
     const handleClick = sinon.spy();
-    let wrapper = shallow(<AddToCartButtonComponent
-      isOutOfStock={false}
-      handleClick={handleClick}
-    />);
+    const mockStore = configureStore(true);
+    let wrapper = mount(<Provider store={mockStore}>
+        <AddToCartButton isTesting={true} />;
+      </Provider>);
     it('should display Add To Cart Button', () => {
       expect(wrapper.exists('.material-icons')).toBeTruthy();
       expect(wrapper.exists('#add-to-cart-button')).toBeTruthy();
     });
-    it('should be clickable', () => {
-      wrapper.find('#add-to-cart-button').simulate('click');
-      expect(handleClick.calledOnce).toBeTruthy();
+    it('should add item to cart when clicked', (done) => {
+      let lengthBeforeAdd;
+      fetch(`${apiUrl}/cart/0`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((res) => res.json())
+      .then((resJSON) => {lengthBeforeAdd = resJSON.length})
+      .then(() => {wrapper.find('#add-to-cart-button').simulate('click')})
+      .then(() => setTimeout(() => {
+        fetch(`${apiUrl}/cart/0`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+          })
+          .then((res) => res.json())
+          .then((resJSON) => {expect(lengthBeforeAdd).toEqual(resJSON.length - 1)})
+          .then(() => done())
+      }, 4000))
     });
-    // it('should add item to cart in selected quantities when clicked, and SKU exists', () => {
-
-    // });
     it('should prompt to Select Size when clicked, and size isn\'t selected', () => {
       const mockStore = configureStore(true);
       const sizeSelectorWrapper = mount(
@@ -355,7 +375,7 @@ describe('Add To Cart', () => {
     });
     it('should not be clickable if Out Of Stock', () => {
       wrapper = shallow(<AddToCartButtonComponent
-        isOutOfStock
+        isOutOfStock={true}
         handleClick={handleClick}
       />);
       expect(wrapper.exists('#add-to-cart-button-out-of-stock')).toBeTruthy();
