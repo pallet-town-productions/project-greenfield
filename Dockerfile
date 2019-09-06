@@ -1,8 +1,8 @@
 FROM node:10.13-alpine
-ENV NODE_ENV production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN mkdir -p /src/app
+WORKDIR /src/app
+COPY . /src/app
 RUN npm install
-COPY . .
+EXPOSE 5000
 
 CMD npm run build && npm install -g serve && serve -s build
