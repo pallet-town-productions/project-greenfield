@@ -24,7 +24,9 @@ function Overview() {
         <ExpandedViewOverlay />
         <header id="main-header-section">
           <Header />
-          SITE WIDE ANNOUNCEMENT:  SALE
+          <header id="sub-header-section">
+            SITE WIDE ANNOUNCEMENT:  SALE
+          </header>
         </header>
         <section id="image-gallery-section">
           <ImageGallery />
